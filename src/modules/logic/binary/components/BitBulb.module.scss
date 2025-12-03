@@ -1,0 +1,70 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.bulb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: all 0.3s ease;
+
+  &:hover .light {
+    border-color: $energy-cyan-glow;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+  }
+
+  .light {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid $energy-cyan-dim;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    
+    // Filament detail
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: $energy-cyan-dim;
+      opacity: 0.3;
+    }
+  }
+
+  .value {
+    font-family: $font-tech;
+    color: $text-dimmed;
+    font-size: 0.875rem;
+    transition: color 0.3s ease;
+  }
+
+  &.active {
+    .light {
+      background: $energy-cyan-core;
+      border-color: $text-bright;
+      @include cyan-glow-md;
+      
+      &::after {
+        background: $text-bright;
+        opacity: 1;
+        box-shadow: 0 0 10px $text-bright;
+      }
+    }
+
+    .value {
+      color: $text-energy-cyan;
+      @include text-glow;
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,72 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: rgba(10, 14, 20, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid $glass-border;
+  z-index: 10;
+
+  h1 {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    color: $text-energy-cyan;
+    margin: 0;
+    letter-spacing: 2px;
+    @include text-glow;
+  }
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 280px;
+  background: rgba(10, 14, 20, 0.5);
+  border-right: 1px solid $glass-border;
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  h3 {
+    font-family: $font-tech;
+    color: $text-dimmed;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid $energy-cyan-dim;
+    padding-bottom: 0.25rem;
+  }
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  position: relative;
+}
+
+.moduleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}

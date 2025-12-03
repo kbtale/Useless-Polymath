@@ -1,0 +1,57 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: $font-tech;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  
+  &.solid {
+    background-color: $energy-cyan-core;
+    color: $bg-deep-space;
+    @include cyan-glow-md;
+
+    &:hover {
+      background-color: $text-bright;
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.8);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  &.outline {
+    background-color: transparent;
+    border: 1px solid $energy-cyan-glow;
+    color: $energy-cyan-glow;
+    
+    // Since we use clip-path, border might be cut off. 
+    // Alternative approach for outline with clip-path usually involves a pseudo-element or box-shadow inset.
+    // For simplicity with clip-path, we can use a background gradient trick or just accept the cut.
+    // Let's use a box-shadow inset which works better with clip-path if we don't use border.
+    // Actually, border works fine with clip-path, it just gets clipped.
+    
+    &:hover {
+      background-color: rgba(0, 243, 255, 0.1);
+      @include cyan-glow-sm;
+      color: $text-bright;
+      border-color: $text-bright;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
