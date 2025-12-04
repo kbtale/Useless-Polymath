@@ -1,47 +1,101 @@
 import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
-import { getDayOfWeek, DAYS } from './logic';
+import { calculateDoomsdayWithLog } from './logic';
+import type { DoomsdayLog } from './logic';
+import styles from './Doomsday.module.scss';
 
 export const DoomsdayTool: React.FC = () => {
-  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
-  const [result, setResult] = useState<string | null>(null);
+  const [day, setDay] = useState('12');
+  const [month, setMonth] = useState('03');
+  const [year, setYear] = useState('2025');
+  // Initialize with default calculation so UI is full on load
+  const [log, setLog] = useState<DoomsdayLog | null>(() => calculateDoomsdayWithLog(2025, 3, 12));
 
   const handleCalculate = () => {
-    const [y, m, d] = date.split('-').map(Number);
-    const dayIndex = getDayOfWeek(y, m, d);
-    setResult(DAYS[dayIndex]);
+    const d = parseInt(day);
+    const m = parseInt(month);
+    const y = parseInt(year);
+    
+    if (isNaN(d) || isNaN(m) || isNaN(y)) return;
+    
+    const resultLog = calculateDoomsdayWithLog(y, m, d);
+    setLog(resultLog);
+  };
+
+  const handleClear = () => {
+    setDay('');
+    setMonth('');
+    setYear('');
+    setLog(null);
   };
 
   return (
-    <FUIGlassPanel style={{ maxWidth: '400px', margin: '0 auto' }}>
-      <h2 style={{ fontFamily: 'Rajdhani', color: '#00F3FF', marginTop: 0 }}>CHRONO // CALCULATOR</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <label style={{ color: 'rgba(255,255,255,0.7)', fontFamily: 'Rajdhani' }}>TARGET DATE</label>
-        <input 
-          type="date" 
-          value={date} 
-          onChange={(e) => setDate(e.target.value)}
-          style={{ 
-            background: 'rgba(0,0,0,0.3)', 
-            border: '1px solid rgba(0,243,255,0.3)', 
-            color: 'white', 
-            padding: '0.5rem',
-            fontFamily: 'Rajdhani',
-            fontSize: '1.2rem'
-          }}
-        />
-        <FUIButton onClick={handleCalculate}>CALCULATE</FUIButton>
+    <div className={styles.toolLayout}>
+      {/* INPUT PANEL */}
+      <FUIGlassPanel className={styles.panel}>
+        <h2 className={styles.title}>DOOMSDAY ALGORITHM</h2>
         
-        {result && (
-          <div style={{ marginTop: '1rem', textAlign: 'center' }}>
-            <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)' }}>RESULT</div>
-            <div style={{ fontSize: '2rem', color: '#00F3FF', fontFamily: 'Orbitron', textShadow: '0 0 10px rgba(0,243,255,0.5)' }}>
-              {result.toUpperCase()}
+        <label className={styles.label}>TARGET DATE</label>
+        
+        <div className={styles.dateInputContainer}>
+          <div className={`${styles.dateBlock} ${styles.icon}`}>📅</div>
+          <input 
+            className={styles.dateBlock} 
+            placeholder="MM" 
+            value={month}
+            onChange={(e) => setMonth(e.target.value)}
+            maxLength={2}
+          />
+          <input 
+            className={styles.dateBlock} 
+            placeholder="DD" 
+            value={day}
+            onChange={(e) => setDay(e.target.value)}
+            maxLength={2}
+          />
+          <input 
+            className={`${styles.dateBlock} ${styles.year}`} 
+            placeholder="YYYY" 
+            value={year}
+            onChange={(e) => setYear(e.target.value)}
+            maxLength={4}
+          />
+        </div>
+
+        <div className={styles.buttonGroup}>
+          <FUIButton onClick={handleClear} variant="outline">[ CLEAR ]</FUIButton>
+          <FUIButton onClick={handleCalculate} variant="solid">&lt; EXECUTE &gt;</FUIButton>
+        </div>
+      </FUIGlassPanel>
+
+      {/* LOG PANEL */}
+      {log && (
+        <FUIGlassPanel className={styles.panel}>
+          <h2 className={styles.title}>CALCULATION PROCESS LOG</h2>
+          
+          <div className={styles.logContainer}>
+            {log.steps.map((step, idx) => (
+              <div key={idx} className={styles.logStep}>
+                <div className={styles.stepHeader}>
+                  <span>+--[ {step.title} ]---+</span>
+                </div>
+                <div className={styles.stepContent}>
+                  <div>INPUT: {step.input}</div>
+                  <div>RESULT: {step.result}</div>
+                  {step.details && <div style={{ opacity: 0.6 }}>&gt; {step.details}</div>}
+                </div>
+              </div>
+            ))}
+
+            <div className={styles.finalResult}>
+              <div className={styles.resultContent}>
+                FINAL RESULT CONFIRMATION [ TOTAL ({log.finalNumber}) ] MOD 7 ==&gt; [ {log.finalNumber} ] // FINAL DAY: {log.finalDay.toUpperCase()}
+              </div>
             </div>
           </div>
-        )}
-      </div>
-    </FUIGlassPanel>
+        </FUIGlassPanel>
+      )}
+    </div>
   );
 };

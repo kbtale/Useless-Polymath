@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { decimalToHex, hexToDecimal } from './logic';
+import styles from './Hex.module.scss';
+import clsx from 'clsx';
 
 export const HexPractice: React.FC = () => {
   const [target, setTarget] = useState(0);
@@ -42,24 +44,24 @@ export const HexPractice: React.FC = () => {
   };
 
   return (
-    <FUIGlassPanel style={{ maxWidth: '600px', margin: '0 auto' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-        <h2 style={{ fontFamily: 'Rajdhani', color: '#BD00FF', margin: 0 }}>HEX // TRAINING</h2>
-        <div style={{ fontFamily: 'Orbitron', color: '#FFD700' }}>STREAK: {streak}</div>
+    <FUIGlassPanel className={styles.panel}>
+      <div className={styles.header}>
+        <h2 className={styles.practiceTitle}>HEX // TRAINING</h2>
+        <div className={styles.streak}>STREAK: {streak}</div>
       </div>
 
-      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        <div style={{ fontFamily: 'Rajdhani', color: 'rgba(255,255,255,0.7)' }}>CONVERT TO HEX</div>
-        <div style={{ fontSize: '4rem', fontFamily: 'Orbitron', color: 'white' }}>{target}</div>
+      <div className={styles.targetDisplay}>
+        <div className={styles.label}>CONVERT TO HEX</div>
+        <div className={styles.targetValue}>{target}</div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+      <div className={styles.optionsGrid}>
         {options.map(opt => (
           <FUIButton 
             key={opt} 
             variant="outline" 
             onClick={() => handleGuess(opt)}
-            style={{ fontSize: '1.5rem', fontFamily: 'Orbitron' }}
+            className={styles.optionBtn}
           >
             {opt}
           </FUIButton>
@@ -67,15 +69,7 @@ export const HexPractice: React.FC = () => {
       </div>
 
       {feedback && (
-        <div style={{ 
-          marginTop: '2rem', 
-          textAlign: 'center', 
-          padding: '1rem',
-          background: feedback === 'correct' ? 'rgba(0, 243, 255, 0.2)' : 'rgba(255, 0, 60, 0.2)',
-          border: `1px solid ${feedback === 'correct' ? '#00F3FF' : '#FF003C'}`,
-          color: feedback === 'correct' ? '#00F3FF' : '#FF003C',
-          fontFamily: 'Orbitron'
-        }}>
+        <div className={clsx(styles.feedback, styles[feedback])}>
           {feedback === 'correct' ? 'ACCESS GRANTED' : 'ACCESS DENIED'}
         </div>
       )}

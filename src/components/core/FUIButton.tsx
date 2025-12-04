@@ -1,24 +1,23 @@
 import React from 'react';
-import clsx from 'clsx';
 import styles from './FUIButton.module.scss';
+import clsx from 'clsx';
 
 interface FUIButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'solid' | 'outline';
-  children: React.ReactNode;
 }
 
 export const FUIButton: React.FC<FUIButtonProps> = ({ 
-  variant = 'solid', 
-  className, 
   children, 
+  variant = 'outline', 
+  className,
   ...props 
 }) => {
   return (
     <button 
-      className={clsx(styles.button, styles[variant], className)} 
+      className={clsx(styles.fuiButton, variant === 'solid' && styles.solid, className)}
       {...props}
     >
-      {children}
+      {variant === 'outline' ? `[ ${children} ]` : `< ${children} >`}
     </button>
   );
 };

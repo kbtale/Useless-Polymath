@@ -1,5 +1,4 @@
 @use '../../../../styles/variables' as *;
-@use '../../../../styles/mixins' as *;
 
 .bulb {
   display: flex;
@@ -10,61 +9,57 @@
   background: none;
   border: none;
   padding: 0;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 
   &:hover .light {
-    border-color: $energy-cyan-glow;
-    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+    border-color: $text-main;
+    background: $hover-bg;
   }
 
   .light {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    border: 2px solid $energy-cyan-dim;
-    background: rgba(0, 0, 0, 0.5);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 50%; // Keep it round or make it square? Schematic usually square, but bulb implies round. Let's keep round but with schematic style.
+    border: 1px solid $line-color;
+    background: transparent;
+    transition: all 0.2s ease;
     position: relative;
     
-    // Filament detail
+    // Inner detail (crosshair or dot)
     &::after {
       content: '';
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: $energy-cyan-dim;
-      opacity: 0.3;
+      width: 4px;
+      height: 4px;
+      background: $line-color;
+      opacity: 0.2;
     }
   }
 
   .value {
-    font-family: $font-tech;
-    color: $text-dimmed;
-    font-size: 0.875rem;
-    transition: color 0.3s ease;
+    font-family: $font-mono;
+    color: $text-dim;
+    font-size: 0.75rem;
+    transition: color 0.2s ease;
   }
 
   &.active {
     .light {
-      background: $energy-cyan-core;
-      border-color: $text-bright;
-      @include cyan-glow-md;
+      background: $line-color;
+      border-color: $line-color;
       
       &::after {
-        background: $text-bright;
+        background: $bg-canvas;
         opacity: 1;
-        box-shadow: 0 0 10px $text-bright;
       }
     }
 
     .value {
-      color: $text-energy-cyan;
-      @include text-glow;
-      font-weight: bold;
+      color: $text-main;
+      font-weight: 700;
     }
   }
 }

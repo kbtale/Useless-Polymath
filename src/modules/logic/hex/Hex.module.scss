@@ -1,0 +1,110 @@
+@use '../../../styles/variables' as *;
+
+.panel {
+  width: 100%;
+  max-width: $container-sm;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.title {
+  font-family: $font-mono;
+  color: $text-main;
+  margin-top: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-bottom: 1px solid $line-color;
+  padding-bottom: $spacing-sm;
+  text-align: center;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  text-align: center;
+}
+
+.label {
+  font-family: $font-mono;
+  color: $text-dim;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.input {
+  background: transparent;
+  border: 1px solid $line-color;
+  color: $text-main;
+  padding: $spacing-sm;
+  font-family: $font-mono;
+  font-size: 0.9rem;
+  width: 100%;
+  outline: none;
+  text-align: center;
+  margin: 0;
+  appearance: none;
+  border-radius: 0;
+
+  &:focus {
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+  }
+}
+
+// Practice Mode
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+}
+
+.streak {
+  font-family: $font-mono;
+  color: $text-main;
+  font-weight: 700;
+}
+
+.targetDisplay {
+  text-align: center;
+  margin-bottom: $spacing-lg;
+  
+  .targetValue {
+    font-size: 3rem;
+    font-family: $font-mono;
+    color: $text-main;
+    font-weight: 700;
+  }
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+}
+
+.feedback {
+  margin-top: $spacing-lg;
+  text-align: center;
+  padding: $spacing-md;
+  border: 1px solid $line-color;
+  font-family: $font-mono;
+  font-weight: 700;
+
+  &.correct {
+    background: rgba(0, 0, 0, 0.05);
+    color: $text-main;
+  }
+
+  &.incorrect {
+    background: rgba(0, 0, 0, 0.1);
+    color: $text-main;
+    text-decoration: line-through;
+  }
+}

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getDayOfWeek, isLeapYear, getDoomsday } from './logic';
+import { getDayOfWeek, isLeapYear } from './logic';
 
 describe('Doomsday Algorithm', () => {
   it('should correctly identify leap years', () => {

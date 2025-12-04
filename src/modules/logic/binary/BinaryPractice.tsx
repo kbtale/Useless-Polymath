@@ -3,6 +3,8 @@ import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { BitBulb } from './components/BitBulb';
 import { getActivePowers } from './logic';
+import styles from './Binary.module.scss';
+import clsx from 'clsx';
 
 export const BinaryPractice: React.FC = () => {
   const [target, setTarget] = useState(0);
@@ -59,21 +61,21 @@ export const BinaryPractice: React.FC = () => {
   };
 
   return (
-    <FUIGlassPanel style={{ maxWidth: '800px', margin: '0 auto' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-        <div style={{ display: 'flex', gap: '1rem' }}>
+    <FUIGlassPanel className={styles.panel}>
+      <div className={styles.header}>
+        <div className={styles.controls}>
           <FUIButton variant={mode === 'write' ? 'solid' : 'outline'} onClick={() => setMode('write')}>WRITE (DEC to BIN)</FUIButton>
           <FUIButton variant={mode === 'read' ? 'solid' : 'outline'} onClick={() => setMode('read')}>READ (BIN to DEC)</FUIButton>
         </div>
-        <div style={{ fontFamily: 'Orbitron', color: '#FFD700' }}>STREAK: {streak}</div>
+        <div className={styles.streak}>STREAK: {streak}</div>
       </div>
 
-      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        <div style={{ fontFamily: 'Rajdhani', color: 'rgba(255,255,255,0.7)' }}>TARGET</div>
+      <div className={styles.targetDisplay}>
+        <div className={styles.label}>TARGET</div>
         {mode === 'write' ? (
-          <div style={{ fontSize: '3rem', fontFamily: 'Orbitron', color: '#BD00FF' }}>{target}</div>
+          <div className={styles.targetValue}>{target}</div>
         ) : (
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '1rem' }}>
+          <div className={styles.bulbContainer}>
              {[128, 64, 32, 16, 8, 4, 2, 1].map(bit => (
               <BitBulb 
                 key={bit} 
@@ -88,7 +90,7 @@ export const BinaryPractice: React.FC = () => {
       </div>
 
       {mode === 'write' && (
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+        <div className={styles.bulbContainer}>
           {[128, 64, 32, 16, 8, 4, 2, 1].map(bit => (
             <BitBulb 
               key={bit} 
@@ -101,38 +103,21 @@ export const BinaryPractice: React.FC = () => {
       )}
 
       {mode === 'read' && (
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '1rem' }}>
+        <div className={styles.inputArea}>
           <input 
             type="number" 
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && checkReadAnswer()}
             placeholder="Enter Decimal Value"
-            style={{ 
-              background: 'rgba(0,0,0,0.3)', 
-              border: '1px solid rgba(0,243,255,0.3)', 
-              color: 'white', 
-              padding: '0.5rem',
-              fontFamily: 'Orbitron',
-              fontSize: '1.5rem',
-              width: '200px',
-              textAlign: 'center'
-            }}
+            className={styles.input}
           />
           <FUIButton onClick={checkReadAnswer}>CHECK</FUIButton>
         </div>
       )}
 
       {feedback && (
-        <div style={{ 
-          marginTop: '2rem', 
-          textAlign: 'center', 
-          padding: '1rem',
-          background: feedback === 'correct' ? 'rgba(0, 243, 255, 0.2)' : 'rgba(255, 0, 60, 0.2)',
-          border: `1px solid ${feedback === 'correct' ? '#00F3FF' : '#FF003C'}`,
-          color: feedback === 'correct' ? '#00F3FF' : '#FF003C',
-          fontFamily: 'Orbitron'
-        }}>
+        <div className={clsx(styles.feedback, styles[feedback])}>
           {feedback === 'correct' ? 'SYSTEM SYNCED' : 'SYNC FAILURE'}
         </div>
       )}

@@ -1,35 +1,30 @@
 @use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
 
-.panel {
-  @include glass-morphism;
-  padding: 1.5rem;
-  border-radius: 4px; // Small radius, mostly sharp
+.glassPanel {
+  background: $bg-canvas;
+  border: 1px solid $line-color;
+  padding: $spacing-sm; // Outer padding for the double border effect
   position: relative;
-  overflow: hidden;
-
-  // Decorative corner markers
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 20px;
-    height: 20px;
-    border-top: 2px solid $energy-cyan-dim;
-    border-left: 2px solid $energy-cyan-dim;
-    opacity: 0.5;
+  box-shadow: 8px 8px 0px rgba(0,0,0,0.05);
+  
+  .innerBorder {
+    border: 1px solid $line-color;
+    padding: $spacing-lg;
+    position: relative;
   }
 
-  &::after {
-    content: '';
+  // Corner Decorations
+  .corner {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    border-bottom: 2px solid $energy-cyan-dim;
-    border-right: 2px solid $energy-cyan-dim;
-    opacity: 0.5;
+    width: 8px;
+    height: 8px;
+    background: $bg-canvas;
+    border: 1px solid $line-color;
+    z-index: 1;
   }
+
+  .tl { top: -4px; left: -4px; }
+  .tr { top: -4px; right: -4px; }
+  .bl { bottom: -4px; left: -4px; }
+  .br { bottom: -4px; right: -4px; }
 }

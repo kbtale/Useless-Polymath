@@ -1,39 +1,37 @@
-@use './styles/variables' as *;
+@use 'styles/variables' as *;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
 
 :root {
-  font-family: $font-body;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: dark;
-  color: $text-bright;
-  background-color: $bg-deep-space;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --bg-canvas: #{$bg-canvas};
+  --line-color: #{$line-color};
+  --text-main: #{$text-main};
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  background-image: 
-    linear-gradient($bg-overlay-grid 1px, transparent 1px),
-    linear-gradient(90deg, $bg-overlay-grid 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-#root {
-  width: 100%;
+  padding: 0;
+  background-color: $bg-canvas;
+  color: $text-main;
+  font-family: $font-mono;
+  overflow: hidden;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
+  width: 100vw;
+
+  // Grid Background
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
 }
 
-button {
-  font-family: $font-tech;
+* {
+  box-sizing: border-box;
 }
+
+// Utility Classes
+.hairline-b { border-bottom: $border-thin; }
+.hairline-r { border-right: $border-thin; }
+.hairline-l { border-left: $border-thin; }
+.hairline-t { border-top: $border-thin; }
+.hairline { border: $border-thin; }

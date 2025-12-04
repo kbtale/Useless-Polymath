@@ -1,0 +1,138 @@
+@use '../../../styles/variables' as *;
+
+.panel {
+  width: 100%;
+  max-width: $container-md;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.title {
+  font-family: $font-mono;
+  color: $text-main;
+  margin-top: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-bottom: 1px solid $line-color;
+  padding-bottom: $spacing-sm;
+  text-align: center;
+}
+
+.bulbContainer {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+  padding: $spacing-md 0;
+}
+
+.resultArea {
+  text-align: center;
+  border-top: 1px dashed $line-color;
+  padding-top: $spacing-md;
+}
+
+.label {
+  font-family: $font-mono;
+  color: $text-dim;
+  font-size: 0.75rem;
+  margin-bottom: $spacing-xs;
+  text-align: center;
+}
+
+.valueDisplay {
+  font-family: $font-mono;
+  font-size: 3rem;
+  color: $text-main;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.equation {
+  font-family: $font-mono;
+  color: $text-dim;
+  margin-top: $spacing-sm;
+  font-size: 1rem;
+}
+
+// Practice Mode
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+}
+
+.controls {
+  display: flex;
+  gap: $spacing-md;
+}
+
+.streak {
+  font-family: $font-mono;
+  color: $text-main;
+  font-weight: 700;
+}
+
+.targetDisplay {
+  text-align: center;
+  margin-bottom: $spacing-lg;
+  
+  .targetValue {
+    font-size: 3rem;
+    font-family: $font-mono;
+    color: $text-main;
+    font-weight: 700;
+  }
+}
+
+.inputArea {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-md;
+  margin-top: $spacing-md;
+}
+
+.input {
+  background: transparent;
+  border: 1px solid $line-color;
+  color: $text-main;
+  padding: $spacing-sm;
+  font-family: $font-mono;
+  font-size: 1.5rem;
+  width: 200px;
+  text-align: center;
+  outline: none;
+  margin: 0;
+  appearance: none;
+  border-radius: 0;
+
+  &:focus {
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+  }
+}
+
+.feedback {
+  margin-top: $spacing-lg;
+  text-align: center;
+  padding: $spacing-md;
+  border: 1px solid $line-color;
+  font-family: $font-mono;
+  font-weight: 700;
+
+  &.correct {
+    background: rgba(0, 0, 0, 0.05);
+    color: $text-main;
+  }
+
+  &.incorrect {
+    background: rgba(0, 0, 0, 0.1);
+    color: $text-main;
+    text-decoration: line-through;
+  }
+}
