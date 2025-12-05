@@ -9,6 +9,8 @@ import { TimeZonesTool } from './modules/cronometria/timezones/TimeZonesTool';
 import { TimeZonesPractice } from './modules/cronometria/timezones/TimeZonesPractice';
 import { MoonTool } from './modules/cronometria/moon/MoonTool';
 import { MoonPractice } from './modules/cronometria/moon/MoonPractice';
+import { CalendarOrdinalTool } from './modules/cronometria/ordinal/CalendarOrdinalTool';
+import { CalendarOrdinalPractice } from './modules/cronometria/ordinal/CalendarOrdinalPractice';
 import { useState } from 'react';
 
 function App() {
@@ -44,6 +46,8 @@ function App() {
         return mode === 'tool' ? <TimeZonesTool /> : <TimeZonesPractice />;
       case 'moon':
         return mode === 'tool' ? <MoonTool /> : <MoonPractice />;
+      case 'calendar':
+        return mode === 'tool' ? <CalendarOrdinalTool /> : <CalendarOrdinalPractice />;
       case 'binary':
         return mode === 'tool' ? <BinaryTool /> : <BinaryPractice />;
       case 'hex':
