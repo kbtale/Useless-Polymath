@@ -1,23 +1,34 @@
-// Light & Energy Tokens
-$bg-deep-space: #0A0E14;
-$bg-overlay-grid: rgba(0, 243, 255, 0.03);
-$glass-panel-bg: rgba(16, 24, 32, 0.7);
-$glass-border: rgba(0, 243, 255, 0.3);
+// COLORS
+$bg-canvas: #ffffff;
+$line-color: #000000;
+$text-main: #000000;
+$text-dim: #666666;
+$hover-bg: #f0f0f0;
 
-// Energy Colors
-$energy-cyan-glow: #00F3FF;
-$energy-cyan-core: #00E5FF;
-$energy-cyan-dim: #007A80;
-$energy-purple-glow: #BD00FF;
-$energy-red-alert: #FF003C;
-$energy-gold-data: #FFD700;
+// FONTS
+$font-mono: 'JetBrains Mono', monospace;
+$line-height-base: 1.6;
 
-// Text Colors
-$text-bright: #FFFFFF;
-$text-dimmed: rgba(255, 255, 255, 0.7);
-$text-energy-cyan: #00F3FF;
+// TYPOGRAPHY SCALE (Modular 1.25)
+$text-xl: 1.953rem; // Headers
+$text-lg: 1.563rem; // Subheaders
+$text-md: 1.25rem;  // Body/Inputs
+$text-base: 1rem;   // Standard
+$text-sm: 0.8rem;   // Labels
+$text-xs: 0.64rem;  // Meta
 
-// Typography
-$font-tech: 'Rajdhani', sans-serif;
-$font-body: 'Inter', sans-serif;
-$font-display: 'Orbitron', sans-serif;
+// SPACING
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 2rem;
+$spacing-xl: 4rem;
+
+// BORDERS
+$border-thin: 1px solid $line-color;
+
+// LAYOUT
+// LAYOUT
+$container-sm: 100%;
+$container-md: 100%;
+$container-lg: 100%;

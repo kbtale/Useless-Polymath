@@ -1,72 +1,271 @@
 @use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
 
-.shell {
+.appShell {
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  background-color: $bg-canvas;
+  color: $text-main;
 }
 
 .header {
-  height: 64px;
+  height: 3rem; // 12 * 0.25rem = 3rem
+  border-bottom: 1px solid $line-color;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
-  background: rgba(10, 14, 20, 0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid $glass-border;
+  padding: 0 $spacing-md;
+  background: $bg-canvas;
+  position: relative;
   z-index: 10;
 
-  h1 {
-    font-family: $font-display;
-    font-size: 1.5rem;
-    color: $text-energy-cyan;
-    margin: 0;
-    letter-spacing: 2px;
-    @include text-glow;
-  }
-}
-
-.main {
-  flex: 1;
-  display: flex;
-  overflow: hidden;
-}
-
-.sidebar {
-  width: 280px;
-  background: rgba(10, 14, 20, 0.5);
-  border-right: 1px solid $glass-border;
-  padding: 1.5rem;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
-  h3 {
-    font-family: $font-tech;
-    color: $text-dimmed;
+  .title {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
     font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0.5rem;
-    border-bottom: 1px solid $energy-cyan-dim;
-    padding-bottom: 0.25rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+
+    .square {
+      width: 0.75rem;
+      height: 0.75rem;
+      background: $line-color;
+    }
+
+    .version {
+      font-size: 0.75rem;
+      font-weight: 400;
+      opacity: 0.5;
+      margin-left: $spacing-sm;
+    }
+  }
+
+  .cornerDeco {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 1px solid $line-color;
+    border-bottom: 1px solid $line-color;
   }
 }
 
-.content {
+.mainLayout {
+  display: flex;
   flex: 1;
-  padding: 2rem;
-  overflow-y: auto;
+  overflow: hidden;
   position: relative;
 }
 
-.moduleGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
+.sidebar {
+  width: 16rem; // 64 * 0.25rem = 16rem
+  border-right: 1px solid $line-color;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+
+  .scrollArea {
+    flex: 1;
+    overflow-y: auto;
+    padding: $spacing-lg $spacing-md;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  .sectionTitle {
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: $spacing-md;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: $spacing-xs;
+  }
+
+  .menuList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  .menuItem {
+    position: relative;
+    padding-left: $spacing-md;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    cursor: pointer;
+    font-size: 0.875rem;
+
+    &:hover {
+      opacity: 1;
+      font-weight: 700;
+    }
+
+    &::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+
+    &.active {
+      opacity: 1;
+      font-weight: 700;
+
+      &::before {
+        opacity: 1;
+        content: '#';
+      }
+    }
+  }
+
+  .footer {
+    padding: $spacing-md;
+    border-top: 1px solid $line-color;
+    font-size: 0.75rem;
+    opacity: 0.6;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    .stat {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+.contentArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: rgba(255, 255, 255, 0.5);
+
+  .statusBar {
+    padding: $spacing-xs $spacing-lg;
+    font-size: $text-xs;
+    color: $text-dim;
+    border-bottom: 1px solid $line-color;
+    background: rgba(255, 255, 255, 0.8);
+    font-family: $font-mono;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    height: 2rem;
+  }
+
+  .tabs {
+    height: 3rem;
+    border-bottom: 1px solid $line-color;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 $spacing-lg;
+    gap: $spacing-xs;
+    background: rgba(255, 255, 255, 0.8);
+
+    .tabBtn {
+      border: none;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      opacity: 0.5;
+      padding: $spacing-sm $spacing-lg;
+      font-family: $font-mono;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      border-radius: 0; // Ensure sharp corners
+
+      &.active {
+        border-bottom: 1px solid $line-color;
+        opacity: 1;
+      }
+    }
+  }
+
+  .workspace {
+    flex: 1;
+    padding: $spacing-lg;
+    position: relative;
+    overflow-y: auto;
+    width: 100%;
+  }
+}
+
+// Crosshairs
+.crosshair {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    background: $line-color;
+  }
+}
+
+// Responsive Styles
+@media (max-width: 768px) {
+  .header {
+    padding: 0 $spacing-sm;
+    
+    .title h1 {
+      font-size: 0.75rem;
+      
+      .version {
+        display: none;
+      }
+    }
+  }
+
+  .mainLayout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid $line-color;
+    max-height: 12rem; // Collapsed height or scrollable
+    
+    .scrollArea {
+      padding: $spacing-sm;
+      gap: $spacing-md;
+    }
+
+    .footer, .crosshair {
+      display: none;
+    }
+  }
+
+  .contentArea {
+    .tabs {
+      padding: 0 $spacing-sm;
+      
+      .tabBtn {
+        padding: $spacing-sm $spacing-md;
+        font-size: 0.75rem;
+      }
+    }
+
+    .workspace {
+      padding: $spacing-md;
+    }
+  }
 }
