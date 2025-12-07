@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { getDayOfWeek, DAYS } from './logic';
+import styles from './Doomsday.module.scss';
+import clsx from 'clsx';
 
 export const DoomsdayPractice: React.FC = () => {
   const [targetDate, setTargetDate] = useState<{y: number, m: number, d: number} | null>(null);
@@ -38,27 +40,27 @@ export const DoomsdayPractice: React.FC = () => {
   };
 
   return (
-    <FUIGlassPanel style={{ maxWidth: '600px', margin: '0 auto', marginTop: '2rem' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-        <h2 style={{ fontFamily: 'Rajdhani', color: '#00F3FF', margin: 0 }}>TRAINING // MODE</h2>
-        <div style={{ fontFamily: 'Orbitron', color: '#FFD700' }}>STREAK: {streak}</div>
+    <FUIGlassPanel className={styles.panel}>
+      <div className={styles.header}>
+        <h2 className={styles.practiceTitle}>TRAINING // MODE</h2>
+        <div className={styles.streak}>STREAK: {streak}</div>
       </div>
       
       {targetDate && (
-        <div style={{ textAlign: 'center', margin: '2rem 0' }}>
-          <div style={{ fontSize: '3rem', fontFamily: 'Orbitron', color: 'white' }}>
+        <div className={styles.targetDate}>
+          <div className={styles.dateDisplay}>
             {targetDate.y}-{String(targetDate.m).padStart(2, '0')}-{String(targetDate.d).padStart(2, '0')}
           </div>
         </div>
       )}
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '0.5rem' }}>
+      <div className={styles.grid}>
         {DAYS.map((day, i) => (
           <FUIButton 
             key={day} 
             variant="outline" 
             onClick={() => handleGuess(i)}
-            style={{ padding: '0.5rem', fontSize: '0.8rem' }}
+            className={styles.dayBtn}
           >
             {day.substring(0, 3).toUpperCase()}
           </FUIButton>
@@ -66,15 +68,7 @@ export const DoomsdayPractice: React.FC = () => {
       </div>
 
       {feedback && (
-        <div style={{ 
-          marginTop: '1rem', 
-          textAlign: 'center', 
-          padding: '1rem',
-          background: feedback === 'correct' ? 'rgba(0, 243, 255, 0.2)' : 'rgba(255, 0, 60, 0.2)',
-          border: `1px solid ${feedback === 'correct' ? '#00F3FF' : '#FF003C'}`,
-          color: feedback === 'correct' ? '#00F3FF' : '#FF003C',
-          fontFamily: 'Orbitron'
-        }}>
+        <div className={clsx(styles.feedback, styles[feedback])}>
           {feedback === 'correct' ? 'ACCESS GRANTED' : 'ACCESS DENIED'}
         </div>
       )}

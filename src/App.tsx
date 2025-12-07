@@ -7,19 +7,47 @@ import { HexTool } from './modules/logic/hex/HexTool';
 import { HexPractice } from './modules/logic/hex/HexPractice';
 import { TimeZonesTool } from './modules/cronometria/timezones/TimeZonesTool';
 import { TimeZonesPractice } from './modules/cronometria/timezones/TimeZonesPractice';
+import { MoonTool } from './modules/cronometria/moon/MoonTool';
+import { MoonPractice } from './modules/cronometria/moon/MoonPractice';
+import { CalendarOrdinalTool } from './modules/cronometria/ordinal/CalendarOrdinalTool';
+import { CalendarOrdinalPractice } from './modules/cronometria/ordinal/CalendarOrdinalPractice';
 import { useState } from 'react';
-import { FUIButton } from './components/core/FUIButton';
 
 function App() {
-  const [mode, setMode] = useState<'tool' | 'practice'>('tool');
+  const [mode, setMode] = useState<'tool' | 'practice' | 'guide'>('tool');
   const [activeModuleId, setActiveModuleId] = useState('doomsday');
 
   const renderModule = () => {
+    if (mode === 'guide') {
+      return (
+        <div style={{ 
+          padding: '2rem', 
+          maxWidth: '800px', 
+          margin: '0 auto', 
+          fontFamily: 'JetBrains Mono, monospace',
+          color: '#333'
+        }}>
+          <h2 style={{ borderBottom: '1px solid #ccc', paddingBottom: '0.5rem' }}>MODULE // GUIDE</h2>
+          <p style={{ marginTop: '1rem' }}>
+            <strong>MODULE_ID:</strong> {activeModuleId.toUpperCase()}
+          </p>
+          <p>
+            Documentation for this module is currently being compiled. 
+            Please refer to the Visualizer for interactive exploration.
+          </p>
+        </div>
+      );
+    }
+
     switch (activeModuleId) {
       case 'doomsday':
         return mode === 'tool' ? <DoomsdayTool /> : <DoomsdayPractice />;
       case 'timezones':
         return mode === 'tool' ? <TimeZonesTool /> : <TimeZonesPractice />;
+      case 'moon':
+        return mode === 'tool' ? <MoonTool /> : <MoonPractice />;
+      case 'calendar':
+        return mode === 'tool' ? <CalendarOrdinalTool /> : <CalendarOrdinalPractice />;
       case 'binary':
         return mode === 'tool' ? <BinaryTool /> : <BinaryPractice />;
       case 'hex':
@@ -36,23 +64,13 @@ function App() {
   };
 
   return (
-    <AppShell activeModule={activeModuleId} onModuleChange={setActiveModuleId}>
+    <AppShell 
+      activeModule={activeModuleId} 
+      onModuleChange={setActiveModuleId}
+      mode={mode}
+      onModeChange={setMode}
+    >
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', justifyContent: 'center' }}>
-          <FUIButton 
-            variant={mode === 'tool' ? 'solid' : 'outline'} 
-            onClick={() => setMode('tool')}
-          >
-            TOOL / VISUALIZER
-          </FUIButton>
-          <FUIButton 
-            variant={mode === 'practice' ? 'solid' : 'outline'} 
-            onClick={() => setMode('practice')}
-          >
-            PRACTICE / GAME
-          </FUIButton>
-        </div>
-
         {renderModule()}
       </div>
     </AppShell>

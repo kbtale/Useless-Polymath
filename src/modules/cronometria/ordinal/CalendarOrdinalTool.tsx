@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
-import { calculateDoomsdayWithLog } from './logic';
-import type { DoomsdayLog } from './logic';
-import styles from './Doomsday.module.scss';
+import { getOrdinalDate } from './logic';
+import styles from './Ordinal.module.scss';
 
-export const DoomsdayTool: React.FC = () => {
-  const [day, setDay] = useState('12');
-  const [month, setMonth] = useState('03');
+export const CalendarOrdinalTool: React.FC = () => {
+  const [day, setDay] = useState('01');
+  const [month, setMonth] = useState('01');
   const [year, setYear] = useState('2025');
-  // Initialize with default calculation so UI is full on load
-  const [log, setLog] = useState<DoomsdayLog | null>(() => calculateDoomsdayWithLog(2025, 3, 12));
+  const [result, setResult] = useState<{ ordinal: number, totalDays: number, percentage: string, remaining: number } | null>(null);
 
   const handleCalculate = () => {
     const d = parseInt(day);
@@ -19,22 +17,21 @@ export const DoomsdayTool: React.FC = () => {
     
     if (isNaN(d) || isNaN(m) || isNaN(y)) return;
     
-    const resultLog = calculateDoomsdayWithLog(y, m, d);
-    setLog(resultLog);
+    const res = getOrdinalDate(d, m, y);
+    setResult(res);
   };
 
   const handleClear = () => {
     setDay('');
     setMonth('');
     setYear('');
-    setLog(null);
+    setResult(null);
   };
 
   return (
     <div className={styles.toolLayout}>
-      {/* INPUT PANEL */}
       <FUIGlassPanel className={styles.panel}>
-        <h2 className={styles.title}>DOOMSDAY ALGORITHM</h2>
+        <h2 className={styles.title}>CALENDAR ORDINAL</h2>
         
         <label className={styles.label}>TARGET DATE</label>
         
@@ -69,29 +66,27 @@ export const DoomsdayTool: React.FC = () => {
         </div>
       </FUIGlassPanel>
 
-      {/* LOG PANEL */}
-      {log && (
+      {result && (
         <FUIGlassPanel className={styles.panel}>
-          <h2 className={styles.title}>CALCULATION PROCESS LOG</h2>
+          <h2 className={styles.title}>ORDINAL CALCULATION</h2>
           
-          <div className={styles.logContainer}>
-            {log.steps.map((step, idx) => (
-              <div key={idx} className={styles.logStep}>
-                <div className={styles.stepHeader}>
-                  <span>+--[ {step.title} ]---+</span>
-                </div>
-                <div className={styles.stepContent}>
-                  <div>INPUT: {step.input}</div>
-                  <div>RESULT: {step.result}</div>
-                  {step.details && <div style={{ opacity: 0.6 }}>&gt; {step.details}</div>}
-                </div>
-              </div>
-            ))}
-
-            <div className={styles.finalResult}>
-              <div className={styles.resultContent}>
-                FINAL RESULT CONFIRMATION [ TOTAL ({log.finalNumber}) ] MOD 7 ==&gt; [ {log.finalNumber} ] // FINAL DAY: {log.finalDay.toUpperCase()}
-              </div>
+          <div className={styles.resultContainer}>
+            <div className={styles.resultRow}>
+              <span className={styles.key}>ORDINAL DAY</span>
+              <span className={styles.value}>DAY {result.ordinal}</span>
+            </div>
+            <div className={styles.resultRow}>
+              <span className={styles.key}>REMAINING</span>
+              <span className={styles.value}>{result.remaining} DAYS</span>
+            </div>
+            <div className={styles.resultRow}>
+              <span className={styles.key}>YEAR PROGRESS</span>
+              <span className={styles.value}>{result.percentage}%</span>
+            </div>
+            
+            <div className={styles.progressBar}>
+              <div className={styles.fill} style={{ width: `${result.percentage}%` }}></div>
+              <div className={styles.text}>{result.percentage}% COMPLETE</div>
             </div>
           </div>
         </FUIGlassPanel>

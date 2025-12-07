@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { decimalToHex, hexToDecimal } from './logic';
+import styles from './Hex.module.scss';
 
 export const HexTool: React.FC = () => {
   const [dec, setDec] = useState('255');
@@ -29,54 +30,37 @@ export const HexTool: React.FC = () => {
   };
 
   return (
-    <FUIGlassPanel style={{ maxWidth: '600px', margin: '0 auto' }}>
-      <h2 style={{ fontFamily: 'Rajdhani', color: '#00F3FF', marginTop: 0 }}>HEX // CONVERTER</h2>
+    <FUIGlassPanel className={styles.panel}>
+      <h2 className={styles.title}>HEXADECIMAL</h2>
       
-      <div style={{ display: 'grid', gap: '1.5rem' }}>
-        <div>
-          <label style={{ display: 'block', color: 'rgba(255,255,255,0.7)', fontFamily: 'Rajdhani', marginBottom: '0.5rem' }}>DECIMAL (Base 10)</label>
+      <div className={styles.container}>
+        <div className={styles.inputGroup}>
+          <label className={styles.label}>DECIMAL (Base 10)</label>
           <input 
             type="number" 
             value={dec}
             onChange={(e) => handleDecChange(e.target.value)}
-            style={{ 
-              width: '100%',
-              background: 'rgba(0,0,0,0.3)', 
-              border: '1px solid rgba(0,243,255,0.3)', 
-              color: 'white', 
-              padding: '1rem',
-              fontFamily: 'Orbitron',
-              fontSize: '1.5rem'
-            }}
+            className={styles.input}
           />
         </div>
 
-        <div>
-          <label style={{ display: 'block', color: 'rgba(255,255,255,0.7)', fontFamily: 'Rajdhani', marginBottom: '0.5rem' }}>HEXADECIMAL (Base 16)</label>
+        <div className={styles.inputGroup}>
+          <label className={styles.label}>HEXADECIMAL (Base 16)</label>
           <input 
             type="text" 
             value={hex}
             onChange={(e) => handleHexChange(e.target.value)}
-            style={{ 
-              width: '100%',
-              background: 'rgba(0,0,0,0.3)', 
-              border: '1px solid #BD00FF', 
-              color: '#BD00FF', 
-              padding: '1rem',
-              fontFamily: 'Orbitron',
-              fontSize: '1.5rem',
-              textShadow: '0 0 10px rgba(189, 0, 255, 0.5)'
-            }}
+            className={styles.input}
           />
         </div>
 
-        <div>
-          <label style={{ display: 'block', color: 'rgba(255,255,255,0.7)', fontFamily: 'Rajdhani', marginBottom: '0.5rem' }}>BINARY (Base 2)</label>
+        <div className={styles.inputGroup}>
+          <label className={styles.label}>BINARY (Base 2)</label>
           <div style={{ 
-            fontFamily: 'Orbitron', 
-            fontSize: '1.2rem', 
-            color: 'rgba(255,255,255,0.5)',
-            letterSpacing: '2px'
+            fontFamily: 'JetBrains Mono, monospace', 
+            fontSize: '1rem', 
+            color: '#666666',
+            letterSpacing: '0.1em'
           }}>
             {bin.match(/.{1,4}/g)?.join(' ') || bin}
           </div>

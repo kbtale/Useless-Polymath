@@ -1,0 +1,216 @@
+@use '../../../styles/variables' as *;
+
+// CONTAINER
+.panel {
+  width: 100%;
+  // max-width is handled by toolLayout or container
+}
+
+.title {
+  font-family: $font-mono;
+  color: $text-main;
+  margin-top: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-bottom: 2px solid $line-color;
+  padding-bottom: $spacing-md;
+  margin-bottom: $spacing-xl;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: 100%;
+}
+
+.label {
+  display: block;
+  color: $text-dim;
+  font-family: $font-mono;
+  font-size: 0.875rem;
+  margin-bottom: $spacing-md;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+// TOOL UI
+.toolLayout {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  width: 100%;
+}
+
+.dateInputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  margin: $spacing-lg auto;
+  width: auto;
+  max-width: 100%;
+
+  .dateBlock {
+    border: 3px solid $line-color;
+    padding: 0;
+    font-size: 2rem;
+    font-family: $font-mono;
+    font-weight: 700;
+    text-align: center;
+    background: transparent;
+    outline: none;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+
+    &:focus {
+      background: $line-color;
+      color: $bg-canvas;
+    }
+
+    width: 7rem;
+
+    &.year {
+      width: 10rem;
+    }
+
+    &.icon {
+      width: 5rem;
+      font-size: 2rem;
+      border: 3px solid $line-color;
+    }
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: center;
+  margin-top: $spacing-md;
+  
+  button {
+    min-width: 120px;
+  }
+}
+
+// LOG PANEL
+.logPanel {
+  margin-top: $spacing-lg;
+}
+
+.logContainer {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  font-family: $font-mono;
+}
+
+.logStep {
+  border: 1px solid $line-color;
+  padding: $spacing-md;
+  position: relative;
+
+  .stepHeader {
+    font-weight: 700;
+    border-bottom: 1px dashed $line-color;
+    padding-bottom: $spacing-xs;
+    margin-bottom: $spacing-sm;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .stepContent {
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+}
+
+.finalResult {
+  margin-top: $spacing-lg;
+  border: 2px solid $line-color;
+  padding: $spacing-md;
+  
+  background-image: linear-gradient(45deg, $line-color 25%, transparent 25%, transparent 50%, $line-color 50%, $line-color 75%, transparent 75%, transparent);
+  background-size: 10px 10px;
+  
+  .resultContent {
+    background: $bg-canvas;
+    padding: $spacing-sm $spacing-md;
+    text-align: center;
+    font-weight: 700;
+    border: 1px solid $line-color;
+    text-transform: uppercase;
+  }
+}
+
+// Practice Mode Specifics
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-md;
+  border-bottom: 1px solid $line-color;
+  padding-bottom: $spacing-sm;
+}
+
+.streak {
+  font-family: $font-mono;
+  color: $text-main;
+  font-weight: 700;
+}
+
+.targetDate {
+  text-align: center;
+  margin: $spacing-lg 0;
+  
+  .dateDisplay {
+    font-size: 2.5rem;
+    font-family: $font-mono;
+    color: $text-main;
+    font-weight: 700;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: $spacing-xs;
+}
+
+.feedback {
+  margin-top: $spacing-md;
+  text-align: center;
+  padding: $spacing-md;
+  border: 1px solid $line-color;
+  font-family: $font-mono;
+  font-weight: 700;
+
+  &.correct {
+    background: rgba(0, 0, 0, 0.05);
+    color: $text-main;
+  }
+
+  &.incorrect {
+    background: rgba(0, 0, 0, 0.1);
+    color: $text-main;
+    text-decoration: line-through;
+  }
+}
+
+.practiceTitle {
+  font-family: $font-mono;
+  color: $text-main;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-bottom: none;
+}
+
+.dayBtn {
+  padding: 0.5rem;
+  font-size: 0.75rem;
+}
