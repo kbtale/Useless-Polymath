@@ -6,8 +6,10 @@ export const getMoonPhase = (day: number, month: number, year: number): { age: n
   const C = Math.floor(year / 100);
 
   // 3. Corrections
-  const S = Math.floor((3 * C) / 4) - 12; // Solar
-  const L = Math.floor((8 * C + 5) / 25) - 5; // Lunar
+  // Solar
+  const S = Math.floor((3 * C) / 4) - 12;
+  // Lunar
+  const L = Math.floor((8 * C + 5) / 25) - 5;
 
   // 4. Julian Epact (Ej)
   const Ej = (11 * (G - 1)) % 30;

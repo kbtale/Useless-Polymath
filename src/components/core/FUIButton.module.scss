@@ -16,18 +16,21 @@
   align-items: center;
   justify-content: center;
   gap: $spacing-sm;
-  min-height: 44px; // Touch target requirement
+
+  min-height: 44px;
+  border-radius: 0;
 
   &:hover {
     background: $line-color;
     color: $bg-canvas;
+    border-color: $line-color;
   }
 
   &:active {
     transform: translateY(1px);
   }
 
-  // Variant: Outline (Default) vs Solid (Inverted)
+
   &.solid {
     background: $line-color;
     color: $bg-canvas;
@@ -35,6 +38,7 @@
     &:hover {
       background: transparent;
       color: $text-main;
+      border-color: $text-main;
     }
   }
 }

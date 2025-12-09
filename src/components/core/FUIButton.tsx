@@ -17,7 +17,7 @@ export const FUIButton: React.FC<FUIButtonProps> = ({
       className={clsx(styles.fuiButton, variant === 'solid' && styles.solid, className)}
       {...props}
     >
-      {variant === 'outline' ? `[ ${children} ]` : `< ${children} >`}
+      {children}
     </button>
   );
 };

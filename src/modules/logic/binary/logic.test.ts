@@ -16,8 +16,10 @@ describe('Binary Logic', () => {
   });
 
   it('should return active powers correctly', () => {
-    expect(getActivePowers(5)).toEqual([4, 1]); // 4 + 1 = 5
-    expect(getActivePowers(10)).toEqual([8, 2]); // 8 + 2 = 10
+    // 4 + 1 = 5
+    expect(getActivePowers(5)).toEqual([4, 1]);
+    // 8 + 2 = 10
+    expect(getActivePowers(10)).toEqual([8, 2]);
     expect(getActivePowers(255)).toEqual([128, 64, 32, 16, 8, 4, 2, 1]);
     expect(getActivePowers(0)).toEqual([]);
   });
@@ -25,6 +27,7 @@ describe('Binary Logic', () => {
   it('should handle edge cases', () => {
     expect(() => decimalToBinary(256)).toThrow();
     expect(() => decimalToBinary(-1)).toThrow();
-    expect(() => binaryToDecimal('101')).toThrow(); // Not 8 bits
+    // Not 8 bits
+    expect(() => binaryToDecimal('101')).toThrow();
   });
 });

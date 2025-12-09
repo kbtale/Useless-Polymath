@@ -11,7 +11,8 @@ export const CalendarOrdinalPractice: React.FC = () => {
   const [streak, setStreak] = useState(0);
 
   const generateProblem = () => {
-    const y = 2020 + Math.floor(Math.random() * 10); // Random year 2020-2029
+    // Random year 2020-2029
+    const y = 2020 + Math.floor(Math.random() * 10);
     const m = Math.floor(Math.random() * 12) + 1;
     const maxDays = getDaysInMonth(m, y);
     const d = Math.floor(Math.random() * maxDays) + 1;

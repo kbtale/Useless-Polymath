@@ -1,9 +1,8 @@
 @use '../../../styles/variables' as *;
 
-// CONTAINER
+
 .panel {
   width: 100%;
-  // max-width is handled by toolLayout or container
 }
 
 .title {
@@ -14,7 +13,7 @@
   font-weight: 700;
   border-bottom: 2px solid $line-color;
   padding-bottom: $spacing-md;
-  margin-bottom: $spacing-xl;
+  margin-bottom: $spacing-md;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -26,14 +25,14 @@
   color: $text-dim;
   font-family: $font-mono;
   font-size: 0.875rem;
-  margin-bottom: $spacing-md;
+  margin-bottom: $spacing-sm;
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
   width: 100%;
 }
 
-// TOOL UI
+
 .toolLayout {
   display: flex;
   flex-direction: column;
@@ -45,43 +44,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: $spacing-sm;
-  margin: $spacing-lg auto;
-  width: auto;
-  max-width: 100%;
-
-  .dateBlock {
-    border: 3px solid $line-color;
-    padding: 0;
-    font-size: 2rem;
-    font-family: $font-mono;
-    font-weight: 700;
-    text-align: center;
-    background: transparent;
-    outline: none;
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-
-    &:focus {
-      background: $line-color;
-      color: $bg-canvas;
-    }
-
-    width: 7rem;
-
-    &.year {
-      width: 10rem;
-    }
-
-    &.icon {
-      width: 5rem;
-      font-size: 2rem;
-      border: 3px solid $line-color;
-    }
-  }
+  margin-top: $spacing-sm;
 }
 
 .buttonGroup {
@@ -95,7 +58,39 @@
   }
 }
 
-// LOG PANEL
+.resultDisplay {
+  margin-top: $spacing-md;
+  text-align: center;
+  border-top: 1px dashed $line-color;
+  padding-top: $spacing-md;
+  width: 100%;
+
+  .resultLabel {
+    color: $text-dim;
+    font-family: $font-mono;
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: $spacing-sm;
+  }
+
+  .resultValue {
+    font-family: $font-mono;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-main;
+    margin-bottom: $spacing-sm;
+  }
+
+  .helperText {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    color: $text-dim;
+    margin-top: $spacing-sm;
+    font-style: italic;
+  }
+}
+
+
 .logPanel {
   margin-top: $spacing-lg;
 }
@@ -147,7 +142,7 @@
   }
 }
 
-// Practice Mode Specifics
+
 .header {
   display: flex;
   justify-content: space-between;

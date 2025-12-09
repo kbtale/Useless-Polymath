@@ -10,7 +10,7 @@
 }
 
 .header {
-  height: 3rem; // 12 * 0.25rem = 3rem
+  height: 3rem;
   border-bottom: 1px solid $line-color;
   display: flex;
   align-items: center;
@@ -61,7 +61,7 @@
 }
 
 .sidebar {
-  width: 16rem; // 64 * 0.25rem = 16rem
+  width: 16rem;
   border-right: 1px solid $line-color;
   background: rgba(255, 255, 255, 0.9);
   display: flex;
@@ -187,7 +187,7 @@
       font-weight: 700;
       letter-spacing: 0.05em;
       cursor: pointer;
-      border-radius: 0; // Ensure sharp corners
+      border-radius: 0;
 
       &.active {
         border-bottom: 1px solid $line-color;
@@ -205,7 +205,6 @@
   }
 }
 
-// Crosshairs
 .crosshair {
   position: absolute;
   width: 10px;
@@ -219,7 +218,6 @@
   }
 }
 
-// Responsive Styles
 @media (max-width: 768px) {
   .header {
     padding: 0 $spacing-sm;
@@ -242,7 +240,7 @@
     height: auto;
     border-right: none;
     border-bottom: 1px solid $line-color;
-    max-height: 12rem; // Collapsed height or scrollable
+    max-height: 12rem;
     
     .scrollArea {
       padding: $spacing-sm;

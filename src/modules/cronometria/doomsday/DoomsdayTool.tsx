@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { SchematicDateInput } from '../../../components/core/SchematicDateInput';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { calculateDoomsdayWithLog } from './logic';
 import type { DoomsdayLog } from './logic';
@@ -9,7 +10,7 @@ export const DoomsdayTool: React.FC = () => {
   const [day, setDay] = useState('12');
   const [month, setMonth] = useState('03');
   const [year, setYear] = useState('2025');
-  // Initialize with default calculation so UI is full on load
+
   const [log, setLog] = useState<DoomsdayLog | null>(() => calculateDoomsdayWithLog(2025, 3, 12));
 
   const handleCalculate = () => {
@@ -39,27 +40,13 @@ export const DoomsdayTool: React.FC = () => {
         <label className={styles.label}>TARGET DATE</label>
         
         <div className={styles.dateInputContainer}>
-          <div className={`${styles.dateBlock} ${styles.icon}`}>📅</div>
-          <input 
-            className={styles.dateBlock} 
-            placeholder="MM" 
-            value={month}
-            onChange={(e) => setMonth(e.target.value)}
-            maxLength={2}
-          />
-          <input 
-            className={styles.dateBlock} 
-            placeholder="DD" 
-            value={day}
-            onChange={(e) => setDay(e.target.value)}
-            maxLength={2}
-          />
-          <input 
-            className={`${styles.dateBlock} ${styles.year}`} 
-            placeholder="YYYY" 
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-            maxLength={4}
+          <SchematicDateInput 
+            day={day}
+            month={month}
+            year={year}
+            setDay={setDay}
+            setMonth={setMonth}
+            setYear={setYear}
           />
         </div>
 
@@ -67,6 +54,14 @@ export const DoomsdayTool: React.FC = () => {
           <FUIButton onClick={handleClear} variant="outline">[ CLEAR ]</FUIButton>
           <FUIButton onClick={handleCalculate} variant="solid">&lt; EXECUTE &gt;</FUIButton>
         </div>
+
+        {log && (
+          <div className={styles.resultDisplay}>
+            <div className={styles.resultLabel}>CALCULATED DAY</div>
+            <div className={styles.resultValue}>{log.finalDay.toUpperCase()}</div>
+            <div className={styles.helperText}>See the full calculations below</div>
+          </div>
+        )}
       </FUIGlassPanel>
 
       {/* LOG PANEL */}

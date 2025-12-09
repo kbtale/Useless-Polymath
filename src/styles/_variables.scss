@@ -10,12 +10,18 @@ $font-mono: 'JetBrains Mono', monospace;
 $line-height-base: 1.6;
 
 // TYPOGRAPHY SCALE (Modular 1.25)
-$text-xl: 1.953rem; // Headers
-$text-lg: 1.563rem; // Subheaders
-$text-md: 1.25rem;  // Body/Inputs
-$text-base: 1rem;   // Standard
-$text-sm: 0.8rem;   // Labels
-$text-xs: 0.64rem;  // Meta
+// Headers
+$text-xl: 1.953rem;
+// Subheaders
+$text-lg: 1.563rem;
+// Body/Inputs
+$text-md: 1.25rem;
+// Standard
+$text-base: 1rem;
+// Labels
+$text-sm: 0.8rem;
+// Meta
+$text-xs: 0.64rem;
 
 // SPACING
 $spacing-xs: 0.25rem;

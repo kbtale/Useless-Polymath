@@ -10,33 +10,28 @@ interface Module {
 }
 
 const MODULES: Module[] = [
-  // CRONOMETRÍA Y ASTRONOMÍA
   { id: 'doomsday', name: 'DOOMSDAY ALGORITHM', category: '01 // CRONOMETRÍA' },
   { id: 'timezones', name: 'TIME ZONES', category: '01 // CRONOMETRÍA' },
   { id: 'moon', name: 'MOON PHASES', category: '01 // CRONOMETRÍA' },
   { id: 'calendar', name: 'CALENDAR ORDINAL', category: '01 // CRONOMETRÍA' },
 
-  // BASES NUMÉRICAS
   { id: 'binary', name: 'BINARY ARITHMETIC', category: '02 // BASES NUMÉRICAS' },
   { id: 'hex', name: 'HEXADECIMAL', category: '02 // BASES NUMÉRICAS' },
   { id: 'roman', name: 'ROMAN NUMERALS', category: '02 // BASES NUMÉRICAS' },
   { id: 'bitwise', name: 'BITWISE LOGIC', category: '02 // BASES NUMÉRICAS' },
   { id: 'rule72', name: 'RULE OF 72', category: '02 // BASES NUMÉRICAS' },
 
-  // REDES E INFORMÁTICA
   { id: 'subnetting', name: 'SUBNETTING (CIDR)', category: '03 // REDES' },
   { id: 'hexcolor', name: 'HEX COLOR EST.', category: '03 // REDES' },
   { id: 'ascii', name: 'ASCII TABLE', category: '03 // REDES' },
   { id: 'storage', name: 'STORAGE UNITS', category: '03 // REDES' },
 
-  // CRIPTOGRAFÍA Y SEÑALES
   { id: 'morse', name: 'MORSE CODE', category: '04 // CRIPTOGRAFÍA' },
   { id: 'nato', name: 'NATO PHONETIC', category: '04 // CRIPTOGRAFÍA' },
   { id: 'cipher', name: 'CAESAR/ROT CIPHER', category: '04 // CRIPTOGRAFÍA' },
   { id: 'braille', name: 'BRAILLE READING', category: '04 // CRIPTOGRAFÍA' },
   { id: 'semaphore', name: 'SEMAPHORE FLAGS', category: '04 // CRIPTOGRAFÍA' },
 
-  // CIENCIA Y ALGORITMOS
   { id: 'periodic', name: 'PERIODIC TABLE', category: '05 // CIENCIA' },
   { id: 'thermo', name: 'THERMODYNAMICS', category: '05 // CIENCIA' },
   { id: 'resistors', name: 'RESISTOR CODES', category: '05 // CIENCIA' },
@@ -74,17 +69,14 @@ export const AppShell: React.FC<AppShellProps> = ({
     return () => clearInterval(interval);
   }, []);
 
-  // Group modules by category
   const categories = Array.from(new Set(MODULES.map(m => m.category)));
 
-  // Breadcrumbs
   const currentModule = MODULES.find(m => m.id === activeModule);
   const categoryName = currentModule?.category.split('//')[1]?.trim() || 'UNKNOWN';
   const moduleName = currentModule?.name || 'UNKNOWN';
 
   return (
     <div className={styles.appShell}>
-      {/* TOP BAR */}
       <header className={styles.header}>
         <div className={styles.title}>
           <div className={styles.square}></div>
@@ -94,10 +86,8 @@ export const AppShell: React.FC<AppShellProps> = ({
         <div className={styles.cornerDeco}></div>
       </header>
 
-      {/* MAIN LAYOUT */}
       <div className={styles.mainLayout}>
         
-        {/* SIDEBAR */}
         <aside className={styles.sidebar}>
           <div className={styles.scrollArea}>
             {categories.map(cat => (
@@ -133,14 +123,11 @@ export const AppShell: React.FC<AppShellProps> = ({
           <div className={`${styles.crosshair} ${styles['ch-br']}`}></div>
         </aside>
 
-        {/* MAIN CONTENT */}
         <main className={styles.contentArea}>
-          {/* STATUS BAR (Wayfinding) */}
           <div className={styles.statusBar}>
             HOME &gt; {categoryName} &gt; {moduleName}
           </div>
 
-          {/* TABS */}
           <div className={styles.tabs}>
             <div className={styles.tabGroup}>
               <button 
@@ -164,7 +151,6 @@ export const AppShell: React.FC<AppShellProps> = ({
             </button>
           </div>
 
-          {/* WORKSPACE */}
           <div className={styles.workspace}>
             {children}
           </div>

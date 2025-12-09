@@ -19,7 +19,8 @@
   .light {
     width: 40px;
     height: 40px;
-    border-radius: 50%; // Keep it round or make it square? Schematic usually square, but bulb implies round. Let's keep round but with schematic style.
+    // Circular shape for bulb
+    border-radius: 50%;
     border: 1px solid $line-color;
     background: transparent;
     transition: all 0.2s ease;

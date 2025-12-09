@@ -1,7 +1,8 @@
 export interface TimeZone {
   id: string;
   name: string;
-  offset: number; // Offset from UTC in hours
+  // Offset from UTC in hours
+  offset: number;
 }
 
 export const COMMON_ZONES: TimeZone[] = [
