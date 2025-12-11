@@ -1,0 +1,4 @@
+{
+  "title": "Binary",
+  "guide": "### Powers Table (8 bits)\nSum values where a '1' appears.\n\n| 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |\n| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |\n| Bit 7 | Bit 6 | Bit 5 | Bit 4 | Bit 3 | Bit 2 | Bit 1 | Bit 0 |\n\n*Ex (00000101):* 4 + 1 = **5**."
+}

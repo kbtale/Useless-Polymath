@@ -1,0 +1,4 @@
+{
+  "title": "Conteggio Carte",
+  "guide": "### Sistema Hi-Lo\nConto mentale (+/-).\n\n| Carte | Valore | Azione |\n| :--- | :--- | :--- |\n| **2, 3, 4, 5, 6** | **+1** | Bene (Escono basse) |\n| **7, 8, 9** | **0** | Neutro |\n| **10, J, Q, K, A**| **-1** | Male (Escono alte) |\n\n*Conto Alto = Punta Forte.*"
+}

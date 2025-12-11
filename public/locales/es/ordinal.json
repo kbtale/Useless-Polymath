@@ -1,0 +1,11 @@
+{
+  "title": "Calendario Ordinal",
+  "guide": "### Días Acumulados\nSuma el día actual a la base del mes.\n\n| Mes | Base | Mes | Base |\n| :--- | :--- | :--- | :--- |\n| **Ene** | 0 | **Jul** | 181 |\n| **Feb** | 31 | **Ago** | 212 |\n| **Mar** | 59 | **Sep** | 243 |\n| **Abr** | 90 | **Oct** | 273 |\n| **May** | 120 | **Nov** | 304 |\n| **Jun** | 151 | **Dic** | 334 |\n\n*Nota: Si es bisiesto y >29 Feb, suma +1.*",
+  "tool_title": "ORDINAL DE CALENDARIO",
+  "result_title": "CÁLCULO ORDINAL",
+  "ordinal_day": "DÍA ORDINAL",
+  "remaining": "RESTANTE",
+  "year_progress": "PROGRESO AÑO",
+  "days": "DÍAS",
+  "complete": "COMPLETO"
+}

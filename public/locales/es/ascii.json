@@ -1,0 +1,4 @@
+{
+  "title": "Tabla ASCII",
+  "guide": "### Puntos de Anclaje\nMemoriza estos números para deducir el resto.\n\n| Carácter | Decimal | Nota |\n| :--- | :--- | :--- |\n| **Espacio**| 32 | Inicio imprimibles |\n| **0** | 48 | Números 0-9 |\n| **A** | 65 | Mayúsculas |\n| **a** | 97 | Minúsculas (+32) |\n\n*Conversión:* `a` (97) - 32 = `A` (65)."
+}

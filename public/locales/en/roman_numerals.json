@@ -1,0 +1,4 @@
+{
+  "title": "Roman Numerals",
+  "guide": "### Value Table\nRight adds, Left subtracts.\n\n| Symbol | Value |\n| :--- | :--- |\n| **I** | 1 |\n| **V** | 5 |\n| **X** | 10 |\n| **L** | 50 |\n| **C** | 100 |\n| **D** | 500 |\n| **M** | 1000 |\n\n*Rule:* Break down by 1000s, 100s, 10s. 1990 = MCMXC."
+}

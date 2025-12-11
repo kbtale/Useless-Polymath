@@ -1,0 +1,4 @@
+{
+  "title": "Luhn Algorithm",
+  "guide": "### Card Validation\nDetect typos.\n\n1. **Ignore** last digit (Check).\n2. Start **2nd to last** backwards:\n   * Odd positions: **Double**.\n   * If > 9, sum digits (16 -> 7).\n3. **Sum** all (doubled and skipped).\n4. Add Check Digit.\n5. Total must end in **0**."
+}

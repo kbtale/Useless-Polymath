@@ -1,0 +1,8 @@
+{
+  "title": "Doomsday Algorithm",
+  "guide": "### Mental Day Calculation\n\nReduces the calendar to a single sum. Result: **0=Sunday, 1=Monday... 6=Saturday**.\n\n#### 1. Centuries (Anchor)\n| Century | Anchor | Value |\n| :--- | :--- | :--- |\n| 1900-1999 | Wednesday | **3** |\n| 2000-2099 | Tuesday | **2** |\n| 2100-2199 | Sunday | **0** |\n\n#### 2. Months (Doomsdays)\nThese dates always land on the same weekday as the year's Doomsday:\n| Month | Day (Common) | Day (Leap) |\n| :--- | :--- | :--- |\n| **Jan** | 3 | **4** |\n| **Feb** | 28 | **29** |\n| **Mar** | 14 (Pi) | 14 |\n| **Apr** | 4 (4/4) | 4 |\n| **May** | 9 (9/5) | 9 |\n| **Jun** | 6 (6/6) | 6 |\n| **Jul** | 11 (7-11) | 11 |\n| **Aug** | 8 (8/8) | 8 |\n| **Sep** | 5 (9/5) | 5 |\n| **Oct** | 10 (10/10)| 10 |\n| **Nov** | 7 (7-11) | 7 |\n| **Dec** | 12 (12/12)| 12 |\n\n#### 3. Formula\n`(Century + (Year + Year/4) + Day - MonthAnchor) % 7`",
+  "log_title": "CALCULATION PROCESS LOG",
+  "final_result": "FINAL RESULT CONFIRMATION",
+  "total": "TOTAL",
+  "final_day": "FINAL DAY"
+}

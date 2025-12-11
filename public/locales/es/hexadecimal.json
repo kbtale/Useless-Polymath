@@ -1,0 +1,4 @@
+{
+  "title": "Hexadecimal",
+  "guide": "### Sistema Base 16\nCondensa binario. Usa 0-9 y A-F.\n\n#### Valores de Letras\n| Hex | Dec | Binario |\n| :--- | :--- | :--- |\n| **A** | 10 | 1010 |\n| **B** | 11 | 1011 |\n| **C** | 12 | 1100 |\n| **D** | 13 | 1101 |\n| **E** | 14 | 1110 |\n| **F** | 15 | 1111 |\n\n#### Conversión\nPosición 2 (izq) multiplica por 16.\n* **2B** = (2 * 16) + 11 = **43**."
+}

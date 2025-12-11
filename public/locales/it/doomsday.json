@@ -1,0 +1,4 @@
+{
+  "title": "Algoritmo Doomsday",
+  "guide": "### Calcolo Mentale\n\nRiduce il calendario a una somma. Risultato: **0=Domenica, 1=Lunedì... 6=Sabato**.\n\n#### 1. Secoli (Ancora)\n| Secolo | Ancora | Val |\n| :--- | :--- | :--- |\n| 1900-1999 | Mercoledì | **3** |\n| 2000-2099 | Martedì | **2** |\n| 2100-2199 | Domenica | **0** |\n\n#### 2. Mesi (Doomsday)\nDate che cadono sempre nello stesso giorno del Doomsday annuale:\n| Mese | Giorno (Comune) | Giorno (Bisestile) |\n| :--- | :--- | :--- |\n| **Gen** | 3 | **4** |\n| **Feb** | 28 | **29** |\n| **Mar** | 14 (Pi) | 14 |\n| **Apr** | 4 (4/4) | 4 |\n| **Mag** | 9 (9/5) | 9 |\n| **Giu** | 6 (6/6) | 6 |\n| **Lug** | 11 (7-11) | 11 |\n| **Ago** | 8 (8/8) | 8 |\n| **Set** | 5 (5/9) | 5 |\n| **Ott** | 10 (10/10)| 10 |\n| **Nov** | 7 (7-11) | 7 |\n| **Dic** | 12 (12/12)| 12 |\n\n#### 3. Formula\n`(Secolo + (Anno + Anno/4) + Giorno - Mese) % 7`"
+}

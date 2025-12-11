@@ -1,0 +1,4 @@
+{
+  "title": "EAN-13",
+  "guide": "### Código de Barras\nCálculo del dígito de control (último).\n\n1. Suma posiciones **impares**: `X`.\n2. Suma posiciones **pares**: `Y`.\n3. Cálculo: `X + (Y * 3)`.\n4. **Control:** Lo que falta para el siguiente múltiplo de 10.\n\n*Ej: Suma total 47 -> Faltan 3 para 50. Control = 3.*"
+}

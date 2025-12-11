@@ -1,0 +1,4 @@
+{
+  "title": "Hexadecimal",
+  "guide": "### Base 16 System\nUses 0-9 and A-F.\n\n#### Letter Values\n| Hex | Dec | Binary |\n| :--- | :--- | :--- |\n| **A** | 10 | 1010 |\n| **B** | 11 | 1011 |\n| **C** | 12 | 1100 |\n| **D** | 13 | 1101 |\n| **E** | 14 | 1110 |\n| **F** | 15 | 1111 |\n\n#### Conversion\nPos 2 (Left) multiplies by 16.\n* **2B** = (2 * 16) + 11 = **43**."
+}

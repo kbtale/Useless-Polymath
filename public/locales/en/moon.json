@@ -1,0 +1,4 @@
+{
+  "title": "Moon Phases",
+  "guide": "### Epact Algorithm\n\nCalculates moon age (days since New Moon).\n\n#### Monthly Adjustment\n| Month | Add | Month | Add |\n| :--- | :--- | :--- | :--- |\n| Jan | 0 | Jul | 5 |\n| Feb | 2 | Aug | 6 |\n| Mar | 0 | Sep | 7 |\n| Apr | 2 | Oct | 8 |\n| May | 3 | Nov | 9 |\n| Jun | 4 | Dec | 10 |\n\n#### Phases (Age 0-29)\n* **0:** New\n* **1-13:** Waxing (D-shape)\n* **14-15:** Full\n* **16-28:** Waning (C-shape)"
+}

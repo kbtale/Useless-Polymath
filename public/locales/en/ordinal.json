@@ -1,0 +1,11 @@
+{
+  "title": "Ordinal Date",
+  "guide": "### Accumulated Days\nAdd current day to month base.\n\n| Month | Base | Month | Base |\n| :--- | :--- | :--- | :--- |\n| **Jan** | 0 | **Jul** | 181 |\n| **Feb** | 31 | **Aug** | 212 |\n| **Mar** | 59 | **Sep** | 243 |\n| **Apr** | 90 | **Oct** | 273 |\n| **May** | 120 | **Nov** | 304 |\n| **Jun** | 151 | **Dec** | 334 |\n\n*Note: If Leap and >Feb 29, add +1.*",
+  "tool_title": "CALENDAR ORDINAL",
+  "result_title": "ORDINAL CALCULATION",
+  "ordinal_day": "ORDINAL DAY",
+  "remaining": "REMAINING",
+  "year_progress": "YEAR PROGRESS",
+  "days": "DAYS",
+  "complete": "COMPLETE"
+}

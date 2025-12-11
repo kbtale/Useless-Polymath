@@ -1,0 +1,4 @@
+{
+  "title": "Subnetting",
+  "guide": "### Prefijos CIDR\nMemorice el tamaño del bloque.\n\n| Prefijo | Máscara | IPs Totales | Uso |\n| :--- | :--- | :--- | :--- |\n| **/32** | 255.255.255.255 | 1 | Host único |\n| **/30** | 255.255.255.252 | 4 | Enlace P2P |\n| **/24** | 255.255.255.0 | 256 | LAN Típica |\n| **/16** | 255.255.0.0 | 65,536 | Red Grande |\n\n*Hosts usables = IPs Totales - 2.*"
+}

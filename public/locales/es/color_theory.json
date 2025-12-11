@@ -1,0 +1,4 @@
+{
+  "title": "Teoría RGB",
+  "guide": "### Mezcla Aditiva (Luz)\nSuma de Rojo (R), Verde (G), Azul (B).\n\n#### Mezclas Clave\n| Color 1 | Color 2 | Resultado |\n| :--- | :--- | :--- |\n| Rojo | Verde | **Amarillo** |\n| Rojo | Azul | **Magenta** |\n| Verde | Azul | **Cian** |\n| R+G+B | - | **Blanco** |\n\n#### Hex\n* **#FF0000**: Rojo Puro\n* **#00FF00**: Verde Puro\n* **#0000FF**: Azul Puro"
+}

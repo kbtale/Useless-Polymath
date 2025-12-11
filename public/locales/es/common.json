@@ -1,0 +1,17 @@
+{
+  "app_title": "Useless Polymath",
+  "home": "Inicio",
+  "settings": "Configuración",
+  "visualizer": "Visualizador",
+  "practice": "Práctica",
+  "guide": "Guía",
+  "clear": "LIMPIAR",
+  "execute": "EJECUTAR",
+  "target_date": "FECHA OBJETIVO",
+  "calculated_day": "DÍA CALCULADO",
+  "see_full_calculations": "Ver cálculos completos abajo",
+  "modules": {
+    "cronometria": "01 // CRONOMETRÍA",
+    "logic": "02 // LÓGICA"
+  }
+}

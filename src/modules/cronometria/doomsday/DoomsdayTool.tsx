@@ -5,12 +5,13 @@ import { FUIButton } from '../../../components/core/FUIButton';
 import { calculateDoomsdayWithLog } from './logic';
 import type { DoomsdayLog } from './logic';
 import styles from './Doomsday.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export const DoomsdayTool: React.FC = () => {
+  const { t } = useTranslation(['doomsday', 'common']);
   const [day, setDay] = useState('12');
   const [month, setMonth] = useState('03');
   const [year, setYear] = useState('2025');
-
   const [log, setLog] = useState<DoomsdayLog | null>(() => calculateDoomsdayWithLog(2025, 3, 12));
 
   const handleCalculate = () => {
@@ -33,11 +34,10 @@ export const DoomsdayTool: React.FC = () => {
 
   return (
     <div className={styles.toolLayout}>
-      {/* INPUT PANEL */}
       <FUIGlassPanel className={styles.panel}>
-        <h2 className={styles.title}>DOOMSDAY ALGORITHM</h2>
+        <h2 className={styles.title}>{t('title')}</h2>
         
-        <label className={styles.label}>TARGET DATE</label>
+        <label className={styles.label}>{t('target_date', { ns: 'common' })}</label>
         
         <div className={styles.dateInputContainer}>
           <SchematicDateInput 
@@ -51,23 +51,22 @@ export const DoomsdayTool: React.FC = () => {
         </div>
 
         <div className={styles.buttonGroup}>
-          <FUIButton onClick={handleClear} variant="outline">[ CLEAR ]</FUIButton>
-          <FUIButton onClick={handleCalculate} variant="solid">&lt; EXECUTE &gt;</FUIButton>
+          <FUIButton onClick={handleClear} variant="outline">[ {t('clear', { ns: 'common' })} ]</FUIButton>
+          <FUIButton onClick={handleCalculate} variant="solid">&lt; {t('execute', { ns: 'common' })} &gt;</FUIButton>
         </div>
 
         {log && (
           <div className={styles.resultDisplay}>
-            <div className={styles.resultLabel}>CALCULATED DAY</div>
+            <div className={styles.resultLabel}>{t('calculated_day', { ns: 'common' })}</div>
             <div className={styles.resultValue}>{log.finalDay.toUpperCase()}</div>
-            <div className={styles.helperText}>See the full calculations below</div>
+            <div className={styles.helperText}>{t('see_full_calculations', { ns: 'common' })}</div>
           </div>
         )}
       </FUIGlassPanel>
 
-      {/* LOG PANEL */}
       {log && (
         <FUIGlassPanel className={styles.panel}>
-          <h2 className={styles.title}>CALCULATION PROCESS LOG</h2>
+          <h2 className={styles.title}>{t('log_title')}</h2>
           
           <div className={styles.logContainer}>
             {log.steps.map((step, idx) => (
@@ -85,7 +84,7 @@ export const DoomsdayTool: React.FC = () => {
 
             <div className={styles.finalResult}>
               <div className={styles.resultContent}>
-                FINAL RESULT CONFIRMATION [ TOTAL ({log.finalNumber}) ] MOD 7 ==&gt; [ {log.finalNumber} ] // FINAL DAY: {log.finalDay.toUpperCase()}
+                {t('final_result')} [ {t('total')} ({log.finalNumber}) ] MOD 7 ==&gt; [ {log.finalNumber} ] // {t('final_day')}: {log.finalDay.toUpperCase()}
               </div>
             </div>
           </div>

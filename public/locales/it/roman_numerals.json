@@ -1,0 +1,4 @@
+{
+  "title": "Numeri Romani",
+  "guide": "### Tabella Valori\nDestra somma, Sinistra sottrae.\n\n| Simbolo | Valore |\n| :--- | :--- |\n| **I** | 1 |\n| **V** | 5 |\n| **X** | 10 |\n| **L** | 50 |\n| **C** | 100 |\n| **D** | 500 |\n| **M** | 1000 |\n\n*Regola:* Scomponi per 1000, 100, 10. 1990 = MCMXC."
+}

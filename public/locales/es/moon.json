@@ -1,0 +1,4 @@
+{
+  "title": "Fases Lunares",
+  "guide": "### Algoritmo Epacta\n\nCalcula la edad lunar (días desde Luna Nueva).\n\n#### Ajuste Mensual\n| Mes | Sumar | Mes | Sumar |\n| :--- | :--- | :--- | :--- |\n| Ene | 0 | Jul | 5 |\n| Feb | 2 | Ago | 6 |\n| Mar | 0 | Sep | 7 |\n| Abr | 2 | Oct | 8 |\n| May | 3 | Nov | 9 |\n| Jun | 4 | Dic | 10 |\n\n#### Fases (Edad 0-29)\n* **0:** Nueva\n* **1-13:** Creciente (D)\n* **14-15:** Llena\n* **16-28:** Menguante (C)"
+}

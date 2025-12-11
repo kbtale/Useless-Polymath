@@ -1,0 +1,4 @@
+{
+  "title": "Zonas Horarias",
+  "guide": "### Cálculo de Husos (Offset)\n\nMemoriza la desviación respecto a Londres (UTC).\n\n#### Referencias Clave\n| Ciudad | Offset | Dirección |\n| :--- | :--- | :--- |\n| **Nueva York** | UTC -5 | Oeste (Resta) |\n| **Los Angeles**| UTC -8 | Oeste (Resta) |\n| **Londres** | UTC 0 | Centro |\n| **París/Madrid**| UTC +1 | Este (Suma) |\n| **Moscú** | UTC +3 | Este (Suma) |\n| **Tokio** | UTC +9 | Este (Suma) |\n| **Sídney** | UTC +11 | Este (Suma) |\n\n#### Regla del Rollover\n* Si resultado ≥ 24: Es mañana (Resta 24).\n* Si resultado < 0: Es ayer (Suma 24)."
+}

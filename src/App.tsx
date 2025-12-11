@@ -1,3 +1,5 @@
+import { useState, Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AppShell } from './components/layout/AppShell';
 import { DoomsdayTool } from './modules/cronometria/doomsday/DoomsdayTool';
 import { DoomsdayPractice } from './modules/cronometria/doomsday/DoomsdayPractice';
@@ -11,11 +13,12 @@ import { MoonTool } from './modules/cronometria/moon/MoonTool';
 import { MoonPractice } from './modules/cronometria/moon/MoonPractice';
 import { CalendarOrdinalTool } from './modules/cronometria/ordinal/CalendarOrdinalTool';
 import { CalendarOrdinalPractice } from './modules/cronometria/ordinal/CalendarOrdinalPractice';
-import { useState } from 'react';
 
-function App() {
+function AppContent() {
   const [mode, setMode] = useState<'tool' | 'practice' | 'guide'>('tool');
   const [activeModuleId, setActiveModuleId] = useState('doomsday');
+  
+  const { t } = useTranslation([activeModuleId, 'common']);
 
   const renderModule = () => {
     if (mode === 'guide') {
@@ -27,14 +30,21 @@ function App() {
           fontFamily: 'JetBrains Mono, monospace',
           color: '#333'
         }}>
-          <h2 style={{ borderBottom: '1px solid #ccc', paddingBottom: '0.5rem' }}>MODULE // GUIDE</h2>
-          <p style={{ marginTop: '1rem' }}>
-            <strong>MODULE_ID:</strong> {activeModuleId.toUpperCase()}
-          </p>
-          <p>
-            Documentation for this module is currently being compiled. 
-            Please refer to the Visualizer for interactive exploration.
-          </p>
+          <h2 style={{ borderBottom: '1px solid #ccc', paddingBottom: '0.5rem' }}>
+            {t('guide', { ns: 'common', defaultValue: 'GUIDE' })} // {activeModuleId.toUpperCase()}
+          </h2>
+          
+          <div style={{ 
+            marginTop: '2rem', 
+            whiteSpace: 'pre-wrap', 
+            lineHeight: '1.6',
+            backgroundColor: '#f5f5f5',
+            padding: '1.5rem',
+            border: '1px solid #ddd',
+            borderRadius: '4px'
+          }}>
+            {t('guide', { ns: activeModuleId, defaultValue: 'Documentation coming soon...' })}
+          </div>
         </div>
       );
     }
@@ -42,15 +52,15 @@ function App() {
     switch (activeModuleId) {
       case 'doomsday':
         return mode === 'tool' ? <DoomsdayTool /> : <DoomsdayPractice />;
-      case 'timezones':
+      case 'time_zones':
         return mode === 'tool' ? <TimeZonesTool /> : <TimeZonesPractice />;
       case 'moon':
         return mode === 'tool' ? <MoonTool /> : <MoonPractice />;
-      case 'calendar':
+      case 'ordinal':
         return mode === 'tool' ? <CalendarOrdinalTool /> : <CalendarOrdinalPractice />;
       case 'binary':
         return mode === 'tool' ? <BinaryTool /> : <BinaryPractice />;
-      case 'hex':
+      case 'hexadecimal':
         return mode === 'tool' ? <HexTool /> : <HexPractice />;
       default:
         return (
@@ -74,6 +84,22 @@ function App() {
         {renderModule()}
       </div>
     </AppShell>
+  );
+}
+
+function App() {
+  return (
+     <Suspense fallback={<div style={{ 
+       display: 'flex', 
+       justifyContent: 'center', 
+       alignItems: 'center', 
+       height: '100vh', 
+       background: '#0a0a0a', 
+       color: '#00F3FF',
+       fontFamily: 'JetBrains Mono' 
+     }}> LOADING SYSTEM... </div>}>
+      <AppContent />
+    </Suspense>
   );
 }
 

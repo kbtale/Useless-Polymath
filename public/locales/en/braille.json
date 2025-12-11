@@ -1,0 +1,4 @@
+{
+  "title": "Braille",
+  "guide": "### 6-Dot Matrix\nLogic pattern by decades.\n\n#### Decade 1 (a-j): Top Dots\n| Char | Dots | Pattern |\n| :--- | :--- | :--- |\n| **a** | 1 | ⠁ |\n| **b** | 1-2 | ⠃ |\n| **c** | 1-4 | ⠉ |\n\n#### Decade Rules\n1. **a-j:** Base.\n2. **k-t:** Base + Dot 3 (Bot Left).\n3. **u-z:** Base + Dots 3 & 6 (Bot Row)."
+}

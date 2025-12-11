@@ -1,0 +1,4 @@
+{
+  "title": "Resistenze",
+  "guide": "### Codice Colore\n| Colore | Cifra | Moltiplicatore |\n| :--- | :--- | :--- |\n| **Nero** | 0 | 1 |\n| **Marrone**| 1 | 10 |\n| **Rosso** | 2 | 100 |\n| **Arancio**| 3 | 1k |\n| **Giallo** | 4 | 10k |\n| **Verde** | 5 | 100k |\n| **Blu** | 6 | 1M |\n| **Viola** | 7 | 10M |\n| **Grigio** | 8 | 100M |\n| **Bianco** | 9 | 1G |\n\n*Banda 4 (Tolleranza): Oro 5%.*"
+}

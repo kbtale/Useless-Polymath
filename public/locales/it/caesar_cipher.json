@@ -1,0 +1,4 @@
+{
+  "title": "Cifrario Cesare",
+  "guide": "### Spostamento\nMuovi l'alfabeto di N passi.\n\n#### ROT13 (Std)\nSposta di 13. Reversibile (A->N, N->A).\n\n| Input | Output | Input | Output |\n| :--- | :--- | :--- | :--- |\n| A | N | N | A |\n| B | O | O | B |\n| C | P | P | C |\n| ... | ... | ... | ... |\n| M | Z | Z | M |"
+}

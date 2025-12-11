@@ -1,0 +1,4 @@
+{
+  "title": "Números Romanos",
+  "guide": "### Tabla de Valores\nDerecha suma, Izquierda resta.\n\n| Símbolo | Valor |\n| :--- | :--- |\n| **I** | 1 |\n| **V** | 5 |\n| **X** | 10 |\n| **L** | 50 |\n| **C** | 100 |\n| **D** | 500 |\n| **M** | 1000 |\n\n*Regla:* Descompón por miles, centenas y decenas. 1990 = MCMXC."
+}

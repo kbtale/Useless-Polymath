@@ -1,0 +1,4 @@
+{
+  "title": "Time Zones",
+  "guide": "### Offset Calculation\n\nMemorize the offset from London (UTC).\n\n#### Key References\n| City | Offset | Direction |\n| :--- | :--- | :--- |\n| **New York** | UTC -5 | West (Subtract) |\n| **Los Angeles**| UTC -8 | West (Subtract) |\n| **London** | UTC 0 | Center |\n| **Paris** | UTC +1 | East (Add) |\n| **Moscow** | UTC +3 | East (Add) |\n| **Tokyo** | UTC +9 | East (Add) |\n| **Sydney** | UTC +11 | East (Add) |\n\n#### Rollover Rule\n* Result ≥ 24: Tomorrow (Subtract 24).\n* Result < 0: Yesterday (Add 24)."
+}

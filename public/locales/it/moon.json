@@ -1,0 +1,4 @@
+{
+  "title": "Fasi Lunari",
+  "guide": "### Algoritmo Epatta\n\nCalcola l'età lunare (giorni da Luna Nuova).\n\n#### Offset Mensile\n| Mese | Somma | Mese | Somma |\n| :--- | :--- | :--- | :--- |\n| Gen | 0 | Lug | 5 |\n| Feb | 2 | Ago | 6 |\n| Mar | 0 | Set | 7 |\n| Apr | 2 | Ott | 8 |\n| Mag | 3 | Nov | 9 |\n| Giu | 4 | Dic | 10 |\n\n#### Fasi (Età 0-29)\n* **0:** Nuova\n* **1-13:** Crescente (Gobba a Ponente)\n* **14-15:** Piena\n* **16-28:** Calante (Gobba a Levante)"
+}

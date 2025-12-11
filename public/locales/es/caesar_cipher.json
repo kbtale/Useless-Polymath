@@ -1,0 +1,4 @@
+{
+  "title": "Cifrado César (ROT)",
+  "guide": "### Desplazamiento\nMueve el alfabeto N pasos.\n\n#### ROT13 (Estándar)\nDesplaza 13. Es reversible (A->N, N->A).\n\n| Input | Output | Input | Output |\n| :--- | :--- | :--- | :--- |\n| A | N | N | A |\n| B | O | O | B |\n| C | P | P | C |\n| ... | ... | ... | ... |\n| M | Z | Z | M |"
+}

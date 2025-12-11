@@ -1,0 +1,4 @@
+{
+  "title": "Logica Bitwise",
+  "guide": "### Tabelle Verità\nOperazioni bit a bit.\n\n#### AND (&)\n1 solo se **entrambi** sono 1.\n| A | B | Out |\n| :--- | :--- | :--- |\n| 0 | 0 | 0 |\n| 1 | 0 | 0 |\n| 1 | 1 | **1** |\n\n#### OR (|)\n1 se **qualcuno** è 1.\n| A | B | Out |\n| :--- | :--- | :--- |\n| 0 | 0 | 0 |\n| 1 | 0 | **1** |\n| 0 | 1 | **1** |\n\n#### XOR (^)\n1 se **diversi**.\n| A | B | Out |\n| :--- | :--- | :--- |\n| 0 | 0 | 0 |\n| 1 | 1 | 0 |\n| 1 | 0 | **1** |"
+}

@@ -1,0 +1,4 @@
+{
+  "title": "Caesar Cipher",
+  "guide": "### Alphabet Shift\nMove alphabet N steps.\n\n#### ROT13 (Std)\nShift 13. Reversible (A->N, N->A).\n\n| Input | Output | Input | Output |\n| :--- | :--- | :--- | :--- |\n| A | N | N | A |\n| B | O | O | B |\n| C | P | P | C |\n| ... | ... | ... | ... |\n| M | Z | Z | M |"
+}

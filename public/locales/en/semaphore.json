@@ -1,0 +1,4 @@
+{
+  "title": "Semaphore",
+  "guide": "### Human Clock\n| Char | Right Arm | Left Arm |\n| :--- | :--- | :--- |\n| **A** | 6:00 (Down) | 7:30 |\n| **B** | 6:00 | 9:00 |\n| **C** | 6:00 | 10:30 |\n| **D** | 6:00 | 12:00 (Up) |\n| **H** | 7:30 | 9:00 (Cycle switch) |"
+}

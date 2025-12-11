@@ -1,0 +1,4 @@
+{
+  "title": "Thermodynamics",
+  "guide": "### Celsius to Fahrenheit (Mental)\nQuick Formula: `(C * 2) + 30`.\n\n#### Benchmarks\n| C | F (Exact) | F (Mental) | Feel |\n| :--- | :--- | :--- | :--- |\n| **0°** | 32° | 30° | Freezing |\n| **10°** | 50° | 50° | Cool |\n| **20°** | 68° | 70° | Room |\n| **30°** | 86° | 90° | Hot |\n| **100°**| 212° | 230° | Boiling |"
+}

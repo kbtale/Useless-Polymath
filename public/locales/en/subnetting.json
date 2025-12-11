@@ -1,0 +1,4 @@
+{
+  "title": "Subnetting",
+  "guide": "### CIDR Prefixes\nMemorize block size.\n\n| Prefix | Mask | Total IPs | Usage |\n| :--- | :--- | :--- | :--- |\n| **/32** | 255.255.255.255 | 1 | Host |\n| **/30** | 255.255.255.252 | 4 | P2P |\n| **/24** | 255.255.255.0 | 256 | LAN |\n| **/16** | 255.255.0.0 | 65,536 | Large Net |\n\n*Usable = Total - 2.*"
+}

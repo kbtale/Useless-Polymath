@@ -1,0 +1,4 @@
+{
+  "title": "Braille",
+  "guide": "### Matrice 6 Punti\nLogica per decadi.\n\n#### Decade 1 (a-j): Punti Alti\n| Char | Punti | Pattern |\n| :--- | :--- | :--- |\n| **a** | 1 | ⠁ |\n| **b** | 1-2 | ⠃ |\n| **c** | 1-4 | ⠉ |\n\n#### Regole Decadi\n1. **a-j:** Base.\n2. **k-t:** Base + Punto 3 (Basso Sx).\n3. **u-z:** Base + Punti 3 & 6 (Basso)."
+}

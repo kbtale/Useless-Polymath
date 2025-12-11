@@ -1,0 +1,4 @@
+{
+  "title": "Resistencias",
+  "guide": "### Código de Colores\n| Color | Dígito | Multiplicador |\n| :--- | :--- | :--- |\n| **Negro** | 0 | 1 |\n| **Marrón**| 1 | 10 |\n| **Rojo** | 2 | 100 |\n| **Naranja**| 3 | 1k |\n| **Amarillo**| 4 | 10k |\n| **Verde** | 5 | 100k |\n| **Azul** | 6 | 1M |\n| **Violeta**| 7 | 10M |\n| **Gris** | 8 | 100M |\n| **Blanco** | 9 | 1G |\n\n*Banda 4 (Tolerancia): Dorado 5%.*"
+}

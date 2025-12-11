@@ -1,0 +1,4 @@
+{
+  "title": "Termodinamica",
+  "guide": "### Celsius a Fahrenheit (Mentale)\nFormula Rapida: `(C * 2) + 30`.\n\n#### Riferimenti\n| C | F (Esatto) | F (Mentale) | Sensazione |\n| :--- | :--- | :--- | :--- |\n| **0°** | 32° | 30° | Gelo |\n| **10°** | 50° | 50° | Fresco |\n| **20°** | 68° | 70° | Ambiente |\n| **30°** | 86° | 90° | Caldo |\n| **100°**| 212° | 230° | Ebollizione |"
+}

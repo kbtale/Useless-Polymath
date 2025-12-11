@@ -1,0 +1,4 @@
+{
+  "title": "EAN-13",
+  "guide": "### Codici a Barre\nCalcolo cifra controllo.\n\n1. Somma pos **Dispari**: `X`.\n2. Summa pos **Pari**: `Y`.\n3. Calc: `X + (Y * 3)`.\n4. **Check:** Diff al prossimo multiplo di 10.\n\n*Es: Somma 47 -> Mancano 3 a 50. Check = 3.*"
+}

@@ -1,0 +1,4 @@
+{
+  "title": "Algoritmo Luhn",
+  "guide": "### Validación Tarjetas\nDetecta errores de tipeo.\n\n1. **Ignora** el último dígito (Check).\n2. Desde el **penúltimo** hacia atrás:\n   * Posiciones impares (der a izq): **Duplica**.\n   * Si > 9, suma dígitos (16 -> 7).\n3. **Suma** todos (duplicados y no duplicados).\n4. Suma el dígito Check.\n5. El total debe acabar en **0**."
+}

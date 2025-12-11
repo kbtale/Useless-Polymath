@@ -1,0 +1,4 @@
+{
+  "title": "Tabella ASCII",
+  "guide": "### Punti Chiave\nMemorizza per dedurre gli altri.\n\n| Char | Decimal | Nota |\n| :--- | :--- | :--- |\n| **Spazio**| 32 | Inizio stampabili |\n| **0** | 48 | Numeri 0-9 |\n| **A** | 65 | Maiuscole |\n| **a** | 97 | Minuscole (+32) |\n\n*Conversione:* `a` (97) - 32 = `A` (65)."
+}

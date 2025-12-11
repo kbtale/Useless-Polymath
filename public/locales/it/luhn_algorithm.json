@@ -1,0 +1,4 @@
+{
+  "title": "Algoritmo Luhn",
+  "guide": "### Validazione Carte\nRileva errori.\n\n1. **Ignora** l'ultima cifra (Check).\n2. Dalla **penultima** indietro:\n   * Posizione dispari: **Raddoppia**.\n   * Se > 9, somma cifre (16 -> 7).\n3. **Somma** tutto (raddoppiati e non).\n4. Aggiungi Check Digit.\n5. Totale deve finire con **0**."
+}

@@ -1,0 +1,4 @@
+{
+  "title": "Unità Memoria",
+  "guide": "### Decimale vs Binario\nVendita vs Windows.\n\n| Unità | Decimale (Vendita) | Binario (OS) | Perdita |\n| :--- | :--- | :--- | :--- |\n| **1 KB** | 1.000 | 1.024 | 2.4% |\n| **1 GB** | 10^9 | 2^30 | ~7% |\n| **1 TB** | 10^12 | 2^40 | ~10% |"
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Data Ordinale",
+  "guide": "### Giorni Accumulati\nSomma il giorno attuale alla base del mese.\n\n| Mese | Base | Mese | Base |\n| :--- | :--- | :--- | :--- |\n| **Gen** | 0 | **Lug** | 181 |\n| **Feb** | 31 | **Ago** | 212 |\n| **Mar** | 59 | **Set** | 243 |\n| **Apr** | 90 | **Ott** | 273 |\n| **Mag** | 120 | **Nov** | 304 |\n| **Giu** | 151 | **Dic** | 334 |\n\n*Nota: Se bisestile e >29 Feb, somma +1.*",
+  "tool_title": "ORDINALE DEL CALENDARIO",
+  "result_title": "CALCOLO ORDINALE",
+  "ordinal_day": "GIORNO ORDINALE",
+  "remaining": "RIMANENTE",
+  "year_progress": "PROGRESSO ANNO",
+  "days": "GIORNI",
+  "complete": "COMPLETO"
+}

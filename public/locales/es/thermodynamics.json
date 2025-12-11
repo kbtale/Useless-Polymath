@@ -1,0 +1,4 @@
+{
+  "title": "Temperaturas",
+  "guide": "### Celsius a Fahrenheit (Mental)\nFórmula rápida: `(C * 2) + 30`.\n\n#### Puntos de Referencia\n| C | F (Exacto) | F (Mental) | Sensación |\n| :--- | :--- | :--- | :--- |\n| **0°** | 32° | 30° | Congelación |\n| **10°** | 50° | 50° | Fresco |\n| **20°** | 68° | 70° | Ambiente |\n| **30°** | 86° | 90° | Calor |\n| **100°**| 212° | 230° | Ebullición |"
+}

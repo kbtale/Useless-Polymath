@@ -2,42 +2,42 @@ import React, { useState, useEffect } from 'react';
 import styles from './AppShell.module.scss';
 import { FUIButton } from '../core/FUIButton';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 interface Module {
   id: string;
-  name: string;
-  category: string;
+  categoryKey: string;
 }
 
 const MODULES: Module[] = [
-  { id: 'doomsday', name: 'DOOMSDAY ALGORITHM', category: '01 // CRONOMETRÍA' },
-  { id: 'timezones', name: 'TIME ZONES', category: '01 // CRONOMETRÍA' },
-  { id: 'moon', name: 'MOON PHASES', category: '01 // CRONOMETRÍA' },
-  { id: 'calendar', name: 'CALENDAR ORDINAL', category: '01 // CRONOMETRÍA' },
+  { id: 'doomsday', categoryKey: 'modules.cronometria' },
+  { id: 'time_zones', categoryKey: 'modules.cronometria' },
+  { id: 'moon', categoryKey: 'modules.cronometria' },
+  { id: 'ordinal', categoryKey: 'modules.cronometria' },
 
-  { id: 'binary', name: 'BINARY ARITHMETIC', category: '02 // BASES NUMÉRICAS' },
-  { id: 'hex', name: 'HEXADECIMAL', category: '02 // BASES NUMÉRICAS' },
-  { id: 'roman', name: 'ROMAN NUMERALS', category: '02 // BASES NUMÉRICAS' },
-  { id: 'bitwise', name: 'BITWISE LOGIC', category: '02 // BASES NUMÉRICAS' },
-  { id: 'rule72', name: 'RULE OF 72', category: '02 // BASES NUMÉRICAS' },
+  { id: 'binary', categoryKey: 'modules.logic' },
+  { id: 'hexadecimal', categoryKey: 'modules.logic' },
+  { id: 'roman_numerals', categoryKey: 'modules.logic' },
+  { id: 'bitwise', categoryKey: 'modules.logic' },
+  { id: 'rule_72', categoryKey: 'modules.logic' },
 
-  { id: 'subnetting', name: 'SUBNETTING (CIDR)', category: '03 // REDES' },
-  { id: 'hexcolor', name: 'HEX COLOR EST.', category: '03 // REDES' },
-  { id: 'ascii', name: 'ASCII TABLE', category: '03 // REDES' },
-  { id: 'storage', name: 'STORAGE UNITS', category: '03 // REDES' },
+  { id: 'subnetting', categoryKey: 'modules.redes' },
+  { id: 'color_theory', categoryKey: 'modules.redes' },
+  { id: 'ascii', categoryKey: 'modules.redes' },
+  { id: 'storage_units', categoryKey: 'modules.redes' },
 
-  { id: 'morse', name: 'MORSE CODE', category: '04 // CRIPTOGRAFÍA' },
-  { id: 'nato', name: 'NATO PHONETIC', category: '04 // CRIPTOGRAFÍA' },
-  { id: 'cipher', name: 'CAESAR/ROT CIPHER', category: '04 // CRIPTOGRAFÍA' },
-  { id: 'braille', name: 'BRAILLE READING', category: '04 // CRIPTOGRAFÍA' },
-  { id: 'semaphore', name: 'SEMAPHORE FLAGS', category: '04 // CRIPTOGRAFÍA' },
+  { id: 'morse_code', categoryKey: 'modules.criptografia' },
+  { id: 'nato_alphabet', categoryKey: 'modules.criptografia' },
+  { id: 'caesar_cipher', categoryKey: 'modules.criptografia' },
+  { id: 'braille', categoryKey: 'modules.criptografia' },
+  { id: 'semaphore', categoryKey: 'modules.criptografia' },
 
-  { id: 'periodic', name: 'PERIODIC TABLE', category: '05 // CIENCIA' },
-  { id: 'thermo', name: 'THERMODYNAMICS', category: '05 // CIENCIA' },
-  { id: 'resistors', name: 'RESISTOR CODES', category: '05 // CIENCIA' },
-  { id: 'luhn', name: 'LUHN ALGORITHM', category: '05 // CIENCIA' },
-  { id: 'barcodes', name: 'BARCODES (EAN-13)', category: '05 // CIENCIA' },
-  { id: 'blackjack', name: 'CARD COUNTING', category: '05 // CIENCIA' },
+  { id: 'periodic_table', categoryKey: 'modules.ciencia' },
+  { id: 'thermodynamics', categoryKey: 'modules.ciencia' },
+  { id: 'resistor_codes', categoryKey: 'modules.ciencia' },
+  { id: 'luhn_algorithm', categoryKey: 'modules.ciencia' },
+  { id: 'ean_13', categoryKey: 'modules.ciencia' },
+  { id: 'card_counting', categoryKey: 'modules.ciencia' },
 ];
 
 interface AppShellProps {
@@ -55,6 +55,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   mode,
   onModeChange
 }) => {
+  const { t, i18n } = useTranslation(['common', 'doomsday', 'time_zones', 'moon', 'ordinal', 'binary', 'hexadecimal']);
   const [uptime, setUptime] = useState('00:00:00');
 
   useEffect(() => {
@@ -69,20 +70,54 @@ export const AppShell: React.FC<AppShellProps> = ({
     return () => clearInterval(interval);
   }, []);
 
-  const categories = Array.from(new Set(MODULES.map(m => m.category)));
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem('language', lng);
+  };
 
+  const categories = Array.from(new Set(MODULES.map(m => m.categoryKey)));
+
+  // Resolve current module
+  // Note: activeModule from App.tsx is now normalized to match module IDs (e.g. 'hexadecimal', 'ordinal').
+  
   const currentModule = MODULES.find(m => m.id === activeModule);
-  const categoryName = currentModule?.category.split('//')[1]?.trim() || 'UNKNOWN';
-  const moduleName = currentModule?.name || 'UNKNOWN';
+  
+  const categoryName = currentModule ? t(currentModule.categoryKey, { ns: 'common' }) : 'UNKNOWN';
+  const moduleName = currentModule ? t('title', { ns: currentModule.id, defaultValue: currentModule.id.toUpperCase() }) : 'UNKNOWN';
 
   return (
     <div className={styles.appShell}>
       <header className={styles.header}>
         <div className={styles.title}>
           <div className={styles.square}></div>
-          <h1>USELESS <span className={styles.version}>v1.0.4-RC</span></h1>
+          <h1>{t('app_title')} <span className={styles.version}>v1.0.4-RC</span></h1>
         </div>
-        <FUIButton onClick={() => alert('SETTINGS // ACCESS DENIED')}>SETTINGS</FUIButton>
+        
+        <div style={{ display: 'flex', gap: '0.5rem', marginRight: '1rem' }}>
+          <FUIButton 
+            onClick={() => changeLanguage('en')} 
+            variant={i18n.language === 'en' ? 'solid' : 'outline'}
+            style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
+          >
+            EN
+          </FUIButton>
+          <FUIButton 
+            onClick={() => changeLanguage('es')} 
+            variant={i18n.language === 'es' ? 'solid' : 'outline'}
+            style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
+          >
+            ES
+          </FUIButton>
+          <FUIButton 
+            onClick={() => changeLanguage('it')} 
+            variant={i18n.language === 'it' ? 'solid' : 'outline'}
+             style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
+          >
+            IT
+          </FUIButton>
+        </div>
+
+        <FUIButton onClick={() => alert(t('settings') + ' // ACCESS DENIED')}>{t('settings')}</FUIButton>
         <div className={styles.cornerDeco}></div>
       </header>
 
@@ -90,17 +125,17 @@ export const AppShell: React.FC<AppShellProps> = ({
         
         <aside className={styles.sidebar}>
           <div className={styles.scrollArea}>
-            {categories.map(cat => (
-              <div key={cat}>
-                <h2 className={styles.sectionTitle}>{cat}</h2>
+            {categories.map(catKey => (
+              <div key={catKey}>
+                <h2 className={styles.sectionTitle}>{t(catKey, { ns: 'common', defaultValue: catKey })}</h2>
                 <ul className={styles.menuList}>
-                  {MODULES.filter(m => m.category === cat).map(m => (
+                  {MODULES.filter(m => m.categoryKey === catKey).map(m => (
                     <li 
                       key={m.id}
                       className={clsx(styles.menuItem, activeModule === m.id && styles.active)}
                       onClick={() => onModuleChange(m.id)}
                     >
-                      {m.name}
+                      {t('title', { ns: m.id, defaultValue: m.id.toUpperCase().replace('_', ' ') })}
                     </li>
                   ))}
                 </ul>
@@ -125,7 +160,7 @@ export const AppShell: React.FC<AppShellProps> = ({
 
         <main className={styles.contentArea}>
           <div className={styles.statusBar}>
-            HOME &gt; {categoryName} &gt; {moduleName}
+            {t('home')} &gt; {categoryName} &gt; {moduleName}
           </div>
 
           <div className={styles.tabs}>
@@ -134,20 +169,20 @@ export const AppShell: React.FC<AppShellProps> = ({
                 className={clsx(styles.tabBtn, mode === 'tool' && styles.active)}
                 onClick={() => onModeChange('tool')}
               >
-                VISUALIZER
+                {t('visualizer')}
               </button>
               <button 
                 className={clsx(styles.tabBtn, mode === 'practice' && styles.active)}
                 onClick={() => onModeChange('practice')}
               >
-                PRACTICE
+                {t('practice')}
               </button>
             </div>
             <button 
               className={clsx(styles.tabBtn, mode === 'guide' && styles.active, styles.helpTab)}
               onClick={() => onModeChange('guide')}
             >
-              [ ? ] GUIDE
+              [ ? ] {t('guide')}
             </button>
           </div>
 
