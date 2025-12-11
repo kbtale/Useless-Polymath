@@ -117,7 +117,7 @@ export const AppShell: React.FC<AppShellProps> = ({
           </FUIButton>
         </div>
 
-        <FUIButton onClick={() => alert(t('settings') + ' // ACCESS DENIED')}>{t('settings')}</FUIButton>
+        <FUIButton onClick={() => alert(t('settings') + ' // ' + t('access_denied', { ns: 'common' }))}>{t('settings')}</FUIButton>
         <div className={styles.cornerDeco}></div>
       </header>
 
@@ -145,11 +145,11 @@ export const AppShell: React.FC<AppShellProps> = ({
 
           <div className={styles.footer}>
             <div className={styles.stat}>
-              <span>UPTIME:</span>
+              <span>{t('uptime', { ns: 'common' })}:</span>
               <span>{uptime}</span>
             </div>
             <div className={styles.stat}>
-              <span>MEMORY:</span>
+              <span>{t('memory', { ns: 'common' })}:</span>
               <span>64KB</span>
             </div>
           </div>

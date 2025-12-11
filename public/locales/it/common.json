@@ -10,8 +10,18 @@
   "target_date": "DATA OBIETTIVO",
   "calculated_day": "GIORNO CALCOLATO",
   "see_full_calculations": "Vedi calcoli completi sotto",
+  "uptime": "TEMPO DI ATTIVITÀ",
+  "memory": "MEMORIA",
+  "access_denied": "ACCESSO NEGATO",
+  "system_offline": "STATO DEL SISTEMA: OFFLINE",
+  "awaiting_implementation": "IN ATTESA DI IMPLEMENTAZIONE...",
+  "loading_system": "CARICAMENTO SISTEMA...",
+  "documentation_coming_soon": "Documentazione in arrivo...",
   "modules": {
     "cronometria": "01 // CRONOMETRIA",
-    "logic": "02 // LOGICA"
+    "logic": "02 // LOGICA",
+    "redes": "03 // RETI",
+    "criptografia": "04 // CRITTOGRAFIA",
+    "ciencia": "05 // SCIENZA"
   }
 }

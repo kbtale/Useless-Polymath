@@ -43,7 +43,7 @@ function AppContent() {
             border: '1px solid #ddd',
             borderRadius: '4px'
           }}>
-            {t('guide', { ns: activeModuleId, defaultValue: 'Documentation coming soon...' })}
+            {t('guide', { ns: activeModuleId, defaultValue: t('documentation_coming_soon', { ns: 'common' }) })}
           </div>
         </div>
       );
@@ -66,8 +66,8 @@ function AppContent() {
         return (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', flexDirection: 'column' }}>
             <h2 style={{ fontFamily: 'Orbitron', color: '#00F3FF' }}>MODULE: {activeModuleId.toUpperCase()}</h2>
-            <p style={{ color: 'rgba(255,255,255,0.7)' }}>// SYSTEM STATUS: OFFLINE</p>
-            <p style={{ color: 'rgba(255,255,255,0.5)' }}>// AWAITING IMPLEMENTATION...</p>
+            <p style={{ color: 'rgba(255,255,255,0.7)' }}>// {t('system_offline', { ns: 'common' })}</p>
+            <p style={{ color: 'rgba(255,255,255,0.5)' }}>// {t('awaiting_implementation', { ns: 'common' })}</p>
           </div>
         );
     }
@@ -88,6 +88,8 @@ function AppContent() {
 }
 
 function App() {
+  const { t } = useTranslation(['common']); // Need this hook here if we want to translate generic loading
+  
   return (
      <Suspense fallback={<div style={{ 
        display: 'flex', 
@@ -97,7 +99,7 @@ function App() {
        background: '#0a0a0a', 
        color: '#00F3FF',
        fontFamily: 'JetBrains Mono' 
-     }}> LOADING SYSTEM... </div>}>
+     }}> {t('loading_system')} </div>}>
       <AppContent />
     </Suspense>
   );
