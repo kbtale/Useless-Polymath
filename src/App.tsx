@@ -19,6 +19,10 @@ import { RomanTool } from './modules/logic/roman_numerals/RomanTool';
 import { RomanPractice } from './modules/logic/roman_numerals/RomanPractice';
 import { CalendarOrdinalTool } from './modules/cronometria/ordinal/CalendarOrdinalTool';
 import { CalendarOrdinalPractice } from './modules/cronometria/ordinal/CalendarOrdinalPractice';
+import { Rule72Tool } from './modules/logic/rule_72/Rule72Tool';
+import { Rule72Practice } from './modules/logic/rule_72/Rule72Practice';
+import { NatoTool } from './modules/criptografia/nato_alphabet/NatoTool';
+import { NatoPractice } from './modules/criptografia/nato_alphabet/NatoPractice';
 
 function AppContent() {
   const [mode, setMode] = useState<'tool' | 'practice' | 'guide'>('tool');
@@ -63,6 +67,10 @@ function AppContent() {
         return mode === 'tool' ? <RomanTool /> : <RomanPractice />;
       case 'hexadecimal':
         return mode === 'tool' ? <HexTool /> : <HexPractice />;
+      case 'rule_72':
+        return mode === 'tool' ? <Rule72Tool /> : <Rule72Practice />;
+      case 'nato_alphabet':
+        return mode === 'tool' ? <NatoTool /> : <NatoPractice />;
       default:
         return (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', flexDirection: 'column' }}>

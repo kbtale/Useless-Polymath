@@ -1,4 +1,7 @@
 {
-  "title": "Alfabeto OTAN",
-  "guide": "### Deletreo Radio\n| A | **Alpha** | N | **November** |\n| B | **Bravo** | O | **Oscar** |\n| C | **Charlie** | P | **Papa** |\n| D | **Delta** | Q | **Quebec** |\n| E | **Echo** | R | **Romeo** |\n| F | **Foxtrot** | S | **Sierra** |\n| G | **Golf** | T | **Tango** |\n| H | **Hotel** | U | **Uniform** |\n| I | **India** | V | **Victor** |\n| J | **Juliett** | W | **Whiskey** |\n| K | **Kilo** | X | **X-ray** |\n| L | **Lima** | Y | **Yankee** |\n| M | **Mike** | Z | **Zulu** |\n\n*Nota:* 9 es \"Niner\"."
+  "title": "ALFABETO OTAN",
+  "text_input": "TEXTO A CONVERTIR",
+  "waiting_for_input": "Escribe arriba para generar...",
+  "what_is_nato": "PALABRA OTAN PARA:",
+  "guide": "# Guía Alfabeto OTAN\n\nEl alfabeto radiofónico internacional, comúnmente conocido como alfabeto fonético de la OTAN, es el alfabeto de deletreo para radiotelefonía más utilizado.\n\n## El Alfabeto\n\n- **A**: Alpha\n- **B**: Bravo\n- **C**: Charlie\n- **D**: Delta\n- **E**: Echo\n- **F**: Foxtrot\n..."
 }

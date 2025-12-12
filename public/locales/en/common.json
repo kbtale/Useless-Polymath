@@ -18,7 +18,7 @@
   "loading_system": "LOADING SYSTEM...",
   "documentation_coming_soon": "Documentation coming soon...",
   "modules": {
-    "cronometria": "01 // CRONOMETER",
+    "cronometria": "CHRONOMETRY",
     "logic": "02 // LOGIC",
     "redes": "03 // NETWORKS",
     "criptografia": "04 // CRYPTOGRAPHY",

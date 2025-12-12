@@ -1,4 +1,8 @@
 {
-  "title": "Regla del 72",
-  "guide": "### Interés Compuesto\nTiempo para duplicar dinero = 72 / Tasa.\n\n#### Tabla Rápida\n| Tasa Anual | Años para Duplicar |\n| :--- | :--- |\n| 3% | 24 años |\n| 4% | 18 años |\n| 6% | 12 años |\n| 9% | 8 años |\n| 12% | 6 años |"
+  "title": "REGLA DEL 72",
+  "interest_rate": "TASA DE INTERÉS (%)",
+  "years_rule_72": "AÑOS (REGLA DEL 72)",
+  "years_precise": "AÑOS (PRECISO)",
+  "error": "ERROR",
+  "guide": "# Guía de la Regla del 72\n\nUn método rápido para estimar el tiempo de duplicación de una inversión.\n\n## Fórmula\n\n```\nAños = 72 / Tasa de Interés\n```\n\n## Ejemplos\n- **1%**: 72 años\n- **6%**: 12 años\n- **8%**: 9 años\n- **10%**: 7.2 años\n\nLa precisión disminuye a medida que aumenta la tasa, pero es muy precisa para tasas típicas (2-12%)."
 }

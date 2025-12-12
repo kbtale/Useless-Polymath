@@ -1,0 +1,146 @@
+@import '../../../styles/variables';
+
+.panel {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: $font-mono;
+  font-size: $text-xl;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: $spacing-lg;
+  color: $text-main;
+  position: relative;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: $text-main;
+    margin: $spacing-xs auto 0;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  padding: $spacing-md;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.label {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-dim;
+  text-transform: uppercase;
+}
+
+.results {
+  border: $border-thin;
+  background: rgba(0, 0, 0, 0.02);
+  padding: $spacing-md;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+  text-align: center;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resultBox {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.resultLabel {
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  color: $text-dim;
+  text-transform: uppercase;
+}
+
+.resultValue {
+  font-family: $font-mono;
+  font-size: 2rem;
+  color: $text-main;
+  font-weight: bold;
+}
+
+.difference {
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  color: $text-dim;
+  margin-top: $spacing-xs;
+}
+
+.practiceContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xl;
+    padding: $spacing-lg 0;
+}
+
+.scoreBoard {
+    display: flex;
+    gap: $spacing-xl;
+    font-family: $font-mono;
+    font-size: $text-sm;
+    color: $text-dim;
+    text-transform: uppercase;
+    
+    span {
+        color: $text-main;
+        font-weight: bold;
+    }
+}
+
+.question {
+    text-align: center;
+}
+
+.questionLabel {
+    font-family: $font-mono;
+    font-size: $text-sm;
+    color: $text-dim;
+    text-transform: uppercase;
+    margin-bottom: $spacing-sm;
+}
+
+.questionValue {
+    font-family: $font-mono;
+    font-size: 3rem;
+    color: $text-main;
+}
+
+.feedback {
+    font-family: $font-mono;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: $spacing-sm $spacing-md;
+    border: $border-thin;
+    
+    &.correct {
+        color: #2ecc71;
+        border-color: #2ecc71;
+        background: rgba(46, 204, 113, 0.1);
+    }
+    
+    &.incorrect {
+        color: $color-error;
+        border-color: $color-error;
+        background: rgba(255, 51, 51, 0.1);
+    }
+}

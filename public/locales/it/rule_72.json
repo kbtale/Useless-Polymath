@@ -1,4 +1,8 @@
 {
-  "title": "Regola del 72",
-  "guide": "### Interesse Composto\nTempo per raddoppiare = 72 / Tasso.\n\n#### Tabella Rapida\n| Tasso | Anni per Raddoppiare |\n| :--- | :--- |\n| 3% | 24 anni |\n| 4% | 18 anni |\n| 6% | 12 anni |\n| 9% | 8 anni |\n| 12% | 6 anni |"
+  "title": "REGOLA DEL 72",
+  "interest_rate": "TASSO DI INTERESSE (%)",
+  "years_rule_72": "ANNI (REGOLA DEL 72)",
+  "years_precise": "ANNI (PRECISO)",
+  "error": "ERRORE",
+  "guide": "# Guida alla Regola del 72\n\nUn metodo rapido per stimare il tempo di raddoppio di un investimento.\n\n## Formula\n\n```\nAnni = 72 / Tasso di Interesse\n```\n\n## Esempi\n- **1%**: 72 anni\n- **6%**: 12 anni\n- **8%**: 9 anni\n- **10%**: 7.2 anni\n\nLa precisione diminuisce con l'aumentare del tasso, ma è molto accurata per tassi tipici (2-12%)."
 }
