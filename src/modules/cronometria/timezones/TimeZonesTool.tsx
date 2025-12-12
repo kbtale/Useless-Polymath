@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { CoreSlider } from '../../../components/core/CoreSlider';
 import { COMMON_ZONES, calculateDestinationTime } from './logic';
 import styles from './TimeZones.module.scss';
 
@@ -31,14 +32,14 @@ export const TimeZonesTool: React.FC = () => {
             ))}
           </select>
           
-          <input 
-            type="range" 
-            min="0" 
-            max="23" 
+          <CoreSlider 
+            min={0} 
+            max={23} 
             value={hour} 
-            onChange={(e) => setHour(parseInt(e.target.value))}
+            onChange={(val) => setHour(val)}
             className={styles.rangeInput}
           />
+
           <div className={styles.resultValue} style={{ fontSize: '1.5rem', marginTop: '0.5rem' }}>
             {hour.toString().padStart(2, '0')}:00
           </div>

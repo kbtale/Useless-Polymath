@@ -1,0 +1,93 @@
+@use '../../styles/variables' as *;
+
+.sliderContainer {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: $font-mono;
+}
+
+.label {
+  font-weight: 700;
+  color: $text-dim;
+  font-size: 0.8rem;
+}
+
+.value {
+  color: $text-main;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.unit {
+  font-size: 0.8rem;
+  color: $text-dim;
+  margin-left: 0.25rem;
+}
+
+.trackWrapper {
+  position: relative;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.rangeInput {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba($line-color, 0.3); // Base track
+  outline: none;
+  margin: 0;
+  z-index: 2;
+  position: relative;
+  cursor: pointer;
+
+  // Thumb styling
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: $bg-canvas;
+    border: 2px solid $text-main;
+    border-radius: 0; // Square thumb for schematic look
+    cursor: pointer;
+    transition: transform 0.1s;
+    margin-top: -6px; // Center vertically on 4px track? (4/2 - 16/2 = 2 - 8 = -6)
+
+    &:hover {
+      background: $text-main;
+    }
+  }
+
+  &::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: $bg-canvas;
+    border: 2px solid $text-main;
+    border-radius: 0;
+    cursor: pointer;
+    
+    &:hover {
+      background: $text-main;
+    }
+  }
+}
+
+.progressTrack {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 4px;
+  background: $text-main; // Active track
+  pointer-events: none;
+  z-index: 1;
+}
