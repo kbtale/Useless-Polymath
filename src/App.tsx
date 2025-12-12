@@ -23,6 +23,8 @@ import { Rule72Tool } from './modules/logic/rule_72/Rule72Tool';
 import { Rule72Practice } from './modules/logic/rule_72/Rule72Practice';
 import { NatoTool } from './modules/cryptography/nato_alphabet/NatoTool';
 import { NatoPractice } from './modules/cryptography/nato_alphabet/NatoPractice';
+import { CaesarTool } from './modules/cryptography/caesar_cipher/CaesarTool';
+import { CaesarPractice } from './modules/cryptography/caesar_cipher/CaesarPractice';
 
 function AppContent() {
   const [mode, setMode] = useState<'tool' | 'practice' | 'guide'>('tool');
@@ -71,6 +73,8 @@ function AppContent() {
         return mode === 'tool' ? <Rule72Tool /> : <Rule72Practice />;
       case 'nato_alphabet':
         return mode === 'tool' ? <NatoTool /> : <NatoPractice />;
+      case 'caesar_cipher':
+        return mode === 'tool' ? <CaesarTool /> : <CaesarPractice />;
       default:
         return (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', flexDirection: 'column' }}>

@@ -1,0 +1,130 @@
+@import '../../../styles/variables';
+
+.panel {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: $font-mono;
+  font-size: $text-xl;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: $spacing-lg;
+  color: $text-main;
+  position: relative;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: $text-main;
+    margin: $spacing-xs auto 0;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  background: rgba(0, 0, 0, 0.2);
+  padding: $spacing-md;
+  border: $border-thin;
+}
+
+.shiftDisplay {
+  text-align: center;
+  font-family: $font-mono;
+  color: $text-main;
+  font-size: $text-lg;
+  font-weight: bold;
+}
+
+.ioSection {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.label {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-dim;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+}
+
+.arrow {
+    display: none;
+    @media (min-width: 768px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $text-dim;
+        font-size: 2rem;
+    }
+}
+
+// Practice
+.practiceContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xl;
+    padding: $spacing-lg 0;
+}
+
+.cipherText {
+    font-family: $font-mono;
+    font-size: 2rem;
+    color: $color-error; // "Encrypted" logic mostly implies 'red' or 'secure'
+    text-align: center;
+    padding: $spacing-lg;
+    border: 1px dashed $color-error;
+    background: rgba(255, 0, 0, 0.05);
+    width: 100%;
+}
+
+.hint {
+    font-family: $font-mono;
+    color: $text-dim;
+    font-size: 0.9rem;
+}
+
+.feedback {
+    font-family: $font-mono;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: $spacing-sm $spacing-md;
+    border: $border-thin;
+    
+    &.correct {
+        color: #2ecc71;
+        border-color: #2ecc71;
+        background: rgba(46, 204, 113, 0.1);
+    }
+    
+    &.incorrect {
+        color: $color-error;
+        border-color: $color-error;
+        background: rgba(255, 51, 51, 0.1);
+    }
+}

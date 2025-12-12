@@ -1,4 +1,10 @@
 {
-  "title": "Cifrado César (ROT)",
-  "guide": "### Desplazamiento\nMueve el alfabeto N pasos.\n\n#### ROT13 (Estándar)\nDesplaza 13. Es reversible (A->N, N->A).\n\n| Input | Output | Input | Output |\n| :--- | :--- | :--- | :--- |\n| A | N | N | A |\n| B | O | O | B |\n| C | P | P | C |\n| ... | ... | ... | ... |\n| M | Z | Z | M |"
+  "title": "CIFRADO CÉSAR",
+  "practice_title": "DESAFÍO DE DESCIFRADO",
+  "shift_key": "CLAVE DE DESPLAZAMIENTO (N)",
+  "plaintext": "TEXTO PLANO",
+  "ciphertext": "TEXTO CIFRADO",
+  "hint_shift": "Pista: Desplazamiento fue {{shift}} (Rot{{shift}})",
+  "decrypted_placeholder": "ESCRIBE TEXTO DESCIFRADO",
+  "guide": "# Cifrado César\n\nMétodo en el que cada letra del texto plano se reemplaza por una letra un número fijo de posiciones más adelante en el alfabeto."
 }

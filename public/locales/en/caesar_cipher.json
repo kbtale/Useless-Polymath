@@ -1,4 +1,10 @@
 {
-  "title": "Caesar Cipher",
-  "guide": "### Alphabet Shift\nMove alphabet N steps.\n\n#### ROT13 (Std)\nShift 13. Reversible (A->N, N->A).\n\n| Input | Output | Input | Output |\n| :--- | :--- | :--- | :--- |\n| A | N | N | A |\n| B | O | O | B |\n| C | P | P | C |\n| ... | ... | ... | ... |\n| M | Z | Z | M |"
+  "title": "CAESAR CIPHER",
+  "practice_title": "DECIPHER CHALLENGE",
+  "shift_key": "SHIFT KEY (N)",
+  "plaintext": "PLAINTEXT",
+  "ciphertext": "CIPHERTEXT",
+  "hint_shift": "Hint: Shift was {{shift}} (Rot{{shift}})",
+  "decrypted_placeholder": "TYPE DECRYPTED TEXT",
+  "guide": "# Caesar Cipher\n\nMethod in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet."
 }

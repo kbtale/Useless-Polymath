@@ -1,4 +1,10 @@
 {
-  "title": "Cifrario Cesare",
-  "guide": "### Spostamento\nMuovi l'alfabeto di N passi.\n\n#### ROT13 (Std)\nSposta di 13. Reversibile (A->N, N->A).\n\n| Input | Output | Input | Output |\n| :--- | :--- | :--- | :--- |\n| A | N | N | A |\n| B | O | O | B |\n| C | P | P | C |\n| ... | ... | ... | ... |\n| M | Z | Z | M |"
+  "title": "CIFRARIO DI CESARE",
+  "practice_title": "SFIDA DI DECRITTAZIONE",
+  "shift_key": "CHIAVE DI SCORRIMENTO (N)",
+  "plaintext": "TESTO IN CHIARO",
+  "ciphertext": "TESTO CIFRATO",
+  "hint_shift": "Indizio: Scorrimento era {{shift}} (Rot{{shift}})",
+  "decrypted_placeholder": "SCRIVI TESTO DECRITTATO",
+  "guide": "# Cifrario di Cesare\n\nMetodo in cui ogni lettera del testo in chiaro viene sostituita da una lettera un numero fisso di posizioni avanti nell'alfabeto."
 }

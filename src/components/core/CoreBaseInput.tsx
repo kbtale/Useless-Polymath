@@ -8,6 +8,7 @@ interface CoreBaseInputProps extends React.InputHTMLAttributes<HTMLInputElement>
   allowedChars?: RegExp;
   transformToUpper?: boolean;
   maxLength?: number;
+  onEnter?: () => void;
 }
 
 export const CoreBaseInput: React.FC<CoreBaseInputProps> = ({
@@ -16,6 +17,7 @@ export const CoreBaseInput: React.FC<CoreBaseInputProps> = ({
   allowedChars,
   transformToUpper,
   maxLength,
+  onEnter,
   className,
   ...props
 }) => {
@@ -52,12 +54,19 @@ export const CoreBaseInput: React.FC<CoreBaseInputProps> = ({
     onChangeValue(val);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && onEnter) {
+        onEnter();
+    }
+  };
+
   return (
     <input
       type="text"
       className={clsx(styles.coreBaseInput, className)}
       value={value}
       onChange={handleChange}
+      onKeyDown={handleKeyDown}
       maxLength={maxLength}
       {...props}
     />
