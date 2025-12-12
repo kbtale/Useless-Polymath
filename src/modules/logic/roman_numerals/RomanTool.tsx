@@ -25,12 +25,8 @@ export const RomanTool: React.FC = () => {
       const num = fromRoman(val);
       setDecimal(num.toString());
     } else {
-      // Even if regex fails (e.g. IIII), we might still compute it, 
-      // but let's strictly follow standard form or just show invalid if it parses weirdly
       const num = fromRoman(val);
       if (!isNaN(num)) {
-        // Warning: This might be non-standard Roman
-        // For bidirectional consistency, check if toRoman(num) === val
         if (toRoman(num) !== val) {
             // Technically valid sum, but non-standard form
              setDecimal(num.toString());
@@ -74,7 +70,6 @@ export const RomanTool: React.FC = () => {
 
       <div className={styles.container}>
         
-        {/* Decimal Input */}
         <div className={styles.inputGroup}>
           <label className={styles.label}>{t('decimal', { defaultValue: 'DECIMAL (Integer)' })}</label>
           <CoreBaseInput
@@ -86,7 +81,6 @@ export const RomanTool: React.FC = () => {
           />
         </div>
 
-        {/* Roman Input */}
         <div className={styles.inputGroup}>
           <label className={styles.label}>{t('roman', { defaultValue: 'ROMAN NUMERALS' })}</label>
           <CoreBaseInput

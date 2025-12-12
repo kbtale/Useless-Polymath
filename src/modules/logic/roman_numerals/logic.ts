@@ -35,7 +35,7 @@ export const fromRoman = (str: string): number => {
     const cur = val[roman[i]];
     const next = val[roman[i + 1]];
 
-    if (cur === undefined) return NaN; // Invalid char
+    if (cur === undefined) return NaN;
 
     if (next && cur < next) {
       num -= cur;
@@ -48,11 +48,6 @@ export const fromRoman = (str: string): number => {
 
 export const isValidRoman = (str: string): boolean => {
   if (!str) return false;
-  // Basic structural regex check (not perfect but strict enough for most inputs)
-  // M{0,3} = 0-3000
-  // (CM|CD|D?C{0,3}) = 900, 400, 0-800
-  // (XC|XL|L?X{0,3}) = 90, 40, 0-80
-  // (IX|IV|V?I{0,3}) = 9, 4, 0-8
   const regex = /^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/;
   return regex.test(str.toUpperCase());
 };

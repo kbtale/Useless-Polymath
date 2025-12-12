@@ -28,7 +28,6 @@ export const BitwiseTool: React.FC = () => {
 
       <div className={styles.container}>
         
-        {/* Operation Selection */}
         <div className={styles.controlRow}>
           <div style={{ width: '200px' }}>
             <CoreSelect
@@ -42,7 +41,6 @@ export const BitwiseTool: React.FC = () => {
 
         <div className={styles.toolLayout}>
         
-          {/* Input A */}
           <div className={styles.bitRowWrapper}>
              <div className={styles.sectionTitle}>INPUT A ({valA})</div>
              <CoreBitRow 
@@ -57,7 +55,6 @@ export const BitwiseTool: React.FC = () => {
             {OPERATIONS.find(o => o.value === op)?.label.split(' ')[0]}
           </div>
 
-          {/* Input B (Hidden for NOT) */}
           {!isUnary && (
             <div className={styles.bitRowWrapper}>
                <div className={styles.sectionTitle}>{isShift ? 'SHIFT AMOUNT' : 'INPUT B'} ({valB})</div>
@@ -70,12 +67,11 @@ export const BitwiseTool: React.FC = () => {
             </div>
           )}
 
-          {/* Result */}
           <div className={styles.resultWrapper}>
              <div className={styles.sectionTitle}>RESULT ({result})</div>
              <CoreBitRow 
                value={result} 
-               onChange={() => {}} // Read only
+               onChange={() => {}}
                bits={8} 
                interactive={false}
              />
