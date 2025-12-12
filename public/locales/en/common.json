@@ -17,11 +17,9 @@
   "awaiting_implementation": "AWAITING IMPLEMENTATION...",
   "loading_system": "LOADING SYSTEM...",
   "documentation_coming_soon": "Documentation coming soon...",
-  "modules": {
-    "chronometry": "CHRONOMETRY",
-    "logic": "02 // LOGIC",
-    "networks": "03 // NETWORKS",
-    "cryptography": "04 // CRYPTOGRAPHY",
-    "science": "05 // SCIENCE"
-  }
+  "modules.chronometry": "CHRONOMETRY",
+  "modules.logic": "02 // LOGIC",
+  "modules.networks": "03 // NETWORKS",
+  "modules.cryptography": "04 // CRYPTOGRAPHY",
+  "modules.science": "05 // SCIENCE"
 }

@@ -1,7 +1,7 @@
 {
-  "app_title": "Useless Polymath",
+  "app_title": "Polímata Inútil",
   "home": "Inicio",
-  "settings": "Configuración",
+  "settings": "Ajustes",
   "visualizer": "Visualizador",
   "practice": "Práctica",
   "guide": "Guía",
@@ -13,15 +13,13 @@
   "uptime": "TIEMPO ACTIVO",
   "memory": "MEMORIA",
   "access_denied": "ACCESO DENEGADO",
-  "system_offline": "ESTADO DEL SISTEMA: DESCONECTADO",
+  "system_offline": "ESTADO DEL SISTEMA: OFFLINE",
   "awaiting_implementation": "ESPERANDO IMPLEMENTACIÓN...",
   "loading_system": "CARGANDO SISTEMA...",
   "documentation_coming_soon": "Documentación próximamente...",
-  "modules": {
-    "chronometry": "CRONOMETRÍA",
-    "logic": "LÓGICA",
-    "networks": "03 // REDES",
-    "cryptography": "04 // CRIPTOGRAFÍA",
-    "science": "05 // CIENCIA"
-  }
+  "modules.chronometry": "CRONOMETRÍA",
+  "modules.logic": "LÓGICA",
+  "modules.networks": "03 // REDES",
+  "modules.cryptography": "04 // CRIPTOGRAFÍA",
+  "modules.science": "05 // CIENCIA"
 }

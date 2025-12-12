@@ -1,27 +1,25 @@
 {
-  "app_title": "Useless Polymath",
+  "app_title": "Polimata Inutile",
   "home": "Home",
   "settings": "Impostazioni",
-  "visualizer": "Visualizzatore",
+  "visualizer": "Visualizza",
   "practice": "Pratica",
   "guide": "Guida",
   "clear": "PULISCI",
   "execute": "ESEGUI",
-  "target_date": "DATA OBIETTIVO",
+  "target_date": "DATA TARGET",
   "calculated_day": "GIORNO CALCOLATO",
   "see_full_calculations": "Vedi calcoli completi sotto",
   "uptime": "TEMPO DI ATTIVITÀ",
   "memory": "MEMORIA",
   "access_denied": "ACCESSO NEGATO",
-  "system_offline": "STATO DEL SISTEMA: OFFLINE",
+  "system_offline": "STATO SISTEMA: OFFLINE",
   "awaiting_implementation": "IN ATTESA DI IMPLEMENTAZIONE...",
   "loading_system": "CARICAMENTO SISTEMA...",
   "documentation_coming_soon": "Documentazione in arrivo...",
-  "modules": {
-    "chronometry": "CRONOMETRIA",
-    "logic": "LOGICA",
-    "networks": "03 // RETI",
-    "cryptography": "04 // CRITTOGRAFIA",
-    "science": "05 // SCIENZA"
-  }
+  "modules.chronometry": "CRONOMETRIA",
+  "modules.logic": "LOGICA",
+  "modules.networks": "03 // RETI",
+  "modules.cryptography": "04 // CRITTOGRAFIA",
+  "modules.science": "05 // SCIENZA"
 }
