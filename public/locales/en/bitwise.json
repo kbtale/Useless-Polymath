@@ -1,4 +1,5 @@
 {
-  "title": "Bitwise Logic",
-  "guide": "### Truth Tables\nBit by bit operations.\n\n#### AND (&)\n1 only if **both** are 1.\n| A | B | Out |\n| :--- | :--- | :--- |\n| 0 | 0 | 0 |\n| 1 | 0 | 0 |\n| 1 | 1 | **1** |\n\n#### OR (|)\n1 if **any** is 1.\n| A | B | Out |\n| :--- | :--- | :--- |\n| 0 | 0 | 0 |\n| 1 | 0 | **1** |\n| 0 | 1 | **1** |\n\n#### XOR (^)\n1 if **different**.\n| A | B | Out |\n| :--- | :--- | :--- |\n| 0 | 0 | 0 |\n| 1 | 1 | 0 |\n| 1 | 0 | **1** |"
+  "title": "BITWISE LOGIC",
+  "operation": "OPERATION",
+  "guide": "# Bitwise Logic Guide\n\nBitwise operations manipulate individual bits of binary numbers.\n\n## Operations\n\n- **AND (&)**: Result bit is 1 only if BOTH input bits are 1.\n- **OR (|)**: Result bit is 1 if EITHER input bit is 1.\n- **XOR (^)**: Result bit is 1 if input bits are DIFFERENT.\n- **NOT (~)**: Inverts all bits (0->1, 1->0).\n- **Shifts (<<, >>)**: Moves bits left or right, filling with zeros."
 }

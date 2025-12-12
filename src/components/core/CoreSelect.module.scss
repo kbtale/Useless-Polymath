@@ -1,0 +1,63 @@
+@use '../../styles/variables' as *;
+
+.selectContainer {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  width: 100%;
+}
+
+.label {
+  font-family: $font-mono;
+  color: $text-dim;
+  font-size: $text-sm;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  
+  // Custom arrow using pseudo-element or separate div
+  // Using a simple CSS arrow for the .arrow div
+  &:after {
+    content: '';
+    position: absolute;
+    right: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid $text-main;
+    pointer-events: none;
+  }
+}
+
+.select {
+  width: 100%;
+  appearance: none; // Hide default arrow
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  background: transparent;
+  border: $border-thin;
+  border-radius: 0; // Schematic sharp corners
+  color: $text-main;
+  font-family: $font-mono;
+  font-size: $text-base;
+  padding: $spacing-sm $spacing-md;
+  outline: none;
+  cursor: pointer;
+  
+  &:focus {
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+    background: rgba($line-color, 0.02);
+  }
+
+  &:hover {
+    background: $hover-bg;
+  }
+}

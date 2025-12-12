@@ -1,0 +1,109 @@
+@use '../../../styles/variables' as *;
+
+.panel {
+  width: 100%;
+  max-width: $container-md;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.title {
+  font-family: $font-mono;
+  color: $text-main;
+  margin-top: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-bottom: 1px solid $line-color;
+  padding-bottom: $spacing-sm;
+  text-align: center;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.label {
+  font-family: $font-mono;
+  color: $text-dim;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: $spacing-sm;
+  margin-top: $spacing-sm;
+}
+
+.error {
+  color: $color-error;
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  margin-top: $spacing-xs;
+}
+
+.practiceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  align-items: center;
+  margin-top: $spacing-lg;
+}
+
+.question {
+  text-align: center;
+}
+
+.questionLabel {
+  font-family: $font-mono;
+  color: $text-dim;
+  font-size: 0.9rem;
+  margin-bottom: $spacing-xs;
+}
+
+.questionValue {
+  font-family: $font-mono;
+  color: $text-main;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.feedback {
+  margin-top: $spacing-md;
+  text-align: center;
+  padding: $spacing-md;
+  border: 1px solid $line-color;
+  font-family: $font-mono;
+  font-weight: 700;
+
+  &.correct {
+    background: rgba(0, 0, 0, 0.05);
+    color: $text-main;
+  }
+
+  &.incorrect {
+    background: rgba(0, 0, 0, 0.1);
+    color: $text-main;
+    text-decoration: line-through;
+  }
+}
+
+.scoreBoard {
+  display: flex;
+  gap: $spacing-lg;
+  font-size: 0.9rem;
+  color: $text-dim;
+  
+  span {
+    color: $text-main;
+    font-weight: 700;
+  }
+}

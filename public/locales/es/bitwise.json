@@ -1,4 +1,5 @@
 {
-  "title": "Lógica Bitwise",
-  "guide": "### Tablas de Verdad\nOperaciones bit a bit.\n\n#### AND (&)\nSolo 1 si **ambos** son 1.\n| A | B | Out |\n| :--- | :--- | :--- |\n| 0 | 0 | 0 |\n| 1 | 0 | 0 |\n| 1 | 1 | **1** |\n\n#### OR (|)\n1 si **cualquiera** es 1.\n| A | B | Out |\n| :--- | :--- | :--- |\n| 0 | 0 | 0 |\n| 1 | 0 | **1** |\n| 0 | 1 | **1** |\n\n#### XOR (^)\n1 si son **diferentes**.\n| A | B | Out |\n| :--- | :--- | :--- |\n| 0 | 0 | 0 |\n| 1 | 1 | 0 |\n| 1 | 0 | **1** |"
+  "title": "LÓGICA BIT A BIT",
+  "operation": "OPERACIÓN",
+  "guide": "# Guía de Lógica Bit a Bit\n\nLas operaciones bit a bit manipulan bits individuales de números binarios.\n\n## Operaciones\n\n- **AND (&)**: El bit resultante es 1 solo si AMBOS bits de entrada son 1.\n- **OR (|)**: El bit resultante es 1 si CUALQUIERA de los bits de entrada es 1.\n- **XOR (^)**: El bit resultante es 1 si los bits de entrada son DIFERENTES.\n- **NOT (~)**: Invierte todos los bits (0->1, 1->0).\n- **Desplazamientos (<<, >>)**: Mueve bits a izquierda o derecha, rellenando con ceros."
 }

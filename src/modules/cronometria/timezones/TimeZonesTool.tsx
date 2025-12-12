@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreSlider } from '../../../components/core/CoreSlider';
+import { CoreSelect } from '../../../components/core/CoreSelect';
 import { COMMON_ZONES, calculateDestinationTime } from './logic';
 import styles from './TimeZones.module.scss';
 
@@ -21,16 +22,15 @@ export const TimeZonesTool: React.FC = () => {
       <div className={styles.container}>
         {/* Origin */}
         <div className={styles.inputGroup}>
-          <label className={styles.label}>ORIGIN</label>
-          <select 
+          <CoreSelect 
+            label="ORIGIN"
             value={originId}
-            onChange={(e) => setOriginId(e.target.value)}
-            className={styles.select}
-          >
-            {COMMON_ZONES.map(z => (
-              <option key={z.id} value={z.id}>{z.name} (UTC{z.offset >= 0 ? '+' : ''}{z.offset})</option>
-            ))}
-          </select>
+            onChange={(val) => setOriginId(val)}
+            options={COMMON_ZONES.map(z => ({
+              value: z.id,
+              label: `${z.name} (UTC${z.offset >= 0 ? '+' : ''}${z.offset})`
+            }))}
+          />
           
           <CoreSlider 
             min={0} 
@@ -47,16 +47,15 @@ export const TimeZonesTool: React.FC = () => {
 
         {/* Destination */}
         <div className={styles.resultArea}>
-          <label className={styles.label}>DESTINATION</label>
-          <select 
+           <CoreSelect 
+            label="DESTINATION"
             value={destId}
-            onChange={(e) => setDestId(e.target.value)}
-            className={styles.select}
-          >
-            {COMMON_ZONES.map(z => (
-              <option key={z.id} value={z.id}>{z.name} (UTC{z.offset >= 0 ? '+' : ''}{z.offset})</option>
-            ))}
-          </select>
+            onChange={(val) => setDestId(val)}
+            options={COMMON_ZONES.map(z => ({
+              value: z.id,
+              label: `${z.name} (UTC${z.offset >= 0 ? '+' : ''}${z.offset})`
+            }))}
+          />
 
           <div>
             <div className={styles.resultValue}>

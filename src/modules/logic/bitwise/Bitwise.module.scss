@@ -1,0 +1,121 @@
+@use '../../../styles/variables' as *;
+
+.panel {
+  width: 100%;
+  max-width: $container-md;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.title {
+  font-family: $font-mono;
+  color: $text-main;
+  margin-top: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-bottom: $border-thin;
+  padding-bottom: $spacing-sm;
+  text-align: center;
+}
+
+.toolLayout {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.controlRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.sectionTitle {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-dim;
+  font-weight: 700;
+  margin-bottom: $spacing-xs;
+  text-transform: uppercase;
+}
+
+.bitRowWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  padding: $spacing-md;
+  border: $border-thin; // Optional: box around each operand
+  background: rgba($line-color, 0.02);
+}
+
+.operatorDisplay {
+  text-align: center;
+  font-family: $font-mono;
+  font-size: $text-xl;
+  font-weight: 700;
+  color: $text-main;
+  padding: $spacing-sm 0;
+}
+
+.resultWrapper {
+  @extend .bitRowWrapper;
+  border: 2px solid $text-main; // Highlight result
+  background: transparent;
+}
+
+// Practice Mode
+.practiceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  align-items: center;
+  margin-top: $spacing-lg;
+}
+
+.scoreBoard {
+  display: flex;
+  gap: $spacing-lg;
+  font-size: 0.9rem;
+  color: $text-dim;
+  
+  span {
+    color: $text-main;
+    font-weight: 700;
+  }
+}
+
+.question {
+  text-align: center;
+}
+
+.questionText {
+  font-family: $font-mono;
+  font-size: $text-lg;
+  margin-bottom: $spacing-md;
+}
+
+.feedback {
+  margin-top: $spacing-md;
+  text-align: center;
+  padding: $spacing-md;
+  border: $border-thin;
+  font-family: $font-mono;
+  font-weight: 700;
+
+  &.correct {
+    background: rgba(0, 0, 0, 0.05);
+    color: $text-main;
+  }
+
+  &.incorrect {
+    background: rgba($color-error, 0.1);
+    color: $color-error;
+    text-decoration: line-through;
+  }
+}

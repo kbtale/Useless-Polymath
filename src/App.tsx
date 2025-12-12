@@ -6,12 +6,17 @@ import { DoomsdayTool } from './modules/cronometria/doomsday/DoomsdayTool';
 import { DoomsdayPractice } from './modules/cronometria/doomsday/DoomsdayPractice';
 import { BinaryTool } from './modules/logic/binary/BinaryTool';
 import { BinaryPractice } from './modules/logic/binary/BinaryPractice';
+import { BitwiseTool } from './modules/logic/bitwise/BitwiseTool';
+import { BitwisePractice } from './modules/logic/bitwise/BitwisePractice';
 import { HexTool } from './modules/logic/hex/HexTool';
 import { HexPractice } from './modules/logic/hex/HexPractice';
+import styles from './App.module.scss';
 import { TimeZonesTool } from './modules/cronometria/timezones/TimeZonesTool';
 import { TimeZonesPractice } from './modules/cronometria/timezones/TimeZonesPractice';
 import { MoonTool } from './modules/cronometria/moon/MoonTool';
 import { MoonPractice } from './modules/cronometria/moon/MoonPractice';
+import { RomanTool } from './modules/logic/roman_numerals/RomanTool';
+import { RomanPractice } from './modules/logic/roman_numerals/RomanPractice';
 import { CalendarOrdinalTool } from './modules/cronometria/ordinal/CalendarOrdinalTool';
 import { CalendarOrdinalPractice } from './modules/cronometria/ordinal/CalendarOrdinalPractice';
 
@@ -34,13 +39,7 @@ function AppContent() {
           <h2 style={{ borderBottom: '1px solid #ccc', paddingBottom: '0.5rem' }}>
             {t('guide', { ns: 'common', defaultValue: 'GUIDE' })} // {activeModuleId.toUpperCase()}
           </h2>
-          <div style={{ 
-            marginTop: '2rem', 
-            backgroundColor: '#f5f5f5',
-            padding: '1.5rem',
-            border: '1px solid #ddd',
-            borderRadius: '4px'
-          }}>
+          <div className={styles.guideContainer}>
             <CoreMarkdownRenderer content={t('guide', { ns: activeModuleId, defaultValue: t('documentation_coming_soon', { ns: 'common' }) })} />
           </div>
         </div>
@@ -58,6 +57,10 @@ function AppContent() {
         return mode === 'tool' ? <CalendarOrdinalTool /> : <CalendarOrdinalPractice />;
       case 'binary':
         return mode === 'tool' ? <BinaryTool /> : <BinaryPractice />;
+      case 'bitwise':
+        return mode === 'tool' ? <BitwiseTool /> : <BitwisePractice />;
+      case 'roman_numerals':
+        return mode === 'tool' ? <RomanTool /> : <RomanPractice />;
       case 'hexadecimal':
         return mode === 'tool' ? <HexTool /> : <HexPractice />;
       default:

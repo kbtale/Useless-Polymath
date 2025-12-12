@@ -1,0 +1,9 @@
+@use './styles/variables' as *;
+
+.guideContainer {
+  margin-top: $spacing-lg;
+  background-color: $hover-bg;
+  padding: 1.5rem;
+  border: $border-thin;
+  border-radius: 4px;
+}

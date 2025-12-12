@@ -1,4 +1,10 @@
 {
-  "title": "Roman Numerals",
-  "guide": "### Value Table\nRight adds, Left subtracts.\n\n| Symbol | Value |\n| :--- | :--- |\n| **I** | 1 |\n| **V** | 5 |\n| **X** | 10 |\n| **L** | 50 |\n| **C** | 100 |\n| **D** | 500 |\n| **M** | 1000 |\n\n*Rule:* Break down by 1000s, 100s, 10s. 1990 = MCMXC."
+  "title": "ROMAN NUMERALS",
+  "decimal": "DECIMAL (Integer)",
+  "roman": "ROMAN NUMERALS",
+  "convert_to_roman": "Convert to ROMAN",
+  "convert_to_decimal": "Convert to DECIMAL",
+  "range_limit": "Max value is 3999 (Standard)",
+  "non_standard": "Non-standard form detected",
+  "guide": "# Roman Numerals Guide\n\n## Basic Symbols\n\n| Symbol | Value |\n|---|---|\n| I | 1 |\n| V | 5 |\n| X | 10 |\n| L | 50 |\n| C | 100 |\n| D | 500 |\n| M | 1000 |\n\n## Rules\n\n1. **Addition**: If a symbol comes after a larger (or equal) symbol, add it.  \n   Example: `VI` = 5 + 1 = 6\n\n2. **Subtraction**: If a symbol comes before a larger symbol, subtract it.  \n   Example: `IV` = 5 - 1 = 4\n\n> [!NOTE]\n> Standard Roman Numerals only support values up to 3,999 (MMMCMXCIX) because we lack a standard symbol for 5,000 or 10,000 in ASCII."
 }
