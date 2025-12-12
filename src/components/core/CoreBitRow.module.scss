@@ -1,0 +1,57 @@
+@use '../../styles/variables' as *;
+
+.coreBitRow {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 1rem;
+  background: $bg-canvas;
+  border: 1px solid $line-color;
+  flex-wrap: wrap;
+}
+
+.bit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: default;
+  transition: all 0.2s ease;
+  user-select: none;
+
+  &.interactive {
+    cursor: pointer;
+    &:hover .led {
+      border-color: $text-main;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .led {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid $line-color;
+    border-radius: 50%; /* Round bulbs for now, or keep square for schematic? Let's go Round for standard LED look */
+    /* Wait, user likes 'schematic' sharp corners. Square might be better. */
+    /* Returning to square for Schematic consistency, maybe slightly rounded 2px */
+    border-radius: 2px; 
+    background: transparent;
+    transition: all 0.2s ease;
+  }
+
+  &.active .led {
+    background: $text-main; // "On" state
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .label {
+    font-family: $font-mono;
+    font-size: 0.8rem;
+    color: rgba($text-main, 0.6);
+  }
+
+  &.active .label {
+    color: $text-main;
+    font-weight: bold;
+  }
+}

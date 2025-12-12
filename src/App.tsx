@@ -1,6 +1,7 @@
 import { useState, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AppShell } from './components/layout/AppShell';
+import { CoreMarkdownRenderer } from './components/core/CoreMarkdownRenderer';
 import { DoomsdayTool } from './modules/cronometria/doomsday/DoomsdayTool';
 import { DoomsdayPractice } from './modules/cronometria/doomsday/DoomsdayPractice';
 import { BinaryTool } from './modules/logic/binary/BinaryTool';
@@ -33,17 +34,14 @@ function AppContent() {
           <h2 style={{ borderBottom: '1px solid #ccc', paddingBottom: '0.5rem' }}>
             {t('guide', { ns: 'common', defaultValue: 'GUIDE' })} // {activeModuleId.toUpperCase()}
           </h2>
-          
           <div style={{ 
             marginTop: '2rem', 
-            whiteSpace: 'pre-wrap', 
-            lineHeight: '1.6',
             backgroundColor: '#f5f5f5',
             padding: '1.5rem',
             border: '1px solid #ddd',
             borderRadius: '4px'
           }}>
-            {t('guide', { ns: activeModuleId, defaultValue: t('documentation_coming_soon', { ns: 'common' }) })}
+            <CoreMarkdownRenderer content={t('guide', { ns: activeModuleId, defaultValue: t('documentation_coming_soon', { ns: 'common' }) })} />
           </div>
         </div>
       );

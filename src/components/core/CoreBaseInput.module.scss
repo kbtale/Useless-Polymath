@@ -1,0 +1,22 @@
+@use '../../styles/variables' as *;
+
+.coreBaseInput {
+  background: transparent;
+  border: 1px solid $line-color;
+  color: $text-main;
+  font-family: $font-mono;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  outline: none;
+  transition: all 0.2s ease;
+  width: 100%;
+
+  &:focus {
+    background: rgba(0,0,0,0.02);
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+  }
+
+  &::placeholder {
+    color: rgba(0,0,0,0.3);
+  }
+}

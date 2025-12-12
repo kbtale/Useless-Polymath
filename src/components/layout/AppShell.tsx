@@ -90,7 +90,7 @@ export const AppShell: React.FC<AppShellProps> = ({
       <header className={styles.header}>
         <div className={styles.title}>
           <div className={styles.square}></div>
-          <h1>{t('app_title')} <span className={styles.version}>v1.0.4-RC</span></h1>
+          <h1>{t('app_title')} <span className={styles.version}>v0.0.1-ALPHA</span></h1>
         </div>
         
         <div style={{ display: 'flex', gap: '0.5rem', marginRight: '1rem' }}>

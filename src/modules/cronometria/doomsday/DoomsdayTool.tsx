@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { SchematicDateInput } from '../../../components/core/SchematicDateInput';
+import { CoreDateInput } from '../../../components/core/CoreDateInput';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { calculateDoomsdayWithLog } from './logic';
 import type { DoomsdayLog } from './logic';
@@ -40,7 +40,7 @@ export const DoomsdayTool: React.FC = () => {
         <label className={styles.label}>{t('target_date', { ns: 'common' })}</label>
         
         <div className={styles.dateInputContainer}>
-          <SchematicDateInput 
+          <CoreDateInput 
             day={day}
             month={month}
             year={year}

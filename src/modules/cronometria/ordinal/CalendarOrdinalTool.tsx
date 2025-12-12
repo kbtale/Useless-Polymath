@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { SchematicDateInput } from '../../../components/core/SchematicDateInput';
+import { CoreDateInput } from '../../../components/core/CoreDateInput';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { getOrdinalDate } from './logic';
 import styles from './Ordinal.module.scss';
@@ -39,7 +39,7 @@ export const CalendarOrdinalTool: React.FC = () => {
         <label className={styles.label}>{t('target_date', { ns: 'common' })}</label>
         
         <div className={styles.dateInputContainer}>
-          <SchematicDateInput 
+          <CoreDateInput 
             day={day}
             month={month}
             year={year}
