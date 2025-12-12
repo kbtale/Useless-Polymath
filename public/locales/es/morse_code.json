@@ -1,4 +1,7 @@
 {
-  "title": "Código Morse",
-  "guide": "### Diccionario\n| A | `.-` | N | `-.` | 0 | `-----` |\n| B | `-...` | O | `---` | 1 | `.----` |\n| C | `-.-.` | P | `.--.` | 2 | `..---` |\n| D | `-..` | Q | `--.-` | 3 | `...--` |\n| E | `.` | R | `.-.` | 4 | `....-` |\n| F | `..-.` | S | `...` | 5 | `.....` |\n| G | `--.` | T | `-` | 6 | `-....` |\n| H | `....` | U | `..-` | 7 | `--...` |\n| I | `..` | V | `...-` | 8 | `---..` |\n| J | `.---` | W | `.--` | 9 | `----.` |\n| K | `-.-` | X | `-..-` | | |\n| L | `.-..` | Y | `-.--` | SOS | `...---...` |\n| M | `--` | Z | `--..` | | |"
+  "title": "CÓDIGO MORSE",
+  "practice_title": "DECODIFICA LA SEÑAL",
+  "text_input": "TEXTO",
+  "morse_input": "MORSE ( . - / )",
+  "guide": "# Código Morse\n\nMétodo utilizado en telecomunicaciones para codificar caracteres de texto como secuencias estandarizadas de dos duraciones de señal diferentes, llamadas puntos y rayas."
 }

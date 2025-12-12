@@ -25,6 +25,8 @@ import { NatoTool } from './modules/cryptography/nato_alphabet/NatoTool';
 import { NatoPractice } from './modules/cryptography/nato_alphabet/NatoPractice';
 import { CaesarTool } from './modules/cryptography/caesar_cipher/CaesarTool';
 import { CaesarPractice } from './modules/cryptography/caesar_cipher/CaesarPractice';
+import { MorseTool } from './modules/cryptography/morse_code/MorseTool';
+import { MorsePractice } from './modules/cryptography/morse_code/MorsePractice';
 
 function AppContent() {
   const [mode, setMode] = useState<'tool' | 'practice' | 'guide'>('tool');
@@ -75,6 +77,8 @@ function AppContent() {
         return mode === 'tool' ? <NatoTool /> : <NatoPractice />;
       case 'caesar_cipher':
         return mode === 'tool' ? <CaesarTool /> : <CaesarPractice />;
+      case 'morse_code':
+        return mode === 'tool' ? <MorseTool /> : <MorsePractice />;
       default:
         return (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', flexDirection: 'column' }}>

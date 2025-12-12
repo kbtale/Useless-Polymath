@@ -1,4 +1,7 @@
 {
-  "title": "Morse Code",
-  "guide": "### Dictionary\n| A | `.-` | N | `-.` | 0 | `-----` |\n| B | `-...` | O | `---` | 1 | `.----` |\n| C | `-.-.` | P | `.--.` | 2 | `..---` |\n| D | `-..` | Q | `--.-` | 3 | `...--` |\n| E | `.` | R | `.-.` | 4 | `....-` |\n| F | `..-.` | S | `...` | 5 | `.....` |\n| G | `--.` | T | `-` | 6 | `-....` |\n| H | `....` | U | `..-` | 7 | `--...` |\n| I | `..` | V | `...-` | 8 | `---..` |\n| J | `.---` | W | `.--` | 9 | `----.` |\n| K | `-.-` | X | `-..-` | | |\n| L | `.-..` | Y | `-.--` | SOS | `...---...` |\n| M | `--` | Z | `--..` | | |"
+  "title": "MORSE CODE",
+  "practice_title": "DECODE THE SIGNAL",
+  "text_input": "TEXT",
+  "morse_input": "MORSE ( . - / )",
+  "guide": "# Morse Code\n\nMethod used in telecommunication to encode text characters as standardized sequences of two different signal durations, called dots and dashes."
 }
