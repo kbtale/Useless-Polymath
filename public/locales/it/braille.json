@@ -1,4 +1,7 @@
 {
-  "title": "Braille",
-  "guide": "### Matrice 6 Punti\nLogica per decadi.\n\n#### Decade 1 (a-j): Punti Alti\n| Char | Punti | Pattern |\n| :--- | :--- | :--- |\n| **a** | 1 | ⠁ |\n| **b** | 1-2 | ⠃ |\n| **c** | 1-4 | ⠉ |\n\n#### Regole Decadi\n1. **a-j:** Base.\n2. **k-t:** Base + Punto 3 (Basso Sx).\n3. **u-z:** Base + Punti 3 & 6 (Basso)."
+  "title": "BRAILLE",
+  "practice_title": "IDENTIFICA IL MODELLO",
+  "text_input": "TESTO DA CONVERTIRE",
+  "output_placeholder": "Digita sopra per generare i modelli a punti...",
+  "guide": "# Braille\n\nUna rappresentazione tattile di simboli alfabetici e numerici che utilizza sei punti per rappresentare ogni lettera e numero."
 }

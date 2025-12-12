@@ -1,4 +1,7 @@
 {
-  "title": "Braille",
-  "guide": "### Matriz 6 Puntos\nPatrón lógico por décadas.\n\n#### Década 1 (a-j): Puntos Superiores\n| Letra | Puntos | Patrón |\n| :--- | :--- | :--- |\n| **a** | 1 | ⠁ |\n| **b** | 1-2 | ⠃ |\n| **c** | 1-4 | ⠉ |\n\n#### Reglas Décadas\n1. **a-j:** Base.\n2. **k-t:** Base + Punto 3 (Abajo Izq).\n3. **u-z:** Base + Puntos 3 y 6 (Abajo ambos)."
+  "title": "BRAILLE",
+  "practice_title": "IDENTIFICA EL PATRÓN",
+  "text_input": "TEXTO A CONVERTIR",
+  "output_placeholder": "Escribe arriba para generar patrones de puntos...",
+  "guide": "# Braille\n\nUna representación táctil de símbolos alfabéticos y numéricos utilizando seis puntos para representar cada letra y número."
 }

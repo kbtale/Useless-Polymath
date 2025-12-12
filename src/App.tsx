@@ -27,6 +27,8 @@ import { CaesarTool } from './modules/cryptography/caesar_cipher/CaesarTool';
 import { CaesarPractice } from './modules/cryptography/caesar_cipher/CaesarPractice';
 import { MorseTool } from './modules/cryptography/morse_code/MorseTool';
 import { MorsePractice } from './modules/cryptography/morse_code/MorsePractice';
+import { BrailleTool } from './modules/cryptography/braille/BrailleTool';
+import { BraillePractice } from './modules/cryptography/braille/BraillePractice';
 
 function AppContent() {
   const [mode, setMode] = useState<'tool' | 'practice' | 'guide'>('tool');
@@ -79,6 +81,8 @@ function AppContent() {
         return mode === 'tool' ? <CaesarTool /> : <CaesarPractice />;
       case 'morse_code':
         return mode === 'tool' ? <MorseTool /> : <MorsePractice />;
+      case 'braille':
+        return mode === 'tool' ? <BrailleTool /> : <BraillePractice />;
       default:
         return (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', flexDirection: 'column' }}>
