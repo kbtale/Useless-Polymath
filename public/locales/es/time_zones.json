@@ -1,4 +1,9 @@
 {
-  "title": "Zonas Horarias",
-  "guide": "### Cálculo de Husos (Offset)\n\nMemoriza la desviación respecto a Londres (UTC).\n\n#### Referencias Clave\n| Ciudad | Offset | Dirección |\n| :--- | :--- | :--- |\n| **Nueva York** | UTC -5 | Oeste (Resta) |\n| **Los Angeles**| UTC -8 | Oeste (Resta) |\n| **Londres** | UTC 0 | Centro |\n| **París/Madrid**| UTC +1 | Este (Suma) |\n| **Moscú** | UTC +3 | Este (Suma) |\n| **Tokio** | UTC +9 | Este (Suma) |\n| **Sídney** | UTC +11 | Este (Suma) |\n\n#### Regla del Rollover\n* Si resultado ≥ 24: Es mañana (Resta 24).\n* Si resultado < 0: Es ayer (Suma 24)."
+  "title": "ZONAS HORARIAS",
+  "origin": "ORIGEN",
+  "destination": "DESTINO",
+  "same_day": "MISMO DÍA",
+  "next_day": "DÍA SIGUIENTE (+1)",
+  "prev_day": "DÍA ANTERIOR (-1)",
+  "guide": "### Cálculo de Desfase\n\nMemoriza el desfase desde Londres (UTC).\n\n#### Referencias Clave\n| Ciudad | Desfase | Dirección |\n| :--- | :--- | :--- |\n| **Nueva York** | UTC -5 | Oeste (Restar) |\n| **Los Ángeles**| UTC -8 | Oeste (Restar) |\n| **Londres** | UTC 0 | Centro |\n| **París** | UTC +1 | Este (Sumar) |\n| **Moscú** | UTC +3 | Este (Sumar) |\n| **Tokio** | UTC +9 | Este (Sumar) |\n| **Sídney** | UTC +11 | Este (Sumar) |\n\n#### Regla de Cambio de Día\n* Resultado ≥ 24: Mañana (Restar 24).\n* Resultado < 0: Ayer (Sumar 24)."
 }

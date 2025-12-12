@@ -4,8 +4,10 @@ import { CoreSlider } from '../../../components/core/CoreSlider';
 import { CoreSelect } from '../../../components/core/CoreSelect';
 import { COMMON_ZONES, calculateDestinationTime } from './logic';
 import styles from './TimeZones.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export const TimeZonesTool: React.FC = () => {
+  const { t } = useTranslation(['time_zones', 'common']);
   const [originId, setOriginId] = useState('utc');
   const [destId, setDestId] = useState('tokyo');
   const [hour, setHour] = useState(12);
@@ -17,13 +19,12 @@ export const TimeZonesTool: React.FC = () => {
 
   return (
     <FUIGlassPanel className={styles.panel}>
-      <h2 className={styles.title}>TIME ZONES</h2>
+      <h2 className={styles.title}>{t('title')}</h2>
       
       <div className={styles.container}>
-        {/* Origin */}
         <div className={styles.inputGroup}>
           <CoreSelect 
-            label="ORIGIN"
+            label={t('origin')}
             value={originId}
             onChange={(val) => setOriginId(val)}
             options={COMMON_ZONES.map(z => ({
@@ -45,10 +46,9 @@ export const TimeZonesTool: React.FC = () => {
           </div>
         </div>
 
-        {/* Destination */}
         <div className={styles.resultArea}>
            <CoreSelect 
-            label="DESTINATION"
+            label={t('destination')}
             value={destId}
             onChange={(val) => setDestId(val)}
             options={COMMON_ZONES.map(z => ({
@@ -62,7 +62,7 @@ export const TimeZonesTool: React.FC = () => {
               {result.hour.toString().padStart(2, '0')}:00
             </div>
             <div className={styles.resultDate}>
-              {result.dayOffset === 0 ? 'SAME DAY' : result.dayOffset > 0 ? 'NEXT DAY (+1)' : 'PREVIOUS DAY (-1)'}
+              {result.dayOffset === 0 ? t('same_day') : result.dayOffset > 0 ? t('next_day') : t('prev_day')}
             </div>
           </div>
         </div>

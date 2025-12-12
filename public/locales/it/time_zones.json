@@ -1,4 +1,9 @@
 {
-  "title": "Fusi Orari",
-  "guide": "### Calcolo Offset\n\nMemorizza la distanza da Londra (UTC).\n\n#### Riferimenti\n| Città | Offset | Direzione |\n| :--- | :--- | :--- |\n| **New York** | UTC -5 | Ovest (Sottrai) |\n| **Los Angeles**| UTC -8 | Ovest (Sottrai) |\n| **Londra** | UTC 0 | Centro |\n| **Parigi/Roma**| UTC +1 | Est (Somma) |\n| **Mosca** | UTC +3 | Est (Somma) |\n| **Tokyo** | UTC +9 | Est (Somma) |\n| **Sydney** | UTC +11 | Est (Somma) |\n\n#### Regola del Cambio\n* Risultato ≥ 24: Domani (Sottrai 24).\n* Risultato < 0: Ieri (Somma 24)."
+  "title": "FUSI ORARI",
+  "origin": "ORIGINE",
+  "destination": "DESTINAZIONE",
+  "same_day": "STESSO GIORNO",
+  "next_day": "GIORNO SUCCESSIVO (+1)",
+  "prev_day": "GIORNO PRECEDENTE (-1)",
+  "guide": "### Calcolo del Fuso\n\nMemorizza l'offset da Londra (UTC).\n\n#### Riferimenti Chiave\n| Città | Offset | Direzione |\n| :--- | :--- | :--- |\n| **New York** | UTC -5 | Ovest (Sottrai) |\n| **Los Angeles**| UTC -8 | Ovest (Sottrai) |\n| **Londra** | UTC 0 | Centro |\n| **Parigi** | UTC +1 | Est (Aggiungi) |\n| **Mosca** | UTC +3 | Est (Aggiungi) |\n| **Tokyo** | UTC +9 | Est (Aggiungi) |\n| **Sydney** | UTC +11 | Est (Aggiungi) |\n\n#### Regola del Cambio Giorno\n* Risultato ≥ 24: Domani (Sottrai 24).\n* Risultato < 0: Ieri (Aggiungi 24)."
 }

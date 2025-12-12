@@ -76,7 +76,7 @@ export const BitwisePractice: React.FC = () => {
                 </div>
 
                 <div className={styles.resultWrapper}>
-                    <div className={styles.sectionTitle}>RESULT (CLICK BITS) ({userResult})</div>
+                    <div className={styles.sectionTitle}>{t('result_click')} ({userResult})</div>
                     <CoreBitRow 
                         value={userResult} 
                         onChange={setUserResult} 

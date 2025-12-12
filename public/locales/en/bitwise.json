@@ -1,5 +1,10 @@
 {
   "title": "BITWISE LOGIC",
   "operation": "OPERATION",
+  "input_a": "INPUT A",
+  "input_b": "INPUT B",
+  "result": "RESULT",
+  "shift_amount": "SHIFT AMOUNT",
+  "result_click": "RESULT (CLICK BITS)",
   "guide": "# Bitwise Logic Guide\n\nBitwise operations manipulate individual bits of binary numbers.\n\n## Operations\n\n- **AND (&)**: Result bit is 1 only if BOTH input bits are 1.\n- **OR (|)**: Result bit is 1 if EITHER input bit is 1.\n- **XOR (^)**: Result bit is 1 if input bits are DIFFERENT.\n- **NOT (~)**: Inverts all bits (0->1, 1->0).\n- **Shifts (<<, >>)**: Moves bits left or right, filling with zeros."
 }

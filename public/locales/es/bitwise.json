@@ -1,5 +1,10 @@
 {
   "title": "LÓGICA BIT A BIT",
   "operation": "OPERACIÓN",
+  "input_a": "ENTRADA A",
+  "input_b": "ENTRADA B",
+  "result": "RESULTADO",
+  "shift_amount": "DESPLAZAMIENTO",
+  "result_click": "RESULTADO (CLIC BITS)",
   "guide": "# Guía de Lógica Bit a Bit\n\nLas operaciones bit a bit manipulan bits individuales de números binarios.\n\n## Operaciones\n\n- **AND (&)**: El bit resultante es 1 solo si AMBOS bits de entrada son 1.\n- **OR (|)**: El bit resultante es 1 si CUALQUIERA de los bits de entrada es 1.\n- **XOR (^)**: El bit resultante es 1 si los bits de entrada son DIFERENTES.\n- **NOT (~)**: Invierte todos los bits (0->1, 1->0).\n- **Desplazamientos (<<, >>)**: Mueve bits a izquierda o derecha, rellenando con ceros."
 }

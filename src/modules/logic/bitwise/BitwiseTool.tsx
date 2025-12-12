@@ -42,7 +42,7 @@ export const BitwiseTool: React.FC = () => {
         <div className={styles.toolLayout}>
         
           <div className={styles.bitRowWrapper}>
-             <div className={styles.sectionTitle}>INPUT A ({valA})</div>
+             <div className={styles.sectionTitle}>{t('input_a')} ({valA})</div>
              <CoreBitRow 
                value={valA} 
                onChange={setValA} 
@@ -57,7 +57,7 @@ export const BitwiseTool: React.FC = () => {
 
           {!isUnary && (
             <div className={styles.bitRowWrapper}>
-               <div className={styles.sectionTitle}>{isShift ? 'SHIFT AMOUNT' : 'INPUT B'} ({valB})</div>
+               <div className={styles.sectionTitle}>{isShift ? t('shift_amount') : t('input_b')} ({valB})</div>
                <CoreBitRow 
                  value={valB} 
                  onChange={setValB} 
@@ -68,7 +68,7 @@ export const BitwiseTool: React.FC = () => {
           )}
 
           <div className={styles.resultWrapper}>
-             <div className={styles.sectionTitle}>RESULT ({result})</div>
+             <div className={styles.sectionTitle}>{t('result')} ({result})</div>
              <CoreBitRow 
                value={result} 
                onChange={() => {}}
