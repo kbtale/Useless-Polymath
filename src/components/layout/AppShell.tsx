@@ -10,10 +10,10 @@ interface Module {
 }
 
 const MODULES: Module[] = [
-  { id: 'doomsday', categoryKey: 'modules.cronometria' },
-  { id: 'time_zones', categoryKey: 'modules.cronometria' },
-  { id: 'moon', categoryKey: 'modules.cronometria' },
-  { id: 'ordinal', categoryKey: 'modules.cronometria' },
+  { id: 'doomsday', categoryKey: 'modules.chronometry' },
+  { id: 'time_zones', categoryKey: 'modules.chronometry' },
+  { id: 'moon', categoryKey: 'modules.chronometry' },
+  { id: 'ordinal', categoryKey: 'modules.chronometry' },
 
   { id: 'binary', categoryKey: 'modules.logic' },
   { id: 'hexadecimal', categoryKey: 'modules.logic' },
@@ -21,23 +21,23 @@ const MODULES: Module[] = [
   { id: 'bitwise', categoryKey: 'modules.logic' },
   { id: 'rule_72', categoryKey: 'modules.logic' },
 
-  { id: 'subnetting', categoryKey: 'modules.redes' },
-  { id: 'color_theory', categoryKey: 'modules.redes' },
-  { id: 'ascii', categoryKey: 'modules.redes' },
-  { id: 'storage_units', categoryKey: 'modules.redes' },
+  { id: 'subnetting', categoryKey: 'modules.networks' },
+  { id: 'color_theory', categoryKey: 'modules.networks' },
+  { id: 'ascii', categoryKey: 'modules.networks' },
+  { id: 'storage_units', categoryKey: 'modules.networks' },
 
-  { id: 'morse_code', categoryKey: 'modules.criptografia' },
-  { id: 'nato_alphabet', categoryKey: 'modules.criptografia' },
-  { id: 'caesar_cipher', categoryKey: 'modules.criptografia' },
-  { id: 'braille', categoryKey: 'modules.criptografia' },
-  { id: 'semaphore', categoryKey: 'modules.criptografia' },
+  { id: 'morse_code', categoryKey: 'modules.cryptography' },
+  { id: 'nato_alphabet', categoryKey: 'modules.cryptography' },
+  { id: 'caesar_cipher', categoryKey: 'modules.cryptography' },
+  { id: 'braille', categoryKey: 'modules.cryptography' },
+  { id: 'semaphore', categoryKey: 'modules.cryptography' },
 
-  { id: 'periodic_table', categoryKey: 'modules.ciencia' },
-  { id: 'thermodynamics', categoryKey: 'modules.ciencia' },
-  { id: 'resistor_codes', categoryKey: 'modules.ciencia' },
-  { id: 'luhn_algorithm', categoryKey: 'modules.ciencia' },
-  { id: 'ean_13', categoryKey: 'modules.ciencia' },
-  { id: 'card_counting', categoryKey: 'modules.ciencia' },
+  { id: 'periodic_table', categoryKey: 'modules.science' },
+  { id: 'thermodynamics', categoryKey: 'modules.science' },
+  { id: 'resistor_codes', categoryKey: 'modules.science' },
+  { id: 'luhn_algorithm', categoryKey: 'modules.science' },
+  { id: 'ean_13', categoryKey: 'modules.science' },
+  { id: 'card_counting', categoryKey: 'modules.science' },
 ];
 
 interface AppShellProps {

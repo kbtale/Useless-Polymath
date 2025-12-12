@@ -18,10 +18,10 @@
   "loading_system": "LOADING SYSTEM...",
   "documentation_coming_soon": "Documentation coming soon...",
   "modules": {
-    "cronometria": "CHRONOMETRY",
+    "chronometry": "CHRONOMETRY",
     "logic": "02 // LOGIC",
-    "redes": "03 // NETWORKS",
-    "criptografia": "04 // CRYPTOGRAPHY",
-    "ciencia": "05 // SCIENCE"
+    "networks": "03 // NETWORKS",
+    "cryptography": "04 // CRYPTOGRAPHY",
+    "science": "05 // SCIENCE"
   }
 }
