@@ -29,6 +29,8 @@ import { MorseTool } from './modules/cryptography/morse_code/MorseTool';
 import { MorsePractice } from './modules/cryptography/morse_code/MorsePractice';
 import { BrailleTool } from './modules/cryptography/braille/BrailleTool';
 import { BraillePractice } from './modules/cryptography/braille/BraillePractice';
+import { SemaphoreTool } from './modules/cryptography/semaphore/SemaphoreTool';
+import { SemaphorePractice } from './modules/cryptography/semaphore/SemaphorePractice';
 
 function AppContent() {
   const [mode, setMode] = useState<'tool' | 'practice' | 'guide'>('tool');
@@ -83,6 +85,8 @@ function AppContent() {
         return mode === 'tool' ? <MorseTool /> : <MorsePractice />;
       case 'braille':
         return mode === 'tool' ? <BrailleTool /> : <BraillePractice />;
+      case 'semaphore':
+        return mode === 'tool' ? <SemaphoreTool /> : <SemaphorePractice />;
       default:
         return (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', flexDirection: 'column' }}>

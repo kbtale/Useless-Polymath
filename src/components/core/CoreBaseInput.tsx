@@ -29,19 +29,9 @@ export const CoreBaseInput: React.FC<CoreBaseInputProps> = ({
     }
 
     if (allowedChars && val && !allowedChars.test(val)) {
-        // Simple rejection: if the new value doesn't match, 
-        // strictly speaking we should check char by char, 
-        // but checking the whole string against a whitelist regex is safer.
-        // If allowedChars is e.g. /^[0-1]*$/ for binary.
+        // Validation logic matching previous simple implementation
         return;
     }
-
-
-    // Simplest: If allowedChars is provided, it must match the *entire* string logic
-    // But usually we want to prevent typing invalid chars.
-    // Let's assume allowedChars matches a SINGLE character whitelist unless specified otherwise.
-    // No, standard is usually Regex for the whole valid string or character set.
-    // Let's try: allowedChars is a regex for VALID CONTENT.
     
     if (allowedChars && !allowedChars.test(val) && val !== '') {
         return; 

@@ -1,4 +1,12 @@
 {
   "title": "Semáforo",
+  "text_input": "Texto para Señalizar",
+  "practice_title": "Identificación de Señales",
+  "identify_label": "Identifica el Carácter",
+  "play": "Reproducir",
+  "stop": "Detener",
+  "prev": "Ant",
+  "next": "Sig",
+  "submit": "Comprobar",
   "guide": "### Reloj Humano\n| Letra | Brazo Der | Brazo Izq |\n| :--- | :--- | :--- |\n| **A** | 6:00 (Abajo) | 7:30 |\n| **B** | 6:00 | 9:00 |\n| **C** | 6:00 | 10:30 |\n| **D** | 6:00 | 12:00 (Arriba) |\n| **H** | 7:30 | 9:00 (Cambio ciclo) |"
 }

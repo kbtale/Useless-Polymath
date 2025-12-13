@@ -4,5 +4,5 @@
   "years_rule_72": "YEARS (RULE OF 72)",
   "years_precise": "YEARS (PRECISE)",
   "error": "ERROR",
-  "guide": "# Rule of 72 Guide\n\nA quick method to estimate the doubling time of an investment.\n\n## Formula\n\n```\nYears = 72 / Interest Rate\n```\n\n## Examples\n- **1%**: 72 years\n- **6%**: 12 years\n- **8%**: 9 years\n- **10%**: 7.2 years\n\nAccuracy decreases as the rate increases, but it's very accurate for typical interest rates (2-12%)."
+  "guide": "### Compound Interest\nTime to double = 72 / Rate.\n\n#### Quick Table\n| Rate | Years to Double |\n| :--- | :--- |\n| 3% | 24 yrs |\n| 4% | 18 yrs |\n| 6% | 12 yrs |\n| 9% | 8 yrs |\n| 12% | 6 yrs |"
 }

@@ -13,6 +13,7 @@
     "clsx": "^2.1.1",
     "dexie": "^4.2.1",
     "dexie-react-hooks": "^4.2.0",
+    "framer-motion": "^12.23.26",
     "i18next": "^25.7.2",
     "i18next-http-backend": "^3.0.2",
     "react": "^19.2.0",
