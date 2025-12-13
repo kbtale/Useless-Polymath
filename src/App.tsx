@@ -35,6 +35,8 @@ import { PeriodicTableTool } from './modules/science/periodic_table/PeriodicTabl
 import { PeriodicTablePractice } from './modules/science/periodic_table/PeriodicTablePractice';
 import { ThermodynamicsTool } from './modules/science/thermodynamics/ThermodynamicsTool';
 import { ThermodynamicsPractice } from './modules/science/thermodynamics/ThermodynamicsPractice';
+import { ResistorTool } from './modules/electronics/resistor_codes/ResistorTool';
+import { ResistorPractice } from './modules/electronics/resistor_codes/ResistorPractice';
 
 function AppContent() {
   const [mode, setMode] = useState<'tool' | 'practice' | 'guide'>('tool');
@@ -95,6 +97,8 @@ function AppContent() {
         return mode === 'tool' ? <PeriodicTableTool /> : <PeriodicTablePractice />;
       case 'thermodynamics':
         return mode === 'tool' ? <ThermodynamicsTool /> : <ThermodynamicsPractice />;
+      case 'resistor_codes':
+        return mode === 'tool' ? <ResistorTool /> : <ResistorPractice />;
       default:
         return (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', flexDirection: 'column' }}>

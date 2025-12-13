@@ -1,4 +1,26 @@
 {
   "title": "Resistors",
-  "guide": "### Color Code\n| Color | Digit | Multiplier |\n| :--- | :--- | :--- |\n| **Black** | 0 | 1 |\n| **Brown** | 1 | 10 |\n| **Red** | 2 | 100 |\n| **Orange**| 3 | 1k |\n| **Yellow**| 4 | 10k |\n| **Green** | 5 | 100k |\n| **Blue** | 6 | 1M |\n| **Violet**| 7 | 10M |\n| **Grey** | 8 | 100M |\n| **White** | 9 | 1G |\n\n*Band 4 (Tolerance): Gold 5%.*"
+  "guide": "### Color Code\n| Color | Digit | Multiplier |\n| :--- | :--- | :--- |\n| **Black** | 0 | 1 |\n| **Brown** | 1 | 10 |\n| **Red** | 2 | 100 |\n| **Orange**| 3 | 1k |\n| **Yellow**| 4 | 10k |\n| **Green** | 5 | 100k |\n| **Blue** | 6 | 1M |\n| **Violet**| 7 | 10M |\n| **Grey** | 8 | 100M |\n| **White** | 9 | 1G |\n\n*Band 4 (Tolerance): Gold 5%.*",
+  "color_black": "Black",
+  "color_brown": "Brown",
+  "color_red": "Red",
+  "color_orange": "Orange",
+  "color_yellow": "Yellow",
+  "color_green": "Green",
+  "color_blue": "Blue",
+  "color_violet": "Violet",
+  "color_grey": "Grey",
+  "color_white": "White",
+  "color_gold": "Gold",
+  "color_silver": "Silver",
+  "label_bands_4": "4 Bands",
+  "label_bands_5": "5 Bands",
+  "label_resistance": "Resistance",
+  "label_tolerance": "Tolerance",
+  "practice_title": "Identify Resistance",
+  "practice_prompt": "What is the value of this resistor?",
+  "submit": "Submit",
+  "streak": "Streak",
+  "feedback_correct": "Correct!",
+  "feedback_incorrect": "Incorrect. The correct value was {{value}}."
 }

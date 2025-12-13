@@ -1,4 +1,26 @@
 {
   "title": "Resistencias",
-  "guide": "### Código de Colores\n| Color | Dígito | Multiplicador |\n| :--- | :--- | :--- |\n| **Negro** | 0 | 1 |\n| **Marrón**| 1 | 10 |\n| **Rojo** | 2 | 100 |\n| **Naranja**| 3 | 1k |\n| **Amarillo**| 4 | 10k |\n| **Verde** | 5 | 100k |\n| **Azul** | 6 | 1M |\n| **Violeta**| 7 | 10M |\n| **Gris** | 8 | 100M |\n| **Blanco** | 9 | 1G |\n\n*Banda 4 (Tolerancia): Dorado 5%.*"
+  "guide": "### Código de Colores\n| Color | Dígito | Multiplicador |\n| :--- | :--- | :--- |\n| **Negro** | 0 | 1 |\n| **Marrón**| 1 | 10 |\n| **Rojo** | 2 | 100 |\n| **Naranja**| 3 | 1k |\n| **Amarillo**| 4 | 10k |\n| **Verde** | 5 | 100k |\n| **Azul** | 6 | 1M |\n| **Violeta**| 7 | 10M |\n| **Gris** | 8 | 100M |\n| **Blanco** | 9 | 1G |\n\n*Banda 4 (Tolerancia): Dorado 5%.*",
+  "color_black": "Negro",
+  "color_brown": "Marrón",
+  "color_red": "Rojo",
+  "color_orange": "Naranja",
+  "color_yellow": "Amarillo",
+  "color_green": "Verde",
+  "color_blue": "Azul",
+  "color_violet": "Violeta",
+  "color_grey": "Gris",
+  "color_white": "Blanco",
+  "color_gold": "Dorado",
+  "color_silver": "Plateado",
+  "label_bands_4": "4 Bandas",
+  "label_bands_5": "5 Bandas",
+  "label_resistance": "Resistencia",
+  "label_tolerance": "Tolerancia",
+  "practice_title": "Identificar Resistencia",
+  "practice_prompt": "¿Cuál es el valor de esta resistencia?",
+  "submit": "Enviar",
+  "streak": "Racha",
+  "feedback_correct": "¡Correcto!",
+  "feedback_incorrect": "Incorrecto. El valor era {{value}}."
 }
