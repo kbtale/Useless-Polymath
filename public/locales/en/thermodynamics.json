@@ -1,4 +1,21 @@
 {
   "title": "Thermodynamics",
-  "guide": "### Celsius to Fahrenheit (Mental)\nQuick Formula: `(C * 2) + 30`.\n\n#### Benchmarks\n| C | F (Exact) | F (Mental) | Feel |\n| :--- | :--- | :--- | :--- |\n| **0°** | 32° | 30° | Freezing |\n| **10°** | 50° | 50° | Cool |\n| **20°** | 68° | 70° | Room |\n| **30°** | 86° | 90° | Hot |\n| **100°**| 212° | 230° | Boiling |"
+  "guide": "### Celsius to Fahrenheit (Mental)\nQuick Formula: `(C * 2) + 30`.\n\n#### Benchmarks\n| C | F (Exact) | F (Mental) | Feel |\n| :--- | :--- | :--- | :--- |\n| **0°** | 32° | 30° | Freezing |\n| **10°** | 50° | 50° | Cool |\n| **20°** | 68° | 70° | Room |\n| **30°** | 86° | 90° | Hot |\n| **100°**| 212° | 230° | Boiling |",
+  "label_celsius": "Celsius (°C)",
+  "label_fahrenheit": "Fahrenheit (°F)",
+  "label_mental_math": "Mental Math (~)",
+  "label_exact": "Exact",
+  "label_deviation": "Deviation",
+  "practice_title": "Mental Math Drill",
+  "practice_convert": "Convert to Fahrenheit (Mental)",
+  "practice_hint": "(C * 2) + 30",
+  "submit": "Submit",
+  "streak": "Streak",
+  "benchmark_freezing": "Freezing",
+  "benchmark_cool": "Cool",
+  "benchmark_room": "Room Temp",
+  "benchmark_hot": "Hot",
+  "benchmark_boiling": "Boiling",
+  "feedback_correct": "Correct! Approx match.",
+  "feedback_incorrect": "Try again. Use (C * 2) + 30."
 }

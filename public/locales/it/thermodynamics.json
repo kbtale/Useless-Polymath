@@ -1,4 +1,21 @@
 {
   "title": "Termodinamica",
-  "guide": "### Celsius a Fahrenheit (Mentale)\nFormula Rapida: `(C * 2) + 30`.\n\n#### Riferimenti\n| C | F (Esatto) | F (Mentale) | Sensazione |\n| :--- | :--- | :--- | :--- |\n| **0°** | 32° | 30° | Gelo |\n| **10°** | 50° | 50° | Fresco |\n| **20°** | 68° | 70° | Ambiente |\n| **30°** | 86° | 90° | Caldo |\n| **100°**| 212° | 230° | Ebollizione |"
+  "guide": "### Celsius a Fahrenheit (Mentale)\nFormula Rapida: `(C * 2) + 30`.\n\n#### Riferimenti\n| C | F (Esatto) | F (Mentale) | Sensazione |\n| :--- | :--- | :--- | :--- |\n| **0°** | 32° | 30° | Gelo |\n| **10°** | 50° | 50° | Fresco |\n| **20°** | 68° | 70° | Ambiente |\n| **30°** | 86° | 90° | Caldo |\n| **100°**| 212° | 230° | Ebollizione |",
+  "label_celsius": "Celsius (°C)",
+  "label_fahrenheit": "Fahrenheit (°F)",
+  "label_mental_math": "Calcolo Mentale (~)",
+  "label_exact": "Esatto",
+  "label_deviation": "Deviazione",
+  "practice_title": "Allenamento Mentale",
+  "practice_convert": "Converti in Fahrenheit (Mentale)",
+  "practice_hint": "(C * 2) + 30",
+  "submit": "Invia",
+  "streak": "Serie",
+  "benchmark_freezing": "Gelo",
+  "benchmark_cool": "Fresco",
+  "benchmark_room": "Ambiente",
+  "benchmark_hot": "Caldo",
+  "benchmark_boiling": "Ebollizione",
+  "feedback_correct": "Corretto! Approssimazione valida.",
+  "feedback_incorrect": "Riprova. Usa (C * 2) + 30."
 }

@@ -33,6 +33,8 @@ import { SemaphoreTool } from './modules/cryptography/semaphore/SemaphoreTool';
 import { SemaphorePractice } from './modules/cryptography/semaphore/SemaphorePractice';
 import { PeriodicTableTool } from './modules/science/periodic_table/PeriodicTableTool';
 import { PeriodicTablePractice } from './modules/science/periodic_table/PeriodicTablePractice';
+import { ThermodynamicsTool } from './modules/science/thermodynamics/ThermodynamicsTool';
+import { ThermodynamicsPractice } from './modules/science/thermodynamics/ThermodynamicsPractice';
 
 function AppContent() {
   const [mode, setMode] = useState<'tool' | 'practice' | 'guide'>('tool');
@@ -91,6 +93,8 @@ function AppContent() {
         return mode === 'tool' ? <SemaphoreTool /> : <SemaphorePractice />;
       case 'periodic_table':
         return mode === 'tool' ? <PeriodicTableTool /> : <PeriodicTablePractice />;
+      case 'thermodynamics':
+        return mode === 'tool' ? <ThermodynamicsTool /> : <ThermodynamicsPractice />;
       default:
         return (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', flexDirection: 'column' }}>

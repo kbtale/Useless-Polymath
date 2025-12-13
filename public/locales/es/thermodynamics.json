@@ -1,4 +1,21 @@
 {
   "title": "Temperaturas",
-  "guide": "### Celsius a Fahrenheit (Mental)\nFórmula rápida: `(C * 2) + 30`.\n\n#### Puntos de Referencia\n| C | F (Exacto) | F (Mental) | Sensación |\n| :--- | :--- | :--- | :--- |\n| **0°** | 32° | 30° | Congelación |\n| **10°** | 50° | 50° | Fresco |\n| **20°** | 68° | 70° | Ambiente |\n| **30°** | 86° | 90° | Calor |\n| **100°**| 212° | 230° | Ebullición |"
+  "guide": "### Celsius a Fahrenheit (Mental)\nFórmula rápida: `(C * 2) + 30`.\n\n#### Puntos de Referencia\n| C | F (Exacto) | F (Mental) | Sensación |\n| :--- | :--- | :--- | :--- |\n| **0°** | 32° | 30° | Congelación |\n| **10°** | 50° | 50° | Fresco |\n| **20°** | 68° | 70° | Ambiente |\n| **30°** | 86° | 90° | Calor |\n| **100°**| 212° | 230° | Ebullición |",
+  "label_celsius": "Celsius (°C)",
+  "label_fahrenheit": "Fahrenheit (°F)",
+  "label_mental_math": "Cálculo Mental (~)",
+  "label_exact": "Exacto",
+  "label_deviation": "Desviación",
+  "practice_title": "Entrenamiento Mental",
+  "practice_convert": "Convertir a Fahrenheit (Mental)",
+  "practice_hint": "(C * 2) + 30",
+  "submit": "Enviar",
+  "streak": "Racha",
+  "benchmark_freezing": "Congelación",
+  "benchmark_cool": "Fresco",
+  "benchmark_room": "Ambiente",
+  "benchmark_hot": "Calor",
+  "benchmark_boiling": "Ebullición",
+  "feedback_correct": "¡Correcto! Aproximación válida.",
+  "feedback_incorrect": "Intenta de nuevo. Usa (C * 2) + 30."
 }
