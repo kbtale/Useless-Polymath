@@ -1,0 +1,145 @@
+@use '../../../styles/variables' as *;
+
+.panel {
+  width: 100%;
+}
+
+.toolContainer {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  width: 100%;
+}
+
+.title {
+  font-family: $font-mono;
+  color: $text-main;
+  margin-top: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-bottom: 2px solid $line-color;
+  padding-bottom: $spacing-md;
+  margin-bottom: $spacing-md;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: 100%;
+}
+
+.scrollContainer {
+  overflow-x: auto;
+  width: 100%;
+  padding-bottom: $spacing-md;
+}
+
+.gridWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  min-width: 800px; // Ensure it doesn't squish too much
+  align-items: center;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: repeat(18, 1fr);
+  gap: 2px;
+  width: 100%;
+}
+
+.fBlockGrid {
+  display: grid;
+  grid-template-columns: repeat(18, 1fr); // Match main grid columns for alignment
+  gap: 2px;
+  width: 100%;
+  margin-top: $spacing-sm;
+}
+
+.elementCell {
+  aspect-ratio: 1;
+  border: 1px solid rgba($line-color, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: $font-mono;
+  position: relative;
+  min-width: 32px;
+
+  &:hover {
+    transform: scale(1.2);
+    z-index: 10;
+    border-color: $text-main;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  .atomicNumber {
+    font-size: 0.5rem;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    opacity: 0.7;
+  }
+
+  .symbol {
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+}
+
+// Category Colors (Subtle backgrounds)
+.alkali { background: rgba(255, 100, 100, 0.1); border-color: rgba(255, 100, 100, 0.3); }
+.alkaline { background: rgba(255, 150, 100, 0.1); border-color: rgba(255, 150, 100, 0.3); }
+.transition { background: rgba(255, 200, 100, 0.1); border-color: rgba(255, 200, 100, 0.3); }
+.lanthanide { background: rgba(255, 150, 255, 0.1); border-color: rgba(255, 150, 255, 0.3); }
+.actinide { background: rgba(255, 100, 200, 0.1); border-color: rgba(255, 100, 200, 0.3); }
+.metalloid { background: rgba(100, 255, 150, 0.1); border-color: rgba(100, 255, 150, 0.3); }
+.nonmetal { background: rgba(100, 200, 255, 0.1); border-color: rgba(100, 200, 255, 0.3); }
+.halogen { background: rgba(200, 100, 255, 0.1); border-color: rgba(200, 100, 255, 0.3); }
+.noble { background: rgba(150, 100, 255, 0.1); border-color: rgba(150, 100, 255, 0.3); }
+.unknown { background: rgba(150, 150, 150, 0.1); border-color: rgba(150, 150, 150, 0.3); }
+
+.detailPanel {
+  margin-top: $spacing-md;
+  padding: $spacing-md;
+  border: 1px solid $line-color;
+  display: flex;
+  gap: $spacing-lg;
+  align-items: center;
+  min-height: 100px;
+  background: rgba(0,0,0,0.02);
+
+  .largeSymbol {
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: $font-mono;
+    width: 80px;
+    text-align: center;
+    border-right: 1px dashed $line-color;
+    padding-right: $spacing-md;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    font-family: $font-mono;
+    
+    .name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    .prop {
+      font-size: 0.85rem;
+      color: $text-dim;
+      
+      strong {
+        color: $text-main;
+      }
+    }
+  }
+}

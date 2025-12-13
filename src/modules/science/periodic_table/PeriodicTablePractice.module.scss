@@ -1,0 +1,101 @@
+@use '../../../styles/variables' as *;
+
+.panel {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-md;
+  border-bottom: 1px solid $line-color;
+  padding-bottom: $spacing-sm;
+}
+
+.practiceTitle {
+  font-family: $font-mono;
+  color: $text-main;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.streak {
+  font-family: $font-mono;
+  color: $text-main;
+  font-weight: 700;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+  padding: $spacing-lg;
+}
+
+.card {
+  padding: $spacing-xl;
+  border: 2px solid $line-color;
+  background: white; 
+  min-width: 200px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  
+  .prompt {
+    font-family: $font-mono;
+    font-size: 0.9rem;
+    color: $text-dim;
+    margin-bottom: $spacing-md;
+  }
+
+  .value {
+    font-family: $font-mono;
+    font-size: 4rem;
+    font-weight: 700;
+    color: $text-main;
+  }
+}
+
+.inputArea {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  width: 100%;
+  max-width: 300px;
+  align-items: center;
+}
+
+.label {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-dim;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.feedback {
+  margin-top: $spacing-md;
+  text-align: center;
+  padding: $spacing-md;
+  border: 1px solid $line-color;
+  font-family: $font-mono;
+  font-weight: 700;
+  width: 100%;
+
+  &.correct {
+    background: rgba(0, 255, 0, 0.05);
+    color: $text-main;
+  }
+
+  &.incorrect {
+    background: rgba(255, 0, 0, 0.05);
+    color: $text-main;
+  }
+}

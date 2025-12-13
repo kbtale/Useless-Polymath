@@ -1,0 +1,146 @@
+export interface Element {
+  number: number;
+  symbol: string;
+  mass: number;
+  group: number;
+  period: number;
+  category: 'alkali' | 'alkaline' | 'transition' | 'lanthanide' | 'actinide' | 'metalloid' | 'nonmetal' | 'halogen' | 'noble' | 'unknown';
+}
+
+export const ELEMENTS: Element[] = [
+  // Period 1
+  { number: 1, symbol: 'H', mass: 1.008, group: 1, period: 1, category: 'nonmetal' },
+  { number: 2, symbol: 'He', mass: 4.0026, group: 18, period: 1, category: 'noble' },
+  // Period 2
+  { number: 3, symbol: 'Li', mass: 6.94, group: 1, period: 2, category: 'alkali' },
+  { number: 4, symbol: 'Be', mass: 9.0122, group: 2, period: 2, category: 'alkaline' },
+  { number: 5, symbol: 'B', mass: 10.81, group: 13, period: 2, category: 'metalloid' },
+  { number: 6, symbol: 'C', mass: 12.011, group: 14, period: 2, category: 'nonmetal' },
+  { number: 7, symbol: 'N', mass: 14.007, group: 15, period: 2, category: 'nonmetal' },
+  { number: 8, symbol: 'O', mass: 15.999, group: 16, period: 2, category: 'nonmetal' },
+  { number: 9, symbol: 'F', mass: 18.998, group: 17, period: 2, category: 'halogen' },
+  { number: 10, symbol: 'Ne', mass: 20.180, group: 18, period: 2, category: 'noble' },
+  // Period 3
+  { number: 11, symbol: 'Na', mass: 22.990, group: 1, period: 3, category: 'alkali' },
+  { number: 12, symbol: 'Mg', mass: 24.305, group: 2, period: 3, category: 'alkaline' },
+  { number: 13, symbol: 'Al', mass: 26.982, group: 13, period: 3, category: 'transition' }, 
+  { number: 14, symbol: 'Si', mass: 28.085, group: 14, period: 3, category: 'metalloid' },
+  { number: 15, symbol: 'P', mass: 30.974, group: 15, period: 3, category: 'nonmetal' },
+  { number: 16, symbol: 'S', mass: 32.06, group: 16, period: 3, category: 'nonmetal' },
+  { number: 17, symbol: 'Cl', mass: 35.45, group: 17, period: 3, category: 'halogen' },
+  { number: 18, symbol: 'Ar', mass: 39.948, group: 18, period: 3, category: 'noble' },
+  // Period 4
+  { number: 19, symbol: 'K', mass: 39.098, group: 1, period: 4, category: 'alkali' },
+  { number: 20, symbol: 'Ca', mass: 40.078, group: 2, period: 4, category: 'alkaline' },
+  { number: 21, symbol: 'Sc', mass: 44.956, group: 3, period: 4, category: 'transition' },
+  { number: 22, symbol: 'Ti', mass: 47.867, group: 4, period: 4, category: 'transition' },
+  { number: 23, symbol: 'V', mass: 50.942, group: 5, period: 4, category: 'transition' },
+  { number: 24, symbol: 'Cr', mass: 51.996, group: 6, period: 4, category: 'transition' },
+  { number: 25, symbol: 'Mn', mass: 54.938, group: 7, period: 4, category: 'transition' },
+  { number: 26, symbol: 'Fe', mass: 55.845, group: 8, period: 4, category: 'transition' },
+  { number: 27, symbol: 'Co', mass: 58.933, group: 9, period: 4, category: 'transition' },
+  { number: 28, symbol: 'Ni', mass: 58.693, group: 10, period: 4, category: 'transition' },
+  { number: 29, symbol: 'Cu', mass: 63.546, group: 11, period: 4, category: 'transition' },
+  { number: 30, symbol: 'Zn', mass: 65.38, group: 12, period: 4, category: 'transition' },
+  { number: 31, symbol: 'Ga', mass: 69.723, group: 13, period: 4, category: 'transition' },
+  { number: 32, symbol: 'Ge', mass: 72.63, group: 14, period: 4, category: 'metalloid' },
+  { number: 33, symbol: 'As', mass: 74.922, group: 15, period: 4, category: 'metalloid' },
+  { number: 34, symbol: 'Se', mass: 78.96, group: 16, period: 4, category: 'nonmetal' },
+  { number: 35, symbol: 'Br', mass: 79.904, group: 17, period: 4, category: 'halogen' },
+  { number: 36, symbol: 'Kr', mass: 83.798, group: 18, period: 4, category: 'noble' },
+  // Period 5
+  { number: 37, symbol: 'Rb', mass: 85.468, group: 1, period: 5, category: 'alkali' },
+  { number: 38, symbol: 'Sr', mass: 87.62, group: 2, period: 5, category: 'alkaline' },
+  { number: 39, symbol: 'Y', mass: 88.906, group: 3, period: 5, category: 'transition' },
+  { number: 40, symbol: 'Zr', mass: 91.224, group: 4, period: 5, category: 'transition' },
+  { number: 41, symbol: 'Nb', mass: 92.906, group: 5, period: 5, category: 'transition' },
+  { number: 42, symbol: 'Mo', mass: 95.95, group: 6, period: 5, category: 'transition' },
+  { number: 43, symbol: 'Tc', mass: 98, group: 7, period: 5, category: 'transition' },
+  { number: 44, symbol: 'Ru', mass: 101.07, group: 8, period: 5, category: 'transition' },
+  { number: 45, symbol: 'Rh', mass: 102.91, group: 9, period: 5, category: 'transition' },
+  { number: 46, symbol: 'Pd', mass: 106.42, group: 10, period: 5, category: 'transition' },
+  { number: 47, symbol: 'Ag', mass: 107.87, group: 11, period: 5, category: 'transition' },
+  { number: 48, symbol: 'Cd', mass: 112.41, group: 12, period: 5, category: 'transition' },
+  { number: 49, symbol: 'In', mass: 114.82, group: 13, period: 5, category: 'transition' },
+  { number: 50, symbol: 'Sn', mass: 118.71, group: 14, period: 5, category: 'transition' },
+  { number: 51, symbol: 'Sb', mass: 121.76, group: 15, period: 5, category: 'metalloid' },
+  { number: 52, symbol: 'Te', mass: 127.6, group: 16, period: 5, category: 'metalloid' },
+  { number: 53, symbol: 'I', mass: 126.90, group: 17, period: 5, category: 'halogen' },
+  { number: 54, symbol: 'Xe', mass: 131.29, group: 18, period: 5, category: 'noble' },
+  // Period 6
+  { number: 55, symbol: 'Cs', mass: 132.91, group: 1, period: 6, category: 'alkali' },
+  { number: 56, symbol: 'Ba', mass: 137.33, group: 2, period: 6, category: 'alkaline' },
+  { number: 57, symbol: 'La', mass: 138.91, group: 3, period: 6, category: 'lanthanide' },
+  { number: 72, symbol: 'Hf', mass: 178.49, group: 4, period: 6, category: 'transition' },
+  { number: 73, symbol: 'Ta', mass: 180.95, group: 5, period: 6, category: 'transition' },
+  { number: 74, symbol: 'W', mass: 183.84, group: 6, period: 6, category: 'transition' },
+  { number: 75, symbol: 'Re', mass: 186.21, group: 7, period: 6, category: 'transition' },
+  { number: 76, symbol: 'Os', mass: 190.23, group: 8, period: 6, category: 'transition' },
+  { number: 77, symbol: 'Ir', mass: 192.22, group: 9, period: 6, category: 'transition' },
+  { number: 78, symbol: 'Pt', mass: 195.08, group: 10, period: 6, category: 'transition' },
+  { number: 79, symbol: 'Au', mass: 196.97, group: 11, period: 6, category: 'transition' },
+  { number: 80, symbol: 'Hg', mass: 200.59, group: 12, period: 6, category: 'transition' },
+  { number: 81, symbol: 'Tl', mass: 204.38, group: 13, period: 6, category: 'transition' },
+  { number: 82, symbol: 'Pb', mass: 207.2, group: 14, period: 6, category: 'transition' },
+  { number: 83, symbol: 'Bi', mass: 208.98, group: 15, period: 6, category: 'transition' },
+  { number: 84, symbol: 'Po', mass: 209, group: 16, period: 6, category: 'transition' },
+  { number: 85, symbol: 'At', mass: 210, group: 17, period: 6, category: 'halogen' },
+  { number: 86, symbol: 'Rn', mass: 222, group: 18, period: 6, category: 'noble' },
+  // Period 7
+  { number: 87, symbol: 'Fr', mass: 223, group: 1, period: 7, category: 'alkali' },
+  { number: 88, symbol: 'Ra', mass: 226, group: 2, period: 7, category: 'alkaline' },
+  { number: 89, symbol: 'Ac', mass: 227, group: 3, period: 7, category: 'actinide' },
+  { number: 104, symbol: 'Rf', mass: 267, group: 4, period: 7, category: 'transition' },
+  { number: 105, symbol: 'Db', mass: 268, group: 5, period: 7, category: 'transition' },
+  { number: 106, symbol: 'Sg', mass: 271, group: 6, period: 7, category: 'transition' },
+  { number: 107, symbol: 'Bh', mass: 272, group: 7, period: 7, category: 'transition' },
+  { number: 108, symbol: 'Hs', mass: 270, group: 8, period: 7, category: 'transition' },
+  { number: 109, symbol: 'Mt', mass: 276, group: 9, period: 7, category: 'unknown' },
+  { number: 110, symbol: 'Ds', mass: 281, group: 10, period: 7, category: 'unknown' },
+  { number: 111, symbol: 'Rg', mass: 280, group: 11, period: 7, category: 'unknown' },
+  { number: 112, symbol: 'Cn', mass: 285, group: 12, period: 7, category: 'transition' },
+  { number: 113, symbol: 'Nh', mass: 284, group: 13, period: 7, category: 'unknown' },
+  { number: 114, symbol: 'Fl', mass: 289, group: 14, period: 7, category: 'unknown' },
+  { number: 115, symbol: 'Mc', mass: 288, group: 15, period: 7, category: 'unknown' },
+  { number: 116, symbol: 'Lv', mass: 293, group: 16, period: 7, category: 'unknown' },
+  { number: 117, symbol: 'Ts', mass: 294, group: 17, period: 7, category: 'unknown' },
+  { number: 118, symbol: 'Og', mass: 294, group: 18, period: 7, category: 'unknown' },
+  // Lanthanides
+  { number: 58, symbol: 'Ce', mass: 140.12, group: 3, period: 8, category: 'lanthanide' },
+  { number: 59, symbol: 'Pr', mass: 140.91, group: 3, period: 8, category: 'lanthanide' },
+  { number: 60, symbol: 'Nd', mass: 144.24, group: 3, period: 8, category: 'lanthanide' },
+  { number: 61, symbol: 'Pm', mass: 145, group: 3, period: 8, category: 'lanthanide' },
+  { number: 62, symbol: 'Sm', mass: 150.36, group: 3, period: 8, category: 'lanthanide' },
+  { number: 63, symbol: 'Eu', mass: 151.96, group: 3, period: 8, category: 'lanthanide' },
+  { number: 64, symbol: 'Gd', mass: 157.25, group: 3, period: 8, category: 'lanthanide' },
+  { number: 65, symbol: 'Tb', mass: 158.93, group: 3, period: 8, category: 'lanthanide' },
+  { number: 66, symbol: 'Dy', mass: 162.50, group: 3, period: 8, category: 'lanthanide' },
+  { number: 67, symbol: 'Ho', mass: 164.93, group: 3, period: 8, category: 'lanthanide' },
+  { number: 68, symbol: 'Er', mass: 167.26, group: 3, period: 8, category: 'lanthanide' },
+  { number: 69, symbol: 'Tm', mass: 168.93, group: 3, period: 8, category: 'lanthanide' },
+  { number: 70, symbol: 'Yb', mass: 173.05, group: 3, period: 8, category: 'lanthanide' },
+  { number: 71, symbol: 'Lu', mass: 174.97, group: 3, period: 8, category: 'lanthanide' },
+  // Actinides
+  { number: 90, symbol: 'Th', mass: 232.04, group: 3, period: 9, category: 'actinide' },
+  { number: 91, symbol: 'Pa', mass: 231.04, group: 3, period: 9, category: 'actinide' },
+  { number: 92, symbol: 'U', mass: 238.03, group: 3, period: 9, category: 'actinide' },
+  { number: 93, symbol: 'Np', mass: 237, group: 3, period: 9, category: 'actinide' },
+  { number: 94, symbol: 'Pu', mass: 244, group: 3, period: 9, category: 'actinide' },
+  { number: 95, symbol: 'Am', mass: 243, group: 3, period: 9, category: 'actinide' },
+  { number: 96, symbol: 'Cm', mass: 247, group: 3, period: 9, category: 'actinide' },
+  { number: 97, symbol: 'Bk', mass: 247, group: 3, period: 9, category: 'actinide' },
+  { number: 98, symbol: 'Cf', mass: 251, group: 3, period: 9, category: 'actinide' },
+  { number: 99, symbol: 'Es', mass: 252, group: 3, period: 9, category: 'actinide' },
+  { number: 100, symbol: 'Fm', mass: 257, group: 3, period: 9, category: 'actinide' },
+  { number: 101, symbol: 'Md', mass: 258, group: 3, period: 9, category: 'actinide' },
+  { number: 102, symbol: 'No', mass: 259, group: 3, period: 9, category: 'actinide' },
+  { number: 103, symbol: 'Lr', mass: 262, group: 3, period: 9, category: 'actinide' },
+];
+
+export const getElementBySymbol = (sym: string): Element | undefined => {
+  return ELEMENTS.find(e => e.symbol.toLowerCase() === sym.toLowerCase());
+};
+
+export const getElementByNumber = (num: number): Element | undefined => {
+  return ELEMENTS.find(e => e.number === num);
+};
