@@ -1,4 +1,16 @@
 {
   "title": "Card Counting",
-  "guide": "### Hi-Lo System\nKeep a running mental count.\n\n| Cards | Value | Action |\n| :--- | :--- | :--- |\n| **2, 3, 4, 5, 6** | **+1** | Good (Lows out) |\n| **7, 8, 9** | **0** | Neutral |\n| **10, J, Q, K, A**| **-1** | Bad (Highs out) |\n\n*High Count = Bet Big.*"
+  "guide": "### Hi-Lo System\nKeep a running mental count.\n\n| Cards | Value | Action |\n| :--- | :--- | :--- |\n| **2, 3, 4, 5, 6** | **+1** | Good (Lows out) |\n| **7, 8, 9** | **0** | Neutral |\n| **10, J, Q, K, A**| **-1** | Bad (Highs out) |\n\n*High Count = Bet Big.*",
+  "action_deal": "Deal Card",
+  "action_reset": "New Deck",
+  "action_check": "Check Count",
+  "label_running_count": "Running Count",
+  "label_cards_left": "Cards Left",
+  "practice_title": "Speed Counting Drill",
+  "practice_prompt": "Counting through the deck...",
+  "practice_question": "What is the final count?",
+  "submit": "Submit",
+  "feedback_correct": "Correct! The count was {{count}}.",
+  "feedback_incorrect": "Incorrect. The count was {{count}}.",
+  "feedback_finished": "Deck Empty"
 }

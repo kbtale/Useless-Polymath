@@ -1,4 +1,16 @@
 {
   "title": "Conteo Cartas",
-  "guide": "### Sistema Hi-Lo\nLleva una cuenta mental (+/-).\n\n| Cartas | Valor | Acción |\n| :--- | :--- | :--- |\n| **2, 3, 4, 5, 6** | **+1** | Bueno (Salen bajas) |\n| **7, 8, 9** | **0** | Neutro |\n| **10, J, Q, K, A**| **-1** | Malo (Salen altas) |\n\n*Cuenta Alta = Apuesta fuerte.*"
+  "guide": "### Sistema Hi-Lo\nLleva una cuenta mental (+/-).\n\n| Cartas | Valor | Acción |\n| :--- | :--- | :--- |\n| **2, 3, 4, 5, 6** | **+1** | Bueno (Salen bajas) |\n| **7, 8, 9** | **0** | Neutro |\n| **10, J, Q, K, A**| **-1** | Malo (Salen altas) |\n\n*Cuenta Alta = Apuesta fuerte.*",
+  "action_deal": "Repartir",
+  "action_reset": "Nueva Baraja",
+  "action_check": "Verificar Cuenta",
+  "label_running_count": "Cuenta Corriente",
+  "label_cards_left": "Cartas Restantes",
+  "practice_title": "Entrenamiento de Velocidad",
+  "practice_prompt": "Contando cartas...",
+  "practice_question": "¿Cuál es la cuenta final?",
+  "submit": "Enviar",
+  "feedback_correct": "¡Correcto! La cuenta era {{count}}.",
+  "feedback_incorrect": "Incorrecto. La cuenta era {{count}}.",
+  "feedback_finished": "Baraja Vacía"
 }

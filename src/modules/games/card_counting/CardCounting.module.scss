@@ -1,0 +1,121 @@
+@use '../../../styles/variables' as *;
+
+.toolContainer {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  align-items: center;
+  width: 100%;
+}
+
+.panel {
+  width: 100%;
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-family: $font-mono;
+  color: $text-main;
+  text-transform: uppercase;
+  margin-bottom: $spacing-lg;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid $line-color;
+  padding-bottom: $spacing-sm;
+  width: 100%;
+  text-align: center;
+}
+
+.dealerTable {
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 16 / 9;
+  background: #2d6a4f; // Classic green felt
+  border: 8px solid #4ade80; // Lighter green border
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+  margin-bottom: $spacing-lg;
+  overflow: hidden;
+}
+
+.card {
+  width: 100px;
+  height: 140px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+  font-family: 'Times New Roman', serif;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+  user-select: none;
+  
+  &.red { color: #dc2626; }
+  &.black { color: #000000; }
+  
+  .corner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .center {
+    font-size: 2.5rem;
+    align-self: center;
+  }
+}
+
+.stats {
+  display: flex;
+  gap: $spacing-xl;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: $spacing-lg;
+  font-family: $font-mono;
+  
+  .statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .statLabel {
+      font-size: 0.75rem;
+      color: $text-dim;
+      text-transform: uppercase;
+    }
+    
+    .statValue {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $text-main;
+    }
+  }
+}
+
+.controls {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.practiceContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+  width: 100%;
+  max-width: 500px;
+}
