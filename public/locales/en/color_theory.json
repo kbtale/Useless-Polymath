@@ -1,4 +1,8 @@
 {
-  "title": "RGB Theory",
-  "guide": "### Additive Mix (Light)\nSum of Red (R), Green (G), Blue (B).\n\n#### Key Mixes\n| Color 1 | Color 2 | Result |\n| :--- | :--- | :--- |\n| Red | Green | **Yellow** |\n| Red | Blue | **Magenta** |\n| Green | Blue | **Cyan** |\n| R+G+B | - | **White** |\n\n#### Hex\n* **#FF0000**: Pure Red\n* **#00FF00**: Pure Green\n* **#0000FF**: Pure Blue"
+  "title": "COLOR THEORY",
+  "practice_title": "CHROMATIC MATCH",
+  "guide": "### Additive Mix (Light)\nSum of Red (R), Green (G), Blue (B).\n\n#### Key Mixes\n| Color 1 | Color 2 | Result |\n| :--- | :--- | :--- |\n| Red | Green | **Yellow** |\n| Red | Blue | **Magenta** |\n| Green | Blue | **Cyan** |\n| R+G+B | - | **White** |\n\n#### Hex\n* **#FF0000**: Pure Red\n* **#00FF00**: Pure Green\n* **#0000FF**: Pure Blue",
+  "label_red": "Red Intensity",
+  "label_green": "Green Intensity",
+  "label_blue": "Blue Intensity"
 }

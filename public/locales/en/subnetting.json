@@ -1,4 +1,14 @@
 {
   "title": "Subnetting",
-  "guide": "### CIDR Prefixes\nMemorize block size.\n\n| Prefix | Mask | Total IPs | Usage |\n| :--- | :--- | :--- | :--- |\n| **/32** | 255.255.255.255 | 1 | Host |\n| **/30** | 255.255.255.252 | 4 | P2P |\n| **/24** | 255.255.255.0 | 256 | LAN |\n| **/16** | 255.255.0.0 | 65,536 | Large Net |\n\n*Usable = Total - 2.*"
+  "guide": "### CIDR Prefixes\nMemorize block size.\n\n| Prefix | Mask | Total IPs | Usage |\n| :--- | :--- | :--- | :--- |\n| **/32** | 255.255.255.255 | 1 | Host |\n| **/30** | 255.255.255.252 | 4 | P2P |\n| **/24** | 255.255.255.0 | 256 | LAN |\n| **/16** | 255.255.0.0 | 65,536 | Large Net |\n\n*Usable = Total - 2.*",
+  "label_ip": "IP Address",
+  "label_cidr": "CIDR Prefix",
+  "label_network": "Network Address",
+  "label_broadcast": "Broadcast Address",
+  "label_mask": "Subnet Mask",
+  "label_range": "Usable Range",
+  "label_hosts": "Usable Hosts",
+  "label_calculate": "CALCULATE THE",
+  "label_for": "FOR",
+  "label_invalid_ip": "INVALID IP"
 }

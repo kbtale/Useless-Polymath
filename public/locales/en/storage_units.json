@@ -1,4 +1,14 @@
 {
   "title": "Storage Units",
-  "guide": "### Decimal vs Binary\nSales vs Real Windows size.\n\n| Unit | Decimal (Sales) | Binary (OS) | Loss |\n| :--- | :--- | :--- | :--- |\n| **1 KB** | 1,000 | 1,024 | 2.4% |\n| **1 GB** | 10^9 | 2^30 | ~7% |\n| **1 TB** | 10^12 | 2^40 | ~10% |"
+  "guide": "### Decimal vs Binary\nSales vs Real Windows size.\n\n| Unit | Decimal (Sales) | Binary (OS) | Loss |\n| :--- | :--- | :--- | :--- |\n| **1 KB** | 1,000 | 1,024 | 2.4% |\n| **1 GB** | 10^9 | 2^30 | ~7% |\n| **1 TB** | 10^12 | 2^40 | ~10% |",
+  "label_amount": "Amount",
+  "label_unit": "Unit",
+  "label_market_bytes": "Marketed Bytes (Base 10)",
+  "label_windows_bytes": "Windows Bytes (Base 2)",
+  "label_result": "Windows Shows",
+  "label_difference": "Difference (Phantom Loss)",
+  "practice_question": "If the box says {{amount}} {{unit}}, what does Windows show?",
+  "practice_hint": "Remember: Divide by 1.024^n",
+  "label_chart_market": "Marketing (100%)",
+  "label_chart_windows": "Windows (Real)"
 }

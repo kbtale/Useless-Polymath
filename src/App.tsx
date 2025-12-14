@@ -43,6 +43,14 @@ import { LuhnTool } from './modules/logic/luhn_algorithm/LuhnTool';
 import { LuhnPractice } from './modules/logic/luhn_algorithm/LuhnPractice';
 import { EanTool } from './modules/logic/ean_13/EanTool';
 import { EanPractice } from './modules/logic/ean_13/EanPractice';
+import { SubnettingTool } from './modules/networks/subnetting/SubnettingTool';
+import { SubnettingPractice } from './modules/networks/subnetting/SubnettingPractice';
+import { ColorTheoryTool } from './modules/networks/color_theory/ColorTheoryTool';
+import { ColorTheoryPractice } from './modules/networks/color_theory/ColorTheoryPractice';
+import { AsciiTool } from './modules/networks/ascii/AsciiTool';
+import { AsciiPractice } from './modules/networks/ascii/AsciiPractice';
+import { StorageUnitsTool } from './modules/networks/storage_units/StorageUnitsTool';
+import { StorageUnitsPractice } from './modules/networks/storage_units/StorageUnitsPractice';
 
 function AppContent() {
   const [mode, setMode] = useState<'tool' | 'practice' | 'guide'>('tool');
@@ -111,6 +119,14 @@ function AppContent() {
         return mode === 'tool' ? <LuhnTool /> : <LuhnPractice />;
       case 'ean_13':
         return mode === 'tool' ? <EanTool /> : <EanPractice />;
+      case 'subnetting':
+        return mode === 'tool' ? <SubnettingTool /> : <SubnettingPractice />;
+      case 'color_theory':
+        return mode === 'tool' ? <ColorTheoryTool /> : <ColorTheoryPractice />;
+      case 'ascii':
+        return mode === 'tool' ? <AsciiTool /> : <AsciiPractice />;
+      case 'storage_units':
+        return mode === 'tool' ? <StorageUnitsTool /> : <StorageUnitsPractice />;
       default:
         return (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', flexDirection: 'column' }}>

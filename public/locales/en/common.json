@@ -21,5 +21,10 @@
   "modules.logic": "02 // LOGIC",
   "modules.networks": "03 // NETWORKS",
   "modules.cryptography": "04 // CRYPTOGRAPHY",
-  "modules.science": "05 // SCIENCE"
+  "modules.science": "05 // SCIENCE",
+  "streak": "STREAK",
+  "next": "NEXT",
+  "target": "TARGET",
+  "result": "RESULT",
+  "incorrect_try_again": "INCORRECT. TRY AGAIN."
 }

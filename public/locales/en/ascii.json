@@ -1,4 +1,10 @@
 {
-  "title": "ASCII Table",
-  "guide": "### Anchor Points\nMemorize to deduce others.\n\n| Char | Decimal | Note |\n| :--- | :--- | :--- |\n| **Space**| 32 | Start printables |\n| **0** | 48 | Numbers 0-9 |\n| **A** | 65 | Uppercase |\n| **a** | 97 | Lowercase (+32) |\n\n*Convert:* `a` (97) - 32 = `A` (65)."
+  "title": "ASCII TABLE",
+  "practice_title": "DECODE CHALLENGE",
+  "guide": "### Anchor Points\nMemorize to deduce others.\n\n| Char | Decimal | Note |\n| :--- | :--- | :--- |\n| **Space**| 32 | Start printables |\n| **0** | 48 | Numbers 0-9 |\n| **A** | 65 | Uppercase |\n| **a** | 97 | Lowercase (+32) |\n\n*Convert:* `a` (97) - 32 = `A` (65).",
+  "label_char": "Character",
+  "label_code": "Decimal Code",
+  "label_table": "Reference Table (32-126)",
+  "label_convert_to_dec": "CONVERT TO DECIMAL",
+  "label_convert_to_char": "CONVERT TO CHARACTER"
 }

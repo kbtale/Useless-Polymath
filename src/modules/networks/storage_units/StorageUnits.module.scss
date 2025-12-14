@@ -1,0 +1,107 @@
+@use '../../../styles/variables' as *;
+
+.panel {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  font-family: $font-mono;
+  color: $text-main;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  border-bottom: 2px solid $line-color;
+  padding-bottom: $spacing-sm;
+  width: 100%;
+  text-align: center;
+}
+
+.inputSection {
+  display: flex;
+  gap: $spacing-md;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 500px;
+}
+
+.comparison {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  width: 100%;
+  max-width: 600px;
+  margin-top: $spacing-lg;
+  padding: $spacing-lg;
+  border: 1px dashed $line-color;
+  background: rgba($bg-canvas, 0.5);
+}
+
+.compRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $font-mono;
+
+  .compLabel {
+    color: $text-dim;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }
+
+  .compValue {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $text-main;
+  }
+
+  &.highlight {
+    .compValue {
+      color: $color-error;
+    }
+  }
+}
+
+.barChart {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  width: 100%;
+
+  .barLabel {
+    font-size: 0.75rem;
+    font-family: $font-mono;
+    color: $text-dim;
+  }
+
+  .barTrack {
+    width: 100%;
+    height: 24px;
+    background: rgba($line-color, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .barFill {
+    height: 100%;
+    background: $text-main;
+    transition: width 0.3s ease;
+    display: flex;
+    align-items: center;
+    padding-right: $spacing-xs;
+    justify-content: flex-end;
+    font-size: 0.7rem;
+    color: $bg-canvas;
+    font-weight: bold;
+    font-family: $font-mono;
+  }
+}

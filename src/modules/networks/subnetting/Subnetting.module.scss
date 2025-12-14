@@ -1,0 +1,70 @@
+@use '../../../styles/variables' as *;
+
+.panel {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  font-family: $font-mono;
+  color: $text-main;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  border-bottom: 2px solid $line-color;
+  padding-bottom: $spacing-sm;
+  width: 100%;
+  text-align: center;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  width: 100%;
+  max-width: 400px;
+}
+
+.label {
+  font-family: $font-mono;
+  color: $text-dim;
+  font-size: $text-sm;
+  text-transform: uppercase;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-lg;
+  width: 100%;
+  max-width: 600px;
+}
+
+.resultItem {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  padding: $spacing-md;
+  border: 1px solid $line-color;
+  background: rgba($bg-canvas, 0.5);
+
+  .resLabel {
+    font-size: 0.75rem;
+    color: $text-dim;
+    text-transform: uppercase;
+  }
+
+  .resValue {
+    font-family: $font-mono;
+    font-size: 1.1rem;
+    color: $text-main;
+  }
+}
