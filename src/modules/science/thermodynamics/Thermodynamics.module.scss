@@ -1,6 +1,12 @@
+
 @use '../../../styles/variables' as *;
 
-.toolContainer {
+.toolCont {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.container {
   display: flex;
   flex-direction: column;
   gap: $spacing-lg;
@@ -10,10 +16,6 @@
 
 .panel {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: $spacing-lg;
 }
 
 .title {

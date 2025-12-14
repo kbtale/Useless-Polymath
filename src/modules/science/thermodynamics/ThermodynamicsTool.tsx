@@ -51,81 +51,82 @@ export const ThermodynamicsTool: React.FC = () => {
   return (
     <div className={styles.toolContainer}>
       <FUIGlassPanel className={styles.panel}>
-        <h2 className={styles.title}>{t('title')}</h2>
+        <div className={styles.container}>
+          <h2 className={styles.title}>{t('title')}</h2>
 
-        <div className={styles.thermometerWrapper}>
-          
-          {/* Celsius Scale */}
-          <div className={styles.scale}>
-            <span className={styles.label}>{t('label_celsius')}</span>
-            <div className={styles.track}>
-              <div 
-                className={styles.fill} 
-                style={{ height: `${percentC}%` }} 
-              />
-              <input 
-                type="range" 
-                min={minC} 
-                max={maxC} 
-                value={celsius} 
-                onChange={handleCelsiusChange}
-                className={styles.sliderInput}
-              />
+          <div className={styles.thermometerWrapper}>
+            
+            {/* Celsius Scale */}
+            <div className={styles.scale}>
+              <span className={styles.label}>{t('label_celsius')}</span>
+              <div className={styles.track}>
+                <div 
+                  className={styles.fill} 
+                  style={{ height: `${percentC}%` }} 
+                />
+                <input 
+                  type="range" 
+                  min={minC} 
+                  max={maxC} 
+                  value={celsius} 
+                  onChange={handleCelsiusChange}
+                  className={styles.sliderInput}
+                />
+              </div>
+              <span className={styles.valueDisplay}>{Math.round(celsius)}°</span>
             </div>
-            <span className={styles.valueDisplay}>{Math.round(celsius)}°</span>
-          </div>
 
-          {/* Fahrenheit Scale */}
-          <div className={styles.scale}>
-            <span className={styles.label}>{t('label_fahrenheit')}</span>
-            <div className={styles.track}>
-              <div 
-                className={styles.fill} 
-                style={{ height: `${percentF}%` }} 
-              />
-               <input 
-                type="range" 
-                min={minF} 
-                max={maxF} 
-                value={Math.round(fExact)} 
-                onChange={handleFahrenheitChange}
-                className={styles.sliderInput}
-              />
+            {/* Fahrenheit Scale */}
+            <div className={styles.scale}>
+              <span className={styles.label}>{t('label_fahrenheit')}</span>
+              <div className={styles.track}>
+                <div 
+                  className={styles.fill} 
+                  style={{ height: `${percentF}%` }} 
+                />
+                <input 
+                  type="range" 
+                  min={minF} 
+                  max={maxF} 
+                  value={Math.round(fExact)} 
+                  onChange={handleFahrenheitChange}
+                  className={styles.sliderInput}
+                />
+              </div>
+              <span className={styles.valueDisplay}>{Math.round(fExact)}°</span>
             </div>
-            <span className={styles.valueDisplay}>{Math.round(fExact)}°</span>
+
           </div>
 
+          {/* Mental Math Comparison */}
+          <div className={styles.comparison}>
+            <div className={styles.compItem}>
+              <span className={styles.compLabel}>{t('label_mental_math')}</span>
+              <span className={clsx(styles.compValue, styles.mental)}>{Math.round(fMental)}°F</span>
+            </div>
+            <div className={styles.compItem}>
+              <span className={styles.compLabel}>{t('label_exact')}</span>
+              <span className={clsx(styles.compValue, styles.exact)}>{fExact.toFixed(1)}°F</span>
+            </div>
+            <div className={styles.compItem}>
+              <span className={styles.compLabel}>{t('label_deviation')}</span>
+              <span className={clsx(styles.compValue, styles.deviation)}>{deviation}</span>
+            </div>
+          </div>
+
+          {/* Benchmarks */}
+          <div className={styles.benchmarks}>
+            {BENCHMARKS.map((b) => (
+              <FUIButton 
+                key={b.celsius} 
+                onClick={() => handleBenchmark(b.celsius)}
+                variant={celsius === b.celsius ? 'solid' : 'outline'}
+              >
+                {t(b.labelKey)} ({b.celsius}°)
+              </FUIButton>
+            ))}
+          </div>
         </div>
-
-        {/* Mental Math Comparison */}
-        <div className={styles.comparison}>
-          <div className={styles.compItem}>
-            <span className={styles.compLabel}>{t('label_mental_math')}</span>
-            <span className={clsx(styles.compValue, styles.mental)}>{Math.round(fMental)}°F</span>
-          </div>
-          <div className={styles.compItem}>
-            <span className={styles.compLabel}>{t('label_exact')}</span>
-            <span className={clsx(styles.compValue, styles.exact)}>{fExact.toFixed(1)}°F</span>
-          </div>
-          <div className={styles.compItem}>
-            <span className={styles.compLabel}>{t('label_deviation')}</span>
-            <span className={clsx(styles.compValue, styles.deviation)}>{deviation}</span>
-          </div>
-        </div>
-
-        {/* Benchmarks */}
-        <div className={styles.benchmarks}>
-          {BENCHMARKS.map((b) => (
-            <FUIButton 
-              key={b.celsius} 
-              onClick={() => handleBenchmark(b.celsius)}
-              variant={celsius === b.celsius ? 'solid' : 'outline'}
-            >
-              {t(b.labelKey)} ({b.celsius}°)
-            </FUIButton>
-          ))}
-        </div>
-
       </FUIGlassPanel>
 
       <FUIGlassPanel className={styles.panel}>

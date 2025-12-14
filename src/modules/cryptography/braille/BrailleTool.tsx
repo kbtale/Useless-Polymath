@@ -24,6 +24,7 @@ export const BrailleTool: React.FC = () => {
                 placeholder="A B C"
                 allowedChars={/[a-zA-Z0-9\s]/}
                 transformToUpper={true}
+                className="font-mono text-lg uppercase"
             />
         </div>
 

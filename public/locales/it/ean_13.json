@@ -1,4 +1,12 @@
 {
   "title": "EAN-13",
-  "guide": "### Codici a Barre\nCalcolo cifra controllo.\n\n1. Somma pos **Dispari**: `X`.\n2. Summa pos **Pari**: `Y`.\n3. Calc: `X + (Y * 3)`.\n4. **Check:** Diff al prossimo multiplo di 10.\n\n*Es: Somma 47 -> Mancano 3 a 50. Check = 3.*"
+  "guide": "### Codici a Barre\nCalcolo cifra controllo.\n\n1. Summa pos **Dispari**: `X`.\n2. Summa pos **Pari**: `Y`.\n3. Calc: `X + (Y * 3)`.\n4. **Check:** Diff al prossimo multiplo di 10.\n\n*Es: Somma 47 -> Mancano 3 a 50. Check = 3.*",
+  "label_input": "Numero Codice a Barre (13 Cifre)",
+  "label_valid": "VALIDO",
+  "label_invalid": "NON VALIDO",
+  "label_checksum": "Cifra di Controllo",
+  "practice_title": "Trova la Cifra di Controllo",
+  "practice_prompt": "Calcola la 13ª cifra:",
+  "feedback_correct": "Corretto! {{digit}} valida il codice.",
+  "feedback_incorrect": "Sbagliato. La cifra corretta è {{digit}}."
 }

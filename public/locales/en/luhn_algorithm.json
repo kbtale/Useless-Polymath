@@ -1,4 +1,13 @@
 {
   "title": "Luhn Algorithm",
-  "guide": "### Card Validation\nDetect typos.\n\n1. **Ignore** last digit (Check).\n2. Start **2nd to last** backwards:\n   * Odd positions: **Double**.\n   * If > 9, sum digits (16 -> 7).\n3. **Sum** all (doubled and skipped).\n4. Add Check Digit.\n5. Total must end in **0**."
+  "guide": "### Card Validation\nDetect typos.\n\n1. **Ignore** last digit (Check).\n2. Start **2nd to last** backwards:\n   * Odd positions: **Double**.\n   * If > 9, sum digits (16 -> 7).\n3. **Sum** all (doubled and skipped).\n4. Add Check Digit.\n5. Total must end in **0**.",
+  "label_input": "Card / IMEI Number",
+  "label_valid": "VALID",
+  "label_invalid": "INVALID",
+  "label_checksum": "Checksum",
+  "label_check_digit": "Check Digit",
+  "practice_title": "Find the Check Digit",
+  "practice_prompt": "Calculate the missing last digit:",
+  "feedback_correct": "Correct! {{digit}} creates a valid sum.",
+  "feedback_incorrect": "Incorrect. The correct digit is {{digit}}."
 }

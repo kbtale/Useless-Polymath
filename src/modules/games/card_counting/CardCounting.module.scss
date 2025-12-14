@@ -6,15 +6,21 @@
   gap: $spacing-lg;
   align-items: center;
   width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .panel {
-  width: 100%;
-  padding: $spacing-lg;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 .title {
@@ -31,7 +37,7 @@
 }
 
 .dealerTable {
-  width: 100%;
+  align-self: stretch;
   max-width: 500px;
   aspect-ratio: 16 / 9;
   background: #2d6a4f; // Classic green felt

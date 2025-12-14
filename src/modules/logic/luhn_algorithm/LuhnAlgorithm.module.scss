@@ -1,0 +1,124 @@
+@use '../../../styles/variables' as *;
+
+.toolContainer {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.panel {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+  width: 100%;
+}
+
+.title {
+  font-family: $font-mono;
+  color: $text-main;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  border-bottom: 2px solid $line-color;
+  padding-bottom: $spacing-sm;
+  width: 100%;
+  text-align: center;
+}
+
+.statusIndicator {
+  font-family: $font-mono;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: $spacing-sm $spacing-xl;
+  border-radius: 8px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  
+  &.valid {
+    background: rgba(74, 222, 128, 0.2);
+    color: #4ade80;
+    border: 2px solid #4ade80;
+  }
+  
+  &.invalid {
+    background: rgba(248, 113, 113, 0.2);
+    color: #f87171;
+    border: 2px solid #f87171;
+  }
+}
+
+.visualization {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  margin-top: $spacing-md;
+  width: 100%;
+}
+
+.digitBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 32px;
+  
+  .original {
+    font-size: 1.25rem;
+    font-family: $font-mono;
+    color: $text-main;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $line-color;
+    background: rgba(255,255,255,0.05);
+  }
+  
+  .processed {
+    font-size: 0.85rem;
+    font-family: $font-mono;
+    color: $text-dim;
+    
+    &.doubled {
+      color: #fbbf24; // Amber for changed
+      font-weight: bold;
+    }
+  }
+}
+
+.practiceContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+  max-width: 400px;
+}
+
+.quizNumber {
+  display: flex;
+  gap: 8px;
+  font-size: 2rem;
+  font-family: $font-mono;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+  .missing {
+    color: $color-error;
+    border-bottom: 2px solid $color-error;
+    min-width: 1em;
+    text-align: center;
+  }
+}

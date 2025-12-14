@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
 import { FUIButton } from '../../../components/core/FUIButton';
+import { CoreSelect } from '../../../components/core/CoreSelect';
 import { BAND_COLORS, calculateResistance, formatOhms } from './logic';
 import styles from './ResistorCodes.module.scss';
 
@@ -37,7 +38,8 @@ export const ResistorTool: React.FC = () => {
   return (
     <div className={styles.toolContainer}>
       <FUIGlassPanel className={styles.panel}>
-        <h2 className={styles.title}>{t('title')}</h2>
+        <div className={styles.container}>
+          <h2 className={styles.title}>{t('title')}</h2>
 
         <div className={styles.modeToggle}>
           <FUIButton onClick={() => resetBands(4)} variant={mode === 4 ? 'solid' : 'outline'}>
@@ -90,13 +92,10 @@ export const ResistorTool: React.FC = () => {
         <div className={styles.controls}>
           {bands.map((color, i) => (
             <div key={i} className={styles.controlGroup}>
-              <select 
-                className={styles.colorSelect}
+              <CoreSelect
                 value={color}
-                onChange={(e) => updateBand(i, e.target.value)}
-                style={{ borderLeft: `5px solid ${getHex(color)}` }}
-              >
-                {BAND_COLORS
+                onChange={(val) => updateBand(i, val)}
+                options={BAND_COLORS
                   .filter(c => {
                     // Filter logic: Only show valid colors for this position
                     if (i < (mode === 4 ? 2 : 3)) return c.value !== null; // Digits
@@ -104,12 +103,22 @@ export const ResistorTool: React.FC = () => {
                     if (i === (mode === 4 ? 3 : 4)) return c.tolerance !== null; // Tolerance
                     return true;
                   })
-                  .map(c => (
-                    <option key={c.name} value={c.name}>
-                      {t(`color_${c.name}`)}
-                    </option>
-                  ))}
-              </select>
+                  .map(c => ({
+                    value: c.name,
+                    label: t(`color_${c.name}`)
+                  }))
+                }
+                className={styles.colorSelect}
+              />
+              <div 
+                style={{ 
+                   height: '4px', 
+                   width: '100%', 
+                   background: getHex(color),
+                   borderRadius: '2px',
+                   marginTop: '4px'
+                }} 
+              />
             </div>
           ))}
         </div>
@@ -120,6 +129,7 @@ export const ResistorTool: React.FC = () => {
           <div className={styles.tol}>±{tolerance}%</div>
         </div>
 
+        </div>
       </FUIGlassPanel>
 
       <FUIGlassPanel className={styles.panel}>

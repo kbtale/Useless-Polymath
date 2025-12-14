@@ -1,0 +1,115 @@
+@use '../../../styles/variables' as *;
+
+.toolContainer {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.panel {
+  width: 100%;
+}
+
+.title {
+  font-family: $font-mono;
+  color: $text-main;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  border-bottom: 2px solid $line-color;
+  padding-bottom: $spacing-sm;
+  width: 100%;
+  text-align: center;
+}
+
+.label {
+  font-family: $font-mono;
+  color: $text-dim;
+  font-size: $text-sm;
+  text-transform: uppercase;
+  margin-bottom: $spacing-sm;
+}
+
+.statusIndicator {
+  font-family: $font-mono;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: $spacing-sm $spacing-xl;
+  border-radius: 8px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  
+  &.valid {
+    background: rgba(74, 222, 128, 0.2);
+    color: #4ade80;
+    border: 2px solid #4ade80;
+  }
+  
+  &.invalid {
+    background: rgba(248, 113, 113, 0.2);
+    color: $color-error;
+    border: 2px solid $color-error;
+  }
+}
+
+.barcodeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+  margin-top: $spacing-md;
+  padding: $spacing-md;
+  background: white; // Barcodes need white background
+  border-radius: 8px;
+  border: 1px solid $line-color;
+}
+
+.bars {
+  display: flex;
+  height: 60px;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.bar {
+  width: 4px;
+  background-color: black;
+  
+  &.thin { height: 100%; }
+  &.short { height: 85%; }
+  
+  // Pseudo-random generation for visual flair since we aren't implementing strictly accurate encoding width yet
+}
+
+.digits {
+  display: flex;
+  gap: 12px;
+  font-family: 'Courier New', monospace; // Classic OCR font style
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+}
+
+.practiceContainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quizNumber {
+  display: flex;
+  gap: 12px;
+  font-size: 2rem;
+  font-family: $font-mono;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+  .missing {
+    color: $color-error;
+    border-bottom: 2px solid $color-error;
+    min-width: 1em;
+    text-align: center;
+  }
+}

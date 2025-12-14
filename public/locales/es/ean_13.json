@@ -1,4 +1,12 @@
 {
   "title": "EAN-13",
-  "guide": "### Código de Barras\nCálculo del dígito de control (último).\n\n1. Suma posiciones **impares**: `X`.\n2. Suma posiciones **pares**: `Y`.\n3. Cálculo: `X + (Y * 3)`.\n4. **Control:** Lo que falta para el siguiente múltiplo de 10.\n\n*Ej: Suma total 47 -> Faltan 3 para 50. Control = 3.*"
+  "guide": "### Código de Barras\nCálculo del dígito de control (último).\n\n1. Suma posiciones **impares**: `X`.\n2. Suma posiciones **pares**: `Y`.\n3. Cálculo: `X + (Y * 3)`.\n4. **Control:** Lo que falta para el siguiente múltiplo de 10.\n\n*Ej: Suma total 47 -> Faltan 3 para 50. Control = 3.*",
+  "label_input": "Número de Código de Barras (13 Dígitos)",
+  "label_valid": "VÁLIDO",
+  "label_invalid": "INVÁLIDO",
+  "label_checksum": "Dígito Control",
+  "practice_title": "Halla el Dígito de Control",
+  "practice_prompt": "Calcula el 13º dígito:",
+  "feedback_correct": "¡Correcto! {{digit}} valida el código.",
+  "feedback_incorrect": "Incorrecto. El dígito correcto es {{digit}}."
 }

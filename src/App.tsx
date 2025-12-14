@@ -39,6 +39,10 @@ import { ResistorTool } from './modules/electronics/resistor_codes/ResistorTool'
 import { ResistorPractice } from './modules/electronics/resistor_codes/ResistorPractice';
 import { CardCountingTool } from './modules/games/card_counting/CardCountingTool';
 import { CardCountingPractice } from './modules/games/card_counting/CardCountingPractice';
+import { LuhnTool } from './modules/logic/luhn_algorithm/LuhnTool';
+import { LuhnPractice } from './modules/logic/luhn_algorithm/LuhnPractice';
+import { EanTool } from './modules/logic/ean_13/EanTool';
+import { EanPractice } from './modules/logic/ean_13/EanPractice';
 
 function AppContent() {
   const [mode, setMode] = useState<'tool' | 'practice' | 'guide'>('tool');
@@ -103,6 +107,10 @@ function AppContent() {
         return mode === 'tool' ? <ResistorTool /> : <ResistorPractice />;
       case 'card_counting':
         return mode === 'tool' ? <CardCountingTool /> : <CardCountingPractice />;
+      case 'luhn_algorithm':
+        return mode === 'tool' ? <LuhnTool /> : <LuhnPractice />;
+      case 'ean_13':
+        return mode === 'tool' ? <EanTool /> : <EanPractice />;
       default:
         return (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', flexDirection: 'column' }}>

@@ -1,4 +1,12 @@
 {
   "title": "EAN-13",
-  "guide": "### Barcodes\nCheck digit calculation.\n\n1. Sum **Odd** pos: `X`.\n2. Sum **Even** pos: `Y`.\n3. Calc: `X + (Y * 3)`.\n4. **Check:** Diff to next multiple of 10.\n\n*Ex: Sum 47 -> Needs 3 for 50. Check = 3.*"
+  "guide": "### Barcodes\nCheck digit calculation.\n\n1. Sum **Odd** pos: `X`.\n2. Sum **Even** pos: `Y`.\n3. Calc: `X + (Y * 3)`.\n4. **Check:** Diff to next multiple of 10.\n\n*Ex: Sum 47 -> Needs 3 for 50. Check = 3.*",
+  "label_input": "Barcode Number (13 Digits)",
+  "label_valid": "VALID",
+  "label_invalid": "INVALID",
+  "label_checksum": "Check Digit",
+  "practice_title": "Find the Check Digit",
+  "practice_prompt": "Calculate the 13th digit:",
+  "feedback_correct": "Correct! {{digit}} validates the barcode.",
+  "feedback_incorrect": "Incorrect. The correct digit is {{digit}}."
 }

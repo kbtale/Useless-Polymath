@@ -65,36 +65,38 @@ export const CardCountingTool: React.FC = () => {
   return (
     <div className={styles.toolContainer}>
       <FUIGlassPanel className={styles.panel}>
-        <h2 className={styles.title}>{t('title')}</h2>
+        <div className={styles.container}>
+          <h2 className={styles.title}>{t('title')}</h2>
 
-        <div className={styles.dealerTable}>
-          {currentCard ? (
-            <CardDisplay card={currentCard} />
-          ) : (
-            <div style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'monospace' }}>
-              [DECK READY]
+          <div className={styles.dealerTable}>
+            {currentCard ? (
+              <CardDisplay card={currentCard} />
+            ) : (
+              <div style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'monospace' }}>
+                [DECK READY]
+              </div>
+            )}
+          </div>
+
+          <div className={styles.stats}>
+            <div className={styles.statItem}>
+              <span className={styles.statLabel}>{t('label_running_count')}</span>
+              <span className={styles.statValue}>{runningCount}</span>
             </div>
-          )}
-        </div>
-
-        <div className={styles.stats}>
-          <div className={styles.statItem}>
-            <span className={styles.statLabel}>{t('label_running_count')}</span>
-            <span className={styles.statValue}>{runningCount}</span>
+            <div className={styles.statItem}>
+              <span className={styles.statLabel}>{t('label_cards_left')}</span>
+              <span className={styles.statValue}>{cardsLeft}</span>
+            </div>
           </div>
-          <div className={styles.statItem}>
-            <span className={styles.statLabel}>{t('label_cards_left')}</span>
-            <span className={styles.statValue}>{cardsLeft}</span>
-          </div>
-        </div>
 
-        <div className={styles.controls}>
-          <FUIButton onClick={handleDeal} disabled={cardsLeft === 0} variant="solid">
-            {t('action_deal')}
-          </FUIButton>
-          <FUIButton onClick={handleReset} variant="outline">
-            {t('action_reset')}
-          </FUIButton>
+          <div className={styles.controls}>
+            <FUIButton onClick={handleDeal} disabled={cardsLeft === 0} variant="solid">
+              {t('action_deal')}
+            </FUIButton>
+            <FUIButton onClick={handleReset} variant="outline">
+              {t('action_reset')}
+            </FUIButton>
+          </div>
         </div>
       </FUIGlassPanel>
 
