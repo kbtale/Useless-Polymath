@@ -1,45 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
-import { calculateStorage, UNITS } from './logic';
+import { generatePracticeProblem, calculateAnswer, UNITS, formatValue } from './logic';
 import styles from './StorageUnits.module.scss';
 import clsx from 'clsx';
 
 export const StorageUnitsPractice: React.FC = () => {
   const { t } = useTranslation(['storage_units', 'common']);
-  const [targetAmount, setTargetAmount] = useState(1);
-  const [targetUnitIdx, setTargetUnitIdx] = useState(2); // GB
+  const [problem, setProblem] = useState({ fromIdx: 3, toIdx: 1, amount: 1 });
   
   const [userAnswer, setUserAnswer] = useState('');
   const [feedback, setFeedback] = useState<'idle' | 'correct' | 'incorrect'>('idle');
   const [streak, setStreak] = useState(0);
+  const [showAnswer, setShowAnswer] = useState(false);
 
-  const generateProblem = () => {
-    setTargetAmount(Math.floor(Math.random() * 10) + 1); // 1-10
-    setTargetUnitIdx(Math.floor(Math.random() * 3) + 2); // GB, TB, PB (skip KB/MB usually too easy/hard)
+  const newProblem = useCallback(() => {
+    setProblem(generatePracticeProblem());
     setUserAnswer('');
     setFeedback('idle');
-  };
-
-  useEffect(() => {
-    generateProblem();
+    setShowAnswer(false);
   }, []);
 
+  useEffect(() => {
+    newProblem();
+  }, [newProblem]);
+
+  const correctAnswer = calculateAnswer(problem.amount, problem.fromIdx, problem.toIdx);
+
   const handleSubmit = () => {
-    const res = calculateStorage(targetAmount, targetUnitIdx);
-    if (!res) return;
-    
-    // Allow small margin of error (e.g. 0.05)
     const val = parseFloat(userAnswer);
-    if (Math.abs(val - res.windowsValue) < 0.1) {
+    // Allow 1% margin for floating point
+    const margin = Math.abs(correctAnswer * 0.01);
+    
+    if (Math.abs(val - correctAnswer) <= Math.max(margin, 0.01)) {
       setFeedback('correct');
       setStreak(s => s + 1);
-      setTimeout(generateProblem, 1500);
+      setTimeout(newProblem, 1200);
     } else {
       setFeedback('incorrect');
       setStreak(0);
+      setShowAnswer(true);
     }
   };
 
@@ -53,16 +55,21 @@ export const StorageUnitsPractice: React.FC = () => {
           </div>
 
           <div style={{ textAlign: 'center', margin: '2rem 0' }}>
-            <p className={styles.label}>
-              {t('practice_question', { amount: targetAmount, unit: UNITS[targetUnitIdx].label })}
-            </p>
+            <p className={styles.label}>{t('practice_question_convert')}</p>
+            <div className={styles.problemDisplay}>
+              <span className={styles.problemAmount}>{problem.amount}</span>
+              <span className={styles.problemUnit}>{UNITS[problem.fromIdx].label}</span>
+              <span className={styles.problemArrow}>→</span>
+              <span className={styles.problemUnit}>{UNITS[problem.toIdx].label}</span>
+            </div>
           </div>
 
           <div style={{ maxWidth: 200, width: '100%' }}>
             <CoreBaseInput
               value={userAnswer}
               onChangeValue={setUserAnswer}
-              placeholder="0.00"
+              placeholder="?"
+              allowedChars={/^[0-9.eE+-]*$/}
               className={clsx(
                 feedback === 'correct' && 'border-green-500 text-green-500', 
                 feedback === 'incorrect' && 'border-red-500 text-red-500',
@@ -73,8 +80,14 @@ export const StorageUnitsPractice: React.FC = () => {
 
           <FUIButton onClick={handleSubmit}>{t('execute', { ns: 'common' })}</FUIButton>
           
+          {showAnswer && (
+            <p className={styles.label} style={{ marginTop: '1rem', color: '#f87171' }}>
+              {t('practice_answer')}: {formatValue(correctAnswer)}
+            </p>
+          )}
+
           <p className={styles.label} style={{ marginTop: '1rem', fontSize: '0.7rem' }}>
-             {t('practice_hint')}
+             {t('practice_hint_convert')}
           </p>
 
         </div>

@@ -1,4 +1,10 @@
 {
-  "title": "Unità Memoria",
-  "guide": "### Decimale vs Binario\nVendita vs Windows.\n\n| Unità | Decimale (Vendita) | Binario (OS) | Perdita |\n| :--- | :--- | :--- | :--- |\n| **1 KB** | 1.000 | 1.024 | 2.4% |\n| **1 GB** | 10^9 | 2^30 | ~7% |\n| **1 TB** | 10^12 | 2^40 | ~10% |"
+  "title": "Convertitore di Archiviazione",
+  "practice_title": "SFIDA DI CONVERSIONE",
+  "guide": "### Prefissi Binari (Base 1024)\n\n| Unità | Bytes |\n| :--- | :--- |\n| **1 KB** | 1,024 |\n| **1 MB** | 1,048,576 |\n| **1 GB** | 1,073,741,824 |\n| **1 TB** | 1,099,511,627,776 |\n\n*Schema:* Ogni passo è × 1024",
+  "label_amount": "Quantità",
+  "label_unit": "Unità",
+  "practice_question_convert": "Converti:",
+  "practice_hint_convert": "Suggerimento: Moltiplica o dividi per potenze di 1024",
+  "practice_answer": "Risposta"
 }

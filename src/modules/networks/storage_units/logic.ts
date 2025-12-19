@@ -1,28 +1,58 @@
 
 export const UNITS = [
-  { label: 'KB', power10: 3, power2: 10 },
-  { label: 'MB', power10: 6, power2: 20 },
-  { label: 'GB', power10: 9, power2: 30 },
-  { label: 'TB', power10: 12, power2: 40 },
-  { label: 'PB', power10: 15, power2: 50 },
+  { label: 'B', bytes: 1 },
+  { label: 'KB', bytes: 1024 },
+  { label: 'MB', bytes: 1024 ** 2 },
+  { label: 'GB', bytes: 1024 ** 3 },
+  { label: 'TB', bytes: 1024 ** 4 },
+  { label: 'PB', bytes: 1024 ** 5 },
 ];
 
-export const calculateStorage = (amount: number, unitIndex: number) => {
-  if (isNaN(amount)) return null;
-  const unit = UNITS[unitIndex];
-  
-  // Marketed (Decimal) Bytes
-  const marketBytes = amount * Math.pow(10, unit.power10);
+export interface ConversionResult {
+  unit: string;
+  value: number;
+  formatted: string;
+}
 
-  // Binary Bytes (IEC) represented in the SAME UNIT (e.g. displayed as "GB" but really GiB math)
-  // Windows takes bytes and divides by 1024^power.
-  // So: MarketBytes / (2^power2)
-  const windowsValue = marketBytes / Math.pow(2, unit.power2);
+export const convertStorage = (amount: number, fromUnitIdx: number): ConversionResult[] => {
+  if (isNaN(amount) || amount < 0) return [];
   
-  return {
-    marketBytes,
-    windowsValue,
-    unitLabel: unit.label, // Windows uses same label 'GB' for GiB usually
-    diffPercent: ((amount - windowsValue) / amount) * 100
-  };
+  const fromUnit = UNITS[fromUnitIdx];
+  const totalBytes = amount * fromUnit.bytes;
+  
+  return UNITS.map((unit) => {
+    const value = totalBytes / unit.bytes;
+    return {
+      unit: unit.label,
+      value,
+      formatted: formatValue(value),
+    };
+  });
+};
+
+export const formatValue = (value: number): string => {
+  if (value === 0) return '0';
+  if (value >= 1_000_000) return value.toExponential(4);
+  if (value < 0.0001) return value.toExponential(4);
+  if (Number.isInteger(value)) return value.toLocaleString();
+  return value.toLocaleString(undefined, { maximumFractionDigits: 4 });
+};
+
+// For practice mode: convert between two random units
+export const generatePracticeProblem = () => {
+  const fromIdx = Math.floor(Math.random() * UNITS.length);
+  let toIdx = Math.floor(Math.random() * UNITS.length);
+  while (toIdx === fromIdx) {
+    toIdx = Math.floor(Math.random() * UNITS.length);
+  }
+  const amount = Math.pow(2, Math.floor(Math.random() * 10)); // Powers of 2 for clean answers
+  
+  return { fromIdx, toIdx, amount };
+};
+
+export const calculateAnswer = (amount: number, fromIdx: number, toIdx: number): number => {
+  const fromUnit = UNITS[fromIdx];
+  const toUnit = UNITS[toIdx];
+  const bytes = amount * fromUnit.bytes;
+  return bytes / toUnit.bytes;
 };

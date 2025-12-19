@@ -1,4 +1,10 @@
 {
-  "title": "Unidades Almacenamiento",
-  "guide": "### Decimal vs Binario\nLa diferencia entre lo que compras y lo que ves en Windows.\n\n| Unidad | Decimal (Venta) | Binario (Windows) | Pérdida Visual |\n| :--- | :--- | :--- | :--- |\n| **1 KB** | 1,000 bytes | 1,024 bytes | 2.4% |\n| **1 GB** | 10^9 bytes | 2^30 bytes | ~7% |\n| **1 TB** | 10^12 bytes | 2^40 bytes | ~10% |"
+  "title": "Convertidor de Almacenamiento",
+  "practice_title": "DESAFÍO DE CONVERSIÓN",
+  "guide": "### Prefijos Binarios (Base 1024)\n\n| Unidad | Bytes |\n| :--- | :--- |\n| **1 KB** | 1,024 |\n| **1 MB** | 1,048,576 |\n| **1 GB** | 1,073,741,824 |\n| **1 TB** | 1,099,511,627,776 |\n\n*Patrón:* Cada paso es × 1024",
+  "label_amount": "Cantidad",
+  "label_unit": "Unidad",
+  "practice_question_convert": "Convertir:",
+  "practice_hint_convert": "Pista: Multiplica o divide por potencias de 1024",
+  "practice_answer": "Respuesta"
 }

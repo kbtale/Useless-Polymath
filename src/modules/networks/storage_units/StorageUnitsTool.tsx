@@ -4,17 +4,17 @@ import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { CoreSelect } from '../../../components/core/CoreSelect';
-import { calculateStorage, UNITS } from './logic';
+import { convertStorage, UNITS } from './logic';
 import styles from './StorageUnits.module.scss';
 import clsx from 'clsx';
 
 export const StorageUnitsTool: React.FC = () => {
   const { t } = useTranslation('storage_units');
   const [amount, setAmount] = useState('1');
-  const [unitIdx, setUnitIdx] = useState('2'); // GB default
+  const [unitIdx, setUnitIdx] = useState('3'); // GB default
 
   const am = parseFloat(amount);
-  const result = calculateStorage(am, parseInt(unitIdx));
+  const results = convertStorage(am, parseInt(unitIdx));
 
   return (
     <div className={styles.toolContainer}>
@@ -41,38 +41,20 @@ export const StorageUnitsTool: React.FC = () => {
             </div>
           </div>
 
-          {result && (
-            <div className={styles.comparison}>
-              <div className={styles.compRow}>
-                <span className={styles.compLabel}>{t('label_market_bytes')}</span>
-                <span className={styles.compValue}>{result.marketBytes.toLocaleString()} B</span>
-              </div>
-
-              <div className={styles.compRow}>
-                <span className={styles.compLabel}>{t('label_result')}</span>
-                <span className={styles.compValue}>{result.windowsValue.toFixed(2)} {result.unitLabel}</span>
-              </div>
-
-               <div className={clsx(styles.compRow, styles.highlight)}>
-                <span className={styles.compLabel}>{t('label_difference')}</span>
-                <span className={styles.compValue}>-{result.diffPercent.toFixed(2)}%</span>
-              </div>
-
-              <div className={styles.barChart}>
-                 <div className={styles.barLabel}>{t('label_chart_market')}</div>
-                 <div className={styles.barTrack}>
-                   <div className={styles.barFill} style={{ width: '100%', background: '#4ade80' }}>
-                     {am} {result.unitLabel}
-                   </div>
-                 </div>
-                 
-                 <div className={styles.barLabel}>{t('label_chart_windows')}</div>
-                 <div className={styles.barTrack}>
-                   <div className={styles.barFill} style={{ width: `${100 - result.diffPercent}%`, background: '#f87171' }}>
-                     {result.windowsValue.toFixed(2)} {result.unitLabel}
-                   </div>
-                 </div>
-              </div>
+          {results.length > 0 && (
+            <div className={styles.resultsGrid}>
+              {results.map((res) => (
+                <div 
+                  key={res.unit} 
+                  className={clsx(
+                    styles.resultCard,
+                    UNITS[parseInt(unitIdx)].label === res.unit && styles.active
+                  )}
+                >
+                  <span className={styles.resultUnit}>{res.unit}</span>
+                  <span className={styles.resultValue}>{res.formatted}</span>
+                </div>
+              ))}
             </div>
           )}
 
