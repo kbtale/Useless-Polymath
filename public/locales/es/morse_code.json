@@ -3,5 +3,5 @@
   "practice_title": "DECODIFICA LA SEÑAL",
   "text_input": "TEXTO",
   "morse_input": "MORSE ( . - / )",
-  "guide": "# Código Morse\n\nMétodo utilizado en telecomunicaciones para codificar caracteres de texto como secuencias estandarizadas de dos duraciones de señal diferentes, llamadas puntos y rayas."
+  "guide": "# Código Morse: El Lenguaje Secreto\n\n## 1. El Concepto\nImagina que tienes una linterna.\n* Si la prendes y apagas **MUY RÁPIDO**, es un **Punto** (•). Suena \"Di\".\n* Si la dejas prendida un **POQUITO MÁS**, es una **Raya** (—). Suena \"Da\".\n\n---\n\n## 2. El Alfabeto (Ejemplos)\n\n| Letra | Código | Mnemotecnia |\n| :--- | :--- | :--- |\n| **A** | **.-** | As-**no** (di-DA) |\n| **B** | **-...** | **Bo**-ba-di-lla (DA-di-di-di) |\n| **C** | **-.-.** | **Co**-ca-**Co**-la (DA-di-DA-di) |\n| **E** | **.** | **Es** (di) |\n| **M** | **--** | **Mo**-**to** (DA-DA) |\n| **O** | **---** | **O**-**to**-**ño** (DA-DA-DA) |\n| **S** | **...** | Sar-di-na (di-di-di) |\n| **T** | **-** | **Tos** (DA) |\n\n---\n\n## 3. Símbolos Especiales\n\n| Símbolo | Código |\n| :--- | :--- |\n| **SOS** | **...---...** |\n\n---\n\n## 4. Truco Mnemotécnico\nSi la vocal es **O**, es una **Raya** (—).\nCualquier otra vocal (A, E, I, U) es un **Punto** (•).\n\n***\n"
 }

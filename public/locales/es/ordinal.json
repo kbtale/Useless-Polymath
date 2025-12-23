@@ -1,6 +1,6 @@
 {
   "title": "Calendario Ordinal",
-  "guide": "### Días Acumulados\nSuma el día actual a la base del mes.\n\n| Mes | Base | Mes | Base |\n| :--- | :--- | :--- | :--- |\n| **Ene** | 0 | **Jul** | 181 |\n| **Feb** | 31 | **Ago** | 212 |\n| **Mar** | 59 | **Sep** | 243 |\n| **Abr** | 90 | **Oct** | 273 |\n| **May** | 120 | **Nov** | 304 |\n| **Jun** | 151 | **Dic** | 334 |\n\n*Nota: Si es bisiesto y >29 Feb, suma +1.*",
+  "guide": "# El Contador de Días: ¿En qué punto del año estamos?\n\n## 1. El Concepto\nImagina que el año es un libro gigante de **365 páginas** (o 366 si es Bisiesto).\n* **1 de Enero** es la Página 1.\n* **31 de Diciembre** es la Página 365.\n\nEl \"Día Ordinal\" es simplemente el número de página.\n\n---\n\n## 2. Tabla de Referencia (Puntos de Control)\n\n| Mes | Año Estándar | Año Bisiesto |\n| :--- | :--- | :--- |\n| **Enero** | 0 | 0 |\n| **Febrero** | 31 | 31 |\n| **Marzo** | 59 | 60 |\n| **Abril** | 90 | 91 |\n| **Mayo** | 120 | 121 |\n| **Junio** | 151 | 152 |\n| **Julio** | 181 | 182 |\n| **Agosto** | 212 | 213 |\n| **Septiembre** | 243 | 244 |\n| **Octubre** | 273 | 274 |\n| **Noviembre** | 304 | 305 |\n| **Diciembre** | 334 | 335 |\n\n---\n\n## 3. Mnemotecnias Nativas (Español)\n\n### El Truco de los Nudillos\nCierra el puño. Toca los huesos (nudillos) y los huecos.\nHueso = 31 días. Hueco = 30 días (o febrero).\n\n***\n",
   "tool_title": "ORDINAL DE CALENDARIO",
   "result_title": "CÁLCULO ORDINAL",
   "ordinal_day": "DÍA ORDINAL",

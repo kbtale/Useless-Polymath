@@ -1,6 +1,6 @@
 {
   "title": "Conteo Cartas",
-  "guide": "### Sistema Hi-Lo\nLleva una cuenta mental (+/-).\n\n| Cartas | Valor | Acción |\n| :--- | :--- | :--- |\n| **2, 3, 4, 5, 6** | **+1** | Bueno (Salen bajas) |\n| **7, 8, 9** | **0** | Neutro |\n| **10, J, Q, K, A**| **-1** | Malo (Salen altas) |\n\n*Cuenta Alta = Apuesta fuerte.*",
+  "guide": "# El Sistema Hi-Lo: Ganándole al Casino en Blackjack\n\n## 1. El Concepto\nImagina una bolsa mezclada con caramelos y piedras.\n* **Caramelos (Cartas Altas - 10, J, Q, K, A):** ¡Tú quieres estas! Te hacen ganar.\n* **Piedras (Cartas Bajas - 2, 3, 4, 5, 6):** ¡Odias estas! Hacen que la casa gane.\n\nSi tu cuenta es **ALTA**, ¡apuesta mucho dinero!\nSi tu cuenta es **BAJA**, apuesta poco.\n\n---\n\n## 2. La Tabla de Valores\n\n| Carta | Valor | ¿Por qué? |\n| :--- | :--- | :--- |\n| **2, 3, 4, 5, 6** | **+1** | Es una \"Piedra\". Qué bueno que se fue. |\n| **7, 8, 9** | **0** | Neutral. Ignórala. |\n| **10, J, Q, K, A** | **-1** | Es un \"Caramelo\". Qué mal que se fue. |\n\n---\n\n## 3. Mnemotecnias Nativas (Español)\n\n* **\"Las Chicas Suman\"**: Las cartas chicas (2,3,4,5,6) son un **+**.\n* **\"Las Grandes Restan\"**: Las cartas grandes (10, J, Q, K, A) son un **-**.\n* **\"Siete, Ocho y Nueve, nada las mueve\"**: Valen Cero.\n\n***\n",
   "action_deal": "Repartir",
   "action_reset": "Nueva Baraja",
   "action_check": "Verificar Cuenta",

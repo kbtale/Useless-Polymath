@@ -1,6 +1,6 @@
 {
   "title": "EAN-13",
-  "guide": "### Código de Barras\nCálculo del dígito de control (último).\n\n1. Suma posiciones **impares**: `X`.\n2. Suma posiciones **pares**: `Y`.\n3. Cálculo: `X + (Y * 3)`.\n4. **Control:** Lo que falta para el siguiente múltiplo de 10.\n\n*Ej: Suma total 47 -> Faltan 3 para 50. Control = 3.*",
+  "guide": "# EAN-13: La Matrícula del Supermercado\n\n## 1. El Concepto\nCada vez que compras un dulce, el cajero escanea una cajita de rayas blancas y negras.\nEsa caja es el **Código de Barras EAN-13**.\nTiene exactamente **13 Números**.\n\n---\n\n## 2. La Estructura\n\n| Posición | Nombre | Descripción |\n| :--- | :--- | :--- |\n| **1-3** | **Prefijo GS1** | Código del \"País\" |\n| **4-8** | **Fabricante** | Código de la empresa |\n| **9-12** | **Producto** | Artículo específico |\n| **13** | **Dígito Control** | Prueba matemática |\n\n---\n\n## 3. Cómo calcular el último número\n\n**Ejemplo:** `4 0 0 6 3 8 1 3 3 3 9 3` ... `?`\n\n1. Suma posiciones **impares** (1, 3, 5...): 4+0+3+1+3+9 = **20**\n2. Suma posiciones **pares** (2, 4, 6...): 0+6+8+3+3+3 = 23\n3. Multiplica por 3: 23 x 3 = **69**\n4. Suma total: 20 + 69 = **89**\n5. ¿Qué falta para el siguiente 10? 90 - 89 = **1**\n\n**Dígito de Control = 1**\n\n---\n\n## 4. Mnemotecnias Nativas (Español)\n\n* **\"Uno, Tres, Suma otra vez\"**: Impar x1. Par x3. Suma y llega al 10.\n\n***\n",
   "label_input": "Número de Código de Barras (13 Dígitos)",
   "label_valid": "VÁLIDO",
   "label_invalid": "INVÁLIDO",

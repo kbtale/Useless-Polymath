@@ -6,5 +6,5 @@
   "ciphertext": "TEXTO CIFRADO",
   "hint_shift": "Pista: Desplazamiento fue {{shift}} (Rot{{shift}})",
   "decrypted_placeholder": "ESCRIBE TEXTO DESCIFRADO",
-  "guide": "# Cifrado César\n\nMétodo en el que cada letra del texto plano se reemplaza por una letra un número fijo de posiciones más adelante en el alfabeto."
+  "guide": "# El Cifrado César: La Nota Secreta del Emperador\n\n## 1. El Concepto\nImagina que el Alfabeto está escrito en una **Rueda**, como un reloj.\nJulio César quería enviar mensajes secretos. Así que inventó una regla simple: **\"Mueve cada letra hacia adelante.\"**\n\nSi la Regla (Clave) es **+1**:\n* **A** se convierte en **B**.\n* **Z** se convierte en **A** (¡La rueda da la vuelta!).\n\n---\n\n## 2. Cómo Cifrar (Paso a Paso)\n**Mensaje:** `HOLA`\n**Clave:** `+1`\n\n1. **H** (7) + 1 = 8 -> **I**\n2. **O** (14) + 1 = 15 -> **P**\n3. **L** (11) + 1 = 12 -> **M**\n4. **A** (0) + 1 = 1 -> **B**\n\n**Resultado:** `IPMB`\n\n---\n\n## 3. Mnemotecnias Nativas (Español)\n\n* **\"César Suma, el Espía Resta\"**:\n * Para crear el código (César), **Sumas** la clave.\n * Para entender el mensaje (Espía), **Restas** la clave.\n\n***\n"
 }

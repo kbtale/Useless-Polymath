@@ -3,5 +3,5 @@
   "practice_title": "IDENTIFICA EL PATRÓN",
   "text_input": "TEXTO A CONVERTIR",
   "output_placeholder": "Escribe arriba para generar patrones de puntos...",
-  "guide": "# Braille\n\nUna representación táctil de símbolos alfabéticos y numéricos utilizando seis puntos para representar cada letra y número."
+  "guide": "# ⠠⠃⠗⠁⠊⠇⠇⠑ Braille: Leyendo con las Yemas de los Dedos\n\n## 1. El Concepto\nImagina una caja de huevos pequeñita con **6 huecos**.\n* Puedes poner huevos (puntos) en algunos huecos y dejar otros vacíos.\n* Al tocar los bultos, tus dedos saben qué dibujo forman.\n\n**El \"Cajetín\" (La Caja de Huevos)**\nCada letra vive en una celda con 6 puntos numerados:\n**1 . . 4**\n**2 . . 5**\n**3 . . 6**\n\n---\n\n## 2. La Lógica (Las 3 Series)\n1. **1ª Serie (A-J):** Usa solo los 4 puntos de arriba (1, 2, 4, 5).\n2. **2ª Serie (K-T):** Es idéntica a la 1ª Serie, pero agregando el **Punto 3**.\n3. **3ª Serie (U-Z):** Es idéntica a la 2ª Serie, pero agregando el **Punto 6**.\n\n---\n\n## 3. Mnemotecnias Nativas (Español)\n\n* **\"A de Arriba\"**: Solo el punto 1 (Arriba a la izquierda).\n* **\"L de Línea\"**: Los tres puntos de la izquierda (1-2-3) forman una línea.\n\n***\n"
 }
