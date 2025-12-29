@@ -13,6 +13,7 @@
 </p>
 
 <hr>
+
 ## Modules
 
 The application is structured into isolated domains, each containing a **Tool** (calculator/converter), a **Practice** mode (drills), and a **Guide**.
