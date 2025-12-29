@@ -1,14 +1,18 @@
-# Useless Polymath
+<h1 align="center">Useless Polymath</h1>
 
-A suite to waste time practicing technical, mathematical, and cryptographic skills to impress absolutely nobody at parties.
+<p align="center">
+  A React suite for practicing technical, mathematical, and cryptographic skills to impress absolutely nobody at parties.
+  <br>
+  <br>
+  <img src="https://img.shields.io/badge/React-19-blue?logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-5-blue?logo=typescript" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Vite-7-purple?logo=vite" alt="Vite" />
+  <img src="https://img.shields.io/badge/Sass-1.83-pink?logo=sass" alt="Sass" />
+  <img src="https://img.shields.io/badge/Dexie.js-4.0-blue" alt="Dexie.js" />
+  <img src="https://img.shields.io/badge/Vitest-3.0-green?logo=vitest" alt="Vitest" />
+</p>
 
-![React](https://img.shields.io/badge/React-19-blue?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
-![Vite](https://img.shields.io/badge/Vite-7-purple?logo=vite)
-![Sass](https://img.shields.io/badge/Sass-1.83-pink?logo=sass)
-![Dexie.js](https://img.shields.io/badge/Dexie.js-4.0-blue)
-![Vitest](https://img.shields.io/badge/Vitest-3.0-green?logo=vitest)
-
+<hr>
 ## Modules
 
 The application is structured into isolated domains, each containing a **Tool** (calculator/converter), a **Practice** mode (drills), and a **Guide**.
