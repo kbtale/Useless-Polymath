@@ -7,21 +7,19 @@ import styles from './Roman.module.scss';
 import { useTranslation } from 'react-i18next';
 
 export const RomanPractice: React.FC = () => {
+  const getRandomVal = () => Math.floor(Math.random() * 1000) + 1;
+
   const { t } = useTranslation(['roman_numerals', 'common']);
   
   const [direction, setDirection] = useState<'to_roman' | 'to_decimal'>('to_roman');
-  const [questionVal, setQuestionVal] = useState<number>(0);
+  const [questionVal, setQuestionVal] = useState<number>(getRandomVal);
   const [userInput, setUserInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
 
-  if (questionVal === 0) {
-    setQuestionVal(Math.floor(Math.random() * 1000) + 1);
-  }
-
   const generateQuestion = () => {
-    setQuestionVal(Math.floor(Math.random() * 1000) + 1);
+    setQuestionVal(getRandomVal());
     setUserInput('');
     setFeedback(null);
     setDirection(Math.random() > 0.5 ? 'to_roman' : 'to_decimal');
