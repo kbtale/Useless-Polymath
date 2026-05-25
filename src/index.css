@@ -306,34 +306,7 @@ button:hover {
   border-color: var(--line-color);
 }
 
-button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* Custom Scrollbars styled dynamically based on active theme variables */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-canvas);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--line-color);
-  border: 2px solid var(--bg-canvas);
-  border-radius: var(--radius-button, 2px);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-highlight);
-}
-
-/* For Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--line-color) var(--bg-canvas);
 }
 

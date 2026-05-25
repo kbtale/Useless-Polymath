@@ -97,7 +97,6 @@ export const AppShell: React.FC<AppShellProps> = ({
     'ean_13',
     'card_counting'
   ]);
-  const [uptime, setUptime] = useState('00:00:00');
   const [showSettings, setShowSettings] = useState(false);
   const [scoresVersion, setScoresVersion] = useState(0);
 
@@ -190,18 +189,6 @@ export const AppShell: React.FC<AppShellProps> = ({
     localStorage.setItem('app-style', activeStyle);
   }, [activeStyle]);
 
-  useEffect(() => {
-    const start = Date.now();
-    const interval = setInterval(() => {
-      const diff = Date.now() - start;
-      const h = Math.floor(diff / 3600000).toString().padStart(2, '0');
-      const m = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
-      const s = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
-      setUptime(`${h}:${m}:${s}`);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
     localStorage.setItem('language', lng);
@@ -236,7 +223,7 @@ export const AppShell: React.FC<AppShellProps> = ({
           </button>
           <div className={styles.title}>
             <div className={styles.square}></div>
-            <h1>{t('app_title')} <span className={styles.version}>v0.0.1-ALPHA</span></h1>
+            <h1>{t('app_title')}</h1>
           </div>
         </div>
         
@@ -329,17 +316,6 @@ export const AppShell: React.FC<AppShellProps> = ({
                 </ul>
               </div>
             ))}
-          </div>
-
-          <div className={styles.footer}>
-            <div className={styles.stat}>
-              <span>{t('uptime', { ns: 'common' })}:</span>
-              <span>{uptime}</span>
-            </div>
-            <div className={styles.stat}>
-              <span>{t('memory', { ns: 'common' })}:</span>
-              <span>64KB</span>
-            </div>
           </div>
 
           <div className={`${styles.crosshair} ${styles['ch-tl']}`}></div>
