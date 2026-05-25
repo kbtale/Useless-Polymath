@@ -101,6 +101,25 @@ export const AppShell: React.FC<AppShellProps> = ({
   const [showSettings, setShowSettings] = useState(false);
   const [scoresVersion, setScoresVersion] = useState(0);
 
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() => {
+    try {
+      const saved = localStorage.getItem('polymath_sidebar_collapsed');
+      return saved === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarCollapsed(prev => {
+      const next = !prev;
+      localStorage.setItem('polymath_sidebar_collapsed', String(next));
+      return next;
+    });
+  };
+
   const [hiddenModules, setHiddenModules] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('polymath_hidden_modules');
@@ -201,9 +220,24 @@ export const AppShell: React.FC<AppShellProps> = ({
   return (
     <div className={styles.appShell}>
       <header className={styles.header}>
-        <div className={styles.title}>
-          <div className={styles.square}></div>
-          <h1>{t('app_title')} <span className={styles.version}>v0.0.1-ALPHA</span></h1>
+        <div className={styles.headerLeft}>
+          <button 
+            className={styles.menuToggle}
+            onClick={() => {
+              if (window.innerWidth <= 768) {
+                setIsMobileMenuOpen(prev => !prev);
+              } else {
+                toggleSidebar();
+              }
+            }}
+            aria-label="Toggle Navigation Sidebar"
+          >
+            ☰
+          </button>
+          <div className={styles.title}>
+            <div className={styles.square}></div>
+            <h1>{t('app_title')} <span className={styles.version}>v0.0.1-ALPHA</span></h1>
+          </div>
         </div>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginRight: '1rem' }}>
@@ -263,7 +297,11 @@ export const AppShell: React.FC<AppShellProps> = ({
 
       <div className={styles.mainLayout}>
         
-        <aside className={styles.sidebar}>
+        <aside className={clsx(
+          styles.sidebar,
+          isSidebarCollapsed && styles.collapsed,
+          isMobileMenuOpen && styles.mobileOpen
+        )}>
           <div className={styles.scrollArea}>
             {categories.filter(catKey => {
               if (hiddenCategories.includes(catKey)) return false;
@@ -280,7 +318,10 @@ export const AppShell: React.FC<AppShellProps> = ({
                     <li 
                       key={m.id}
                       className={clsx(styles.menuItem, activeModule === m.id && styles.active)}
-                      onClick={() => onModuleChange(m.id)}
+                      onClick={() => {
+                        onModuleChange(m.id);
+                        setIsMobileMenuOpen(false);
+                      }}
                     >
                       {toTitleCase(t('title', { ns: m.id, defaultValue: formatDefaultTitle(m.id) }))}
                     </li>
@@ -304,6 +345,13 @@ export const AppShell: React.FC<AppShellProps> = ({
           <div className={`${styles.crosshair} ${styles['ch-tl']}`}></div>
           <div className={`${styles.crosshair} ${styles['ch-br']}`}></div>
         </aside>
+
+        {isMobileMenuOpen && (
+          <div 
+            className={styles.mobileBackdrop} 
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+        )}
 
         <main className={styles.contentArea}>
           <div className={styles.statusBar}>
