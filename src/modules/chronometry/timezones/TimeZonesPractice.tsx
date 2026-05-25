@@ -4,8 +4,10 @@ import { FUIButton } from '../../../components/core/FUIButton';
 import { COMMON_ZONES, calculateDestinationTime } from './logic';
 import styles from './TimeZones.module.scss';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 export const TimeZonesPractice: React.FC = () => {
+  const { t } = useTranslation(['common']);
   const getRandomRound = () => {
     const originIdx = Math.floor(Math.random() * COMMON_ZONES.length);
     let destIdx = Math.floor(Math.random() * COMMON_ZONES.length);
@@ -56,8 +58,8 @@ export const TimeZonesPractice: React.FC = () => {
   return (
     <FUIGlassPanel className={styles.panel}>
       <div className={styles.header}>
-        <h2 className={styles.practiceTitle}>TZ // TRAINING</h2>
-        <div className={styles.streak}>STREAK: {streak}</div>
+        <h2 className={styles.practiceTitle}>{t('practice_mode', { ns: 'common' })}</h2>
+        <div className={styles.streak}>{t('streak', { ns: 'common' })}: {streak}</div>
       </div>
 
       <div className={styles.problemDisplay}>

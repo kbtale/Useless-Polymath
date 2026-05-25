@@ -95,7 +95,7 @@ export const RomanTool: React.FC = () => {
         </div>
 
         <div className={styles.controls}>
-          <FUIButton onClick={clear} variant="outline">[ {t('clear', { ns: 'common' })} ]</FUIButton>
+          <FUIButton onClick={clear} variant="outline">{t('clear', { ns: 'common' })}</FUIButton>
         </div>
 
       </div>

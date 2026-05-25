@@ -74,7 +74,7 @@ export const StorageUnitsPractice: React.FC = () => {
             />
           </div>
 
-          <FUIButton onClick={handleSubmit}>{t('execute', { ns: 'common' })}</FUIButton>
+          <FUIButton onClick={handleSubmit}>{t('submit', { ns: 'common' })}</FUIButton>
           
           {showAnswer && (
             <p className={styles.label} style={{ marginTop: '1rem', color: '#f87171' }}>

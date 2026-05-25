@@ -2,6 +2,16 @@ import { useState, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AppShell } from './components/layout/AppShell';
 import { CoreMarkdownRenderer } from './components/core/CoreMarkdownRenderer';
+
+const toTitleCase = (str: string): string => {
+  return str
+    .toLowerCase()
+    .split('_')
+    .join(' ')
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};
 import { DoomsdayTool } from './modules/chronometry/doomsday/DoomsdayTool';
 import { DoomsdayPractice } from './modules/chronometry/doomsday/DoomsdayPractice';
 import { BinaryTool } from './modules/logic/binary/BinaryTool';
@@ -65,11 +75,11 @@ function AppContent() {
           padding: '2rem', 
           maxWidth: '800px', 
           margin: '0 auto', 
-          fontFamily: 'JetBrains Mono, monospace',
+          fontFamily: 'var(--font-primary), system-ui, sans-serif',
           color: '#333'
         }}>
           <h2 style={{ borderBottom: '1px solid #ccc', paddingBottom: '0.5rem' }}>
-            {t('guide', { ns: 'common', defaultValue: 'GUIDE' })} // {activeModuleId.toUpperCase()}
+            {toTitleCase(activeModuleId)} {t('guide', { ns: 'common', defaultValue: 'Guide' })}
           </h2>
           <div className={styles.guideContainer}>
             <CoreMarkdownRenderer content={t('guide', { ns: activeModuleId, defaultValue: t('documentation_coming_soon', { ns: 'common' }) })} />

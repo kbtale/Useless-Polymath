@@ -7,6 +7,14 @@ import type { DoomsdayLog } from './logic';
 import styles from './Doomsday.module.scss';
 import { useTranslation } from 'react-i18next';
 
+const toTitleCase = (str: string): string => {
+  return str
+    .toLowerCase()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};
+
 export const DoomsdayTool: React.FC = () => {
   const { t } = useTranslation(['doomsday', 'common']);
   const [day, setDay] = useState('12');
@@ -51,8 +59,8 @@ export const DoomsdayTool: React.FC = () => {
         </div>
 
         <div className={styles.buttonGroup}>
-          <FUIButton onClick={handleClear} variant="outline">[ {t('clear', { ns: 'common' })} ]</FUIButton>
-          <FUIButton onClick={handleCalculate} variant="solid">&lt; {t('execute', { ns: 'common' })} &gt;</FUIButton>
+          <FUIButton onClick={handleClear} variant="outline">{t('clear', { ns: 'common' })}</FUIButton>
+          <FUIButton onClick={handleCalculate} variant="solid">{t('calculate', { ns: 'common' })}</FUIButton>
         </div>
 
         {log && (
@@ -72,19 +80,19 @@ export const DoomsdayTool: React.FC = () => {
             {log.steps.map((step, idx) => (
               <div key={idx} className={styles.logStep}>
                 <div className={styles.stepHeader}>
-                  <span>+--[ {step.title} ]---+</span>
+                  <span>Step {idx + 1}: {step.title}</span>
                 </div>
                 <div className={styles.stepContent}>
-                  <div>INPUT: {step.input}</div>
-                  <div>RESULT: {step.result}</div>
-                  {step.details && <div style={{ opacity: 0.6 }}>&gt; {step.details}</div>}
+                  <div>Input: {step.input}</div>
+                  <div>Result: {step.result}</div>
+                  {step.details && <div style={{ opacity: 0.6 }}>{step.details}</div>}
                 </div>
               </div>
             ))}
 
             <div className={styles.finalResult}>
               <div className={styles.resultContent}>
-                {t('final_result')} [ {t('total')} ({log.finalNumber}) ] MOD 7 ==&gt; [ {log.finalNumber} ] // {t('final_day')}: {log.finalDay.toUpperCase()}
+                {t('final_result')}: {t('total')} ({log.finalNumber}) MOD 7 = {log.finalNumber} ({toTitleCase(log.finalDay)})
               </div>
             </div>
           </div>

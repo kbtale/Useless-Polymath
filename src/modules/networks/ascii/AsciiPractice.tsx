@@ -83,7 +83,7 @@ export const AsciiPractice: React.FC = () => {
             />
           </div>
 
-          <FUIButton onClick={handleSubmit}>{t('execute', { ns: 'common' })}</FUIButton>
+          <FUIButton onClick={handleSubmit}>{t('submit', { ns: 'common' })}</FUIButton>
 
         </div>
       </FUIGlassPanel>

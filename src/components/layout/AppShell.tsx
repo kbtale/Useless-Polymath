@@ -139,7 +139,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   
   const currentModule = MODULES.find(m => m.id === activeModule);
   
-  const categoryName = currentModule ? t(currentModule.categoryKey, { ns: 'common' }) : 'UNKNOWN';
+  const categoryName = currentModule ? toTitleCase(t(currentModule.categoryKey, { ns: 'common' })) : 'UNKNOWN';
   const moduleName = currentModule ? toTitleCase(t('title', { ns: currentModule.id, defaultValue: formatDefaultTitle(currentModule.id) })) : 'UNKNOWN';
 
   return (
@@ -212,9 +212,7 @@ export const AppShell: React.FC<AppShellProps> = ({
             {categories.map(catKey => (
               <div key={catKey}>
                 <h2 className={styles.sectionTitle}>
-                  {activeStyle === 'mono' 
-                    ? `${(categories.indexOf(catKey) + 1).toString().padStart(2, '0')} // ${t(catKey, { ns: 'common', defaultValue: catKey }).toUpperCase()}`
-                    : t(catKey, { ns: 'common', defaultValue: catKey }).toUpperCase()}
+                  {t(catKey, { ns: 'common', defaultValue: catKey })}
                 </h2>
                 <ul className={styles.menuList}>
                   {MODULES.filter(m => m.categoryKey === catKey).map(m => (
@@ -270,7 +268,7 @@ export const AppShell: React.FC<AppShellProps> = ({
               className={clsx(styles.tabBtn, mode === 'guide' && styles.active, styles.helpTab)}
               onClick={() => onModeChange('guide')}
             >
-              [ ? ] {t('guide')}
+              {t('guide')}
             </button>
           </div>
 

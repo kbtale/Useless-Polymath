@@ -89,7 +89,7 @@ export const SubnettingPractice: React.FC = () => {
             />
           </div>
 
-          <FUIButton onClick={handleSubmit}>{t('execute', { ns: 'common' })}</FUIButton>
+          <FUIButton onClick={handleSubmit}>{t('submit', { ns: 'common' })}</FUIButton>
 
           {feedback === 'incorrect' && (
              <p style={{ color: 'var(--color-error)', fontFamily: 'JetBrains Mono' }}>{t('incorrect_try_again', { ns: 'common' })}</p>
