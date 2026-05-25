@@ -5,8 +5,10 @@ import { FUIButton } from '../../../components/core/FUIButton';
 import { MORSE_CODE } from './logic';
 import styles from './Morse.module.scss';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 
 export const MorsePractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('morse_code');
   const getRandomQuestion = () => {
     const keys = Object.keys(MORSE_CODE).filter(k => k !== ' ');
     const char = keys[Math.floor(Math.random() * keys.length)];
@@ -18,8 +20,7 @@ export const MorsePractice: React.FC = () => {
   const [question, setQuestion] = useState(getRandomQuestion);
   const [input, setInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
-  const [streak, setStreak] = useState(0);
-
+  
   const generateQuestion = () => {
     setQuestion(getRandomQuestion());
     setInput('');

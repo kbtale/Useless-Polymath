@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { CoreSemaphoreFigure } from '../../../components/core/CoreSemaphoreFigure';
@@ -10,6 +11,7 @@ import clsx from 'clsx';
 import styles from './SemaphorePractice.module.scss';
 
 export const SemaphorePractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('semaphore');
   const getRandomChar = () => {
     const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
     return chars[Math.floor(Math.random() * chars.length)];
@@ -18,8 +20,7 @@ export const SemaphorePractice: React.FC = () => {
   const { t } = useTranslation('semaphore');
   const [targetChar, setTargetChar] = useState(getRandomChar);
   const [input, setInput] = useState('');
-  const [streak, setStreak] = useState(0);
-  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+    const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
   const generateNew = () => {
     setTargetChar(getRandomChar());

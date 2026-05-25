@@ -6,16 +6,17 @@ import { calculateBitwise } from './logic';
 import type { BitwiseOperation } from './logic';
 import styles from './Bitwise.module.scss';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 
 export const BitwisePractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('bitwise');
   const { t } = useTranslation(['bitwise', 'common']);
 
   const [question, setQuestion] = useState<{a: number, b: number, op: BitwiseOperation} | null>(null);
   const [userResult, setUserResult] = useState(0);
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [score, setScore] = useState(0);
-  const [streak, setStreak] = useState(0);
-
+  
   if (!question) {
     // Init question
     generateQuestion();

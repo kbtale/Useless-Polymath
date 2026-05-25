@@ -5,9 +5,11 @@ import { FUIButton } from '../../../components/core/FUIButton';
 import { ALPHABET, getBraillePattern } from './logic';
 import styles from './Braille.module.scss';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import clsx from 'clsx';
 
 export const BraillePractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('braille');
   const getRandomChar = () => {
     return ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
   };
@@ -17,8 +19,7 @@ export const BraillePractice: React.FC = () => {
   const [targetChar, setTargetChar] = useState(getRandomChar);
   const [input, setInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
-  const [streak, setStreak] = useState(0);
-
+  
   const generateQuestion = () => {
     setTargetChar(getRandomChar());
     setInput('');

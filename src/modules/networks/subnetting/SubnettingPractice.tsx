@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
@@ -8,6 +9,7 @@ import styles from './Subnetting.module.scss';
 import clsx from 'clsx';
 
 export const SubnettingPractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('subnetting');
   const getRandomProblem = () => {
     const ip = Array.from({ length: 4 }, () => Math.floor(Math.random() * 256)).join('.');
     const cidr = Math.floor(Math.random() * (30 - 16 + 1)) + 16;
@@ -23,8 +25,7 @@ export const SubnettingPractice: React.FC = () => {
   
   const [userAnswer, setUserAnswer] = useState('');
   const [feedback, setFeedback] = useState<'idle' | 'correct' | 'incorrect'>('idle');
-  const [streak, setStreak] = useState(0);
-
+  
   const generateProblem = () => {
     setProblem(getRandomProblem());
     setUserAnswer('');

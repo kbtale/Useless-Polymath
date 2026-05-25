@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
@@ -11,13 +12,13 @@ import styles from './Thermodynamics.module.scss'; // Reuse styles
 const getRandomC = () => Math.floor(Math.random() * 40);
 
 export const ThermodynamicsPractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('thermodynamics');
   const { t } = useTranslation('thermodynamics');
   
   // Lazy init state
   const [targetC, setTargetC] = useState<number>(() => getRandomC());
   const [input, setInput] = useState('');
-  const [streak, setStreak] = useState(0);
-  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+    const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
   const generateNew = () => {
     setTargetC(getRandomC());

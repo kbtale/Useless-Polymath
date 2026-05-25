@@ -5,9 +5,11 @@ import { getDayOfWeek, DAYS } from './logic';
 import styles from './Doomsday.module.scss';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 
 export const DoomsdayPractice: React.FC = () => {
   const { t } = useTranslation(['common']);
+  const { streak, setStreak } = usePracticeStreak('doomsday');
   const getRandomDate = () => {
     const start = new Date(1900, 0, 1);
     const end = new Date(2100, 0, 1);
@@ -21,7 +23,6 @@ export const DoomsdayPractice: React.FC = () => {
 
   const [targetDate, setTargetDate] = useState(getRandomDate);
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
-  const [streak, setStreak] = useState(0);
 
   const generateDate = () => {
     setTargetDate(getRandomDate());

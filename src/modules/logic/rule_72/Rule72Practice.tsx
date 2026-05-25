@@ -5,16 +5,17 @@ import { FUIButton } from '../../../components/core/FUIButton';
 import { calculateDoublingTime } from './logic';
 import styles from './Rule72.module.scss';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 
 export const Rule72Practice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('rule_72');
   const { t } = useTranslation(['rule_72', 'common']);
 
   const [questionRate, setQuestionRate] = useState<number>(0);
   const [userInput, setUserInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [score, setScore] = useState(0);
-  const [streak, setStreak] = useState(0);
-
+  
   if (questionRate === 0) {
     generateQuestion();
   }
