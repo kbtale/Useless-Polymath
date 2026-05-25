@@ -28,5 +28,8 @@
   "next": "Next",
   "target": "Target",
   "result": "Result",
-  "incorrect_try_again": "Incorrect. Try again."
+  "incorrect_try_again": "Incorrect. Try again.",
+  "correct": "Correct!",
+  "incorrect": "Incorrect!",
+  "correct_answer": "Correct answer: {{answer}}"
 }

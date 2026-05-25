@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
@@ -17,17 +16,16 @@ export const SemaphorePractice: React.FC = () => {
     return chars[Math.floor(Math.random() * chars.length)];
   };
 
-  const { t } = useTranslation('semaphore');
+  const { t } = useTranslation(['semaphore', 'common']);
   const [targetChar, setTargetChar] = useState(getRandomChar);
   const [input, setInput] = useState('');
-    const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
   const generateNew = () => {
     setTargetChar(getRandomChar());
     setInput('');
     setFeedback(null);
   };
-
 
   const checkAnswer = () => {
     if (input.toLowerCase() === targetChar.toLowerCase()) {
@@ -40,32 +38,24 @@ export const SemaphorePractice: React.FC = () => {
     }
   };
 
-
   const pattern = getSemaphorePattern(targetChar);
 
   return (
     <FUIGlassPanel className={styles.panel}>
       <div className={styles.header}>
-        <h2 className={styles.practiceTitle}>{t('practice_title', 'SEMAPHORE TRAINING')}</h2>
-        <div className={styles.streak}>STREAK: {streak}</div>
+        <h2 className={styles.practiceTitle}>{t('common:practice_mode', 'Practice Mode')}</h2>
+        <div className={styles.streak}>{t('common:streak', 'Streak')}: {streak}</div>
       </div>
 
-      <div className={styles.grid}>
-        <div className={clsx(
-          styles.card,
-          feedback === 'correct' && styles.correct,
-          feedback === 'incorrect' && styles.wrong
-        )}>
-          <CoreSemaphoreFigure 
-            leftAngle={pattern.left} 
-            rightAngle={pattern.right} 
-            size={240}
-            className="text-black"
-          />
+      <div className={styles.practiceArea}>
+        <div className={styles.left}>
+          <div className={styles.semaphoreBox}>
+            <CoreSemaphoreFigure leftAngle={pattern.left} rightAngle={pattern.right} size={150} />
+          </div>
         </div>
 
-        <div className={styles.inputArea}>
-          <label className={styles.label}>{t('identify_label', 'Identify Signal')}</label>
+        <div className={styles.right}>
+          <div className={styles.inputLabel}>{t('enter_character', 'Enter Character')}</div>
           <CoreBaseInput
             value={input}
             onChangeValue={setInput}
@@ -85,8 +75,8 @@ export const SemaphorePractice: React.FC = () => {
       {feedback && (
         <div className={clsx(styles.feedback, styles[feedback])}>
           {feedback === 'correct' 
-            ? 'ACCESS GRANTED' 
-            : `ACCESS DENIED // CORRECT: ${targetChar.toUpperCase()}`
+            ? t('common:correct', 'Correct!') 
+            : t('common:correct_answer', { answer: targetChar.toUpperCase(), defaultValue: 'Correct answer: {{answer}}' })
           }
         </div>
       )}

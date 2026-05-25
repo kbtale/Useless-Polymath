@@ -23,5 +23,9 @@
   "modules.logic": "Lógica",
   "modules.networks": "Redes",
   "modules.cryptography": "Criptografía",
-  "modules.science": "Ciencia"
+  "modules.science": "Ciencia",
+  "streak": "Racha",
+  "correct": "¡Correcto!",
+  "incorrect": "¡Incorrecto!",
+  "correct_answer": "Respuesta correcta: {{answer}}"
 }

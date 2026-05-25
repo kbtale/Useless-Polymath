@@ -73,7 +73,7 @@ export const HexPractice: React.FC = () => {
 
       {feedback && (
         <div className={clsx(styles.feedback, styles[feedback])}>
-          {feedback === 'correct' ? 'ACCESS GRANTED' : 'ACCESS DENIED'}
+          {feedback === 'correct' ? t('correct', 'Correct!') : t('incorrect', 'Incorrect!')}
         </div>
       )}
     </FUIGlassPanel>
