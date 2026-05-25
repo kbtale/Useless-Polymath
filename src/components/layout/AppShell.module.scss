@@ -192,6 +192,7 @@
   position: relative;
   background: var(--bg-content-area, rgba(255, 255, 255, 0.5));
   overflow: hidden;
+  min-height: 0;
 
   .statusBar {
     padding: $spacing-xs $spacing-lg;
@@ -238,8 +239,9 @@
     flex: 1;
     padding: $spacing-lg;
     position: relative;
-    overflow-y: auto;
+    overflow-y: scroll;
     width: 100%;
+    min-height: 0;
   }
 }
 
