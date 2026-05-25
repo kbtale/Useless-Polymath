@@ -44,7 +44,7 @@
   
   background: transparent;
   border: $border-thin;
-  border-radius: 0; // Schematic sharp corners
+  border-radius: $radius-input;
   color: $text-main;
   font-family: $font-mono;
   font-size: $text-base;

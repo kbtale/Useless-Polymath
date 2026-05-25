@@ -19,7 +19,7 @@
   "documentation_coming_soon": "Documentación próximamente...",
   "modules.chronometry": "CRONOMETRÍA",
   "modules.logic": "LÓGICA",
-  "modules.networks": "03 // REDES",
-  "modules.cryptography": "04 // CRIPTOGRAFÍA",
-  "modules.science": "05 // CIENCIA"
+  "modules.networks": "REDES",
+  "modules.cryptography": "CRIPTOGRAFÍA",
+  "modules.science": "CIENCIA"
 }

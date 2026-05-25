@@ -19,7 +19,7 @@
   "documentation_coming_soon": "Documentazione in arrivo...",
   "modules.chronometry": "CRONOMETRIA",
   "modules.logic": "LOGICA",
-  "modules.networks": "03 // RETI",
-  "modules.cryptography": "04 // CRITTOGRAFIA",
-  "modules.science": "05 // SCIENZA"
+  "modules.networks": "RETI",
+  "modules.cryptography": "CRITTOGRAFIA",
+  "modules.science": "SCIENZA"
 }

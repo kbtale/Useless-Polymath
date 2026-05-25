@@ -35,6 +35,17 @@ $spacing-xl: var(--spacing-xl, 4rem);
 // BORDERS
 $border-thin: 1px solid $line-color;
 
+// BORDER RADIUS
+$radius-card: var(--radius-card, 0px);
+$radius-inner-card: var(--radius-inner-card, 0px);
+$radius-button: var(--radius-button, 0px);
+$radius-input: var(--radius-input, 0px);
+
+// SHADOWS
+$shadow-card: var(--shadow-card, none);
+$shadow-button: var(--shadow-button, none);
+$shadow-button-hover: var(--shadow-button-hover, none);
+
 // LAYOUT
 $container-sm: 100%;
 $container-md: 100%;

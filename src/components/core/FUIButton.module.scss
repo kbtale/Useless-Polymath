@@ -34,8 +34,8 @@
 
 
   &.solid {
-    background: $line-color;
-    color: $bg-canvas;
+    background: var(--btn-solid-bg, $line-color);
+    color: var(--btn-solid-text, $bg-canvas);
 
     &:hover {
       background: transparent;
