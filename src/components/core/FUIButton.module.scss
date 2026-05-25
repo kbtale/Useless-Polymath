@@ -18,12 +18,14 @@
   gap: $spacing-sm;
 
   min-height: 44px;
-  border-radius: 0;
+  border-radius: var(--radius-button, 0px);
+  box-shadow: var(--shadow-button, none);
 
   &:hover {
-    background: $line-color;
-    color: $bg-canvas;
-    border-color: $line-color;
+    background: var(--btn-hover-bg, $line-color);
+    color: var(--btn-hover-text, $bg-canvas);
+    border-color: var(--btn-hover-border, $line-color);
+    box-shadow: var(--shadow-button-hover, none);
   }
 
   &:active {

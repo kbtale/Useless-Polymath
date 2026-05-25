@@ -58,6 +58,22 @@ export const AppShell: React.FC<AppShellProps> = ({
   const { t, i18n } = useTranslation(['common', 'doomsday', 'time_zones', 'moon', 'ordinal', 'binary', 'hexadecimal']);
   const [uptime, setUptime] = useState('00:00:00');
 
+  const STYLES = [
+    { id: 'mono', label: 'MONO' },
+    { id: 'wellfound', label: 'WELLFOUND' },
+    { id: 'ori', label: 'ORI' },
+    { id: 'motherduck', label: 'MOTHERDUCK' }
+  ];
+
+  const [activeStyle, setActiveStyle] = useState(() => {
+    return localStorage.getItem('app-style') || 'mono';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-style', activeStyle);
+    localStorage.setItem('app-style', activeStyle);
+  }, [activeStyle]);
+
   useEffect(() => {
     const start = Date.now();
     const interval = setInterval(() => {
@@ -93,28 +109,55 @@ export const AppShell: React.FC<AppShellProps> = ({
           <h1>{t('app_title')} <span className={styles.version}>v0.0.1-ALPHA</span></h1>
         </div>
         
-        <div style={{ display: 'flex', gap: '0.5rem', marginRight: '1rem' }}>
-          <FUIButton 
-            onClick={() => changeLanguage('en')} 
-            variant={i18n.language === 'en' ? 'solid' : 'outline'}
-            style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
-          >
-            EN
-          </FUIButton>
-          <FUIButton 
-            onClick={() => changeLanguage('es')} 
-            variant={i18n.language === 'es' ? 'solid' : 'outline'}
-            style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
-          >
-            ES
-          </FUIButton>
-          <FUIButton 
-            onClick={() => changeLanguage('it')} 
-            variant={i18n.language === 'it' ? 'solid' : 'outline'}
-             style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
-          >
-            IT
-          </FUIButton>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginRight: '1rem' }}>
+          {/* Style Selector */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', opacity: 0.7 }}>STYLE:</span>
+            <select 
+              value={activeStyle}
+              onChange={(e) => setActiveStyle(e.target.value)}
+              style={{ 
+                background: 'var(--bg-canvas)',
+                color: 'var(--text-main)',
+                border: '1px solid var(--line-color)',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.75rem',
+                padding: '0.25rem 0.5rem',
+                cursor: 'pointer',
+                outline: 'none',
+                borderRadius: 'var(--radius-button)'
+              }}
+            >
+              {STYLES.map(s => (
+                <option key={s.id} value={s.id}>{s.label}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Language Selector */}
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <FUIButton 
+              onClick={() => changeLanguage('en')} 
+              variant={i18n.language === 'en' ? 'solid' : 'outline'}
+              style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
+            >
+              EN
+            </FUIButton>
+            <FUIButton 
+              onClick={() => changeLanguage('es')} 
+              variant={i18n.language === 'es' ? 'solid' : 'outline'}
+              style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
+            >
+              ES
+            </FUIButton>
+            <FUIButton 
+              onClick={() => changeLanguage('it')} 
+              variant={i18n.language === 'it' ? 'solid' : 'outline'}
+               style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
+            >
+              IT
+            </FUIButton>
+          </div>
         </div>
 
         <FUIButton onClick={() => alert(t('settings') + ' // ' + t('access_denied', { ns: 'common' }))}>{t('settings')}</FUIButton>

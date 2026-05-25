@@ -1,68 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Roboto+Mono:wght@100;300;400&family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@400;700;900&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Default font fallback */
+  font-family: var(--font-primary, system-ui, Avenir, Helvetica, Arial, sans-serif);
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Theme mappings for CSS variables default */
+  --bg-canvas: #ffffff;
+  --line-color: #000000;
+  --text-main: #000000;
+  --text-dim: #666666;
+  --text-highlight: #000000;
+  --hover-bg: #f0f0f0;
+  --color-error: #ff3333;
+
+  --font-primary: 'JetBrains Mono', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --radius-card: 0px;
+  --radius-inner-card: 0px;
+  --radius-button: 0px;
+  --radius-input: 0px;
+
+  --shadow-card: 8px 8px 0px rgba(0,0,0,0.05);
+  --shadow-button: none;
+  --shadow-button-hover: none;
+
+  --panel-border: 1px solid var(--line-color);
+  --panel-inner-border: 1px solid var(--line-color);
+  --panel-padding: 0.5rem;
+  --corner-decorations-display: block;
+
+  --btn-hover-bg: var(--line-color);
+  --btn-hover-text: var(--bg-canvas);
+  --btn-hover-border: var(--line-color);
+
+  /* Layout Overrides Defaults */
+  --border-header: 1px solid var(--line-color);
+  --bg-header: var(--bg-canvas);
+  --color-square: var(--line-color);
+  --square-display: block;
+  --border-sidebar: 1px solid var(--line-color);
+  --bg-sidebar: rgba(255, 255, 255, 0.9);
+  --border-sidebar-footer: 1px solid var(--line-color);
+  --bg-content-area: rgba(255, 255, 255, 0.5);
+  --border-statusbar: 1px solid var(--line-color);
+  --bg-statusbar: rgba(255, 255, 255, 0.8);
+  --border-tabs: 1px solid var(--line-color);
+  --bg-tabs: rgba(255, 255, 255, 0.8);
+  --tab-border-active: var(--line-color);
+  --crosshair-display: block;
+}
+
+/* 1. MONO - Architectural grid on Canvas White (Light Theme) */
+[data-style="mono"] {
+  color-scheme: light;
+  --bg-canvas: #ffffff;
+  --line-color: #292929;
+  --text-main: #292929;
+  --text-dim: #737373;
+  --text-highlight: #000000;
+  --hover-bg: #f5f5f5;
+  --color-error: #ec2e3a;
+
+  --font-primary: 'Helvetica Neue', 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --radius-card: 0px;
+  --radius-inner-card: 0px;
+  --radius-button: 0px;
+  --radius-input: 0px;
+
+  --shadow-card: none;
+  --shadow-button: none;
+  --shadow-button-hover: none;
+
+  --panel-border: 1px solid var(--line-color);
+  --panel-inner-border: 1px solid var(--line-color);
+  --panel-padding: 0.5rem;
+  --corner-decorations-display: block;
+
+  --btn-hover-bg: var(--line-color);
+  --btn-hover-text: var(--bg-canvas);
+  --btn-hover-border: var(--line-color);
+
+  /* Layout */
+  --border-header: 1px solid var(--line-color);
+  --bg-header: var(--bg-canvas);
+  --color-square: var(--line-color);
+  --square-display: block;
+  --border-sidebar: 1px solid var(--line-color);
+  --bg-sidebar: #ffffff;
+  --border-sidebar-footer: 1px solid var(--line-color);
+  --bg-content-area: #ffffff;
+  --border-statusbar: 1px solid var(--line-color);
+  --bg-statusbar: #ffffff;
+  --border-tabs: 1px solid var(--line-color);
+  --bg-tabs: #ffffff;
+  --tab-border-active: var(--line-color);
+  --crosshair-display: block;
+}
+
+/* 2. WELLFOUND - Startup Canvas, Clean Bold Type (Light Theme - BORDERLESS) */
+[data-style="wellfound"] {
+  color-scheme: light;
+  --bg-canvas: #f8f9fa; /* Off-white canvas */
+  --line-color: #e9ecef; /* Soft gray line color */
+  --text-main: #051316; /* Midnight Ink */
+  --text-dim: #495057; /* Muted gray text */
+  --text-highlight: #ec2e3a; /* Vermillion */
+  --hover-bg: #fff4f6; /* Rose Blush */
+  --color-error: #ec2e3a;
+
+  --font-primary: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --radius-card: 16px;
+  --radius-inner-card: 12px;
+  --radius-button: 12px;
+  --radius-input: 12px;
+
+  --shadow-card: rgba(0, 0, 0, 0.04) 0px 4px 20px;
+  --shadow-button: rgba(0, 0, 0, 0.02) 0px 2px 4px;
+  --shadow-button-hover: rgba(0, 0, 0, 0.06) 0px 9px 20px 0px;
+
+  --panel-border: none;
+  --panel-inner-border: none;
+  --panel-padding: 0rem;
+  --corner-decorations-display: none;
+
+  --btn-hover-bg: var(--text-main);
+  --btn-hover-text: var(--bg-canvas);
+  --btn-hover-border: var(--text-main);
+
+  /* Layout (No structural grid borders!) */
+  --border-header: none;
+  --bg-header: #ffffff;
+  --color-square: var(--text-main);
+  --square-display: none;
+  --border-sidebar: none;
+  --bg-sidebar: #fff4f6; /* Soft pink sidebar */
+  --border-sidebar-footer: none;
+  --bg-content-area: #ffffff;
+  --border-statusbar: none;
+  --bg-statusbar: #ffffff;
+  --border-tabs: none;
+  --bg-tabs: #ffffff;
+  --tab-border-active: var(--text-highlight);
+  --crosshair-display: none;
+}
+
+/* 3. ORI - Dark Command Center with Radiant Orange (Dark Theme) */
+[data-style="ori"] {
+  color-scheme: dark;
+  --bg-canvas: #0a0a0a;
+  --line-color: #1a1a1a; /* Deep Gray */
+  --text-main: #f5f5f5; /* Ghost Canvas */
+  --text-dim: #bfbfbf; /* Faded Silver */
+  --text-highlight: #ff4f2b; /* Radiant Orange */
+  --hover-bg: #111111; /* Subtle dark */
+  --color-error: #ff4f2b;
+
+  --font-primary: 'Poppins', 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --radius-card: 0px;
+  --radius-inner-card: 0px;
+  --radius-button: 0px;
+  --radius-input: 0px;
+
+  --shadow-card: none;
+  --shadow-button: none;
+  --shadow-button-hover: none;
+
+  --panel-border: 1px solid var(--line-color);
+  --panel-inner-border: none;
+  --panel-padding: 0.5rem;
+  --corner-decorations-display: none;
+
+  --btn-hover-bg: var(--text-highlight);
+  --btn-hover-text: #000000;
+  --btn-hover-border: var(--text-highlight);
+
+  /* Layout */
+  --border-header: 1px solid var(--line-color);
+  --bg-header: #000000;
+  --color-square: var(--text-highlight);
+  --square-display: block;
+  --border-sidebar: 1px solid var(--line-color);
+  --bg-sidebar: #000000;
+  --border-sidebar-footer: 1px solid var(--line-color);
+  --bg-content-area: #080808;
+  --border-statusbar: 1px solid var(--line-color);
+  --bg-statusbar: #000000;
+  --border-tabs: 1px solid var(--line-color);
+  --bg-tabs: #000000;
+  --tab-border-active: var(--text-highlight);
+  --crosshair-display: none;
+}
+
+/* 4. MOTHERDUCK - Playful blueprint on paper bag (Warm Oat theme) */
+[data-style="motherduck"] {
+  color-scheme: light;
+  --bg-canvas: #f4efea; /* Canvas Oat */
+  --line-color: #383838; /* Ink */
+  --text-main: #383838;
+  --text-dim: #818181; /* Slate */
+  --text-highlight: #6fc2ff; /* Sky Blue */
+  --hover-bg: #ffffff; /* Paper White */
+  --color-error: #ff7169;
+
+  --font-primary: 'Space Mono', monospace;
+  --font-mono: 'Space Mono', monospace;
+
+  --radius-card: 0px;
+  --radius-inner-card: 0px;
+  --radius-button: 2px;
+  --radius-input: 2px;
+
+  --shadow-card: none;
+  --shadow-button: none;
+  --shadow-button-hover: var(--line-color) -6px 6px 0px 0px;
+
+  --panel-border: 2px solid var(--line-color);
+  --panel-inner-border: 1px solid var(--line-color);
+  --panel-padding: 0.5rem;
+  --corner-decorations-display: block;
+
+  --btn-hover-bg: var(--text-highlight);
+  --btn-hover-text: #000000;
+  --btn-hover-border: var(--line-color);
+
+  /* Layout */
+  --border-header: 2px solid var(--line-color);
+  --bg-header: #f4efea;
+  --color-square: var(--text-highlight);
+  --square-display: block;
+  --border-sidebar: 2px solid var(--line-color);
+  --bg-sidebar: #f4efea;
+  --border-sidebar-footer: 2px solid var(--line-color);
+  --bg-content-area: #f4efea;
+  --border-statusbar: 2px solid var(--line-color);
+  --bg-statusbar: #ffffff;
+  --border-tabs: 2px solid var(--line-color);
+  --bg-tabs: #ffffff;
+  --tab-border-active: var(--text-highlight);
+  --crosshair-display: none;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--text-highlight);
   text-decoration: inherit;
 }
+
 a:hover {
-  color: #535bf2;
+  color: var(--text-main);
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  background-color: var(--bg-canvas);
+  color: var(--text-main);
+  font-family: var(--font-primary);
   min-width: 320px;
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-family: var(--font-primary);
 }
 
 button {
-  border-radius: 8px;
+  border-radius: var(--radius-button);
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-family: var(--font-primary);
+  background-color: var(--hover-bg);
+  color: var(--text-main);
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
+  border-color: var(--line-color);
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }

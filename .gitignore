@@ -25,3 +25,5 @@ dist-ssr
 
 # Translation sources
 *_FULL.json
+.agents/
+skills-lock.json

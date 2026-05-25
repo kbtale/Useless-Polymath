@@ -1,42 +1,42 @@
 // COLORS
-$bg-canvas: #ffffff;
-$line-color: #000000;
-$text-main: #000000;
-$text-dim: #666666;
-$text-highlight: #000000;
-$hover-bg: #f0f0f0;
-$color-error: #ff3333;
+$bg-canvas: var(--bg-canvas, #ffffff);
+$line-color: var(--line-color, #000000);
+$text-main: var(--text-main, #000000);
+$text-dim: var(--text-dim, #666666);
+$text-highlight: var(--text-highlight, #000000);
+$hover-bg: var(--hover-bg, #f0f0f0);
+$color-error: var(--color-error, #ff3333);
 
 // FONTS
-$font-mono: 'JetBrains Mono', monospace;
-$line-height-base: 1.6;
+$font-mono: var(--font-mono, 'JetBrains Mono', monospace);
+$line-height-base: var(--line-height-base, 1.6);
 
 // TYPOGRAPHY SCALE (Modular 1.25)
 // Headers
-$text-xl: 1.953rem;
+$text-xl: var(--text-xl, 1.953rem);
 // Subheaders
-$text-lg: 1.563rem;
+$text-lg: var(--text-lg, 1.563rem);
 // Body/Inputs
-$text-md: 1.25rem;
+$text-md: var(--text-md, 1.25rem);
 // Standard
-$text-base: 1rem;
+$text-base: var(--text-base, 1rem);
 // Labels
-$text-sm: 0.8rem;
+$text-sm: var(--text-sm, 0.8rem);
 // Meta
-$text-xs: 0.64rem;
+$text-xs: var(--text-xs, 0.64rem);
 
 // SPACING
-$spacing-xs: 0.25rem;
-$spacing-sm: 0.5rem;
-$spacing-md: 1rem;
-$spacing-lg: 2rem;
-$spacing-xl: 4rem;
+$spacing-xs: var(--spacing-xs, 0.25rem);
+$spacing-sm: var(--spacing-sm, 0.5rem);
+$spacing-md: var(--spacing-md, 1rem);
+$spacing-lg: var(--spacing-lg, 2rem);
+$spacing-xl: var(--spacing-xl, 4rem);
 
 // BORDERS
 $border-thin: 1px solid $line-color;
 
 // LAYOUT
-// LAYOUT
 $container-sm: 100%;
 $container-md: 100%;
 $container-lg: 100%;
+

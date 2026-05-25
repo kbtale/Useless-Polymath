@@ -2,25 +2,28 @@
 
 .glassPanel {
   background: $bg-canvas;
-  border: 1px solid $line-color;
+  border: var(--panel-border, 1px solid $line-color);
+  border-radius: var(--radius-card, 0px);
   // Outer padding for the double border effect
-  padding: $spacing-sm;
+  padding: var(--panel-padding, $spacing-sm);
   position: relative;
-  box-shadow: 8px 8px 0px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-card, 8px 8px 0px rgba(0,0,0,0.05));
   
   .innerBorder {
-    border: 1px solid $line-color;
+    border: var(--panel-inner-border, 1px solid $line-color);
+    border-radius: var(--radius-inner-card, 0px);
     padding: $spacing-lg;
     position: relative;
   }
 
   // Corner Decorations
   .corner {
+    display: var(--corner-decorations-display, block);
     position: absolute;
     width: 8px;
     height: 8px;
     background: $bg-canvas;
-    border: 1px solid $line-color;
+    border: var(--panel-border, 1px solid $line-color);
     z-index: 1;
   }
 
