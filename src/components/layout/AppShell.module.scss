@@ -191,6 +191,7 @@
   flex-direction: column;
   position: relative;
   background: var(--bg-content-area, rgba(255, 255, 255, 0.5));
+  overflow: hidden;
 
   .statusBar {
     padding: $spacing-xs $spacing-lg;
