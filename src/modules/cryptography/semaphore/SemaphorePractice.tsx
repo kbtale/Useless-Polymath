@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
@@ -10,23 +10,23 @@ import clsx from 'clsx';
 import styles from './SemaphorePractice.module.scss';
 
 export const SemaphorePractice: React.FC = () => {
+  const getRandomChar = () => {
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    return chars[Math.floor(Math.random() * chars.length)];
+  };
+
   const { t } = useTranslation('semaphore');
-  const [targetChar, setTargetChar] = useState('a');
+  const [targetChar, setTargetChar] = useState(getRandomChar);
   const [input, setInput] = useState('');
   const [streak, setStreak] = useState(0);
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
   const generateNew = () => {
-    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    const char = chars[Math.floor(Math.random() * chars.length)];
-    setTargetChar(char);
+    setTargetChar(getRandomChar());
     setInput('');
     setFeedback(null);
   };
 
-  useEffect(() => {
-    generateNew();
-  }, []);
 
   const checkAnswer = () => {
     if (input.toLowerCase() === targetChar.toLowerCase()) {
@@ -39,10 +39,6 @@ export const SemaphorePractice: React.FC = () => {
     }
   };
 
-  // Allow enter key
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') checkAnswer();
-  };
 
   const pattern = getSemaphorePattern(targetChar);
 

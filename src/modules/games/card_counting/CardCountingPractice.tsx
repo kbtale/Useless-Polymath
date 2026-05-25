@@ -47,7 +47,7 @@ export const CardCountingPractice: React.FC = () => {
 
   // Interval for auto-dealing
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (isActive && !isFinished) {
       interval = setInterval(() => {
         const card = deck.deal();
@@ -117,7 +117,7 @@ export const CardCountingPractice: React.FC = () => {
               onEnter={checkAnswer}
               placeholder="0"
               className="text-center font-mono text-xl"
-              allowedChars={/^[0-9\-]*$/}
+              allowedChars={/^[0-9-]*$/}
             />
 
             {!feedback && (
