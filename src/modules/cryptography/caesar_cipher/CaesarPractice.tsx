@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
@@ -9,23 +9,23 @@ import { useTranslation } from 'react-i18next';
 const WORDS = ['HELLO', 'WORLD', 'SECRET', 'CIPHER', 'CODE', 'PYTHON', 'REACT', 'AGENT', 'FUTURE', 'HISTORY'];
 
 export const CaesarPractice: React.FC = () => {
+  const getRandomQuestion = () => {
+    const word = WORDS[Math.floor(Math.random() * WORDS.length)];
+    const s = Math.floor(Math.random() * 25) + 1; // 1-25
+    return { word, shift: s };
+  };
+
   const { t } = useTranslation(['caesar_cipher', 'common']);
   
-  const [targetWord, setTargetWord] = useState('');
-  const [shift, setShift] = useState(0);
+  const [question, setQuestion] = useState(getRandomQuestion);
+  const targetWord = question.word;
+  const shift = question.shift;
   const [userInput, setUserInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [streak, setStreak] = useState(0);
 
-  useEffect(() => {
-    generateQuestion();
-  }, []);
-
   const generateQuestion = () => {
-    const word = WORDS[Math.floor(Math.random() * WORDS.length)];
-    const s = Math.floor(Math.random() * 25) + 1; // 1-25
-    setTargetWord(word);
-    setShift(s);
+    setQuestion(getRandomQuestion());
     setUserInput('');
     setFeedback(null);
   };

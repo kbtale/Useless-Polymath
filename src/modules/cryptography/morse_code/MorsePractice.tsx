@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
@@ -7,21 +7,21 @@ import styles from './Morse.module.scss';
 import { useTranslation } from 'react-i18next';
 
 export const MorsePractice: React.FC = () => {
+  const getRandomQuestion = () => {
+    const keys = Object.keys(MORSE_CODE).filter(k => k !== ' ');
+    const char = keys[Math.floor(Math.random() * keys.length)];
+    return { char, morse: MORSE_CODE[char] };
+  };
+
   const { t } = useTranslation(['morse_code', 'common']);
   
-  const [question, setQuestion] = useState<{char: string, morse: string} | null>(null);
+  const [question, setQuestion] = useState(getRandomQuestion);
   const [input, setInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [streak, setStreak] = useState(0);
 
-  useEffect(() => {
-    generateQuestion();
-  }, []);
-
   const generateQuestion = () => {
-    const keys = Object.keys(MORSE_CODE).filter(k => k !== ' ');
-    const char = keys[Math.floor(Math.random() * keys.length)];
-    setQuestion({ char, morse: MORSE_CODE[char] });
+    setQuestion(getRandomQuestion());
     setInput('');
     setFeedback(null);
   };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { NATO_DICTIONARY } from './logic';
@@ -6,25 +6,7 @@ import styles from './Nato.module.scss';
 import { useTranslation } from 'react-i18next';
 
 export const NatoPractice: React.FC = () => {
-  const { t } = useTranslation(['nato_alphabet', 'common']);
-  
-  // Question State
-  const [questionChar, setQuestionChar] = useState<string>('');
-  const [options, setOptions] = useState<string[]>([]);
-  const [correctAnswer, setCorrectAnswer] = useState<string>('');
-  
-  // Game State
-  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
-  const [score, setScore] = useState(0);
-  const [streak, setStreak] = useState(0);
-
-  useEffect(() => {
-    if (!questionChar) {
-        generateQuestion();
-    }
-  }, []);
-
-  const generateQuestion = () => {
+  const getRandomQuestion = () => {
     const keys = Object.keys(NATO_DICTIONARY).filter(k => isNaN(parseInt(k))); // Letters only for now
     const char = keys[Math.floor(Math.random() * keys.length)];
     const correct = NATO_DICTIONARY[char];
@@ -38,10 +20,24 @@ export const NatoPractice: React.FC = () => {
     }
 
     const nextOptions = [...distractors, correct].sort(() => Math.random() - 0.5);
+    return { char, correct, options: nextOptions };
+  };
 
-    setQuestionChar(char);
-    setCorrectAnswer(correct);
-    setOptions(nextOptions);
+  const { t } = useTranslation(['nato_alphabet', 'common']);
+  
+  // Question State
+  const [question, setQuestion] = useState(getRandomQuestion);
+  const questionChar = question.char;
+  const correctAnswer = question.correct;
+  const options = question.options;
+  
+  // Game State
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+  const [score, setScore] = useState(0);
+  const [streak, setStreak] = useState(0);
+
+  const generateQuestion = () => {
+    setQuestion(getRandomQuestion());
     setFeedback(null);
   };
 

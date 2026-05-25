@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
@@ -8,20 +8,19 @@ import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 
 export const BraillePractice: React.FC = () => {
+  const getRandomChar = () => {
+    return ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
+  };
+
   const { t } = useTranslation(['braille', 'common']);
   
-  const [targetChar, setTargetChar] = useState('');
+  const [targetChar, setTargetChar] = useState(getRandomChar);
   const [input, setInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [streak, setStreak] = useState(0);
 
-  useEffect(() => {
-    generateQuestion();
-  }, []);
-
   const generateQuestion = () => {
-    const char = ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
-    setTargetChar(char);
+    setTargetChar(getRandomChar());
     setInput('');
     setFeedback(null);
   };
