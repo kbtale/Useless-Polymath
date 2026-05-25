@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
@@ -9,23 +9,19 @@ import clsx from 'clsx';
 
 export const StorageUnitsPractice: React.FC = () => {
   const { t } = useTranslation(['storage_units', 'common']);
-  const [problem, setProblem] = useState({ fromIdx: 3, toIdx: 1, amount: 1 });
+  const [problem, setProblem] = useState(generatePracticeProblem);
   
   const [userAnswer, setUserAnswer] = useState('');
   const [feedback, setFeedback] = useState<'idle' | 'correct' | 'incorrect'>('idle');
   const [streak, setStreak] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
 
-  const newProblem = useCallback(() => {
+  const newProblem = () => {
     setProblem(generatePracticeProblem());
     setUserAnswer('');
     setFeedback('idle');
     setShowAnswer(false);
-  }, []);
-
-  useEffect(() => {
-    newProblem();
-  }, [newProblem]);
+  };
 
   const correctAnswer = calculateAnswer(problem.amount, problem.fromIdx, problem.toIdx);
 

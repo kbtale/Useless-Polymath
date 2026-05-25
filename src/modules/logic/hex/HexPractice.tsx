@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { decimalToHex, hexToDecimal } from './logic';
@@ -6,31 +6,31 @@ import styles from './Hex.module.scss';
 import clsx from 'clsx';
 
 export const HexPractice: React.FC = () => {
-  const [target, setTarget] = useState(0);
-  const [options, setOptions] = useState<string[]>([]);
-  const [streak, setStreak] = useState(0);
-  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
-
-  const generateRound = () => {
+  const getRandomRound = () => {
     const newTarget = Math.floor(Math.random() * 255);
-    setTarget(newTarget);
-    
-    // Generate 3 wrong answers + 1 correct
     const correct = decimalToHex(newTarget);
     const wrong = new Set<string>();
     while (wrong.size < 3) {
       const w = Math.floor(Math.random() * 255);
       if (w !== newTarget) wrong.add(decimalToHex(w));
     }
-    
     const all = [...Array.from(wrong), correct].sort(() => Math.random() - 0.5);
-    setOptions(all);
-    setFeedback(null);
+    return {
+      target: newTarget,
+      options: all
+    };
   };
 
-  useEffect(() => {
-    generateRound();
-  }, []);
+  const [round, setRound] = useState(getRandomRound);
+  const target = round.target;
+  const options = round.options;
+  const [streak, setStreak] = useState(0);
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+
+  const generateRound = () => {
+    setRound(getRandomRound());
+    setFeedback(null);
+  };
 
   const handleGuess = (guess: string) => {
     if (hexToDecimal(guess) === target) {

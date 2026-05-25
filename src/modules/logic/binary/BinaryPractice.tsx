@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { BitBulb } from './components/BitBulb';
@@ -7,7 +7,9 @@ import styles from './Binary.module.scss';
 import clsx from 'clsx';
 
 export const BinaryPractice: React.FC = () => {
-  const [target, setTarget] = useState(0);
+  const getRandomTarget = () => Math.floor(Math.random() * 255) + 1;
+
+  const [target, setTarget] = useState(getRandomTarget);
   const [current, setCurrent] = useState(0);
   const [streak, setStreak] = useState(0);
   const [mode, setMode] = useState<'read' | 'write'>('write');
@@ -15,15 +17,11 @@ export const BinaryPractice: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
 
   const generateTarget = () => {
-    setTarget(Math.floor(Math.random() * 255) + 1);
+    setTarget(getRandomTarget());
     setCurrent(0);
     setInputValue('');
     setFeedback(null);
   };
-
-  useEffect(() => {
-    generateTarget();
-  }, [mode]);
 
   const activePowers = getActivePowers(current);
   const targetPowers = getActivePowers(target);
@@ -64,8 +62,8 @@ export const BinaryPractice: React.FC = () => {
     <FUIGlassPanel className={styles.panel}>
       <div className={styles.header}>
         <div className={styles.controls}>
-          <FUIButton variant={mode === 'write' ? 'solid' : 'outline'} onClick={() => setMode('write')}>WRITE (DEC to BIN)</FUIButton>
-          <FUIButton variant={mode === 'read' ? 'solid' : 'outline'} onClick={() => setMode('read')}>READ (BIN to DEC)</FUIButton>
+          <FUIButton variant={mode === 'write' ? 'solid' : 'outline'} onClick={() => { setMode('write'); generateTarget(); }}>WRITE (DEC to BIN)</FUIButton>
+          <FUIButton variant={mode === 'read' ? 'solid' : 'outline'} onClick={() => { setMode('read'); generateTarget(); }}>READ (BIN to DEC)</FUIButton>
         </div>
         <div className={styles.streak}>STREAK: {streak}</div>
       </div>

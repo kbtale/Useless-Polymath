@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { COMMON_ZONES, calculateDestinationTime } from './logic';
@@ -6,36 +6,33 @@ import styles from './TimeZones.module.scss';
 import clsx from 'clsx';
 
 export const TimeZonesPractice: React.FC = () => {
-  const [question, setQuestion] = useState<{ originIdx: number; destIdx: number; hour: number } | null>(null);
-  const [options, setOptions] = useState<number[]>([]);
-  const [streak, setStreak] = useState(0);
-  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
-
-  const generateRound = () => {
+  const getRandomRound = () => {
     const originIdx = Math.floor(Math.random() * COMMON_ZONES.length);
     let destIdx = Math.floor(Math.random() * COMMON_ZONES.length);
     while (destIdx === originIdx) destIdx = Math.floor(Math.random() * COMMON_ZONES.length);
-    
     const hour = Math.floor(Math.random() * 24);
-    
-    setQuestion({ originIdx, destIdx, hour });
-    
     const correct = calculateDestinationTime(hour, COMMON_ZONES[originIdx].offset, COMMON_ZONES[destIdx].offset).hour;
-    
-    // Generate options
     const opts = new Set<number>();
     opts.add(correct);
     while (opts.size < 4) {
       opts.add(Math.floor(Math.random() * 24));
     }
-    
-    setOptions(Array.from(opts).sort((a, b) => a - b));
-    setFeedback(null);
+    return {
+      question: { originIdx, destIdx, hour },
+      options: Array.from(opts).sort((a, b) => a - b)
+    };
   };
 
-  useEffect(() => {
-    generateRound();
-  }, []);
+  const [round, setRound] = useState(getRandomRound);
+  const question = round.question;
+  const options = round.options;
+  const [streak, setStreak] = useState(0);
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+
+  const generateRound = () => {
+    setRound(getRandomRound());
+    setFeedback(null);
+  };
 
   const handleGuess = (guess: number) => {
     if (!question) return;

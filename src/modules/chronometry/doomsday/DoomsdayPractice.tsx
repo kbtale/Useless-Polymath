@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { getDayOfWeek, DAYS } from './logic';
@@ -6,25 +6,25 @@ import styles from './Doomsday.module.scss';
 import clsx from 'clsx';
 
 export const DoomsdayPractice: React.FC = () => {
-  const [targetDate, setTargetDate] = useState<{y: number, m: number, d: number} | null>(null);
+  const getRandomDate = () => {
+    const start = new Date(1900, 0, 1);
+    const end = new Date(2100, 0, 1);
+    const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    return {
+      y: date.getFullYear(),
+      m: date.getMonth() + 1,
+      d: date.getDate()
+    };
+  };
+
+  const [targetDate, setTargetDate] = useState(getRandomDate);
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [streak, setStreak] = useState(0);
 
   const generateDate = () => {
-    const start = new Date(1900, 0, 1);
-    const end = new Date(2100, 0, 1);
-    const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-    setTargetDate({
-      y: date.getFullYear(),
-      m: date.getMonth() + 1,
-      d: date.getDate()
-    });
+    setTargetDate(getRandomDate());
     setFeedback(null);
   };
-
-  useEffect(() => {
-    generateDate();
-  }, []);
 
   const handleGuess = (dayIndex: number) => {
     if (!targetDate) return;

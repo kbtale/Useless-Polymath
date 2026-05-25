@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { getMoonPhase } from './logic';
@@ -6,40 +6,36 @@ import styles from './Moon.module.scss';
 import clsx from 'clsx';
 
 export const MoonPractice: React.FC = () => {
-  const [targetDate, setTargetDate] = useState<{ d: number; m: number; y: number } | null>(null);
-  const [options, setOptions] = useState<string[]>([]);
-  const [streak, setStreak] = useState(0);
-  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
-
-  const generateRound = () => {
-    // Random date in current year
+  const getRandomRound = () => {
     const y = new Date().getFullYear();
     const m = Math.floor(Math.random() * 12) + 1;
     const d = Math.floor(Math.random() * 28) + 1;
-    
-    setTargetDate({ d, m, y });
-    
     const correct = getMoonPhase(d, m, y).phaseName;
-    
-    // Generate options (unique phases)
     const allPhases = [
       'New Moon', 'Waxing Crescent', 'First Quarter', 'Waxing Gibbous',
       'Full Moon', 'Waning Gibbous', 'Last Quarter', 'Waning Crescent'
     ];
-    
     const opts = new Set<string>();
     opts.add(correct);
     while (opts.size < 4) {
       opts.add(allPhases[Math.floor(Math.random() * allPhases.length)]);
     }
-    
-    setOptions(Array.from(opts).sort());
-    setFeedback(null);
+    return {
+      targetDate: { d, m, y },
+      options: Array.from(opts).sort()
+    };
   };
 
-  useEffect(() => {
-    generateRound();
-  }, []);
+  const [round, setRound] = useState(getRandomRound);
+  const targetDate = round.targetDate;
+  const options = round.options;
+  const [streak, setStreak] = useState(0);
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+
+  const generateRound = () => {
+    setRound(getRandomRound());
+    setFeedback(null);
+  };
 
   const handleGuess = (guess: string) => {
     if (!targetDate) return;

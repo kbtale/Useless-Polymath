@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreSlider } from '../../../components/core/CoreSlider';
@@ -7,10 +7,19 @@ import { calculateColorDistance, rgbToHex } from './logic';
 import styles from './ColorTheory.module.scss';
 
 export const ColorTheoryPractice: React.FC = () => {
+  const getRandomColor = () => {
+    return {
+      r: Math.floor(Math.random() * 256),
+      g: Math.floor(Math.random() * 256),
+      b: Math.floor(Math.random() * 256)
+    };
+  };
+
   const { t } = useTranslation(['color_theory', 'common']);
-  const [targetR, setTargetR] = useState(0);
-  const [targetG, setTargetG] = useState(0);
-  const [targetB, setTargetB] = useState(0);
+  const [target, setTarget] = useState(getRandomColor);
+  const targetR = target.r;
+  const targetG = target.g;
+  const targetB = target.b;
   
   const [userR, setUserR] = useState(128);
   const [userG, setUserG] = useState(128);
@@ -20,16 +29,10 @@ export const ColorTheoryPractice: React.FC = () => {
   const [streak, setStreak] = useState(0);
 
   const generateColor = () => {
-    setTargetR(Math.floor(Math.random() * 256));
-    setTargetG(Math.floor(Math.random() * 256));
-    setTargetB(Math.floor(Math.random() * 256));
+    setTarget(getRandomColor());
     setUserR(128); setUserG(128); setUserB(128);
     setScore(null);
   };
-
-  useEffect(() => {
-    generateColor();
-  }, []);
 
   const handleSubmit = () => {
     const dist = calculateColorDistance([targetR, targetG, targetB], [userR, userG, userB]);

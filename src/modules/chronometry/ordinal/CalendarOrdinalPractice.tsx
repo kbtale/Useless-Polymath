@@ -1,30 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { getOrdinalDate, getDaysInMonth } from './logic';
 import styles from './Ordinal.module.scss';
 
 export const CalendarOrdinalPractice: React.FC = () => {
-  const [targetDate, setTargetDate] = useState<{ d: number, m: number, y: number } | null>(null);
+  const getRandomDate = () => {
+    const y = 2020 + Math.floor(Math.random() * 10);
+    const m = Math.floor(Math.random() * 12) + 1;
+    const maxDays = getDaysInMonth(m, y);
+    const d = Math.floor(Math.random() * maxDays) + 1;
+    return { d, m, y };
+  };
+
+  const [targetDate, setTargetDate] = useState(getRandomDate);
   const [input, setInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [streak, setStreak] = useState(0);
 
   const generateProblem = () => {
-    // Random year 2020-2029
-    const y = 2020 + Math.floor(Math.random() * 10);
-    const m = Math.floor(Math.random() * 12) + 1;
-    const maxDays = getDaysInMonth(m, y);
-    const d = Math.floor(Math.random() * maxDays) + 1;
-    
-    setTargetDate({ d, m, y });
+    setTargetDate(getRandomDate());
     setInput('');
     setFeedback(null);
   };
-
-  useEffect(() => {
-    generateProblem();
-  }, []);
 
   const handleSubmit = () => {
     if (!targetDate) return;

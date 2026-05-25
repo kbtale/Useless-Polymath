@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
@@ -8,32 +8,28 @@ import styles from './Subnetting.module.scss';
 import clsx from 'clsx';
 
 export const SubnettingPractice: React.FC = () => {
+  const getRandomProblem = () => {
+    const ip = Array.from({ length: 4 }, () => Math.floor(Math.random() * 256)).join('.');
+    const cidr = Math.floor(Math.random() * (30 - 16 + 1)) + 16;
+    const type = Math.random() > 0.6 ? 'broadcast' : Math.random() > 0.3 ? 'network' : 'hosts';
+    return { ip, cidr, type };
+  };
+
   const { t } = useTranslation('subnetting');
-  const [targetIp, setTargetIp] = useState('');
-  const [targetCidr, setTargetCidr] = useState(24);
-  const [targetType, setTargetType] = useState<'network' | 'broadcast' | 'hosts'>('broadcast');
+  const [problem, setProblem] = useState(getRandomProblem);
+  const targetIp = problem.ip;
+  const targetCidr = problem.cidr;
+  const targetType = problem.type;
   
   const [userAnswer, setUserAnswer] = useState('');
   const [feedback, setFeedback] = useState<'idle' | 'correct' | 'incorrect'>('idle');
   const [streak, setStreak] = useState(0);
 
   const generateProblem = () => {
-    // Random IP
-    const ip = Array.from({ length: 4 }, () => Math.floor(Math.random() * 256)).join('.');
-    // Random CIDR /16 to /30
-    const cidr = Math.floor(Math.random() * (30 - 16 + 1)) + 16;
-    const type = Math.random() > 0.6 ? 'broadcast' : Math.random() > 0.3 ? 'network' : 'hosts';
-
-    setTargetIp(ip);
-    setTargetCidr(cidr);
-    setTargetType(type);
+    setProblem(getRandomProblem());
     setUserAnswer('');
     setFeedback('idle');
   };
-
-  useEffect(() => {
-    generateProblem();
-  }, []);
 
   const handleSubmit = () => {
     const result = calculateSubnet(targetIp, targetCidr);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
@@ -8,28 +8,30 @@ import styles from './Ascii.module.scss';
 import clsx from 'clsx';
 
 export const AsciiPractice: React.FC = () => {
+  const getRandomProblem = () => {
+    const code = Math.floor(Math.random() * (126 - 33 + 1)) + 33;
+    return {
+      code,
+      char: codeToChar(code),
+      mode: Math.random() > 0.5 ? 'charToCode' : 'codeToChar'
+    };
+  };
+
   const { t } = useTranslation(['ascii', 'common']);
-  const [targetChar, setTargetChar] = useState('');
-  const [targetCode, setTargetCode] = useState(0);
-  const [mode, setMode] = useState<'charToCode' | 'codeToChar'>('charToCode'); // Ask user for code, or char?
+  const [problem, setProblem] = useState(getRandomProblem);
+  const targetCode = problem.code;
+  const targetChar = problem.char;
+  const mode = problem.mode;
   
   const [userAnswer, setUserAnswer] = useState('');
   const [feedback, setFeedback] = useState<'idle' | 'correct' | 'incorrect'>('idle');
   const [streak, setStreak] = useState(0);
 
   const generateProblem = () => {
-    // Printable range 33-126 (exclude space 32 for clarity sometimes)
-    const code = Math.floor(Math.random() * (126 - 33 + 1)) + 33;
-    setTargetCode(code);
-    setTargetChar(codeToChar(code));
-    setMode(Math.random() > 0.5 ? 'charToCode' : 'codeToChar');
+    setProblem(getRandomProblem());
     setUserAnswer('');
     setFeedback('idle');
   };
-
-  useEffect(() => {
-    generateProblem();
-  }, []);
 
   const handleSubmit = () => {
     let corrected = false;
