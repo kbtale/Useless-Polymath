@@ -50,8 +50,8 @@ export const CalendarOrdinalTool: React.FC = () => {
         </div>
 
         <div className={styles.buttonGroup}>
-          <FUIButton onClick={handleClear} variant="outline">[ {t('clear', { ns: 'common' })} ]</FUIButton>
-          <FUIButton onClick={handleCalculate} variant="solid">&lt; {t('execute', { ns: 'common' })} &gt;</FUIButton>
+          <FUIButton onClick={handleClear} variant="outline">{t('clear', { ns: 'common' })}</FUIButton>
+          <FUIButton onClick={handleCalculate} variant="solid">{t('calculate', { ns: 'common' })}</FUIButton>
         </div>
       </FUIGlassPanel>
 

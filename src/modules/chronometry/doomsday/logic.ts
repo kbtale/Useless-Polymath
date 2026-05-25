@@ -39,9 +39,9 @@ export const calculateDoomsdayWithLog = (year: number, month: number, day: numbe
   const century = Math.floor(year / 100);
   const anchor = (5 * (century % 4) + 2) % 7;
   steps.push({
-    title: 'STEP 01 :: CENTURY ANCHOR',
+    title: 'Century Anchor',
     input: `Year ${year} (Century ${century})`,
-    result: DAYS[anchor].toUpperCase(),
+    result: DAYS[anchor],
     details: `Anchor for ${century}00s is ${anchor} (${DAYS[anchor]})`
   });
 
@@ -52,9 +52,9 @@ export const calculateDoomsdayWithLog = (year: number, month: number, day: numbe
   const c = Math.floor(b / 4);
   const yearDoomsday = (anchor + a + b + c) % 7;
   steps.push({
-    title: 'STEP 02 :: YEAR ANCHOR',
+    title: 'Year Anchor',
     input: `Year XX${yearPart}`,
-    result: DAYS[yearDoomsday].toUpperCase(),
+    result: DAYS[yearDoomsday],
     details: `(${a} * 12) + ${b} + (${c} leap days) = Doomsday ${yearDoomsday}`
   });
 
@@ -76,7 +76,7 @@ export const calculateDoomsdayWithLog = (year: number, month: number, day: numbe
   ];
   const monthAnchorDay = monthDoomsdays[month - 1];
   steps.push({
-    title: 'STEP 03 :: MONTH ANCHOR',
+    title: 'Month Anchor',
     input: `${month}/${day} (Leap: ${leap})`,
     result: `${month}/${monthAnchorDay}`,
     details: `Doomsday for month ${month} is the ${monthAnchorDay}${getDaySuffix(monthAnchorDay)}`
@@ -88,9 +88,9 @@ export const calculateDoomsdayWithLog = (year: number, month: number, day: numbe
   if (result < 0) result += 7;
 
   steps.push({
-    title: 'STEP 04 :: SUMMATION',
+    title: 'Summation',
     input: `Target ${day} vs Anchor ${monthAnchorDay}`,
-    result: DAYS[result].toUpperCase(),
+    result: DAYS[result],
     details: `Diff: ${diff} days. (${yearDoomsday} + ${diff}) mod 7 = ${result}`
   });
 

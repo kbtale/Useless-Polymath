@@ -47,6 +47,14 @@ const formatDefaultTitle = (id: string): string => {
     .join(' ');
 };
 
+const toTitleCase = (str: string): string => {
+  return str
+    .toLowerCase()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};
+
 interface AppShellProps {
   children: React.ReactNode;
   activeModule: string;
@@ -131,8 +139,8 @@ export const AppShell: React.FC<AppShellProps> = ({
   
   const currentModule = MODULES.find(m => m.id === activeModule);
   
-  const categoryName = currentModule ? t(currentModule.categoryKey, { ns: 'common' }) : 'UNKNOWN';
-  const moduleName = currentModule ? t('title', { ns: currentModule.id, defaultValue: formatDefaultTitle(currentModule.id) }) : 'UNKNOWN';
+  const categoryName = currentModule ? toTitleCase(t(currentModule.categoryKey, { ns: 'common' })) : 'UNKNOWN';
+  const moduleName = currentModule ? toTitleCase(t('title', { ns: currentModule.id, defaultValue: formatDefaultTitle(currentModule.id) })) : 'UNKNOWN';
 
   return (
     <div className={styles.appShell}>
@@ -203,7 +211,9 @@ export const AppShell: React.FC<AppShellProps> = ({
           <div className={styles.scrollArea}>
             {categories.map(catKey => (
               <div key={catKey}>
-                <h2 className={styles.sectionTitle}>{t(catKey, { ns: 'common', defaultValue: catKey })}</h2>
+                <h2 className={styles.sectionTitle}>
+                  {t(catKey, { ns: 'common', defaultValue: catKey })}
+                </h2>
                 <ul className={styles.menuList}>
                   {MODULES.filter(m => m.categoryKey === catKey).map(m => (
                     <li 
@@ -211,7 +221,7 @@ export const AppShell: React.FC<AppShellProps> = ({
                       className={clsx(styles.menuItem, activeModule === m.id && styles.active)}
                       onClick={() => onModuleChange(m.id)}
                     >
-                      {t('title', { ns: m.id, defaultValue: formatDefaultTitle(m.id) })}
+                      {toTitleCase(t('title', { ns: m.id, defaultValue: formatDefaultTitle(m.id) }))}
                     </li>
                   ))}
                 </ul>
@@ -258,7 +268,7 @@ export const AppShell: React.FC<AppShellProps> = ({
               className={clsx(styles.tabBtn, mode === 'guide' && styles.active, styles.helpTab)}
               onClick={() => onModeChange('guide')}
             >
-              [ ? ] {t('guide')}
+              {t('guide')}
             </button>
           </div>
 

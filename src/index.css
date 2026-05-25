@@ -39,6 +39,8 @@
   --btn-hover-bg: var(--line-color);
   --btn-hover-text: var(--bg-canvas);
   --btn-hover-border: var(--line-color);
+  --btn-solid-bg: var(--line-color);
+  --btn-solid-text: var(--bg-canvas);
 
   /* Layout Overrides Defaults */
   --border-header: 1px solid var(--line-color);
@@ -88,6 +90,8 @@
   --btn-hover-bg: var(--line-color);
   --btn-hover-text: var(--bg-canvas);
   --btn-hover-border: var(--line-color);
+  --btn-solid-bg: var(--line-color);
+  --btn-solid-text: var(--bg-canvas);
 
   /* Layout */
   --border-header: 1px solid var(--line-color);
@@ -137,6 +141,8 @@
   --btn-hover-bg: var(--text-main);
   --btn-hover-text: var(--bg-canvas);
   --btn-hover-border: var(--text-main);
+  --btn-solid-bg: var(--text-main);
+  --btn-solid-text: var(--bg-canvas);
 
   /* Layout (No structural grid borders!) */
   --border-header: none;
@@ -186,6 +192,8 @@
   --btn-hover-bg: var(--text-highlight);
   --btn-hover-text: #000000;
   --btn-hover-border: var(--text-highlight);
+  --btn-solid-bg: var(--text-highlight);
+  --btn-solid-text: #000000;
 
   /* Layout */
   --border-header: 1px solid var(--line-color);
@@ -235,6 +243,8 @@
   --btn-hover-bg: var(--text-highlight);
   --btn-hover-text: #000000;
   --btn-hover-border: var(--line-color);
+  --btn-solid-bg: var(--line-color);
+  --btn-solid-text: var(--bg-canvas);
 
   /* Layout */
   --border-header: 2px solid var(--line-color);

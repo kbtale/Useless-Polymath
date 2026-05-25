@@ -158,12 +158,10 @@
 
   .statusBar {
     padding: $spacing-xs $spacing-lg;
-    font-size: $text-xs;
+    font-size: 0.8rem;
     color: $text-dim;
     border-bottom: var(--border-statusbar, 1px solid #{$line-color});
     background: var(--bg-statusbar, rgba(255, 255, 255, 0.8));
-    font-family: $font-mono;
-    text-transform: uppercase;
     display: flex;
     align-items: center;
     height: 2rem;
@@ -190,6 +188,7 @@
       letter-spacing: 0.05em;
       cursor: pointer;
       border-radius: var(--radius-button, 0);
+      outline: none;
 
       &.active {
         border-bottom: 1px solid var(--tab-border-active, #{$line-color});

@@ -4,8 +4,10 @@ import { FUIButton } from '../../../components/core/FUIButton';
 import { getDayOfWeek, DAYS } from './logic';
 import styles from './Doomsday.module.scss';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 export const DoomsdayPractice: React.FC = () => {
+  const { t } = useTranslation(['common']);
   const getRandomDate = () => {
     const start = new Date(1900, 0, 1);
     const end = new Date(2100, 0, 1);
@@ -42,8 +44,8 @@ export const DoomsdayPractice: React.FC = () => {
   return (
     <FUIGlassPanel className={styles.panel}>
       <div className={styles.header}>
-        <h2 className={styles.practiceTitle}>TRAINING // MODE</h2>
-        <div className={styles.streak}>STREAK: {streak}</div>
+        <h2 className={styles.practiceTitle}>{t('practice_mode', { ns: 'common' })}</h2>
+        <div className={styles.streak}>{t('streak', { ns: 'common' })}: {streak}</div>
       </div>
       
       {targetDate && (

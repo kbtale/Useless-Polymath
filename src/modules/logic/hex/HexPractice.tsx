@@ -4,8 +4,10 @@ import { FUIButton } from '../../../components/core/FUIButton';
 import { decimalToHex, hexToDecimal } from './logic';
 import styles from './Hex.module.scss';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 export const HexPractice: React.FC = () => {
+  const { t } = useTranslation(['common']);
   const getRandomRound = () => {
     const newTarget = Math.floor(Math.random() * 255);
     const correct = decimalToHex(newTarget);
@@ -46,12 +48,12 @@ export const HexPractice: React.FC = () => {
   return (
     <FUIGlassPanel className={styles.panel}>
       <div className={styles.header}>
-        <h2 className={styles.practiceTitle}>HEX // TRAINING</h2>
-        <div className={styles.streak}>STREAK: {streak}</div>
+        <h2 className={styles.practiceTitle}>{t('practice_mode', { ns: 'common' })}</h2>
+        <div className={styles.streak}>{t('streak', { ns: 'common' })}: {streak}</div>
       </div>
 
       <div className={styles.targetDisplay}>
-        <div className={styles.label}>CONVERT TO HEX</div>
+        <div className={styles.label}>{t('label_convert_to_hex', { defaultValue: 'Convert to Hex' })}</div>
         <div className={styles.targetValue}>{target}</div>
       </div>
 

@@ -87,7 +87,7 @@ export const ColorTheoryPractice: React.FC = () => {
           </div>
 
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-            <FUIButton onClick={handleSubmit}>{t('execute', { ns: 'common' })}</FUIButton>
+            <FUIButton onClick={handleSubmit}>{t('submit', { ns: 'common' })}</FUIButton>
             <FUIButton onClick={generateColor} variant="outline">{t('next', { ns: 'common' })}</FUIButton>
           </div>
 
