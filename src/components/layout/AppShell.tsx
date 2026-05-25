@@ -40,6 +40,13 @@ const MODULES: Module[] = [
   { id: 'card_counting', categoryKey: 'modules.science' },
 ];
 
+const formatDefaultTitle = (id: string): string => {
+  return id
+    .split('_')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};
+
 interface AppShellProps {
   children: React.ReactNode;
   activeModule: string;
@@ -55,7 +62,33 @@ export const AppShell: React.FC<AppShellProps> = ({
   mode,
   onModeChange
 }) => {
-  const { t, i18n } = useTranslation(['common', 'doomsday', 'time_zones', 'moon', 'ordinal', 'binary', 'hexadecimal']);
+  const { t, i18n } = useTranslation([
+    'common',
+    'doomsday',
+    'time_zones',
+    'moon',
+    'ordinal',
+    'binary',
+    'hexadecimal',
+    'roman_numerals',
+    'bitwise',
+    'rule_72',
+    'subnetting',
+    'color_theory',
+    'ascii',
+    'storage_units',
+    'morse_code',
+    'nato_alphabet',
+    'caesar_cipher',
+    'braille',
+    'semaphore',
+    'periodic_table',
+    'thermodynamics',
+    'resistor_codes',
+    'luhn_algorithm',
+    'ean_13',
+    'card_counting'
+  ]);
   const [uptime, setUptime] = useState('00:00:00');
 
   const STYLES = [
@@ -99,7 +132,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   const currentModule = MODULES.find(m => m.id === activeModule);
   
   const categoryName = currentModule ? t(currentModule.categoryKey, { ns: 'common' }) : 'UNKNOWN';
-  const moduleName = currentModule ? t('title', { ns: currentModule.id, defaultValue: currentModule.id.toUpperCase() }) : 'UNKNOWN';
+  const moduleName = currentModule ? t('title', { ns: currentModule.id, defaultValue: formatDefaultTitle(currentModule.id) }) : 'UNKNOWN';
 
   return (
     <div className={styles.appShell}>
@@ -178,7 +211,7 @@ export const AppShell: React.FC<AppShellProps> = ({
                       className={clsx(styles.menuItem, activeModule === m.id && styles.active)}
                       onClick={() => onModuleChange(m.id)}
                     >
-                      {t('title', { ns: m.id, defaultValue: m.id.toUpperCase().replace('_', ' ') })}
+                      {t('title', { ns: m.id, defaultValue: formatDefaultTitle(m.id) })}
                     </li>
                   ))}
                 </ul>
