@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './AppShell.module.scss';
 import { FUIButton } from '../core/FUIButton';
-import { FUIGlassPanel } from '../core/FUIGlassPanel';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
@@ -101,6 +100,44 @@ export const AppShell: React.FC<AppShellProps> = ({
   const [uptime, setUptime] = useState('00:00:00');
   const [showSettings, setShowSettings] = useState(false);
   const [scoresVersion, setScoresVersion] = useState(0);
+
+  const [hiddenModules, setHiddenModules] = useState<string[]>(() => {
+    try {
+      const saved = localStorage.getItem('polymath_hidden_modules');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  const [hiddenCategories, setHiddenCategories] = useState<string[]>(() => {
+    try {
+      const saved = localStorage.getItem('polymath_hidden_categories');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  const toggleModuleVisibility = (moduleId: string) => {
+    setHiddenModules(prev => {
+      const next = prev.includes(moduleId)
+        ? prev.filter(id => id !== moduleId)
+        : [...prev, moduleId];
+      localStorage.setItem('polymath_hidden_modules', JSON.stringify(next));
+      return next;
+    });
+  };
+
+  const toggleCategoryVisibility = (catKey: string) => {
+    setHiddenCategories(prev => {
+      const next = prev.includes(catKey)
+        ? prev.filter(k => k !== catKey)
+        : [...prev, catKey];
+      localStorage.setItem('polymath_hidden_categories', JSON.stringify(next));
+      return next;
+    });
+  };
 
   const handleIndividualReset = (moduleId: string) => {
     localStorage.removeItem(`polymath_streak_${moduleId}`);
@@ -228,13 +265,18 @@ export const AppShell: React.FC<AppShellProps> = ({
         
         <aside className={styles.sidebar}>
           <div className={styles.scrollArea}>
-            {categories.map(catKey => (
+            {categories.filter(catKey => {
+              if (hiddenCategories.includes(catKey)) return false;
+              const catModules = MODULES.filter(m => m.categoryKey === catKey);
+              const visibleCatModules = catModules.filter(m => !hiddenModules.includes(m.id));
+              return visibleCatModules.length > 0;
+            }).map(catKey => (
               <div key={catKey}>
                 <h2 className={styles.sectionTitle}>
                   {t(catKey, { ns: 'common', defaultValue: catKey })}
                 </h2>
                 <ul className={styles.menuList}>
-                  {MODULES.filter(m => m.categoryKey === catKey).map(m => (
+                  {MODULES.filter(m => m.categoryKey === catKey && !hiddenModules.includes(m.id)).map(m => (
                     <li 
                       key={m.id}
                       className={clsx(styles.menuItem, activeModule === m.id && styles.active)}
@@ -299,94 +341,118 @@ export const AppShell: React.FC<AppShellProps> = ({
 
       {showSettings && (
         <div className={styles.modalOverlay} onClick={() => setShowSettings(false)}>
-          <div onClick={(e: React.MouseEvent) => e.stopPropagation()} style={{ display: 'contents' }}>
-            <FUIGlassPanel className={styles.settingsModal}>
-              <div className={styles.modalHeader}>
-                <h2 className={styles.modalTitle}>{t('settings')}</h2>
-                <button className={styles.closeBtn} onClick={() => setShowSettings(false)}>×</button>
-              </div>
+          <div onClick={(e: React.MouseEvent) => e.stopPropagation()} className={styles.settingsModal}>
+            <div className={styles.modalHeader}>
+              <h2 className={styles.modalTitle}>{t('settings')}</h2>
+              <button className={styles.closeBtn} onClick={() => setShowSettings(false)}>×</button>
+            </div>
 
-              <div className={styles.modalBody}>
-                <div className={styles.settingsSection}>
-                  <h3 className={styles.sectionHeader}>{t('general', 'General')}</h3>
-                  
-                  <div className={styles.settingsRow}>
-                    <span className={styles.rowLabel}>{t('theme', 'Style Theme')}</span>
-                    <select 
-                      value={activeStyle}
-                      onChange={(e) => setActiveStyle(e.target.value)}
-                      className={styles.selectInput}
-                    >
-                      {STYLES.map(s => (
-                        <option key={s.id} value={s.id}>{s.label}</option>
-                      ))}
-                    </select>
-                  </div>
+            <div className={styles.modalBody}>
+              <div className={styles.settingsSection}>
+                <h3 className={styles.sectionHeader}>{t('general', 'General')}</h3>
+                
+                <div className={styles.settingsRow}>
+                  <span className={styles.rowLabel}>{t('theme', 'Style Theme')}</span>
+                  <select 
+                    value={activeStyle}
+                    onChange={(e) => setActiveStyle(e.target.value)}
+                    className={styles.selectInput}
+                  >
+                    {STYLES.map(s => (
+                      <option key={s.id} value={s.id}>{s.label}</option>
+                    ))}
+                  </select>
+                </div>
 
-                  <div className={styles.settingsRow}>
-                    <span className={styles.rowLabel}>{t('language', 'Language')}</span>
-                    <div style={{ display: 'flex', gap: '0.5rem' }}>
-                      {['en', 'es', 'it'].map(lng => (
-                        <FUIButton 
-                          key={lng}
-                          onClick={() => changeLanguage(lng)} 
-                          variant={i18n.language === lng ? 'solid' : 'outline'}
-                          style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
-                        >
-                          {lng.toUpperCase()}
-                        </FUIButton>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className={styles.settingsRow} style={{ marginTop: '1.25rem', borderTop: '1px solid var(--line-color)', paddingTop: '1.25rem' }}>
-                    <span className={styles.rowLabel}>{t('master_stats_control', 'Master Stats Reset')}</span>
-                    <FUIButton onClick={handleMasterReset} variant="outline" style={{ color: '#ef4444', borderColor: '#fca5a5' }}>
-                      {t('reset_all_scores', 'Reset All Practice Scores')}
-                    </FUIButton>
+                <div className={styles.settingsRow}>
+                  <span className={styles.rowLabel}>{t('language', 'Language')}</span>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    {['en', 'es', 'it'].map(lng => (
+                      <FUIButton 
+                        key={lng}
+                        onClick={() => changeLanguage(lng)} 
+                        variant={i18n.language === lng ? 'solid' : 'outline'}
+                        style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
+                      >
+                        {lng.toUpperCase()}
+                      </FUIButton>
+                    ))}
                   </div>
                 </div>
 
-                <div className={styles.settingsSection} style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                  <h3 className={styles.sectionHeader}>{t('practice_scoreboards', 'Practice Scoreboards')}</h3>
-                  <div key={scoresVersion} className={styles.scoreboardTableContainer}>
-                    <table className={styles.scoreboardTable}>
-                      <thead>
-                        <tr>
-                          <th>{t('category_header', 'Category')}</th>
-                          <th>{t('module_header', 'Module')}</th>
-                          <th>{t('streak_header', 'Streak')}</th>
-                          <th>{t('high_score_header', 'High Score')}</th>
-                          <th>{t('actions_header', 'Actions')}</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {MODULES.map(m => {
-                          const streak = parseInt(localStorage.getItem(`polymath_streak_${m.id}`) || '0', 10);
-                          const high = parseInt(localStorage.getItem(`polymath_high_${m.id}`) || '0', 10);
-                          return (
-                            <tr key={m.id}>
-                              <td>{toTitleCase(t(m.categoryKey, { ns: 'common' }))}</td>
-                              <td>{toTitleCase(t('title', { ns: m.id, defaultValue: formatDefaultTitle(m.id) }))}</td>
-                              <td>{streak}</td>
-                              <td>{high}</td>
-                              <td>
-                                <button 
-                                  className={styles.rowResetBtn}
-                                  onClick={() => handleIndividualReset(m.id)}
-                                >
-                                  {t('reset', 'Reset')}
-                                </button>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
+                <div className={styles.settingsRow} style={{ marginTop: '1.25rem', borderTop: '1px solid var(--line-color)', paddingTop: '1.25rem' }}>
+                  <span className={styles.rowLabel}>{t('master_stats_control', 'Master Stats Reset')}</span>
+                  <FUIButton onClick={handleMasterReset} variant="outline" style={{ color: '#ef4444', borderColor: '#fca5a5' }}>
+                    {t('reset_all_scores', 'Reset All Practice Scores')}
+                  </FUIButton>
                 </div>
               </div>
-            </FUIGlassPanel>
+
+              <div className={styles.settingsSection} style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                <h3 className={styles.sectionHeader}>{t('practice_scoreboards', 'Practice Scoreboards & Visibility')}</h3>
+                <div key={scoresVersion} className={styles.scoreboardTableContainer}>
+                  <table className={styles.scoreboardTable}>
+                    <thead>
+                      <tr>
+                        <th>{t('category_header', 'Category')}</th>
+                        <th>{t('module_header', 'Module')}</th>
+                        <th style={{ textAlign: 'center' }}>{t('visible_header', 'Show')}</th>
+                        <th>{t('streak_header', 'Streak')}</th>
+                        <th>{t('high_score_header', 'High Score')}</th>
+                        <th>{t('actions_header', 'Actions')}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {MODULES.map(m => {
+                        const streak = parseInt(localStorage.getItem(`polymath_streak_${m.id}`) || '0', 10);
+                        const high = parseInt(localStorage.getItem(`polymath_high_${m.id}`) || '0', 10);
+                        const isCatVisible = !hiddenCategories.includes(m.categoryKey);
+                        const isModVisible = !hiddenModules.includes(m.id);
+                        return (
+                          <tr key={m.id}>
+                            <td>
+                              <label style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', cursor: 'pointer' }}>
+                                <input 
+                                  type="checkbox" 
+                                  checked={isCatVisible}
+                                  onChange={() => toggleCategoryVisibility(m.categoryKey)}
+                                  className={styles.visibilityCheckbox}
+                                />
+                                <span style={{ opacity: isCatVisible ? 1 : 0.5 }}>
+                                  {toTitleCase(t(m.categoryKey, { ns: 'common' }))}
+                                </span>
+                              </label>
+                            </td>
+                            <td style={{ opacity: isModVisible && isCatVisible ? 1 : 0.5 }}>
+                              {toTitleCase(t('title', { ns: m.id, defaultValue: formatDefaultTitle(m.id) }))}
+                            </td>
+                            <td style={{ textAlign: 'center' }}>
+                              <input 
+                                type="checkbox" 
+                                checked={isModVisible}
+                                onChange={() => toggleModuleVisibility(m.id)}
+                                disabled={!isCatVisible}
+                                className={styles.visibilityCheckbox}
+                              />
+                            </td>
+                            <td>{streak}</td>
+                            <td>{high}</td>
+                            <td>
+                              <button 
+                                className={styles.rowResetBtn}
+                                onClick={() => handleIndividualReset(m.id)}
+                              >
+                                {t('reset', 'Reset')}
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
