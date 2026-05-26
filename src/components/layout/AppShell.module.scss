@@ -239,8 +239,7 @@
     flex: 1;
     padding: $spacing-lg;
     position: relative;
-    overflow-y: scroll;
-    width: 100%;
+    overflow-y: auto;
     min-height: 0;
   }
 }

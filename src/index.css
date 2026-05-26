@@ -273,6 +273,10 @@ a:hover {
   color: var(--text-main);
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background-color: var(--bg-canvas);
@@ -312,24 +316,24 @@ button:focus-visible {
 
 /* Custom High-Contrast Scrollbars styled dynamically based on active theme variables */
 ::-webkit-scrollbar {
-  width: 10px !important;
-  height: 10px !important;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-canvas) !important;
+  background: var(--bg-canvas);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(128, 128, 128, 0.45) !important;
-  border: 2px solid transparent !important;
-  background-clip: padding-box !important;
-  border-radius: 6px !important;
-  min-height: 40px !important;
+  background-color: rgba(128, 128, 128, 0.45);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 6px;
+  min-height: 40px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--text-highlight, rgba(128, 128, 128, 0.7)) !important;
+  background-color: var(--text-highlight, rgba(128, 128, 128, 0.7));
 }
 
 /* Firefox compatibility */
@@ -337,5 +341,3 @@ button:focus-visible {
   scrollbar-width: thin;
   scrollbar-color: rgba(128, 128, 128, 0.45) var(--bg-canvas);
 }
-
-
