@@ -1,5 +1,7 @@
 # Useless Polymath
 
+https://github.com/user-attachments/assets/08d9f525-e185-4c3d-8a02-507535352181
+
 A React suite for practicing mental math, base conversions, ciphers, and technical systems.
 
 [![React](https://img.shields.io/badge/React-19-blue?logo=react)](https://react.dev/)
