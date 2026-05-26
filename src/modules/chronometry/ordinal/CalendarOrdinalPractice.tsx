@@ -1,11 +1,13 @@
 import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { getOrdinalDate, getDaysInMonth } from './logic';
 import styles from './Ordinal.module.scss';
 
 export const CalendarOrdinalPractice: React.FC = () => {
+  const { t } = useTranslation(['common']);
   const { streak, setStreak } = usePracticeStreak('ordinal');
   const getRandomDate = () => {
     const y = 2020 + Math.floor(Math.random() * 10);
@@ -84,7 +86,9 @@ export const CalendarOrdinalPractice: React.FC = () => {
             color: feedback === 'correct' ? '#000' : '#fff',
             fontWeight: 700
           }}>
-            {feedback === 'correct' ? 'CORRECT // SYSTEM SYNCED' : `INCORRECT // EXPECTED: ${getOrdinalDate(targetDate.d, targetDate.m, targetDate.y).ordinal}`}
+            {feedback === 'correct' 
+              ? t('correct', 'Correct!') 
+              : `${t('incorrect', 'Incorrect!')} ${t('correct_answer', 'Correct answer')}: ${getOrdinalDate(targetDate.d, targetDate.m, targetDate.y).ordinal}`}
           </div>
         )}
       </FUIGlassPanel>
