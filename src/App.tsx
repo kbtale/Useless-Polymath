@@ -155,7 +155,7 @@ function AppContent() {
       mode={mode}
       onModeChange={setMode}
     >
-      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+      <div style={{ maxWidth: '800px', margin: '0 auto', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
         {renderModule()}
       </div>
     </AppShell>
