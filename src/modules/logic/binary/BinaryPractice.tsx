@@ -1,5 +1,6 @@
 import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { BitBulb } from './components/BitBulb';
@@ -8,6 +9,7 @@ import styles from './Binary.module.scss';
 import clsx from 'clsx';
 
 export const BinaryPractice: React.FC = () => {
+  const { t } = useTranslation(['common']);
   const { streak, setStreak } = usePracticeStreak('binary');
   const getRandomTarget = () => Math.floor(Math.random() * 255) + 1;
 
@@ -117,7 +119,7 @@ export const BinaryPractice: React.FC = () => {
 
       {feedback && (
         <div className={clsx(styles.feedback, styles[feedback])}>
-          {feedback === 'correct' ? 'SYSTEM SYNCED' : 'SYNC FAILURE'}
+          {feedback === 'correct' ? t('correct', 'Correct!') : t('incorrect', 'Incorrect!')}
         </div>
       )}
     </FUIGlassPanel>

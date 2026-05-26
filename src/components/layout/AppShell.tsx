@@ -227,7 +227,7 @@ export const AppShell: React.FC<AppShellProps> = ({
           </div>
         </div>
         
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginRight: '1rem' }}>
+        <div className={styles.quickControls}>
           {/* Style Selector */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', opacity: 0.7 }}>STYLE:</span>
@@ -412,7 +412,7 @@ export const AppShell: React.FC<AppShellProps> = ({
                 </div>
               </div>
 
-              <div className={styles.settingsSection} style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+              <div className={clsx(styles.settingsSection, styles.scoreboardSection)}>
                 <h3 className={styles.sectionHeader}>{t('practice_scoreboards', 'Practice Scoreboards & Visibility')}</h3>
                 <div key={scoresVersion} className={styles.scoreboardTableContainer}>
                   <table className={styles.scoreboardTable}>

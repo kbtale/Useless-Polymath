@@ -1,9 +1,41 @@
 @use './styles/variables' as *;
 
+.guideWrapper {
+  padding: $spacing-xl $spacing-lg;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  color: var(--text-main);
+  
+  h2 {
+    border-bottom: 1px solid var(--line-color);
+    padding-bottom: $spacing-sm;
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    margin-bottom: $spacing-lg;
+  }
+
+  @media (max-width: 768px) {
+    padding: $spacing-md $spacing-sm;
+    
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: $spacing-md;
+    }
+  }
+}
+
 .guideContainer {
-  margin-top: $spacing-lg;
-  background-color: $hover-bg;
-  padding: 1.5rem;
-  border: $border-thin;
-  border-radius: 4px;
+  margin-top: $spacing-md;
+  background-color: var(--hover-bg);
+  padding: $spacing-lg;
+  border: var(--panel-border, 1px solid var(--line-color));
+  border-radius: var(--radius-card, 4px);
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal container leak */
+
+  @media (max-width: 768px) {
+    padding: $spacing-md;
+    margin-top: $spacing-sm;
+  }
 }
