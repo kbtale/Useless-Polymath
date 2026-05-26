@@ -412,7 +412,7 @@ export const AppShell: React.FC<AppShellProps> = ({
                 </div>
               </div>
 
-              <div className={styles.settingsSection} style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+              <div className={clsx(styles.settingsSection, styles.scoreboardSection)}>
                 <h3 className={styles.sectionHeader}>{t('practice_scoreboards', 'Practice Scoreboards & Visibility')}</h3>
                 <div key={scoresVersion} className={styles.scoreboardTableContainer}>
                   <table className={styles.scoreboardTable}>

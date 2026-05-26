@@ -494,6 +494,18 @@
   }
 }
 
+.scoreboardSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 380px; /* Expands spacious height on mobile devices! */
+
+  @media (min-width: 769px) {
+    min-height: 0;
+  }
+}
+
 .settingsRow {
   display: flex;
   flex-direction: column;
