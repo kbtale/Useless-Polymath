@@ -222,8 +222,7 @@ export const AppShell: React.FC<AppShellProps> = ({
             ☰
           </button>
           <div className={styles.title}>
-            <div className={styles.square}></div>
-            <h1>{t('app_title')}</h1>
+            <img src="/Logo.svg" alt="Useless Polymath" className={styles.logo} />
           </div>
         </div>
         

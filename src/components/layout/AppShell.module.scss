@@ -49,32 +49,11 @@
     .title {
       display: flex;
       align-items: center;
-      gap: $spacing-sm;
-      font-size: 0.875rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
 
-      h1 {
-        font-size: inherit;
-        font-weight: inherit;
-        letter-spacing: inherit;
-        margin: 0;
-        line-height: 1;
-        text-transform: uppercase;
-      }
-
-      .square {
-        width: 0.75rem;
-        height: 0.75rem;
-        background: var(--color-square, #{$line-color});
-        display: var(--square-display, block);
-      }
-
-      .version {
-        font-size: 0.75rem;
-        font-weight: 400;
-        opacity: 0.5;
-        margin-left: $spacing-sm;
+      .logo {
+        height: 1.5rem;
+        display: block;
+        width: auto;
       }
     }
   }
