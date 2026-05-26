@@ -71,14 +71,8 @@ function AppContent() {
   const renderModule = () => {
     if (mode === 'guide') {
       return (
-        <div style={{ 
-          padding: '2rem', 
-          maxWidth: '800px', 
-          margin: '0 auto', 
-          fontFamily: 'var(--font-primary), system-ui, sans-serif',
-          color: '#333'
-        }}>
-          <h2 style={{ borderBottom: '1px solid #ccc', paddingBottom: '0.5rem' }}>
+        <div className={styles.guideWrapper}>
+          <h2>
             {toTitleCase(activeModuleId)} {t('guide', { ns: 'common', defaultValue: 'Guide' })}
           </h2>
           <div className={styles.guideContainer}>
