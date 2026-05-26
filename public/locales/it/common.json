@@ -23,5 +23,9 @@
   "modules.logic": "Logica",
   "modules.networks": "Reti",
   "modules.cryptography": "Crittografia",
-  "modules.science": "Scienza"
+  "modules.science": "Scienza",
+  "streak": "Serie",
+  "correct": "Corretto!",
+  "incorrect": "Errato!",
+  "correct_answer": "Risposta corretta: {{answer}}"
 }

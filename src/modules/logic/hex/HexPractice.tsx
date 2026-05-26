@@ -5,8 +5,10 @@ import { decimalToHex, hexToDecimal } from './logic';
 import styles from './Hex.module.scss';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 
 export const HexPractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('hex');
   const { t } = useTranslation(['common']);
   const getRandomRound = () => {
     const newTarget = Math.floor(Math.random() * 255);
@@ -26,8 +28,7 @@ export const HexPractice: React.FC = () => {
   const [round, setRound] = useState(getRandomRound);
   const target = round.target;
   const options = round.options;
-  const [streak, setStreak] = useState(0);
-  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+    const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
   const generateRound = () => {
     setRound(getRandomRound());
@@ -72,7 +73,7 @@ export const HexPractice: React.FC = () => {
 
       {feedback && (
         <div className={clsx(styles.feedback, styles[feedback])}>
-          {feedback === 'correct' ? 'ACCESS GRANTED' : 'ACCESS DENIED'}
+          {feedback === 'correct' ? t('correct', 'Correct!') : t('incorrect', 'Incorrect!')}
         </div>
       )}
     </FUIGlassPanel>

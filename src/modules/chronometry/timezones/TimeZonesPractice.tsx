@@ -5,8 +5,10 @@ import { COMMON_ZONES, calculateDestinationTime } from './logic';
 import styles from './TimeZones.module.scss';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 
 export const TimeZonesPractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('timezones');
   const { t } = useTranslation(['common']);
   const getRandomRound = () => {
     const originIdx = Math.floor(Math.random() * COMMON_ZONES.length);
@@ -28,8 +30,7 @@ export const TimeZonesPractice: React.FC = () => {
   const [round, setRound] = useState(getRandomRound);
   const question = round.question;
   const options = round.options;
-  const [streak, setStreak] = useState(0);
-  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+    const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
   const generateRound = () => {
     setRound(getRandomRound());

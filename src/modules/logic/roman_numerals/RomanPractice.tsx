@@ -5,8 +5,10 @@ import { FUIButton } from '../../../components/core/FUIButton';
 import { toRoman } from './logic';
 import styles from './Roman.module.scss';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 
 export const RomanPractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('roman_numerals');
   const getRandomVal = () => Math.floor(Math.random() * 1000) + 1;
 
   const { t } = useTranslation(['roman_numerals', 'common']);
@@ -16,8 +18,7 @@ export const RomanPractice: React.FC = () => {
   const [userInput, setUserInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [score, setScore] = useState(0);
-  const [streak, setStreak] = useState(0);
-
+  
   const generateQuestion = () => {
     setQuestionVal(getRandomVal());
     setUserInput('');

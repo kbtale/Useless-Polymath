@@ -5,10 +5,12 @@ import { FUIButton } from '../../../components/core/FUIButton';
 import { encrypt } from './logic';
 import styles from './Caesar.module.scss';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 
 const WORDS = ['HELLO', 'WORLD', 'SECRET', 'CIPHER', 'CODE', 'PYTHON', 'REACT', 'AGENT', 'FUTURE', 'HISTORY'];
 
 export const CaesarPractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('caesar_cipher');
   const getRandomQuestion = () => {
     const word = WORDS[Math.floor(Math.random() * WORDS.length)];
     const s = Math.floor(Math.random() * 25) + 1; // 1-25
@@ -22,8 +24,7 @@ export const CaesarPractice: React.FC = () => {
   const shift = question.shift;
   const [userInput, setUserInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
-  const [streak, setStreak] = useState(0);
-
+  
   const generateQuestion = () => {
     setQuestion(getRandomQuestion());
     setUserInput('');

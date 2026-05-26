@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
@@ -8,13 +9,13 @@ import styles from './StorageUnits.module.scss';
 import clsx from 'clsx';
 
 export const StorageUnitsPractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('storage_units');
   const { t } = useTranslation(['storage_units', 'common']);
   const [problem, setProblem] = useState(generatePracticeProblem);
   
   const [userAnswer, setUserAnswer] = useState('');
   const [feedback, setFeedback] = useState<'idle' | 'correct' | 'incorrect'>('idle');
-  const [streak, setStreak] = useState(0);
-  const [showAnswer, setShowAnswer] = useState(false);
+    const [showAnswer, setShowAnswer] = useState(false);
 
   const newProblem = () => {
     setProblem(generatePracticeProblem());

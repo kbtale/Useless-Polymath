@@ -1,3 +1,4 @@
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
@@ -5,6 +6,7 @@ import { getOrdinalDate, getDaysInMonth } from './logic';
 import styles from './Ordinal.module.scss';
 
 export const CalendarOrdinalPractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('ordinal');
   const getRandomDate = () => {
     const y = 2020 + Math.floor(Math.random() * 10);
     const m = Math.floor(Math.random() * 12) + 1;
@@ -16,8 +18,7 @@ export const CalendarOrdinalPractice: React.FC = () => {
   const [targetDate, setTargetDate] = useState(getRandomDate);
   const [input, setInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
-  const [streak, setStreak] = useState(0);
-
+  
   const generateProblem = () => {
     setTargetDate(getRandomDate());
     setInput('');

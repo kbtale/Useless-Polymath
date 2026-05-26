@@ -1,3 +1,4 @@
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import React, { useState } from 'react';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { FUIButton } from '../../../components/core/FUIButton';
@@ -7,12 +8,12 @@ import styles from './Binary.module.scss';
 import clsx from 'clsx';
 
 export const BinaryPractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('binary');
   const getRandomTarget = () => Math.floor(Math.random() * 255) + 1;
 
   const [target, setTarget] = useState(getRandomTarget);
   const [current, setCurrent] = useState(0);
-  const [streak, setStreak] = useState(0);
-  const [mode, setMode] = useState<'read' | 'write'>('write');
+    const [mode, setMode] = useState<'read' | 'write'>('write');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [inputValue, setInputValue] = useState('');
 

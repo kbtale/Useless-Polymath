@@ -4,8 +4,10 @@ import { FUIButton } from '../../../components/core/FUIButton';
 import { NATO_DICTIONARY } from './logic';
 import styles from './Nato.module.scss';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 
 export const NatoPractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('nato_alphabet');
   const getRandomQuestion = () => {
     const keys = Object.keys(NATO_DICTIONARY).filter(k => isNaN(parseInt(k))); // Letters only for now
     const char = keys[Math.floor(Math.random() * keys.length)];
@@ -34,8 +36,7 @@ export const NatoPractice: React.FC = () => {
   // Game State
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [score, setScore] = useState(0);
-  const [streak, setStreak] = useState(0);
-
+  
   const generateQuestion = () => {
     setQuestion(getRandomQuestion());
     setFeedback(null);

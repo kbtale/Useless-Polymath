@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
@@ -8,12 +9,12 @@ import { BAND_COLORS, calculateResistance, getRandomResistor, formatOhms } from 
 import styles from './ResistorCodes.module.scss';
 
 export const ResistorPractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('resistor_codes');
   const { t } = useTranslation('resistor_codes');
   
   const [bands, setBands] = useState<string[]>(() => getRandomResistor(4));
   const [input, setInput] = useState('');
-  const [streak, setStreak] = useState(0);
-  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+    const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [lastValue, setLastValue] = useState<string>('');
 
   const generateNew = () => {

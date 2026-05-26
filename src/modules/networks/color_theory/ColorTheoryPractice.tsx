@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreSlider } from '../../../components/core/CoreSlider';
 import { FUIButton } from '../../../components/core/FUIButton';
@@ -7,6 +8,7 @@ import { calculateColorDistance, rgbToHex } from './logic';
 import styles from './ColorTheory.module.scss';
 
 export const ColorTheoryPractice: React.FC = () => {
+  const { streak, setStreak } = usePracticeStreak('color_theory');
   const getRandomColor = () => {
     return {
       r: Math.floor(Math.random() * 256),
@@ -26,8 +28,7 @@ export const ColorTheoryPractice: React.FC = () => {
   const [userB, setUserB] = useState(128);
 
   const [score, setScore] = useState<number | null>(null);
-  const [streak, setStreak] = useState(0);
-
+  
   const generateColor = () => {
     setTarget(getRandomColor());
     setUserR(128); setUserG(128); setUserB(128);
