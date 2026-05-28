@@ -1,0 +1,3 @@
+*.js linguist-language=JavaScript
+*.mjs linguist-language=JavaScript
+*.wasm linguist-language=WebAssembly
