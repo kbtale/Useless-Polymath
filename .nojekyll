@@ -1,0 +1,4 @@
+"scripts": {
+  "build": "vite build && touch dist/.nojekyll",
+  "deploy": "npm run build && gh-pages -d dist"
+}
