@@ -1,4 +1,3 @@
-
 export const calculateLuhnSum = (number: string): number => {
   const digits = number.replace(/\D/g, '').split('').map(Number);
   let sum = 0;
@@ -25,7 +24,7 @@ export const calculateCheckDigit = (number: string): number => {
   // 3. Calc Luhn sum.
   // 4. If sum % 10 == 0, check is 0. Else 10 - (sum % 10).
   const sum = calculateLuhnSum(number + '0');
-  return (sum % 10 === 0) ? 0 : 10 - (sum % 10);
+  return sum % 10 === 0 ? 0 : 10 - (sum % 10);
 };
 
 export const isValidLuhn = (number: string): boolean => {

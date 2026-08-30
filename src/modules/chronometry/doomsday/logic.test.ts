@@ -12,7 +12,7 @@ describe('Doomsday Algorithm', () => {
   it('should calculate the correct day of the week', () => {
     // 2023-12-02 is a Saturday (6)
     expect(getDayOfWeek(2023, 12, 2)).toBe(6);
-    
+
     // 2024-02-29 is a Thursday (4)
     expect(getDayOfWeek(2024, 2, 29)).toBe(4);
 

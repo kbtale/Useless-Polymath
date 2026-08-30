@@ -15,7 +15,7 @@ describe('Moon Phases Logic', () => {
     // Known New Moon: Nov 11, 2015
     const result = getMoonPhase(11, 11, 2015);
     // Age around 0 or 29 is New Moon
-    expect([0, 29, 1, 28]).toContain(result.age); 
+    expect([0, 29, 1, 28]).toContain(result.age);
   });
 
   it('should handle month offsets correctly', () => {

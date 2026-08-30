@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
@@ -17,7 +16,7 @@ export const PeriodicTablePractice: React.FC = () => {
   const { t } = useTranslation('periodic_table');
   const [target, setTarget] = useState<Element | null>(() => getRandomElement());
   const [input, setInput] = useState('');
-    const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
   const generateNew = () => {
     setTarget(getRandomElement());
@@ -27,11 +26,11 @@ export const PeriodicTablePractice: React.FC = () => {
 
   const checkAnswer = () => {
     if (!target) return;
-    
+
     // Check if input matches Symbol
     if (input.trim().toLowerCase() === target.symbol.toLowerCase()) {
       setFeedback('correct');
-      setStreak(s => s + 1);
+      setStreak((s) => s + 1);
       setTimeout(generateNew, 1200);
     } else {
       setFeedback('incorrect');
@@ -43,7 +42,9 @@ export const PeriodicTablePractice: React.FC = () => {
     <FUIGlassPanel className={styles.panel}>
       <div className={styles.header}>
         <h2 className={styles.practiceTitle}>{t('practice_title')}</h2>
-        <div className={styles.streak}>{t('streak')}: {streak}</div>
+        <div className={styles.streak}>
+          {t('streak')}: {streak}
+        </div>
       </div>
 
       <div className={styles.grid}>
@@ -72,10 +73,7 @@ export const PeriodicTablePractice: React.FC = () => {
 
       {feedback && (
         <div className={clsx(styles.feedback, styles[feedback])}>
-          {feedback === 'correct' 
-            ? t('confirmed') 
-            : `${t('access_denied')}: ${target?.symbol}`
-          }
+          {feedback === 'correct' ? t('confirmed') : `${t('access_denied')}: ${target?.symbol}`}
         </div>
       )}
     </FUIGlassPanel>

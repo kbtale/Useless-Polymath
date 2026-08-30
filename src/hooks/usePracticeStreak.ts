@@ -23,14 +23,14 @@ export function usePracticeStreak(moduleId: string) {
   });
 
   const setStreak = (newStreak: number | ((prev: number) => number)) => {
-    setStreakInternal(prev => {
+    setStreakInternal((prev) => {
       const val = typeof newStreak === 'function' ? newStreak(prev) : newStreak;
       try {
         localStorage.setItem(streakKey, val.toString());
       } catch (e) {
         console.error('Failed to save streak to localStorage:', e);
       }
-      
+
       if (val > highScore) {
         setHighScoreInternal(val);
         try {
@@ -51,6 +51,6 @@ export function usePracticeStreak(moduleId: string) {
     streak,
     highScore,
     setStreak,
-    resetStreak
+    resetStreak,
   };
 }

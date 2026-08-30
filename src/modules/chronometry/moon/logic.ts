@@ -1,4 +1,8 @@
-export const getMoonPhase = (day: number, month: number, year: number): { age: number; phaseName: string; phaseIcon: string } => {
+export const getMoonPhase = (
+  day: number,
+  month: number,
+  year: number,
+): { age: number; phaseName: string; phaseIcon: string } => {
   // 1. Golden Number (G)
   const G = (year % 19) + 1;
 
@@ -30,14 +34,31 @@ export const getMoonPhase = (day: number, month: number, year: number): { age: n
   let phaseName = '';
   let phaseIcon = '';
 
-  if (age === 29 || age === 0) { phaseName = 'New Moon'; phaseIcon = '🌑'; }
-  else if (age > 0 && age < 7) { phaseName = 'Waxing Crescent'; phaseIcon = '🌒'; }
-  else if (age === 7) { phaseName = 'First Quarter'; phaseIcon = '🌓'; }
-  else if (age > 7 && age < 14) { phaseName = 'Waxing Gibbous'; phaseIcon = '🌔'; }
-  else if (age === 14 || age === 15) { phaseName = 'Full Moon'; phaseIcon = '🌕'; }
-  else if (age > 15 && age < 22) { phaseName = 'Waning Gibbous'; phaseIcon = '🌖'; }
-  else if (age === 22) { phaseName = 'Last Quarter'; phaseIcon = '🌗'; }
-  else { phaseName = 'Waning Crescent'; phaseIcon = '🌘'; }
+  if (age === 29 || age === 0) {
+    phaseName = 'New Moon';
+    phaseIcon = '🌑';
+  } else if (age > 0 && age < 7) {
+    phaseName = 'Waxing Crescent';
+    phaseIcon = '🌒';
+  } else if (age === 7) {
+    phaseName = 'First Quarter';
+    phaseIcon = '🌓';
+  } else if (age > 7 && age < 14) {
+    phaseName = 'Waxing Gibbous';
+    phaseIcon = '🌔';
+  } else if (age === 14 || age === 15) {
+    phaseName = 'Full Moon';
+    phaseIcon = '🌕';
+  } else if (age > 15 && age < 22) {
+    phaseName = 'Waning Gibbous';
+    phaseIcon = '🌖';
+  } else if (age === 22) {
+    phaseName = 'Last Quarter';
+    phaseIcon = '🌗';
+  } else {
+    phaseName = 'Waning Crescent';
+    phaseIcon = '🌘';
+  }
 
   return { age, phaseName, phaseIcon };
 };

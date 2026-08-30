@@ -6,14 +6,14 @@ interface FUIButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'solid' | 'outline';
 }
 
-export const FUIButton: React.FC<FUIButtonProps> = ({ 
-  children, 
-  variant = 'outline', 
+export const FUIButton: React.FC<FUIButtonProps> = ({
+  children,
+  variant = 'outline',
   className,
-  ...props 
+  ...props
 }) => {
   return (
-    <button 
+    <button
       className={clsx(styles.fuiButton, variant === 'solid' && styles.solid, className)}
       {...props}
     >

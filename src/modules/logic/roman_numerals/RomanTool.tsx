@@ -15,7 +15,7 @@ export const RomanTool: React.FC = () => {
   const handleRomanChange = (val: string) => {
     setRoman(val);
     setError('');
-    
+
     if (!val) {
       setDecimal('');
       return;
@@ -28,11 +28,11 @@ export const RomanTool: React.FC = () => {
       const num = fromRoman(val);
       if (!isNaN(num)) {
         if (toRoman(num) !== val) {
-            // Technically valid sum, but non-standard form
-             setDecimal(num.toString());
-             // Optional: setError(t('non_standard')); 
+          // Technically valid sum, but non-standard form
+          setDecimal(num.toString());
+          // Optional: setError(t('non_standard'));
         } else {
-            setDecimal(num.toString());
+          setDecimal(num.toString());
         }
       }
     }
@@ -69,9 +69,10 @@ export const RomanTool: React.FC = () => {
       <h2 className={styles.title}>{t('title')}</h2>
 
       <div className={styles.container}>
-        
         <div className={styles.inputGroup}>
-          <label className={styles.label}>{t('decimal', { defaultValue: 'DECIMAL (Integer)' })}</label>
+          <label className={styles.label}>
+            {t('decimal', { defaultValue: 'DECIMAL (Integer)' })}
+          </label>
           <CoreBaseInput
             value={decimal}
             onChangeValue={handleDecimalChange}
@@ -95,9 +96,10 @@ export const RomanTool: React.FC = () => {
         </div>
 
         <div className={styles.controls}>
-          <FUIButton onClick={clear} variant="outline">{t('clear', { ns: 'common' })}</FUIButton>
+          <FUIButton onClick={clear} variant="outline">
+            {t('clear', { ns: 'common' })}
+          </FUIButton>
         </div>
-
       </div>
     </FUIGlassPanel>
   );

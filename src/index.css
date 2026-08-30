@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Roboto+Mono:wght@100;300;400&family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Roboto+Mono:wght@100;300;400&family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@400;700;900&display=swap");
 
 :root {
   /* Default font fallback */
@@ -19,15 +19,15 @@
   --hover-bg: #f0f0f0;
   --color-error: #ff3333;
 
-  --font-primary: 'JetBrains Mono', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-primary: "JetBrains Mono", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 
   --radius-card: 0px;
   --radius-inner-card: 0px;
   --radius-button: 0px;
   --radius-input: 0px;
 
-  --shadow-card: 8px 8px 0px rgba(0,0,0,0.05);
+  --shadow-card: 8px 8px 0px rgba(0, 0, 0, 0.05);
   --shadow-button: none;
   --shadow-button-hover: none;
 
@@ -70,8 +70,8 @@
   --hover-bg: #f5f5f5;
   --color-error: #ec2e3a;
 
-  --font-primary: 'Helvetica Neue', 'Inter', sans-serif;
-  --font-mono: 'Space Mono', monospace;
+  --font-primary: "Helvetica Neue", "Inter", sans-serif;
+  --font-mono: "Space Mono", monospace;
 
   --radius-card: 0px;
   --radius-inner-card: 0px;
@@ -121,8 +121,8 @@
   --hover-bg: #fff4f6; /* Rose Blush */
   --color-error: #ec2e3a;
 
-  --font-primary: 'Inter', sans-serif;
-  --font-mono: 'Space Mono', monospace;
+  --font-primary: "Inter", sans-serif;
+  --font-mono: "Space Mono", monospace;
 
   --radius-card: 16px;
   --radius-inner-card: 12px;
@@ -172,8 +172,8 @@
   --hover-bg: #111111; /* Subtle dark */
   --color-error: #ff4f2b;
 
-  --font-primary: 'Poppins', 'Inter', sans-serif;
-  --font-mono: 'Space Mono', monospace;
+  --font-primary: "Poppins", "Inter", sans-serif;
+  --font-mono: "Space Mono", monospace;
 
   --radius-card: 0px;
   --radius-inner-card: 0px;
@@ -223,8 +223,8 @@
   --hover-bg: #ffffff; /* Paper White */
   --color-error: #ff7169;
 
-  --font-primary: 'Space Mono', monospace;
-  --font-mono: 'Space Mono', monospace;
+  --font-primary: "Space Mono", monospace;
+  --font-mono: "Space Mono", monospace;
 
   --radius-card: 0px;
   --radius-inner-card: 0px;
@@ -273,11 +273,14 @@ a:hover {
   color: var(--text-main);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   overflow: hidden;
 }
@@ -296,7 +299,9 @@ body {
   color: var(--text-main);
   font-family: var(--font-primary);
   min-width: 320px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 h1 {

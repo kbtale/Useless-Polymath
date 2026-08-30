@@ -1,4 +1,3 @@
-
 import React from 'react';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
@@ -14,13 +13,13 @@ export const CoreSemaphoreFigure: React.FC<CoreSemaphoreFigureProps> = ({
   leftAngle,
   rightAngle,
   size = 200,
-  className
+  className,
 }) => {
   // Center of the arms
   const cx = 100;
   const cy = 70;
   const armLength = 60;
-  
+
   // Helper to get coordinates from angle (0 is Up/12:00)
   // SVG coords: 0 deg = -Y axis.
   // Math.cos/sin use radians. 0 rad = +X axis.
@@ -29,7 +28,7 @@ export const CoreSemaphoreFigure: React.FC<CoreSemaphoreFigureProps> = ({
     const rad = (angleDeg - 90) * (Math.PI / 180);
     return {
       x: cx + armLength * Math.cos(rad),
-      y: cy + armLength * Math.sin(rad)
+      y: cy + armLength * Math.sin(rad),
     };
   };
 
@@ -37,18 +36,18 @@ export const CoreSemaphoreFigure: React.FC<CoreSemaphoreFigureProps> = ({
   const rightHand = getHandCoords(rightAngle);
 
   return (
-    <svg 
-      width={size} 
-      height={size} 
-      viewBox="0 0 200 200" 
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 200 200"
       className={clsx('semaphore-figure', className)}
     >
       {/* Head */}
       <circle cx="100" cy="40" r="15" fill="currentColor" opacity={0.8} />
-      
+
       {/* Body */}
       <line x1="100" y1="55" x2="100" y2="120" stroke="currentColor" strokeWidth="4" />
-      
+
       {/* Legs (Static) */}
       <line x1="100" y1="120" x2="80" y2="180" stroke="currentColor" strokeWidth="4" />
       <line x1="100" y1="120" x2="120" y2="180" stroke="currentColor" strokeWidth="4" />
@@ -62,34 +61,41 @@ export const CoreSemaphoreFigure: React.FC<CoreSemaphoreFigureProps> = ({
           leftAngle -> Arm on left side of screen.
           rightAngle -> Arm on right side of screen.
       */}
-      <motion.line 
-        x1={cx} y1={cy} 
-        x2={leftHand.x} y2={leftHand.y} 
-        stroke="currentColor" 
+      <motion.line
+        x1={cx}
+        y1={cy}
+        x2={leftHand.x}
+        y2={leftHand.y}
+        stroke="currentColor"
         strokeWidth="4"
         animate={{ x2: leftHand.x, y2: leftHand.y }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       />
-      
-      <motion.line 
-        x1={cx} y1={cy} 
-        x2={rightHand.x} y2={rightHand.y} 
-        stroke="currentColor" 
+
+      <motion.line
+        x1={cx}
+        y1={cy}
+        x2={rightHand.x}
+        y2={rightHand.y}
+        stroke="currentColor"
         strokeWidth="4"
         animate={{ x2: rightHand.x, y2: rightHand.y }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       />
 
       {/* Flags (Optional squares at ends of hands) */}
       {/* Red/Yellow flags are standard but we'll stick to mono schematic for now */}
       <motion.rect
-        x={0} y={0} width="16" height="16"
-        fill="#ff4444" 
-        // Logic to position flag at end of arm, rotating with arm? 
+        x={0}
+        y={0}
+        width="16"
+        height="16"
+        fill="#ff4444"
+        // Logic to position flag at end of arm, rotating with arm?
         // Too complex for simple SVG lines. Just circles at hands for now.
         opacity={0} // Hidden for schematic style
       />
-      
+
       <motion.circle cx={leftHand.x} cy={leftHand.y} r="5" fill="currentColor" />
       <motion.circle cx={rightHand.x} cy={rightHand.y} r="5" fill="currentColor" />
     </svg>

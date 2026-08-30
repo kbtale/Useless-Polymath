@@ -1,5 +1,5 @@
 export const isLeapYear = (year: number): boolean => {
-  return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 };
 
 export const getDaysInMonth = (month: number, year: number): number => {
@@ -25,7 +25,7 @@ export const getOrdinalDate = (day: number, month: number, year: number) => {
     ordinal,
     totalDays,
     percentage: percentage.toFixed(2),
-    remaining: totalDays - ordinal
+    remaining: totalDays - ordinal,
   };
 };
 

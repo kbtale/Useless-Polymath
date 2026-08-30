@@ -4,7 +4,7 @@ export const calculateDoublingTime = (rate: number): number => {
 };
 
 export const preciseDoublingTime = (rate: number): number => {
-    if (rate <= 0) return Infinity;
-    // ln(2) / ln(1 + r/100)
-    return Math.log(2) / Math.log(1 + (rate / 100));
+  if (rate <= 0) return Infinity;
+  // ln(2) / ln(1 + r/100)
+  return Math.log(2) / Math.log(1 + rate / 100);
 };

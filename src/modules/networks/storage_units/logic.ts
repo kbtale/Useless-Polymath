@@ -1,4 +1,3 @@
-
 export const UNITS = [
   { label: 'B', bytes: 1 },
   { label: 'KB', bytes: 1024 },
@@ -16,10 +15,10 @@ export interface ConversionResult {
 
 export const convertStorage = (amount: number, fromUnitIdx: number): ConversionResult[] => {
   if (isNaN(amount) || amount < 0) return [];
-  
+
   const fromUnit = UNITS[fromUnitIdx];
   const totalBytes = amount * fromUnit.bytes;
-  
+
   return UNITS.map((unit) => {
     const value = totalBytes / unit.bytes;
     return {
@@ -46,7 +45,7 @@ export const generatePracticeProblem = () => {
     toIdx = Math.floor(Math.random() * UNITS.length);
   }
   const amount = Math.pow(2, Math.floor(Math.random() * 10)); // Powers of 2 for clean answers
-  
+
   return { fromIdx, toIdx, amount };
 };
 

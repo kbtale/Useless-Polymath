@@ -23,7 +23,6 @@ export const Rule72Tool: React.FC = () => {
       <h2 className={styles.title}>{t('title')}</h2>
 
       <div className={styles.container}>
-        
         <div className={styles.inputGroup}>
           <label className={styles.label}>{t('interest_rate')}</label>
           <CoreBaseInput
@@ -42,18 +41,20 @@ export const Rule72Tool: React.FC = () => {
               <span className={styles.resultValue}>{rule72Result.toFixed(2)}</span>
             </div>
 
-             <div className={styles.resultBox}>
+            <div className={styles.resultBox}>
               <span className={styles.resultLabel}>{t('years_precise')}</span>
-              <div className={styles.resultValue} style={{ fontSize: '1.5rem', marginTop: '0.4rem' }}>
+              <div
+                className={styles.resultValue}
+                style={{ fontSize: '1.5rem', marginTop: '0.4rem' }}
+              >
                 {preciseResult.toFixed(2)}
               </div>
               <div className={styles.difference}>
-                 {t('error')}: {percentError.toFixed(2)}%
+                {t('error')}: {percentError.toFixed(2)}%
               </div>
             </div>
           </div>
         )}
-
       </div>
     </FUIGlassPanel>
   );

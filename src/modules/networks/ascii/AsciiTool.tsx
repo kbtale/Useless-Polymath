@@ -42,7 +42,7 @@ export const AsciiTool: React.FC = () => {
                 className="text-center text-xl"
               />
             </div>
-            
+
             <div className={styles.arrow}>⇄</div>
 
             <div className={styles.inputGroup}>
@@ -58,21 +58,22 @@ export const AsciiTool: React.FC = () => {
           </div>
 
           <div style={{ width: '100%' }}>
-             <h3 className={styles.label} style={{ marginTop: '2rem' }}>{t('label_table')}</h3>
-             <div className={styles.grid}>
-               {tableData.map((item) => (
-                 <div 
-                   key={item.code} 
-                   className={clsx(styles.cell, item.code.toString() === code && styles.active)}
-                   onClick={() => handleCodeChange(item.code.toString())}
-                 >
-                   <span className={styles.code}>{item.code}</span>
-                   <span className={styles.char}>{item.char}</span>
-                 </div>
-               ))}
-             </div>
+            <h3 className={styles.label} style={{ marginTop: '2rem' }}>
+              {t('label_table')}
+            </h3>
+            <div className={styles.grid}>
+              {tableData.map((item) => (
+                <div
+                  key={item.code}
+                  className={clsx(styles.cell, item.code.toString() === code && styles.active)}
+                  onClick={() => handleCodeChange(item.code.toString())}
+                >
+                  <span className={styles.code}>{item.code}</span>
+                  <span className={styles.char}>{item.char}</span>
+                </div>
+              ))}
+            </div>
           </div>
-
         </div>
       </FUIGlassPanel>
 

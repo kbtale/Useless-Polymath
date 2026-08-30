@@ -11,7 +11,7 @@ const toTitleCase = (str: string): string => {
   return str
     .toLowerCase()
     .split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 };
 
@@ -26,9 +26,9 @@ export const DoomsdayTool: React.FC = () => {
     const d = parseInt(day);
     const m = parseInt(month);
     const y = parseInt(year);
-    
+
     if (isNaN(d) || isNaN(m) || isNaN(y)) return;
-    
+
     const resultLog = calculateDoomsdayWithLog(y, m, d);
     setLog(resultLog);
   };
@@ -44,11 +44,11 @@ export const DoomsdayTool: React.FC = () => {
     <div className={styles.toolLayout}>
       <FUIGlassPanel className={styles.panel}>
         <h2 className={styles.title}>{t('title')}</h2>
-        
+
         <label className={styles.label}>{t('target_date', { ns: 'common' })}</label>
-        
+
         <div className={styles.dateInputContainer}>
-          <CoreDateInput 
+          <CoreDateInput
             day={day}
             month={month}
             year={year}
@@ -59,8 +59,12 @@ export const DoomsdayTool: React.FC = () => {
         </div>
 
         <div className={styles.buttonGroup}>
-          <FUIButton onClick={handleClear} variant="outline">{t('clear', { ns: 'common' })}</FUIButton>
-          <FUIButton onClick={handleCalculate} variant="solid">{t('calculate', { ns: 'common' })}</FUIButton>
+          <FUIButton onClick={handleClear} variant="outline">
+            {t('clear', { ns: 'common' })}
+          </FUIButton>
+          <FUIButton onClick={handleCalculate} variant="solid">
+            {t('calculate', { ns: 'common' })}
+          </FUIButton>
         </div>
 
         {log && (
@@ -75,12 +79,14 @@ export const DoomsdayTool: React.FC = () => {
       {log && (
         <FUIGlassPanel className={styles.panel}>
           <h2 className={styles.title}>{t('log_title')}</h2>
-          
+
           <div className={styles.logContainer}>
             {log.steps.map((step, idx) => (
               <div key={idx} className={styles.logStep}>
                 <div className={styles.stepHeader}>
-                  <span>Step {idx + 1}: {step.title}</span>
+                  <span>
+                    Step {idx + 1}: {step.title}
+                  </span>
                 </div>
                 <div className={styles.stepContent}>
                   <div>Input: {step.input}</div>
@@ -92,7 +98,8 @@ export const DoomsdayTool: React.FC = () => {
 
             <div className={styles.finalResult}>
               <div className={styles.resultContent}>
-                {t('final_result')}: {t('total')} ({log.finalNumber}) MOD 7 = {log.finalNumber} ({toTitleCase(log.finalDay)})
+                {t('final_result')}: {t('total')} ({log.finalNumber}) MOD 7 = {log.finalNumber} (
+                {toTitleCase(log.finalDay)})
               </div>
             </div>
           </div>

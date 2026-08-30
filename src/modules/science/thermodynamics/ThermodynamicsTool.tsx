@@ -1,19 +1,19 @@
-
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
 import { FUIButton } from '../../../components/core/FUIButton';
-import { 
-  celsiusToFahrenheit, 
-  fahrenheitToCelsius, 
-  celsiusToFahrenheitMental, 
-  BENCHMARKS } from './logic';
+import {
+  celsiusToFahrenheit,
+  fahrenheitToCelsius,
+  celsiusToFahrenheitMental,
+  BENCHMARKS,
+} from './logic';
 import styles from './Thermodynamics.module.scss';
 
 export const ThermodynamicsTool: React.FC = () => {
   const { t } = useTranslation('thermodynamics');
-  
+
   // State tracks Celsius as the source of truth
   const [celsius, setCelsius] = useState<number>(20);
 
@@ -41,7 +41,7 @@ export const ThermodynamicsTool: React.FC = () => {
   const maxC = 120;
   const rangeC = maxC - minC;
   const percentC = Math.min(100, Math.max(0, ((celsius - minC) / rangeC) * 100));
-  
+
   // Similar logic for F (-4F to 248F matches the C range approx)
   const minF = -4;
   const maxF = 248;
@@ -55,20 +55,16 @@ export const ThermodynamicsTool: React.FC = () => {
           <h2 className={styles.title}>{t('title')}</h2>
 
           <div className={styles.thermometerWrapper}>
-            
             {/* Celsius Scale */}
             <div className={styles.scale}>
               <span className={styles.label}>{t('label_celsius')}</span>
               <div className={styles.track}>
-                <div 
-                  className={styles.fill} 
-                  style={{ height: `${percentC}%` }} 
-                />
-                <input 
-                  type="range" 
-                  min={minC} 
-                  max={maxC} 
-                  value={celsius} 
+                <div className={styles.fill} style={{ height: `${percentC}%` }} />
+                <input
+                  type="range"
+                  min={minC}
+                  max={maxC}
+                  value={celsius}
                   onChange={handleCelsiusChange}
                   className={styles.sliderInput}
                 />
@@ -80,22 +76,18 @@ export const ThermodynamicsTool: React.FC = () => {
             <div className={styles.scale}>
               <span className={styles.label}>{t('label_fahrenheit')}</span>
               <div className={styles.track}>
-                <div 
-                  className={styles.fill} 
-                  style={{ height: `${percentF}%` }} 
-                />
-                <input 
-                  type="range" 
-                  min={minF} 
-                  max={maxF} 
-                  value={Math.round(fExact)} 
+                <div className={styles.fill} style={{ height: `${percentF}%` }} />
+                <input
+                  type="range"
+                  min={minF}
+                  max={maxF}
+                  value={Math.round(fExact)}
                   onChange={handleFahrenheitChange}
                   className={styles.sliderInput}
                 />
               </div>
               <span className={styles.valueDisplay}>{Math.round(fExact)}°</span>
             </div>
-
           </div>
 
           {/* Mental Math Comparison */}
@@ -117,8 +109,8 @@ export const ThermodynamicsTool: React.FC = () => {
           {/* Benchmarks */}
           <div className={styles.benchmarks}>
             {BENCHMARKS.map((b) => (
-              <FUIButton 
-                key={b.celsius} 
+              <FUIButton
+                key={b.celsius}
                 onClick={() => handleBenchmark(b.celsius)}
                 variant={celsius === b.celsius ? 'solid' : 'outline'}
               >

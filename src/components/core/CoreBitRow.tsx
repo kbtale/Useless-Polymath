@@ -13,7 +13,7 @@ export const CoreBitRow: React.FC<CoreBitRowProps> = ({
   bits = 8,
   value,
   onChange,
-  interactive = false
+  interactive = false,
 }) => {
   const toggleBit = (index: number) => {
     if (!interactive || !onChange) return;
@@ -26,22 +26,18 @@ export const CoreBitRow: React.FC<CoreBitRowProps> = ({
     // Determine bit index (usually 0 is LSB, on the right)
     // Visualization: [7][6][5][4][3][2][1][0]
     // i=0 -> left (bit index = bits - 1)
-    const bitIndex = bits - 1 - i; 
+    const bitIndex = bits - 1 - i;
     const isActive = !!((value >> bitIndex) & 1);
-    
+
     return { bitIndex, isActive };
   });
 
   return (
     <div className={styles.coreBitRow}>
       {bitArray.map(({ bitIndex, isActive }) => (
-        <div 
+        <div
           key={bitIndex}
-          className={clsx(
-            styles.bit, 
-            isActive && styles.active,
-            interactive && styles.interactive
-          )}
+          className={clsx(styles.bit, isActive && styles.active, interactive && styles.interactive)}
           onClick={() => toggleBit(bitIndex)}
           title={`Bit ${bitIndex} (${Math.pow(2, bitIndex)})`}
         >

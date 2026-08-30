@@ -36,12 +36,7 @@ export const SubnettingTool: React.FC = () => {
               <label className={styles.label}>{t('label_cidr')}</label>
               <span className={styles.label}>/{cidr}</span>
             </div>
-            <CoreSlider
-              min={0}
-              max={32}
-              value={cidr}
-              onChange={setCidr}
-            />
+            <CoreSlider min={0} max={32} value={cidr} onChange={setCidr} />
           </div>
 
           {result ? (
@@ -69,7 +64,10 @@ export const SubnettingTool: React.FC = () => {
             </div>
           ) : (
             <div className={styles.results}>
-              <div className={styles.resultItem} style={{ gridColumn: 'span 2', textAlign: 'center', color: '#ff6b6b' }}>
+              <div
+                className={styles.resultItem}
+                style={{ gridColumn: 'span 2', textAlign: 'center', color: '#ff6b6b' }}
+              >
                 {t('label_invalid_ip')}
               </div>
             </div>

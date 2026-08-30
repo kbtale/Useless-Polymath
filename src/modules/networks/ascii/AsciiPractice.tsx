@@ -15,7 +15,7 @@ export const AsciiPractice: React.FC = () => {
     return {
       code,
       char: codeToChar(code),
-      mode: Math.random() > 0.5 ? 'charToCode' : 'codeToChar'
+      mode: Math.random() > 0.5 ? 'charToCode' : 'codeToChar',
     };
   };
 
@@ -24,10 +24,10 @@ export const AsciiPractice: React.FC = () => {
   const targetCode = problem.code;
   const targetChar = problem.char;
   const mode = problem.mode;
-  
+
   const [userAnswer, setUserAnswer] = useState('');
   const [feedback, setFeedback] = useState<'idle' | 'correct' | 'incorrect'>('idle');
-  
+
   const generateProblem = () => {
     setProblem(getRandomProblem());
     setUserAnswer('');
@@ -46,7 +46,7 @@ export const AsciiPractice: React.FC = () => {
 
     if (corrected) {
       setFeedback('correct');
-      setStreak(s => s + 1);
+      setStreak((s) => s + 1);
       setTimeout(generateProblem, 1000);
     } else {
       setFeedback('incorrect');
@@ -58,13 +58,17 @@ export const AsciiPractice: React.FC = () => {
     <div className={styles.toolContainer}>
       <FUIGlassPanel className={styles.panel}>
         <div className={styles.container}>
-           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-             <h2 className={styles.title}>{t('practice_title')}</h2>
-             <span style={{ fontFamily: 'JetBrains Mono', color: '#4ade80' }}>{t('streak', { ns: 'common' })}: {streak}</span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <h2 className={styles.title}>{t('practice_title')}</h2>
+            <span style={{ fontFamily: 'JetBrains Mono', color: '#4ade80' }}>
+              {t('streak', { ns: 'common' })}: {streak}
+            </span>
           </div>
 
           <div style={{ textAlign: 'center', margin: '2rem 0' }}>
-            <p className={styles.label}>{mode === 'charToCode' ? t('label_convert_to_dec') : t('label_convert_to_char')}</p>
+            <p className={styles.label}>
+              {mode === 'charToCode' ? t('label_convert_to_dec') : t('label_convert_to_char')}
+            </p>
             <div style={{ fontSize: '4rem', fontFamily: 'JetBrains Mono', margin: '1rem' }}>
               {mode === 'charToCode' ? targetChar : targetCode}
             </div>
@@ -77,15 +81,14 @@ export const AsciiPractice: React.FC = () => {
               maxLength={3}
               placeholder="?"
               className={clsx(
-                feedback === 'correct' && 'border-green-500 text-green-500', 
+                feedback === 'correct' && 'border-green-500 text-green-500',
                 feedback === 'incorrect' && 'border-red-500 text-red-500',
-                "text-center text-xl"
+                'text-center text-xl',
               )}
             />
           </div>
 
           <FUIButton onClick={handleSubmit}>{t('submit', { ns: 'common' })}</FUIButton>
-
         </div>
       </FUIGlassPanel>
     </div>

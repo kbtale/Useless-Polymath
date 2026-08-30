@@ -18,7 +18,7 @@ export const COMMON_ZONES: TimeZone[] = [
 export const calculateDestinationTime = (
   localHour: number,
   originOffset: number,
-  destOffset: number
+  destOffset: number,
 ): { hour: number; dayOffset: number } => {
   // 1. Normalize to UTC
   const utcHour = localHour - originOffset;

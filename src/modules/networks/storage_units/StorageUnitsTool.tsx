@@ -25,30 +25,26 @@ export const StorageUnitsTool: React.FC = () => {
           <div className={styles.inputSection}>
             <div style={{ flex: 1 }}>
               <label className={styles.label}>{t('label_amount')}</label>
-              <CoreBaseInput
-                value={amount}
-                onChangeValue={setAmount}
-                allowedChars={/^[0-9.]*$/}
-              />
+              <CoreBaseInput value={amount} onChangeValue={setAmount} allowedChars={/^[0-9.]*$/} />
             </div>
             <div style={{ width: 100 }}>
-               <label className={styles.label}>{t('label_unit')}</label>
-               <CoreSelect
-                 value={unitIdx}
-                 onChange={setUnitIdx}
-                 options={UNITS.map((u, i) => ({ value: i.toString(), label: u.label }))}
-               />
+              <label className={styles.label}>{t('label_unit')}</label>
+              <CoreSelect
+                value={unitIdx}
+                onChange={setUnitIdx}
+                options={UNITS.map((u, i) => ({ value: i.toString(), label: u.label }))}
+              />
             </div>
           </div>
 
           {results.length > 0 && (
             <div className={styles.resultsGrid}>
               {results.map((res) => (
-                <div 
-                  key={res.unit} 
+                <div
+                  key={res.unit}
                   className={clsx(
                     styles.resultCard,
-                    UNITS[parseInt(unitIdx)].label === res.unit && styles.active
+                    UNITS[parseInt(unitIdx)].label === res.unit && styles.active,
                   )}
                 >
                   <span className={styles.resultUnit}>{res.unit}</span>
@@ -57,7 +53,6 @@ export const StorageUnitsTool: React.FC = () => {
               ))}
             </div>
           )}
-
         </div>
       </FUIGlassPanel>
 

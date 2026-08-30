@@ -30,7 +30,7 @@ export const SemaphorePractice: React.FC = () => {
   const checkAnswer = () => {
     if (input.toLowerCase() === targetChar.toLowerCase()) {
       setFeedback('correct');
-      setStreak(s => s + 1);
+      setStreak((s) => s + 1);
       setTimeout(generateNew, 1000);
     } else {
       setFeedback('incorrect');
@@ -44,7 +44,9 @@ export const SemaphorePractice: React.FC = () => {
     <FUIGlassPanel className={styles.panel}>
       <div className={styles.header}>
         <h2 className={styles.practiceTitle}>{t('common:practice_mode', 'Practice Mode')}</h2>
-        <div className={styles.streak}>{t('common:streak', 'Streak')}: {streak}</div>
+        <div className={styles.streak}>
+          {t('common:streak', 'Streak')}: {streak}
+        </div>
       </div>
 
       <div className={styles.practiceArea}>
@@ -74,10 +76,12 @@ export const SemaphorePractice: React.FC = () => {
 
       {feedback && (
         <div className={clsx(styles.feedback, styles[feedback])}>
-          {feedback === 'correct' 
-            ? t('common:correct', 'Correct!') 
-            : t('common:correct_answer', { answer: targetChar.toUpperCase(), defaultValue: 'Correct answer: {{answer}}' })
-          }
+          {feedback === 'correct'
+            ? t('common:correct', 'Correct!')
+            : t('common:correct_answer', {
+                answer: targetChar.toUpperCase(),
+                defaultValue: 'Correct answer: {{answer}}',
+              })}
         </div>
       )}
     </FUIGlassPanel>

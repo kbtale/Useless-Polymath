@@ -1,4 +1,3 @@
-
 /**
  * Converts IP string (x.x.x.x) to 32-bit integer.
  */
@@ -10,12 +9,7 @@ export const ipToInt = (ip: string): number => {
  * Converts 32-bit integer to IP string.
  */
 export const intToIp = (int: number): string => {
-  return [
-    (int >>> 24) & 255,
-    (int >>> 16) & 255,
-    (int >>> 8) & 255,
-    int & 255
-  ].join('.');
+  return [(int >>> 24) & 255, (int >>> 16) & 255, (int >>> 8) & 255, int & 255].join('.');
 };
 
 /**
@@ -28,14 +22,14 @@ export const calculateSubnet = (ip: string, cidr: number) => {
 
   // Validate Octets
   const octets = ip.split('.');
-  if (octets.some(o => parseInt(o) > 255)) return null;
+  if (octets.some((o) => parseInt(o) > 255)) return null;
 
   const ipInt = ipToInt(ip);
-  const maskInt = cidr === 0 ? 0 : (~0 >>> (32 - cidr)); // Create mask
-  
+  const maskInt = cidr === 0 ? 0 : ~0 >>> (32 - cidr); // Create mask
+
   const networkInt = (ipInt & maskInt) >>> 0;
   const broadcastInt = (networkInt | (~maskInt >>> 0)) >>> 0;
-  
+
   const hosts = cidr === 32 ? 1 : cidr === 31 ? 2 : Math.pow(2, 32 - cidr) - 2;
   const usableStart = cidr >= 31 ? networkInt : networkInt + 1;
   const usableEnd = cidr >= 31 ? broadcastInt : broadcastInt - 1;
@@ -45,6 +39,6 @@ export const calculateSubnet = (ip: string, cidr: number) => {
     broadcast: intToIp(broadcastInt),
     mask: intToIp(maskInt),
     hosts: hosts,
-    range: `${intToIp(usableStart)} - ${intToIp(usableEnd)}`
+    range: `${intToIp(usableStart)} - ${intToIp(usableEnd)}`,
   };
 };

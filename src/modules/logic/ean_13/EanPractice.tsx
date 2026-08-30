@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
@@ -9,7 +8,7 @@ import styles from './Ean13.module.scss';
 
 export const EanPractice: React.FC = () => {
   const { t } = useTranslation('ean_13');
-  
+
   const [targetNumber, setTargetNumber] = useState(() => generateEan13());
   const [input, setInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
@@ -37,16 +36,18 @@ export const EanPractice: React.FC = () => {
   return (
     <FUIGlassPanel className={styles.panel}>
       <h2 className={styles.title}>{t('practice_title')}</h2>
-      
+
       <div className={styles.practiceContainer}>
-        <p className={styles.label} style={{ textAlign: 'center' }}>{t('practice_prompt')}</p>
-        
+        <p className={styles.label} style={{ textAlign: 'center' }}>
+          {t('practice_prompt')}
+        </p>
+
         <div className={styles.barcodeContainer} style={{ padding: '2rem' }}>
           <div className={styles.digits}>
-             <span>{d1}</span>
-             <span>{g1}</span>
-             <span>{g2}</span>
-             <span className={styles.missing}>?</span>
+            <span>{d1}</span>
+            <span>{g1}</span>
+            <span>{g2}</span>
+            <span className={styles.missing}>?</span>
           </div>
         </div>
 
@@ -66,14 +67,20 @@ export const EanPractice: React.FC = () => {
         )}
 
         {feedback && (
-           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
-            <div style={{ 
-               padding: '1rem', 
-               color: feedback === 'correct' ? '#4ade80' : '#ff3333', // fallback hex
-               textAlign: 'center',
-               fontFamily: 'monospace'
-            }}>
-              {t(feedback === 'correct' ? 'feedback_correct' : 'feedback_incorrect', { digit: correctDigit })}
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}
+          >
+            <div
+              style={{
+                padding: '1rem',
+                color: feedback === 'correct' ? '#4ade80' : '#ff3333', // fallback hex
+                textAlign: 'center',
+                fontFamily: 'monospace',
+              }}
+            >
+              {t(feedback === 'correct' ? 'feedback_correct' : 'feedback_incorrect', {
+                digit: correctDigit,
+              })}
             </div>
             <FUIButton onClick={handleNext} variant="outline">
               Next

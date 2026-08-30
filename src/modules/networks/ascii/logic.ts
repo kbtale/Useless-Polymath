@@ -1,4 +1,3 @@
-
 export const charToCode = (char: string): number => {
   if (!char) return 0;
   return char.charCodeAt(0);

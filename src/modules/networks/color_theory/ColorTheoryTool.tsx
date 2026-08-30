@@ -6,7 +6,6 @@ import { CoreSlider } from '../../../components/core/CoreSlider';
 import { rgbToHex } from './logic';
 import styles from './ColorTheory.module.scss';
 
-
 export const ColorTheoryTool: React.FC = () => {
   const { t } = useTranslation('color_theory');
   const [r, setR] = useState(100);
@@ -28,20 +27,25 @@ export const ColorTheoryTool: React.FC = () => {
 
             <div className={styles.controls}>
               <div className={styles.sliderGroup}>
-                <label style={{ color: '#ff6b6b' }}>{t('label_red')} ({r})</label>
+                <label style={{ color: '#ff6b6b' }}>
+                  {t('label_red')} ({r})
+                </label>
                 <CoreSlider min={0} max={255} value={r} onChange={setR} />
               </div>
               <div className={styles.sliderGroup}>
-                <label style={{ color: '#4ade80' }}>{t('label_green')} ({g})</label>
+                <label style={{ color: '#4ade80' }}>
+                  {t('label_green')} ({g})
+                </label>
                 <CoreSlider min={0} max={255} value={g} onChange={setG} />
               </div>
               <div className={styles.sliderGroup}>
-                <label style={{ color: '#60a5fa' }}>{t('label_blue')} ({b})</label>
+                <label style={{ color: '#60a5fa' }}>
+                  {t('label_blue')} ({b})
+                </label>
                 <CoreSlider min={0} max={255} value={b} onChange={setB} />
               </div>
             </div>
           </div>
-
         </div>
       </FUIGlassPanel>
 

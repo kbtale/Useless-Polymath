@@ -4,7 +4,17 @@ export interface Element {
   mass: number;
   group: number;
   period: number;
-  category: 'alkali' | 'alkaline' | 'transition' | 'lanthanide' | 'actinide' | 'metalloid' | 'nonmetal' | 'halogen' | 'noble' | 'unknown';
+  category:
+    | 'alkali'
+    | 'alkaline'
+    | 'transition'
+    | 'lanthanide'
+    | 'actinide'
+    | 'metalloid'
+    | 'nonmetal'
+    | 'halogen'
+    | 'noble'
+    | 'unknown';
 }
 
 export const ELEMENTS: Element[] = [
@@ -19,11 +29,11 @@ export const ELEMENTS: Element[] = [
   { number: 7, symbol: 'N', mass: 14.007, group: 15, period: 2, category: 'nonmetal' },
   { number: 8, symbol: 'O', mass: 15.999, group: 16, period: 2, category: 'nonmetal' },
   { number: 9, symbol: 'F', mass: 18.998, group: 17, period: 2, category: 'halogen' },
-  { number: 10, symbol: 'Ne', mass: 20.180, group: 18, period: 2, category: 'noble' },
+  { number: 10, symbol: 'Ne', mass: 20.18, group: 18, period: 2, category: 'noble' },
   // Period 3
-  { number: 11, symbol: 'Na', mass: 22.990, group: 1, period: 3, category: 'alkali' },
+  { number: 11, symbol: 'Na', mass: 22.99, group: 1, period: 3, category: 'alkali' },
   { number: 12, symbol: 'Mg', mass: 24.305, group: 2, period: 3, category: 'alkaline' },
-  { number: 13, symbol: 'Al', mass: 26.982, group: 13, period: 3, category: 'transition' }, 
+  { number: 13, symbol: 'Al', mass: 26.982, group: 13, period: 3, category: 'transition' },
   { number: 14, symbol: 'Si', mass: 28.085, group: 14, period: 3, category: 'metalloid' },
   { number: 15, symbol: 'P', mass: 30.974, group: 15, period: 3, category: 'nonmetal' },
   { number: 16, symbol: 'S', mass: 32.06, group: 16, period: 3, category: 'nonmetal' },
@@ -65,7 +75,7 @@ export const ELEMENTS: Element[] = [
   { number: 50, symbol: 'Sn', mass: 118.71, group: 14, period: 5, category: 'transition' },
   { number: 51, symbol: 'Sb', mass: 121.76, group: 15, period: 5, category: 'metalloid' },
   { number: 52, symbol: 'Te', mass: 127.6, group: 16, period: 5, category: 'metalloid' },
-  { number: 53, symbol: 'I', mass: 126.90, group: 17, period: 5, category: 'halogen' },
+  { number: 53, symbol: 'I', mass: 126.9, group: 17, period: 5, category: 'halogen' },
   { number: 54, symbol: 'Xe', mass: 131.29, group: 18, period: 5, category: 'noble' },
   // Period 6
   { number: 55, symbol: 'Cs', mass: 132.91, group: 1, period: 6, category: 'alkali' },
@@ -114,7 +124,7 @@ export const ELEMENTS: Element[] = [
   { number: 63, symbol: 'Eu', mass: 151.96, group: 3, period: 8, category: 'lanthanide' },
   { number: 64, symbol: 'Gd', mass: 157.25, group: 3, period: 8, category: 'lanthanide' },
   { number: 65, symbol: 'Tb', mass: 158.93, group: 3, period: 8, category: 'lanthanide' },
-  { number: 66, symbol: 'Dy', mass: 162.50, group: 3, period: 8, category: 'lanthanide' },
+  { number: 66, symbol: 'Dy', mass: 162.5, group: 3, period: 8, category: 'lanthanide' },
   { number: 67, symbol: 'Ho', mass: 164.93, group: 3, period: 8, category: 'lanthanide' },
   { number: 68, symbol: 'Er', mass: 167.26, group: 3, period: 8, category: 'lanthanide' },
   { number: 69, symbol: 'Tm', mass: 168.93, group: 3, period: 8, category: 'lanthanide' },
@@ -138,9 +148,9 @@ export const ELEMENTS: Element[] = [
 ];
 
 export const getElementBySymbol = (sym: string): Element | undefined => {
-  return ELEMENTS.find(e => e.symbol.toLowerCase() === sym.toLowerCase());
+  return ELEMENTS.find((e) => e.symbol.toLowerCase() === sym.toLowerCase());
 };
 
 export const getElementByNumber = (num: number): Element | undefined => {
-  return ELEMENTS.find(e => e.number === num);
+  return ELEMENTS.find((e) => e.number === num);
 };
