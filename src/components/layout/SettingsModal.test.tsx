@@ -44,7 +44,7 @@ describe('SettingsModal', () => {
     expect(container.firstChild).toBeNull();
   });
 
-  it('renders modal content and triggers close and reset events', () => {
+  it('renders dialog with accessibility attributes and handles user interactions', () => {
     const onClose = vi.fn();
     const onResetAll = vi.fn();
 
@@ -66,13 +66,43 @@ describe('SettingsModal', () => {
       />,
     );
 
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toBeDefined();
+    expect(dialog.getAttribute('aria-modal')).toBe('true');
+    expect(dialog.getAttribute('aria-labelledby')).toBe('settings-dialog-title');
+
     expect(screen.getByText('Settings')).toBeDefined();
     expect(screen.getByText('Reset All Practice Scores')).toBeDefined();
 
     fireEvent.click(screen.getByText('×'));
-    expect(onClose).toHaveBeenCalled();
+    expect(onClose).toHaveBeenCalledTimes(1);
 
     fireEvent.click(screen.getByText('Reset All Practice Scores'));
-    expect(onResetAll).toHaveBeenCalled();
+    expect(onResetAll).toHaveBeenCalledTimes(1);
+  });
+
+  it('dismisses modal when Escape key is pressed', () => {
+    const onClose = vi.fn();
+
+    render(
+      <SettingsModal
+        isOpen={true}
+        onClose={onClose}
+        modules={dummyModules}
+        stylesList={dummyStyles}
+        activeStyle="mono"
+        onStyleChange={vi.fn()}
+        hiddenCategories={[]}
+        onToggleCategory={vi.fn()}
+        hiddenModules={[]}
+        onToggleModule={vi.fn()}
+        onResetIndividual={vi.fn()}
+        onResetAll={vi.fn()}
+        scoresVersion={0}
+      />,
+    );
+
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(onClose).toHaveBeenCalledTimes(1);
   });
 });

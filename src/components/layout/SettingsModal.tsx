@@ -1,6 +1,6 @@
-import type React from 'react';
-import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
+import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FUIButton } from '../core/FUIButton';
 import styles from './AppShell.module.scss';
 
@@ -45,6 +45,9 @@ const toTitleCase = (str: string): string => {
     .join(' ');
 };
 
+const FOCUSABLE_SELECTOR =
+  'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
 export const SettingsModal: React.FC<SettingsModalProps> = ({
   isOpen,
   onClose,
@@ -61,6 +64,59 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   scoresVersion,
 }) => {
   const { t, i18n } = useTranslation(['common', 'navigation']);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const triggerElementRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    triggerElementRef.current = document.activeElement as HTMLElement | null;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusableElements = Array.from(
+          modalRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+        );
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    const initialFocusTimeout = setTimeout(() => {
+      if (modalRef.current) {
+        const focusable = modalRef.current.querySelector<HTMLElement>(FOCUSABLE_SELECTOR);
+        focusable?.focus();
+      }
+    }, 0);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      clearTimeout(initialFocusTimeout);
+      triggerElementRef.current?.focus();
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -71,10 +127,23 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
-      <div onClick={(e: React.MouseEvent) => e.stopPropagation()} className={styles.settingsModal}>
+      <div
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="settings-dialog-title"
+        onClick={(e: React.MouseEvent) => e.stopPropagation()}
+        className={styles.settingsModal}
+      >
         <div className={styles.modalHeader}>
-          <h2 className={styles.modalTitle}>{t('settings', 'Settings')}</h2>
-          <button className={styles.closeBtn} onClick={onClose}>
+          <h2 id="settings-dialog-title" className={styles.modalTitle}>
+            {t('settings', 'Settings')}
+          </h2>
+          <button
+            aria-label={t('close', { ns: 'common', defaultValue: 'Close settings' })}
+            className={styles.closeBtn}
+            onClick={onClose}
+          >
             ×
           </button>
         </div>
