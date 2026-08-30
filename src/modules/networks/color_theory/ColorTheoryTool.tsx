@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
 import { CoreSlider } from '../../../components/core/CoreSlider';
-import { rgbToHex } from './logic';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import styles from './ColorTheory.module.scss';
+import { rgbToHex } from './logic';
 
 export const ColorTheoryTool: React.FC = () => {
   const { t } = useTranslation('color_theory');
@@ -47,10 +47,6 @@ export const ColorTheoryTool: React.FC = () => {
             </div>
           </div>
         </div>
-      </FUIGlassPanel>
-
-      <FUIGlassPanel className={styles.panel}>
-        <CoreMarkdownRenderer content={t('guide')} />
       </FUIGlassPanel>
     </div>
   );
