@@ -21,8 +21,11 @@ export const SubnettingTool: React.FC = () => {
           <h2 className={styles.title}>{t('title')}</h2>
 
           <div className={styles.inputGroup}>
-            <label className={styles.label}>{t('label_ip')}</label>
+            <label htmlFor="subnetting-ip-input" className={styles.label}>
+              {t('label_ip')}
+            </label>
             <CoreBaseInput
+              id="subnetting-ip-input"
               value={ip}
               onChangeValue={setIp}
               allowedChars={/^[0-9.]*$/}
@@ -33,10 +36,18 @@ export const SubnettingTool: React.FC = () => {
 
           <div className={styles.inputGroup}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <label className={styles.label}>{t('label_cidr')}</label>
+              <label htmlFor="subnetting-cidr-slider" className={styles.label}>
+                {t('label_cidr')}
+              </label>
               <span className={styles.label}>/{cidr}</span>
             </div>
-            <CoreSlider min={0} max={32} value={cidr} onChange={setCidr} />
+            <CoreSlider
+              id="subnetting-cidr-slider"
+              min={0}
+              max={32}
+              value={cidr}
+              onChange={setCidr}
+            />
           </div>
 
           {result ? (
@@ -66,7 +77,11 @@ export const SubnettingTool: React.FC = () => {
             <div className={styles.results}>
               <div
                 className={styles.resultItem}
-                style={{ gridColumn: 'span 2', textAlign: 'center', color: '#ff6b6b' }}
+                style={{
+                  gridColumn: 'span 2',
+                  textAlign: 'center',
+                  color: 'var(--color-error)',
+                }}
               >
                 {t('label_invalid_ip')}
               </div>

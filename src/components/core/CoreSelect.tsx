@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './CoreSelect.module.scss';
 import clsx from 'clsx';
+import React, { useId } from 'react';
+import styles from './CoreSelect.module.scss';
 
 export interface SelectOption {
   value: string | number;
@@ -14,6 +14,8 @@ interface CoreSelectProps {
   label?: string;
   placeholder?: string;
   className?: string;
+  id?: string;
+  'aria-label'?: string;
 }
 
 export const CoreSelect: React.FC<CoreSelectProps> = ({
@@ -23,12 +25,29 @@ export const CoreSelect: React.FC<CoreSelectProps> = ({
   label,
   placeholder,
   className,
+  id,
+  'aria-label': ariaLabel,
 }) => {
+  const generatedId = useId();
+  const selectId = id || (label ? generatedId : undefined);
+
   return (
     <div className={clsx(styles.selectContainer, className)}>
-      {label && <label className={styles.label}>{label}</label>}
+      {label && (
+        <label htmlFor={selectId} className={styles.label}>
+          {label}
+        </label>
+      )}
       <div className={styles.wrapper}>
-        <select className={styles.select} value={value} onChange={(e) => onChange(e.target.value)}>
+        <select
+          id={selectId}
+          aria-label={
+            ariaLabel || (!label && typeof placeholder === 'string' ? placeholder : undefined)
+          }
+          className={styles.select}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        >
           {placeholder && (
             <option value="" disabled>
               {placeholder}
