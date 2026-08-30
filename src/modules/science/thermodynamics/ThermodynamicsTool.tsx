@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import {
@@ -114,10 +113,6 @@ export const ThermodynamicsTool: React.FC = () => {
             ))}
           </div>
         </div>
-      </FUIGlassPanel>
-
-      <FUIGlassPanel className={styles.panel}>
-        <CoreMarkdownRenderer content={t('guide')} />
       </FUIGlassPanel>
     </div>
   );

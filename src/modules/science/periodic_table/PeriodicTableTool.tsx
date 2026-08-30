@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import styles from './PeriodicTable.module.scss';
 import { ELEMENTS, type Element } from './logic';
@@ -104,10 +103,6 @@ export const PeriodicTableTool: React.FC = () => {
             <div style={{ fontStyle: 'italic', opacity: 0.5 }}>{t('placeholder_hover')}</div>
           )}
         </div>
-      </FUIGlassPanel>
-
-      <FUIGlassPanel className={styles.panel}>
-        <CoreMarkdownRenderer content={t('guide')} />
       </FUIGlassPanel>
     </div>
   );

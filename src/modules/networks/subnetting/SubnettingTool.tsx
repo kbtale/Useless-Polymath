@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { CoreSlider } from '../../../components/core/CoreSlider';
-import { calculateSubnet } from './logic';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import styles from './Subnetting.module.scss';
+import { calculateSubnet } from './logic';
 
 export const SubnettingTool: React.FC = () => {
   const { t } = useTranslation('subnetting');
@@ -88,10 +88,6 @@ export const SubnettingTool: React.FC = () => {
             </div>
           )}
         </div>
-      </FUIGlassPanel>
-
-      <FUIGlassPanel className={styles.panel}>
-        <CoreMarkdownRenderer content={t('guide')} />
       </FUIGlassPanel>
     </div>
   );

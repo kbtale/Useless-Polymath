@@ -25,6 +25,10 @@
   "modules.cryptography": "Criptografía",
   "modules.science": "Ciencia",
   "streak": "Racha",
+  "next": "Siguiente",
+  "target": "Objetivo",
+  "result": "Resultado",
+  "incorrect_try_again": "Incorrecto. Inténtalo de nuevo.",
   "correct": "¡Correcto!",
   "incorrect": "¡Incorrecto!",
   "correct_answer": "Respuesta correcta: {{answer}}"

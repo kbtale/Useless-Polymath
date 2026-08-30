@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import type React from 'react';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CoreDateInput } from '../../../components/core/CoreDateInput';
-import { getMoonPhase } from './logic';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import styles from './Moon.module.scss';
+import { getMoonPhase } from './logic';
 
 export const MoonTool: React.FC = () => {
+  const { t } = useTranslation('moon');
   const [day, setDay] = useState(new Date().getDate().toString().padStart(2, '0'));
   const [month, setMonth] = useState((new Date().getMonth() + 1).toString().padStart(2, '0'));
   const [year, setYear] = useState(new Date().getFullYear().toString());
 
-  const d = parseInt(day) || 1;
-  const m = parseInt(month) || 1;
-  const y = parseInt(year) || 2000;
+  const d = parseInt(day, 10) || 1;
+  const m = parseInt(month, 10) || 1;
+  const y = parseInt(year, 10) || 2000;
 
   const { age, phaseName, phaseIcon } = getMoonPhase(d, m, y);
+  const phaseKey = phaseName.toLowerCase().replace(/ /g, '_');
 
   return (
     <FUIGlassPanel className={styles.panel}>
-      <h2 className={styles.title}>MOON PHASES</h2>
+      <h2 className={styles.title}>{t('title')}</h2>
 
       <div className={styles.container}>
         <div>
@@ -34,8 +38,12 @@ export const MoonTool: React.FC = () => {
         <div className={styles.phaseIcon}>{phaseIcon}</div>
 
         <div>
-          <div className={styles.phaseName}>{phaseName.toUpperCase()}</div>
-          <div className={styles.phaseAge}>LUNAR AGE: {age} / 29.5</div>
+          <div className={styles.phaseName}>
+            {t(`phases.${phaseKey}`, { defaultValue: phaseName }).toUpperCase()}
+          </div>
+          <div className={styles.phaseAge}>
+            {t('lunar_age', { age, defaultValue: `LUNAR AGE: ${age} / 29.5` })}
+          </div>
         </div>
       </div>
     </FUIGlassPanel>

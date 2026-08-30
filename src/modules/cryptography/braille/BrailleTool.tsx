@@ -2,7 +2,6 @@ import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
-import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import styles from './Braille.module.scss';
 import { getBraillePattern } from './logic';
@@ -46,10 +45,6 @@ export const BrailleTool: React.FC = () => {
             );
           })}
         </div>
-      </FUIGlassPanel>
-
-      <FUIGlassPanel className={styles.panel}>
-        <CoreMarkdownRenderer content={t('guide')} />
       </FUIGlassPanel>
     </div>
   );

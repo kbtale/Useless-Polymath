@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { CoreSelect } from '../../../components/core/CoreSelect';
-import { convertStorage, UNITS } from './logic';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import styles from './StorageUnits.module.scss';
-import clsx from 'clsx';
+import { UNITS, convertStorage } from './logic';
 
 export const StorageUnitsTool: React.FC = () => {
   const { t } = useTranslation('storage_units');
@@ -14,7 +14,7 @@ export const StorageUnitsTool: React.FC = () => {
   const [unitIdx, setUnitIdx] = useState('3');
 
   const am = parseFloat(amount);
-  const results = convertStorage(am, parseInt(unitIdx));
+  const results = convertStorage(am, parseInt(unitIdx, 10));
 
   return (
     <div className={styles.toolContainer}>
@@ -44,7 +44,7 @@ export const StorageUnitsTool: React.FC = () => {
                   key={res.unit}
                   className={clsx(
                     styles.resultCard,
-                    UNITS[parseInt(unitIdx)].label === res.unit && styles.active,
+                    UNITS[parseInt(unitIdx, 10)].label === res.unit && styles.active,
                   )}
                 >
                   <span className={styles.resultUnit}>{res.unit}</span>
@@ -54,10 +54,6 @@ export const StorageUnitsTool: React.FC = () => {
             </div>
           )}
         </div>
-      </FUIGlassPanel>
-
-      <FUIGlassPanel className={styles.panel}>
-        <CoreMarkdownRenderer content={t('guide')} />
       </FUIGlassPanel>
     </div>
   );
