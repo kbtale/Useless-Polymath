@@ -32,11 +32,7 @@ export const CoreBitRow: React.FC<CoreBitRowProps> = ({
   });
 
   return (
-    <div
-      className={styles.coreBitRow}
-      role="group"
-      aria-label={ariaLabel || 'Binary bit array'}
-    >
+    <div className={styles.coreBitRow} role="group" aria-label={ariaLabel || 'Binary bit array'}>
       {bitArray.map(({ bitIndex, isActive }) => (
         <div
           key={bitIndex}
@@ -44,11 +40,7 @@ export const CoreBitRow: React.FC<CoreBitRowProps> = ({
           aria-checked={interactive ? isActive : undefined}
           tabIndex={interactive ? 0 : undefined}
           aria-label={`Bit ${bitIndex}, value ${Math.pow(2, bitIndex)}`}
-          className={clsx(
-            styles.bit,
-            isActive && styles.active,
-            interactive && styles.interactive,
-          )}
+          className={clsx(styles.bit, isActive && styles.active, interactive && styles.interactive)}
           onClick={() => toggleBit(bitIndex)}
           onKeyDown={(e) => {
             if (interactive && (e.key === 'Enter' || e.key === ' ')) {
