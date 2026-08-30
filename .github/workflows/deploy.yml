@@ -1,44 +1,83 @@
-name: Deploy to GitHub Pages
+name: CI & Deployment
 
 on:
   push:
+    branches: [ "master" ]
+  pull_request:
     branches: [ "master" ]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
 
 jobs:
-  build:
+  quality-gates:
+    name: Quality & Security Gates
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      
+          node-version: '24'
+          cache: 'npm'
+
       - name: Install dependencies
-        run: npm ci
-      
-      - name: Build
+        run: npm ci --ignore-scripts
+
+      - name: Audit security vulnerabilities
+        run: npm audit --audit-level=critical
+
+      - name: Verify static types
+        run: npx tsc --noEmit
+
+      - name: Run unit test suite
+        run: npm run test
+
+      - name: Build production bundle
         run: npm run build
-      
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: quality-gates
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Build production bundle
+        run: npm run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      
-      - name: Upload artifact
+
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
-      
+
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
