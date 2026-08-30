@@ -564,8 +564,8 @@
 
   .rowResetBtn {
     background: transparent;
-    border: 1px solid rgba(239, 68, 68, 0.4);
-    color: #ef4444;
+    border: 1px solid var(--color-error);
+    color: var(--color-error);
     padding: 0.2rem 0.5rem;
     border-radius: var(--radius-button, 2px);
     font-size: 0.65rem;
@@ -573,9 +573,9 @@
     transition: all 0.2s;
 
     &:hover {
-      background: #ef4444;
-      color: #ffffff;
-      border-color: #ef4444;
+      background: var(--color-error);
+      color: var(--bg-canvas);
+      border-color: var(--color-error);
     }
   }
 }
