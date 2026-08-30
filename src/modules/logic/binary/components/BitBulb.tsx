@@ -1,15 +1,15 @@
-import React from 'react';
 import clsx from 'clsx';
+import React, { memo } from 'react';
 import styles from './BitBulb.module.scss';
 
-interface BitBulbProps {
+export interface BitBulbProps {
   value: number;
   active: boolean;
   onClick: () => void;
   disabled?: boolean;
 }
 
-export const BitBulb: React.FC<BitBulbProps> = ({ value, active, onClick, disabled }) => {
+export const BitBulb: React.FC<BitBulbProps> = memo(({ value, active, onClick, disabled }) => {
   return (
     <button
       className={clsx(styles.bulb, { [styles.active]: active })}
@@ -21,4 +21,4 @@ export const BitBulb: React.FC<BitBulbProps> = ({ value, active, onClick, disabl
       <span className={styles.value}>{value}</span>
     </button>
   );
-};
+});

@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import clsx from 'clsx';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
-import { createStandardDeck, dealCard, getHiLoValue, shuffleDeck } from './logic';
-import type { Card } from './logic';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import styles from './CardCounting.module.scss';
-import clsx from 'clsx';
+import { type Card, createStandardDeck, dealCard, getHiLoValue, shuffleDeck } from './logic';
 
-const CardDisplay: React.FC<{ card: Card }> = ({ card }) => {
+const CardDisplay: React.FC<{ card: Card }> = memo(({ card }) => {
   const isRed = card.suit === 'hearts' || card.suit === 'diamonds';
   const suitSymbol = {
     hearts: '♥',
@@ -30,7 +29,7 @@ const CardDisplay: React.FC<{ card: Card }> = ({ card }) => {
       </div>
     </div>
   );
-};
+});
 
 export const CardCountingPractice: React.FC = () => {
   const { t } = useTranslation('card_counting');
@@ -65,7 +64,7 @@ export const CardCountingPractice: React.FC = () => {
     return () => clearInterval(interval);
   }, [isActive, isFinished]);
 
-  const startDrill = () => {
+  const startDrill = useCallback(() => {
     setDeck(shuffleDeck(createStandardDeck()));
     setIsActive(true);
     setIsFinished(false);
@@ -73,18 +72,18 @@ export const CardCountingPractice: React.FC = () => {
     setCurrentCard(null);
     setFeedback(null);
     setInput('');
-  };
+  }, []);
 
-  const checkAnswer = () => {
+  const checkAnswer = useCallback(() => {
     const val = parseInt(input, 10);
-    if (isNaN(val)) return;
+    if (Number.isNaN(val)) return;
 
     if (val === trueRunningCount) {
       setFeedback('correct');
     } else {
       setFeedback('incorrect');
     }
-  };
+  }, [input, trueRunningCount]);
 
   return (
     <FUIGlassPanel className={styles.panel}>
@@ -95,7 +94,12 @@ export const CardCountingPractice: React.FC = () => {
           {isActive && currentCard ? (
             <CardDisplay card={currentCard} />
           ) : (
-            <div style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'monospace' }}>
+            <div
+              style={{
+                color: 'var(--text-dim, rgba(255,255,255,0.5))',
+                fontFamily: 'var(--font-mono)',
+              }}
+            >
               {isFinished ? t('feedback_finished') : t('practice_prompt')}
             </div>
           )}
@@ -122,6 +126,8 @@ export const CardCountingPractice: React.FC = () => {
             </p>
 
             <CoreBaseInput
+              id="card-counting-answer-input"
+              aria-label={t('practice_question')}
               value={input}
               onChangeValue={setInput}
               onEnter={checkAnswer}
@@ -141,10 +147,17 @@ export const CardCountingPractice: React.FC = () => {
                 style={{
                   marginTop: '1rem',
                   padding: '0.5rem',
-                  color: feedback === 'correct' ? '#4ade80' : '#f87171',
-                  border: `1px solid ${feedback === 'correct' ? '#4ade80' : '#f87171'}`,
-                  background: 'rgba(0,0,0,0.2)',
-                  fontFamily: 'monospace',
+                  color:
+                    feedback === 'correct'
+                      ? 'var(--text-highlight, #4ade80)'
+                      : 'var(--color-error, #f87171)',
+                  border: `1px solid ${
+                    feedback === 'correct'
+                      ? 'var(--text-highlight, #4ade80)'
+                      : 'var(--color-error, #f87171)'
+                  }`,
+                  background: 'var(--bg-canvas)',
+                  fontFamily: 'var(--font-mono)',
                   textAlign: 'center',
                 }}
               >
