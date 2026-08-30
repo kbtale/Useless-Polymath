@@ -161,6 +161,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   const categoryName = currentModule
     ? toTitleCase(t(currentModule.categoryKey, { ns: 'common' }))
     : 'UNKNOWN';
+
   const moduleName = currentModule
     ? toTitleCase(
         t(currentModule.id, {
@@ -175,6 +176,7 @@ export const AppShell: React.FC<AppShellProps> = ({
       <header className={styles.header}>
         <div className={styles.headerLeft}>
           <button
+            type="button"
             className={styles.menuToggle}
             onClick={() => {
               if (window.innerWidth <= 768) {
@@ -184,6 +186,8 @@ export const AppShell: React.FC<AppShellProps> = ({
               }
             }}
             aria-label="Toggle Navigation Sidebar"
+            aria-expanded={!isSidebarCollapsed}
+            aria-controls="main-sidebar"
           >
             ☰
           </button>
@@ -193,12 +197,16 @@ export const AppShell: React.FC<AppShellProps> = ({
         </div>
 
         <div className={styles.quickControls}>
-          {}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', opacity: 0.7 }}>
+            <label
+              htmlFor="theme-style-select"
+              style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', opacity: 0.7 }}
+            >
               STYLE:
-            </span>
+            </label>
             <select
+              id="theme-style-select"
+              aria-label="Theme Style"
               value={activeStyle}
               onChange={(e) => setActiveStyle(e.target.value)}
               style={{
@@ -221,11 +229,15 @@ export const AppShell: React.FC<AppShellProps> = ({
             </select>
           </div>
 
-          {}
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <div
+            style={{ display: 'flex', gap: '0.5rem' }}
+            role="group"
+            aria-label="Language options"
+          >
             <FUIButton
               onClick={() => changeLanguage('en')}
               variant={i18n.language === 'en' ? 'solid' : 'outline'}
+              aria-label="Switch to English"
               style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
             >
               EN
@@ -233,6 +245,7 @@ export const AppShell: React.FC<AppShellProps> = ({
             <FUIButton
               onClick={() => changeLanguage('es')}
               variant={i18n.language === 'es' ? 'solid' : 'outline'}
+              aria-label="Cambiar a Español"
               style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
             >
               ES
@@ -240,6 +253,7 @@ export const AppShell: React.FC<AppShellProps> = ({
             <FUIButton
               onClick={() => changeLanguage('it')}
               variant={i18n.language === 'it' ? 'solid' : 'outline'}
+              aria-label="Passa all'Italiano"
               style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
             >
               IT
@@ -247,12 +261,21 @@ export const AppShell: React.FC<AppShellProps> = ({
           </div>
         </div>
 
-        <FUIButton onClick={() => setShowSettings(true)}>{t('settings')}</FUIButton>
-        <div className={styles.cornerDeco}></div>
+        <FUIButton
+          id="settings-open-btn"
+          aria-haspopup="dialog"
+          aria-expanded={showSettings}
+          onClick={() => setShowSettings(true)}
+        >
+          {t('settings')}
+        </FUIButton>
+        <div className={styles.cornerDeco} />
       </header>
 
       <div className={styles.mainLayout}>
         <aside
+          id="main-sidebar"
+          aria-label="Module Navigation"
           className={clsx(
             styles.sidebar,
             isSidebarCollapsed && styles.collapsed,
@@ -272,16 +295,26 @@ export const AppShell: React.FC<AppShellProps> = ({
                   <h2 className={styles.sectionTitle}>
                     {t(catKey, { ns: 'common', defaultValue: catKey })}
                   </h2>
-                  <ul className={styles.menuList}>
+                  <ul className={styles.menuList} role="menu">
                     {MODULES.filter(
                       (m) => m.categoryKey === catKey && !hiddenModules.includes(m.id),
                     ).map((m) => (
                       <li
                         key={m.id}
+                        role="menuitem"
+                        tabIndex={0}
+                        aria-current={activeModule === m.id ? 'page' : undefined}
                         className={clsx(styles.menuItem, activeModule === m.id && styles.active)}
                         onClick={() => {
                           onModuleChange(m.id);
                           setIsMobileMenuOpen(false);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            onModuleChange(m.id);
+                            setIsMobileMenuOpen(false);
+                          }
                         }}
                       >
                         {toTitleCase(
@@ -294,8 +327,8 @@ export const AppShell: React.FC<AppShellProps> = ({
               ))}
           </div>
 
-          <div className={`${styles.crosshair} ${styles['ch-tl']}`}></div>
-          <div className={`${styles.crosshair} ${styles['ch-br']}`}></div>
+          <div className={`${styles.crosshair} ${styles['ch-tl']}`} />
+          <div className={`${styles.crosshair} ${styles['ch-br']}`} />
         </aside>
 
         {isMobileMenuOpen && (
@@ -303,19 +336,27 @@ export const AppShell: React.FC<AppShellProps> = ({
         )}
 
         <main className={styles.contentArea}>
-          <div className={styles.statusBar}>
+          <div className={styles.statusBar} role="status">
             {t('home')} &gt; {categoryName} &gt; {moduleName}
           </div>
 
-          <div className={styles.tabs}>
+          <div className={styles.tabs} role="tablist" aria-label="Module Views">
             <div className={styles.tabGroup}>
               <button
+                type="button"
+                role="tab"
+                aria-selected={mode === 'tool'}
+                aria-controls="tab-content-panel"
                 className={clsx(styles.tabBtn, mode === 'tool' && styles.active)}
                 onClick={() => onModeChange('tool')}
               >
                 {t('visualizer')}
               </button>
               <button
+                type="button"
+                role="tab"
+                aria-selected={mode === 'practice'}
+                aria-controls="tab-content-panel"
                 className={clsx(styles.tabBtn, mode === 'practice' && styles.active)}
                 onClick={() => onModeChange('practice')}
               >
@@ -323,6 +364,10 @@ export const AppShell: React.FC<AppShellProps> = ({
               </button>
             </div>
             <button
+              type="button"
+              role="tab"
+              aria-selected={mode === 'guide'}
+              aria-controls="tab-content-panel"
               className={clsx(styles.tabBtn, mode === 'guide' && styles.active, styles.helpTab)}
               onClick={() => onModeChange('guide')}
             >
@@ -330,7 +375,9 @@ export const AppShell: React.FC<AppShellProps> = ({
             </button>
           </div>
 
-          <div className={styles.workspace}>{children}</div>
+          <div id="tab-content-panel" role="tabpanel" className={styles.workspace}>
+            {children}
+          </div>
         </main>
       </div>
 
