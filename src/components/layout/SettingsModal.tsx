@@ -132,7 +132,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               <FUIButton
                 onClick={onResetAll}
                 variant="outline"
-                style={{ color: '#ef4444', borderColor: '#fca5a5' }}
+                style={{ color: 'var(--color-error)', borderColor: 'var(--color-error)' }}
               >
                 {t('reset_all_scores', 'Reset All Practice Scores')}
               </FUIButton>

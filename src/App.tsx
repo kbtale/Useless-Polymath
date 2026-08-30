@@ -53,7 +53,7 @@ function AppContent() {
             flexDirection: 'column',
           }}
         >
-          <h2 style={{ fontFamily: 'Orbitron', color: '#00F3FF' }}>
+          <h2 style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-highlight)' }}>
             MODULE: {activeModuleId.toUpperCase()}
           </h2>
         </div>
@@ -103,9 +103,9 @@ function App() {
             justifyContent: 'center',
             alignItems: 'center',
             height: '100vh',
-            background: '#0a0a0a',
-            color: '#00F3FF',
-            fontFamily: 'JetBrains Mono',
+            background: 'var(--bg-canvas)',
+            color: 'var(--text-main)',
+            fontFamily: 'var(--font-mono)',
           }}
         >
           {t('loading_system')}
