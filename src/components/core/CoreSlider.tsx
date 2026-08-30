@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './CoreSlider.module.scss';
 import clsx from 'clsx';
+import React, { useId } from 'react';
+import styles from './CoreSlider.module.scss';
 
 interface CoreSliderProps {
   value: number;
@@ -11,6 +11,8 @@ interface CoreSliderProps {
   label?: string;
   unit?: string;
   className?: string;
+  id?: string;
+  'aria-label'?: string;
 }
 
 export const CoreSlider: React.FC<CoreSliderProps> = ({
@@ -22,14 +24,22 @@ export const CoreSlider: React.FC<CoreSliderProps> = ({
   label,
   unit,
   className,
+  id,
+  'aria-label': ariaLabel,
 }) => {
+  const generatedId = useId();
+  const sliderId = id || (label ? generatedId : undefined);
   const percentage = ((value - min) / (max - min)) * 100;
 
   return (
     <div className={clsx(styles.sliderContainer, className)}>
       {(label || unit) && (
         <div className={styles.header}>
-          {label && <span className={styles.label}>{label}</span>}
+          {label && (
+            <label htmlFor={sliderId} className={styles.label}>
+              {label}
+            </label>
+          )}
           <span className={styles.value}>
             {value}
             {unit && <span className={styles.unit}>{unit}</span>}
@@ -39,6 +49,8 @@ export const CoreSlider: React.FC<CoreSliderProps> = ({
 
       <div className={styles.trackWrapper}>
         <input
+          id={sliderId}
+          aria-label={ariaLabel || label}
           type="range"
           min={min}
           max={max}
