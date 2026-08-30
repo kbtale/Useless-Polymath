@@ -1,15 +1,20 @@
-import React from 'react';
+import clsx from 'clsx';
+import type React from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import styles from './CoreMarkdownRenderer.module.scss';
 
-interface CoreMarkdownRendererProps {
+export interface CoreMarkdownRendererProps extends React.HTMLAttributes<HTMLDivElement> {
   content: string;
 }
 
-export const CoreMarkdownRenderer: React.FC<CoreMarkdownRendererProps> = ({ content }) => {
+export const CoreMarkdownRenderer: React.FC<CoreMarkdownRendererProps> = ({
+  content,
+  className,
+  ...props
+}) => {
   return (
-    <div className={styles.markdownContainer}>
+    <div className={clsx(styles.markdownContainer, className)} {...props}>
       <Markdown remarkPlugins={[remarkGfm]}>{content}</Markdown>
     </div>
   );
