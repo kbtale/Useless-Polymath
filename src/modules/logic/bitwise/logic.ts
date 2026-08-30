@@ -3,17 +3,17 @@ export type BitwiseOperation = 'AND' | 'OR' | 'XOR' | 'NOT' | 'LSHIFT' | 'RSHIFT
 export const calculateBitwise = (a: number, b: number, op: BitwiseOperation): number => {
   switch (op) {
     case 'AND':
-      return a & b;
+      return a & b & 0xff;
     case 'OR':
-      return a | b;
+      return (a | b) & 0xff;
     case 'XOR':
-      return a ^ b;
+      return (a ^ b) & 0xff;
     case 'NOT':
-      return ~a;
+      return ~a & 0xff;
     case 'LSHIFT':
-      return a << b;
+      return (a << b) & 0xff;
     case 'RSHIFT':
-      return a >> b;
+      return (a >>> b) & 0xff;
     default:
       return 0;
   }
