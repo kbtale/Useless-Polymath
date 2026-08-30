@@ -43,24 +43,23 @@
   -webkit-appearance: none;
   width: 100%;
   height: 4px;
-  background: rgba($line-color, 0.3); // Base track
+  background: rgba($line-color, 0.3);
   outline: none;
   margin: 0;
   z-index: 2;
   position: relative;
   cursor: pointer;
 
-  // Thumb styling
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 16px;
     height: 16px;
     background: $bg-canvas;
     border: 2px solid $text-main;
-    border-radius: $radius-input; // Theme-based thumb look
+    border-radius: $radius-input;
     cursor: pointer;
     transition: transform 0.1s;
-    margin-top: -6px; // Center vertically on 4px track? (4/2 - 16/2 = 2 - 8 = -6)
+    margin-top: -6px;
 
     &:hover {
       background: $text-main;
@@ -87,7 +86,7 @@
   top: 50%;
   transform: translateY(-50%);
   height: 4px;
-  background: $text-main; // Active track
+  background: $text-main;
   pointer-events: none;
   z-index: 1;
 }

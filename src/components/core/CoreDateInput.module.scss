@@ -60,7 +60,7 @@
       color: rgba(0,0,0,0.2);
     }
 
-    /* Remove border from the last visible child to prevent double borders or dangling borders */
+    
     &:last-child {
       border-right: none;
     }

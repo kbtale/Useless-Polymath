@@ -12,16 +12,16 @@ export const MoonTool: React.FC = () => {
   const d = parseInt(day) || 1;
   const m = parseInt(month) || 1;
   const y = parseInt(year) || 2000;
-  
+
   const { age, phaseName, phaseIcon } = getMoonPhase(d, m, y);
 
   return (
     <FUIGlassPanel className={styles.panel}>
       <h2 className={styles.title}>MOON PHASES</h2>
-      
+
       <div className={styles.container}>
         <div>
-           <CoreDateInput 
+          <CoreDateInput
             day={day}
             month={month}
             year={year}
@@ -31,17 +31,11 @@ export const MoonTool: React.FC = () => {
           />
         </div>
 
-        <div className={styles.phaseIcon}>
-          {phaseIcon}
-        </div>
+        <div className={styles.phaseIcon}>{phaseIcon}</div>
 
         <div>
-          <div className={styles.phaseName}>
-            {phaseName.toUpperCase()}
-          </div>
-          <div className={styles.phaseAge}>
-            LUNAR AGE: {age} / 29.5
-          </div>
+          <div className={styles.phaseName}>{phaseName.toUpperCase()}</div>
+          <div className={styles.phaseAge}>LUNAR AGE: {age} / 29.5</div>
         </div>
       </div>
     </FUIGlassPanel>

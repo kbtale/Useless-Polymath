@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
@@ -15,7 +14,7 @@ const CardDisplay: React.FC<{ card: Card }> = ({ card }) => {
     hearts: '♥',
     diamonds: '♦',
     clubs: '♣',
-    spades: '♠'
+    spades: '♠',
   }[card.suit];
 
   return (
@@ -35,17 +34,16 @@ const CardDisplay: React.FC<{ card: Card }> = ({ card }) => {
 
 export const CardCountingPractice: React.FC = () => {
   const { t } = useTranslation('card_counting');
-  
-  const [deck] = useState(() => new Deck()); // Single deck instance for now
+
+  const [deck] = useState(() => new Deck());
   const [currentCard, setCurrentCard] = useState<Card | null>(null);
   const [trueRunningCount, setTrueRunningCount] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
-  
+
   const [input, setInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
-  // Interval for auto-dealing
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
     if (isActive && !isFinished) {
@@ -53,13 +51,13 @@ export const CardCountingPractice: React.FC = () => {
         const card = deck.deal();
         if (card) {
           setCurrentCard(card);
-          setTrueRunningCount(prev => prev + getHiLoValue(card.rank));
+          setTrueRunningCount((prev) => prev + getHiLoValue(card.rank));
         } else {
           setIsFinished(true);
           setIsActive(false);
           setCurrentCard(null);
         }
-      }, 1500); // 1.5s per card speed
+      }, 1500);
     }
     return () => clearInterval(interval);
   }, [isActive, isFinished, deck]);
@@ -89,29 +87,39 @@ export const CardCountingPractice: React.FC = () => {
   return (
     <FUIGlassPanel className={styles.panel}>
       <h2 className={styles.title}>{t('practice_title')}</h2>
-      
+
       <div className={styles.practiceContainer}>
         <div className={styles.dealerTable}>
           {isActive && currentCard ? (
             <CardDisplay card={currentCard} />
           ) : (
-             <div style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'monospace' }}>
-               {isFinished ? t('feedback_finished') : t('practice_prompt')}
-             </div>
+            <div style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'monospace' }}>
+              {isFinished ? t('feedback_finished') : t('practice_prompt')}
+            </div>
           )}
         </div>
 
         {!isActive && !isFinished && (
-           <FUIButton onClick={startDrill} variant="solid">
-             Start
-           </FUIButton>
+          <FUIButton onClick={startDrill} variant="solid">
+            Start
+          </FUIButton>
         )}
 
         {isFinished && (
-          <div style={{ width: '100%', maxWidth: '300px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <p className={styles.label} style={{ textAlign: 'center' }}>{t('practice_question')}</p>
-            
-            <CoreBaseInput 
+          <div
+            style={{
+              width: '100%',
+              maxWidth: '300px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem',
+            }}
+          >
+            <p className={styles.label} style={{ textAlign: 'center' }}>
+              {t('practice_question')}
+            </p>
+
+            <CoreBaseInput
               value={input}
               onChangeValue={setInput}
               onEnter={checkAnswer}
@@ -127,23 +135,27 @@ export const CardCountingPractice: React.FC = () => {
             )}
 
             {feedback && (
-              <div style={{ 
-                marginTop: '1rem', 
-                padding: '0.5rem', 
-                color: feedback === 'correct' ? '#4ade80' : '#f87171',
-                border: `1px solid ${feedback === 'correct' ? '#4ade80' : '#f87171'}`,
-                background: 'rgba(0,0,0,0.2)',
-                fontFamily: 'monospace',
-                textAlign: 'center'
-              }}>
-                {t(feedback === 'correct' ? 'feedback_correct' : 'feedback_incorrect', { count: trueRunningCount })}
+              <div
+                style={{
+                  marginTop: '1rem',
+                  padding: '0.5rem',
+                  color: feedback === 'correct' ? '#4ade80' : '#f87171',
+                  border: `1px solid ${feedback === 'correct' ? '#4ade80' : '#f87171'}`,
+                  background: 'rgba(0,0,0,0.2)',
+                  fontFamily: 'monospace',
+                  textAlign: 'center',
+                }}
+              >
+                {t(feedback === 'correct' ? 'feedback_correct' : 'feedback_incorrect', {
+                  count: trueRunningCount,
+                })}
               </div>
             )}
-            
+
             {feedback && (
-               <FUIButton onClick={startDrill} variant="outline" style={{ marginTop: '1rem' }}>
-                 Retry
-               </FUIButton>
+              <FUIButton onClick={startDrill} variant="outline" style={{ marginTop: '1rem' }}>
+                Retry
+              </FUIButton>
             )}
           </div>
         )}

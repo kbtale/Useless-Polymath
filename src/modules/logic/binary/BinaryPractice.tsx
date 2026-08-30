@@ -15,7 +15,7 @@ export const BinaryPractice: React.FC = () => {
 
   const [target, setTarget] = useState(getRandomTarget);
   const [current, setCurrent] = useState(0);
-    const [mode, setMode] = useState<'read' | 'write'>('write');
+  const [mode, setMode] = useState<'read' | 'write'>('write');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [inputValue, setInputValue] = useState('');
 
@@ -30,8 +30,8 @@ export const BinaryPractice: React.FC = () => {
   const targetPowers = getActivePowers(target);
 
   const toggleBit = (bitValue: number) => {
-    if (mode === 'read') return; // Read only in read mode
-    
+    if (mode === 'read') return;
+
     let newValue = current;
     if (activePowers.includes(bitValue)) {
       newValue -= bitValue;
@@ -39,8 +39,7 @@ export const BinaryPractice: React.FC = () => {
       newValue += bitValue;
     }
     setCurrent(newValue);
-    
-    // Auto-check in write mode
+
     if (newValue === target) {
       handleSuccess();
     }
@@ -48,7 +47,7 @@ export const BinaryPractice: React.FC = () => {
 
   const handleSuccess = () => {
     setFeedback('correct');
-    setStreak(s => s + 1);
+    setStreak((s) => s + 1);
     setTimeout(generateTarget, 1000);
   };
 
@@ -65,8 +64,24 @@ export const BinaryPractice: React.FC = () => {
     <FUIGlassPanel className={styles.panel}>
       <div className={styles.header}>
         <div className={styles.controls}>
-          <FUIButton variant={mode === 'write' ? 'solid' : 'outline'} onClick={() => { setMode('write'); generateTarget(); }}>WRITE (DEC to BIN)</FUIButton>
-          <FUIButton variant={mode === 'read' ? 'solid' : 'outline'} onClick={() => { setMode('read'); generateTarget(); }}>READ (BIN to DEC)</FUIButton>
+          <FUIButton
+            variant={mode === 'write' ? 'solid' : 'outline'}
+            onClick={() => {
+              setMode('write');
+              generateTarget();
+            }}
+          >
+            WRITE (DEC to BIN)
+          </FUIButton>
+          <FUIButton
+            variant={mode === 'read' ? 'solid' : 'outline'}
+            onClick={() => {
+              setMode('read');
+              generateTarget();
+            }}
+          >
+            READ (BIN to DEC)
+          </FUIButton>
         </div>
         <div className={styles.streak}>STREAK: {streak}</div>
       </div>
@@ -77,12 +92,12 @@ export const BinaryPractice: React.FC = () => {
           <div className={styles.targetValue}>{target}</div>
         ) : (
           <div className={styles.bulbContainer}>
-             {[128, 64, 32, 16, 8, 4, 2, 1].map(bit => (
-              <BitBulb 
-                key={bit} 
-                value={bit} 
-                active={targetPowers.includes(bit)} 
-                onClick={() => {}} 
+            {[128, 64, 32, 16, 8, 4, 2, 1].map((bit) => (
+              <BitBulb
+                key={bit}
+                value={bit}
+                active={targetPowers.includes(bit)}
+                onClick={() => {}}
                 disabled
               />
             ))}
@@ -92,12 +107,12 @@ export const BinaryPractice: React.FC = () => {
 
       {mode === 'write' && (
         <div className={styles.bulbContainer}>
-          {[128, 64, 32, 16, 8, 4, 2, 1].map(bit => (
-            <BitBulb 
-              key={bit} 
-              value={bit} 
-              active={activePowers.includes(bit)} 
-              onClick={() => toggleBit(bit)} 
+          {[128, 64, 32, 16, 8, 4, 2, 1].map((bit) => (
+            <BitBulb
+              key={bit}
+              value={bit}
+              active={activePowers.includes(bit)}
+              onClick={() => toggleBit(bit)}
             />
           ))}
         </div>
@@ -105,8 +120,8 @@ export const BinaryPractice: React.FC = () => {
 
       {mode === 'read' && (
         <div className={styles.inputArea}>
-          <input 
-            type="number" 
+          <input
+            type="number"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && checkReadAnswer()}

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
@@ -7,7 +6,7 @@ import { CoreSemaphoreFigure } from '../../../components/core/CoreSemaphoreFigur
 import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { getSemaphorePattern } from './logic';
-import styles from './SemaphoreTool.module.scss'; 
+import styles from './SemaphoreTool.module.scss';
 
 export const SemaphoreTool: React.FC = () => {
   const { t } = useTranslation('semaphore');
@@ -15,7 +14,6 @@ export const SemaphoreTool: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // Normalize input to A-Z 0-9
   const cleanInput = input.replace(/[^a-zA-Z0-9 ]/g, '');
   const currentChar = cleanInput[currentIndex] || 'rest';
   const pattern = getSemaphorePattern(currentChar);
@@ -47,11 +45,11 @@ export const SemaphoreTool: React.FC = () => {
 
         <div className={styles.toolContent}>
           <div className={styles.visualizationArea}>
-            <CoreSemaphoreFigure 
-              leftAngle={pattern.left} 
-              rightAngle={pattern.right} 
+            <CoreSemaphoreFigure
+              leftAngle={pattern.left}
+              rightAngle={pattern.right}
               size={300}
-              className="text-black" // Using standard coloration, SVG uses currentColor
+              className="text-black"
             />
             <div className={styles.charDisplay}>
               {currentChar === 'rest' ? 'READY' : currentChar.toUpperCase()}
@@ -59,22 +57,19 @@ export const SemaphoreTool: React.FC = () => {
           </div>
 
           <div className={styles.controls}>
-            <FUIButton 
+            <FUIButton
               onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
               disabled={currentIndex === 0}
               variant="outline"
             >
               {t('prev', 'Prev')}
             </FUIButton>
-            
-            <FUIButton 
-              onClick={handleStopStart}
-              variant={isPlaying ? 'solid' : 'outline'}
-            >
+
+            <FUIButton onClick={handleStopStart} variant={isPlaying ? 'solid' : 'outline'}>
               {isPlaying ? t('stop', 'Stop') : t('play', 'Play')}
             </FUIButton>
 
-            <FUIButton 
+            <FUIButton
               onClick={() => setCurrentIndex(Math.min(cleanInput.length - 1, currentIndex + 1))}
               disabled={currentIndex >= cleanInput.length - 1}
               variant="outline"
@@ -100,7 +95,7 @@ export const SemaphoreTool: React.FC = () => {
       </FUIGlassPanel>
 
       <FUIGlassPanel className={styles.panel}>
-         <CoreMarkdownRenderer content={t('guide')} />
+        <CoreMarkdownRenderer content={t('guide')} />
       </FUIGlassPanel>
     </div>
   );

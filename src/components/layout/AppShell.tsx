@@ -43,7 +43,7 @@ const MODULES: Module[] = [
 const formatDefaultTitle = (id: string): string => {
   return id
     .split('_')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 };
 
@@ -51,7 +51,7 @@ const toTitleCase = (str: string): string => {
   return str
     .toLowerCase()
     .split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 };
 
@@ -63,12 +63,12 @@ interface AppShellProps {
   onModeChange: (mode: 'tool' | 'practice' | 'guide') => void;
 }
 
-export const AppShell: React.FC<AppShellProps> = ({ 
-  children, 
-  activeModule, 
+export const AppShell: React.FC<AppShellProps> = ({
+  children,
+  activeModule,
   onModuleChange,
   mode,
-  onModeChange
+  onModeChange,
 }) => {
   const { t, i18n } = useTranslation([
     'common',
@@ -95,7 +95,7 @@ export const AppShell: React.FC<AppShellProps> = ({
     'resistor_codes',
     'luhn_algorithm',
     'ean_13',
-    'card_counting'
+    'card_counting',
   ]);
   const [showSettings, setShowSettings] = useState(false);
   const [scoresVersion, setScoresVersion] = useState(0);
@@ -112,7 +112,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setIsSidebarCollapsed(prev => {
+    setIsSidebarCollapsed((prev) => {
       const next = !prev;
       localStorage.setItem('polymath_sidebar_collapsed', String(next));
       return next;
@@ -138,9 +138,9 @@ export const AppShell: React.FC<AppShellProps> = ({
   });
 
   const toggleModuleVisibility = (moduleId: string) => {
-    setHiddenModules(prev => {
+    setHiddenModules((prev) => {
       const next = prev.includes(moduleId)
-        ? prev.filter(id => id !== moduleId)
+        ? prev.filter((id) => id !== moduleId)
         : [...prev, moduleId];
       localStorage.setItem('polymath_hidden_modules', JSON.stringify(next));
       return next;
@@ -148,10 +148,8 @@ export const AppShell: React.FC<AppShellProps> = ({
   };
 
   const toggleCategoryVisibility = (catKey: string) => {
-    setHiddenCategories(prev => {
-      const next = prev.includes(catKey)
-        ? prev.filter(k => k !== catKey)
-        : [...prev, catKey];
+    setHiddenCategories((prev) => {
+      const next = prev.includes(catKey) ? prev.filter((k) => k !== catKey) : [...prev, catKey];
       localStorage.setItem('polymath_hidden_categories', JSON.stringify(next));
       return next;
     });
@@ -160,16 +158,20 @@ export const AppShell: React.FC<AppShellProps> = ({
   const handleIndividualReset = (moduleId: string) => {
     localStorage.removeItem(`polymath_streak_${moduleId}`);
     localStorage.removeItem(`polymath_high_${moduleId}`);
-    setScoresVersion(v => v + 1);
+    setScoresVersion((v) => v + 1);
   };
 
   const handleMasterReset = () => {
-    if (window.confirm('Are you sure you want to reset all practice streaks and high scores? This action cannot be undone.')) {
-      MODULES.forEach(m => {
+    if (
+      window.confirm(
+        'Are you sure you want to reset all practice streaks and high scores? This action cannot be undone.',
+      )
+    ) {
+      MODULES.forEach((m) => {
         localStorage.removeItem(`polymath_streak_${m.id}`);
         localStorage.removeItem(`polymath_high_${m.id}`);
       });
-      setScoresVersion(v => v + 1);
+      setScoresVersion((v) => v + 1);
     }
   };
 
@@ -177,7 +179,7 @@ export const AppShell: React.FC<AppShellProps> = ({
     { id: 'mono', label: 'MONO' },
     { id: 'wellfound', label: 'WELLFOUND' },
     { id: 'ori', label: 'ORI' },
-    { id: 'motherduck', label: 'MOTHERDUCK' }
+    { id: 'motherduck', label: 'MOTHERDUCK' },
   ];
 
   const [activeStyle, setActiveStyle] = useState(() => {
@@ -194,25 +196,28 @@ export const AppShell: React.FC<AppShellProps> = ({
     localStorage.setItem('language', lng);
   };
 
-  const categories = Array.from(new Set(MODULES.map(m => m.categoryKey)));
+  const categories = Array.from(new Set(MODULES.map((m) => m.categoryKey)));
 
-  // Resolve current module
-  // Note: activeModule from App.tsx is now normalized to match module IDs (e.g. 'hexadecimal', 'ordinal').
-  
-  const currentModule = MODULES.find(m => m.id === activeModule);
-  
-  const categoryName = currentModule ? toTitleCase(t(currentModule.categoryKey, { ns: 'common' })) : 'UNKNOWN';
-  const moduleName = currentModule ? toTitleCase(t('title', { ns: currentModule.id, defaultValue: formatDefaultTitle(currentModule.id) })) : 'UNKNOWN';
+  const currentModule = MODULES.find((m) => m.id === activeModule);
+
+  const categoryName = currentModule
+    ? toTitleCase(t(currentModule.categoryKey, { ns: 'common' }))
+    : 'UNKNOWN';
+  const moduleName = currentModule
+    ? toTitleCase(
+        t('title', { ns: currentModule.id, defaultValue: formatDefaultTitle(currentModule.id) }),
+      )
+    : 'UNKNOWN';
 
   return (
     <div className={styles.appShell}>
       <header className={styles.header}>
         <div className={styles.headerLeft}>
-          <button 
+          <button
             className={styles.menuToggle}
             onClick={() => {
               if (window.innerWidth <= 768) {
-                setIsMobileMenuOpen(prev => !prev);
+                setIsMobileMenuOpen((prev) => !prev);
               } else {
                 toggleSidebar();
               }
@@ -225,15 +230,17 @@ export const AppShell: React.FC<AppShellProps> = ({
             <img src="/Logo.svg" alt="Useless Polymath" className={styles.logo} />
           </div>
         </div>
-        
+
         <div className={styles.quickControls}>
-          {/* Style Selector */}
+          {}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', opacity: 0.7 }}>STYLE:</span>
-            <select 
+            <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', opacity: 0.7 }}>
+              STYLE:
+            </span>
+            <select
               value={activeStyle}
               onChange={(e) => setActiveStyle(e.target.value)}
-              style={{ 
+              style={{
                 background: 'var(--bg-canvas)',
                 color: 'var(--text-main)',
                 border: '1px solid var(--line-color)',
@@ -242,35 +249,37 @@ export const AppShell: React.FC<AppShellProps> = ({
                 padding: '0.25rem 0.5rem',
                 cursor: 'pointer',
                 outline: 'none',
-                borderRadius: 'var(--radius-button)'
+                borderRadius: 'var(--radius-button)',
               }}
             >
-              {STYLES.map(s => (
-                <option key={s.id} value={s.id}>{s.label}</option>
+              {STYLES.map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.label}
+                </option>
               ))}
             </select>
           </div>
 
-          {/* Language Selector */}
+          {}
           <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <FUIButton 
-              onClick={() => changeLanguage('en')} 
+            <FUIButton
+              onClick={() => changeLanguage('en')}
               variant={i18n.language === 'en' ? 'solid' : 'outline'}
               style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
             >
               EN
             </FUIButton>
-            <FUIButton 
-              onClick={() => changeLanguage('es')} 
+            <FUIButton
+              onClick={() => changeLanguage('es')}
               variant={i18n.language === 'es' ? 'solid' : 'outline'}
               style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
             >
               ES
             </FUIButton>
-            <FUIButton 
-              onClick={() => changeLanguage('it')} 
+            <FUIButton
+              onClick={() => changeLanguage('it')}
               variant={i18n.language === 'it' ? 'solid' : 'outline'}
-               style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
+              style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
             >
               IT
             </FUIButton>
@@ -282,39 +291,46 @@ export const AppShell: React.FC<AppShellProps> = ({
       </header>
 
       <div className={styles.mainLayout}>
-        
-        <aside className={clsx(
-          styles.sidebar,
-          isSidebarCollapsed && styles.collapsed,
-          isMobileMenuOpen && styles.mobileOpen
-        )}>
+        <aside
+          className={clsx(
+            styles.sidebar,
+            isSidebarCollapsed && styles.collapsed,
+            isMobileMenuOpen && styles.mobileOpen,
+          )}
+        >
           <div className={styles.scrollArea}>
-            {categories.filter(catKey => {
-              if (hiddenCategories.includes(catKey)) return false;
-              const catModules = MODULES.filter(m => m.categoryKey === catKey);
-              const visibleCatModules = catModules.filter(m => !hiddenModules.includes(m.id));
-              return visibleCatModules.length > 0;
-            }).map(catKey => (
-              <div key={catKey}>
-                <h2 className={styles.sectionTitle}>
-                  {t(catKey, { ns: 'common', defaultValue: catKey })}
-                </h2>
-                <ul className={styles.menuList}>
-                  {MODULES.filter(m => m.categoryKey === catKey && !hiddenModules.includes(m.id)).map(m => (
-                    <li 
-                      key={m.id}
-                      className={clsx(styles.menuItem, activeModule === m.id && styles.active)}
-                      onClick={() => {
-                        onModuleChange(m.id);
-                        setIsMobileMenuOpen(false);
-                      }}
-                    >
-                      {toTitleCase(t('title', { ns: m.id, defaultValue: formatDefaultTitle(m.id) }))}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {categories
+              .filter((catKey) => {
+                if (hiddenCategories.includes(catKey)) return false;
+                const catModules = MODULES.filter((m) => m.categoryKey === catKey);
+                const visibleCatModules = catModules.filter((m) => !hiddenModules.includes(m.id));
+                return visibleCatModules.length > 0;
+              })
+              .map((catKey) => (
+                <div key={catKey}>
+                  <h2 className={styles.sectionTitle}>
+                    {t(catKey, { ns: 'common', defaultValue: catKey })}
+                  </h2>
+                  <ul className={styles.menuList}>
+                    {MODULES.filter(
+                      (m) => m.categoryKey === catKey && !hiddenModules.includes(m.id),
+                    ).map((m) => (
+                      <li
+                        key={m.id}
+                        className={clsx(styles.menuItem, activeModule === m.id && styles.active)}
+                        onClick={() => {
+                          onModuleChange(m.id);
+                          setIsMobileMenuOpen(false);
+                        }}
+                      >
+                        {toTitleCase(
+                          t('title', { ns: m.id, defaultValue: formatDefaultTitle(m.id) }),
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
           </div>
 
           <div className={`${styles.crosshair} ${styles['ch-tl']}`}></div>
@@ -322,10 +338,7 @@ export const AppShell: React.FC<AppShellProps> = ({
         </aside>
 
         {isMobileMenuOpen && (
-          <div 
-            className={styles.mobileBackdrop} 
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
+          <div className={styles.mobileBackdrop} onClick={() => setIsMobileMenuOpen(false)} />
         )}
 
         <main className={styles.contentArea}>
@@ -335,20 +348,20 @@ export const AppShell: React.FC<AppShellProps> = ({
 
           <div className={styles.tabs}>
             <div className={styles.tabGroup}>
-              <button 
+              <button
                 className={clsx(styles.tabBtn, mode === 'tool' && styles.active)}
                 onClick={() => onModeChange('tool')}
               >
                 {t('visualizer')}
               </button>
-              <button 
+              <button
                 className={clsx(styles.tabBtn, mode === 'practice' && styles.active)}
                 onClick={() => onModeChange('practice')}
               >
                 {t('practice')}
               </button>
             </div>
-            <button 
+            <button
               className={clsx(styles.tabBtn, mode === 'guide' && styles.active, styles.helpTab)}
               onClick={() => onModeChange('guide')}
             >
@@ -356,33 +369,38 @@ export const AppShell: React.FC<AppShellProps> = ({
             </button>
           </div>
 
-          <div className={styles.workspace}>
-            {children}
-          </div>
+          <div className={styles.workspace}>{children}</div>
         </main>
       </div>
 
       {showSettings && (
         <div className={styles.modalOverlay} onClick={() => setShowSettings(false)}>
-          <div onClick={(e: React.MouseEvent) => e.stopPropagation()} className={styles.settingsModal}>
+          <div
+            onClick={(e: React.MouseEvent) => e.stopPropagation()}
+            className={styles.settingsModal}
+          >
             <div className={styles.modalHeader}>
               <h2 className={styles.modalTitle}>{t('settings')}</h2>
-              <button className={styles.closeBtn} onClick={() => setShowSettings(false)}>×</button>
+              <button className={styles.closeBtn} onClick={() => setShowSettings(false)}>
+                ×
+              </button>
             </div>
 
             <div className={styles.modalBody}>
               <div className={styles.settingsSection}>
                 <h3 className={styles.sectionHeader}>{t('general', 'General')}</h3>
-                
+
                 <div className={styles.settingsRow}>
                   <span className={styles.rowLabel}>{t('theme', 'Style Theme')}</span>
-                  <select 
+                  <select
                     value={activeStyle}
                     onChange={(e) => setActiveStyle(e.target.value)}
                     className={styles.selectInput}
                   >
-                    {STYLES.map(s => (
-                      <option key={s.id} value={s.id}>{s.label}</option>
+                    {STYLES.map((s) => (
+                      <option key={s.id} value={s.id}>
+                        {s.label}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -390,12 +408,16 @@ export const AppShell: React.FC<AppShellProps> = ({
                 <div className={styles.settingsRow}>
                   <span className={styles.rowLabel}>{t('language', 'Language')}</span>
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    {['en', 'es', 'it'].map(lng => (
-                      <FUIButton 
+                    {['en', 'es', 'it'].map((lng) => (
+                      <FUIButton
                         key={lng}
-                        onClick={() => changeLanguage(lng)} 
+                        onClick={() => changeLanguage(lng)}
                         variant={i18n.language === lng ? 'solid' : 'outline'}
-                        style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
+                        style={{
+                          padding: '0.25rem 0.75rem',
+                          minHeight: '32px',
+                          fontSize: '0.7rem',
+                        }}
                       >
                         {lng.toUpperCase()}
                       </FUIButton>
@@ -403,16 +425,31 @@ export const AppShell: React.FC<AppShellProps> = ({
                   </div>
                 </div>
 
-                <div className={styles.settingsRow} style={{ marginTop: '1.25rem', borderTop: '1px solid var(--line-color)', paddingTop: '1.25rem' }}>
-                  <span className={styles.rowLabel}>{t('master_stats_control', 'Master Stats Reset')}</span>
-                  <FUIButton onClick={handleMasterReset} variant="outline" style={{ color: '#ef4444', borderColor: '#fca5a5' }}>
+                <div
+                  className={styles.settingsRow}
+                  style={{
+                    marginTop: '1.25rem',
+                    borderTop: '1px solid var(--line-color)',
+                    paddingTop: '1.25rem',
+                  }}
+                >
+                  <span className={styles.rowLabel}>
+                    {t('master_stats_control', 'Master Stats Reset')}
+                  </span>
+                  <FUIButton
+                    onClick={handleMasterReset}
+                    variant="outline"
+                    style={{ color: '#ef4444', borderColor: '#fca5a5' }}
+                  >
                     {t('reset_all_scores', 'Reset All Practice Scores')}
                   </FUIButton>
                 </div>
               </div>
 
               <div className={clsx(styles.settingsSection, styles.scoreboardSection)}>
-                <h3 className={styles.sectionHeader}>{t('practice_scoreboards', 'Practice Scoreboards & Visibility')}</h3>
+                <h3 className={styles.sectionHeader}>
+                  {t('practice_scoreboards', 'Practice Scoreboards & Visibility')}
+                </h3>
                 <div key={scoresVersion} className={styles.scoreboardTableContainer}>
                   <table className={styles.scoreboardTable}>
                     <thead>
@@ -426,17 +463,30 @@ export const AppShell: React.FC<AppShellProps> = ({
                       </tr>
                     </thead>
                     <tbody>
-                      {MODULES.map(m => {
-                        const streak = parseInt(localStorage.getItem(`polymath_streak_${m.id}`) || '0', 10);
-                        const high = parseInt(localStorage.getItem(`polymath_high_${m.id}`) || '0', 10);
+                      {MODULES.map((m) => {
+                        const streak = parseInt(
+                          localStorage.getItem(`polymath_streak_${m.id}`) || '0',
+                          10,
+                        );
+                        const high = parseInt(
+                          localStorage.getItem(`polymath_high_${m.id}`) || '0',
+                          10,
+                        );
                         const isCatVisible = !hiddenCategories.includes(m.categoryKey);
                         const isModVisible = !hiddenModules.includes(m.id);
                         return (
                           <tr key={m.id}>
                             <td>
-                              <label style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', cursor: 'pointer' }}>
-                                <input 
-                                  type="checkbox" 
+                              <label
+                                style={{
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  gap: '0.35rem',
+                                  cursor: 'pointer',
+                                }}
+                              >
+                                <input
+                                  type="checkbox"
                                   checked={isCatVisible}
                                   onChange={() => toggleCategoryVisibility(m.categoryKey)}
                                   className={styles.visibilityCheckbox}
@@ -447,11 +497,13 @@ export const AppShell: React.FC<AppShellProps> = ({
                               </label>
                             </td>
                             <td style={{ opacity: isModVisible && isCatVisible ? 1 : 0.5 }}>
-                              {toTitleCase(t('title', { ns: m.id, defaultValue: formatDefaultTitle(m.id) }))}
+                              {toTitleCase(
+                                t('title', { ns: m.id, defaultValue: formatDefaultTitle(m.id) }),
+                              )}
                             </td>
                             <td style={{ textAlign: 'center' }}>
-                              <input 
-                                type="checkbox" 
+                              <input
+                                type="checkbox"
                                 checked={isModVisible}
                                 onChange={() => toggleModuleVisibility(m.id)}
                                 disabled={!isCatVisible}
@@ -461,7 +513,7 @@ export const AppShell: React.FC<AppShellProps> = ({
                             <td>{streak}</td>
                             <td>{high}</td>
                             <td>
-                              <button 
+                              <button
                                 className={styles.rowResetBtn}
                                 onClick={() => handleIndividualReset(m.id)}
                               >

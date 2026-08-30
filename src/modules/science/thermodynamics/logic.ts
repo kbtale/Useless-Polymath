@@ -1,7 +1,7 @@
 export interface Benchmark {
   celsius: number;
   fahrenheit: number;
-  labelKey: string; 
+  labelKey: string;
 }
 
 export const celsiusToFahrenheit = (c: number): number => (c * 9) / 5 + 32;

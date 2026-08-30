@@ -21,7 +21,7 @@ export const CoreSlider: React.FC<CoreSliderProps> = ({
   onChange,
   label,
   unit,
-  className
+  className,
 }) => {
   const percentage = ((value - min) / (max - min)) * 100;
 
@@ -31,11 +31,12 @@ export const CoreSlider: React.FC<CoreSliderProps> = ({
         <div className={styles.header}>
           {label && <span className={styles.label}>{label}</span>}
           <span className={styles.value}>
-            {value}{unit && <span className={styles.unit}>{unit}</span>}
+            {value}
+            {unit && <span className={styles.unit}>{unit}</span>}
           </span>
         </div>
       )}
-      
+
       <div className={styles.trackWrapper}>
         <input
           type="range"
@@ -46,10 +47,7 @@ export const CoreSlider: React.FC<CoreSliderProps> = ({
           onChange={(e) => onChange(parseFloat(e.target.value))}
           className={styles.rangeInput}
         />
-        <div 
-          className={styles.progressTrack} 
-          style={{ width: `${percentage}%` }}
-        />
+        <div className={styles.progressTrack} style={{ width: `${percentage}%` }} />
       </div>
     </div>
   );

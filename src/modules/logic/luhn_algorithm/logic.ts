@@ -1,10 +1,8 @@
-
 export const calculateLuhnSum = (number: string): number => {
   const digits = number.replace(/\D/g, '').split('').map(Number);
   let sum = 0;
   let isDouble = false;
 
-  // Loop backwards
   for (let i = digits.length - 1; i >= 0; i--) {
     let d = digits[i];
     if (isDouble) {
@@ -18,14 +16,8 @@ export const calculateLuhnSum = (number: string): number => {
 };
 
 export const calculateCheckDigit = (number: string): number => {
-  // To find check digit, append '0', calc sum, result is (10 - (sum % 10)) % 10
-  // But wait, standard way:
-  // 1. Take payload (without check digit).
-  // 2. Add '0' to end.
-  // 3. Calc Luhn sum.
-  // 4. If sum % 10 == 0, check is 0. Else 10 - (sum % 10).
   const sum = calculateLuhnSum(number + '0');
-  return (sum % 10 === 0) ? 0 : 10 - (sum % 10);
+  return sum % 10 === 0 ? 0 : 10 - (sum % 10);
 };
 
 export const isValidLuhn = (number: string): boolean => {

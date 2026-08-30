@@ -11,8 +11,8 @@ interface BitBulbProps {
 
 export const BitBulb: React.FC<BitBulbProps> = ({ value, active, onClick, disabled }) => {
   return (
-    <button 
-      className={clsx(styles.bulb, { [styles.active]: active })} 
+    <button
+      className={clsx(styles.bulb, { [styles.active]: active })}
       onClick={onClick}
       disabled={disabled}
       aria-label={`Toggle bit ${value}`}

@@ -19,14 +19,12 @@
   .light {
     width: 40px;
     height: 40px;
-    // Circular shape for bulb
     border-radius: 50%;
     border: 1px solid $line-color;
     background: transparent;
     transition: all 0.2s ease;
     position: relative;
     
-    // Inner detail (crosshair or dot)
     &::after {
       content: '';
       position: absolute;

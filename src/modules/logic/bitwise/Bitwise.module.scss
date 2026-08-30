@@ -50,7 +50,7 @@
   flex-direction: column;
   gap: $spacing-xs;
   padding: $spacing-md;
-  border: $border-thin; // Optional: box around each operand
+  border: $border-thin;
   background: rgba($line-color, 0.02);
 }
 
@@ -65,11 +65,10 @@
 
 .resultWrapper {
   @extend .bitRowWrapper;
-  border: 2px solid $text-main; // Highlight result
+  border: 2px solid $text-main;
   background: transparent;
 }
 
-// Practice Mode
 .practiceContainer {
   display: flex;
   flex-direction: column;

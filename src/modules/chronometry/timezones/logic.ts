@@ -1,7 +1,6 @@
 export interface TimeZone {
   id: string;
   name: string;
-  // Offset from UTC in hours
   offset: number;
 }
 
@@ -18,16 +17,13 @@ export const COMMON_ZONES: TimeZone[] = [
 export const calculateDestinationTime = (
   localHour: number,
   originOffset: number,
-  destOffset: number
+  destOffset: number,
 ): { hour: number; dayOffset: number } => {
-  // 1. Normalize to UTC
   const utcHour = localHour - originOffset;
 
-  // 2. Calculate Destination
   let destHour = utcHour + destOffset;
   let dayOffset = 0;
 
-  // 3. Rollover Arithmetic
   while (destHour >= 24) {
     destHour -= 24;
     dayOffset += 1;

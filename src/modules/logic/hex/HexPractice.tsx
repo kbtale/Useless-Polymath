@@ -21,14 +21,14 @@ export const HexPractice: React.FC = () => {
     const all = [...Array.from(wrong), correct].sort(() => Math.random() - 0.5);
     return {
       target: newTarget,
-      options: all
+      options: all,
     };
   };
 
   const [round, setRound] = useState(getRandomRound);
   const target = round.target;
   const options = round.options;
-    const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
   const generateRound = () => {
     setRound(getRandomRound());
@@ -38,7 +38,7 @@ export const HexPractice: React.FC = () => {
   const handleGuess = (guess: string) => {
     if (hexToDecimal(guess) === target) {
       setFeedback('correct');
-      setStreak(s => s + 1);
+      setStreak((s) => s + 1);
       setTimeout(generateRound, 1000);
     } else {
       setFeedback('incorrect');
@@ -50,19 +50,23 @@ export const HexPractice: React.FC = () => {
     <FUIGlassPanel className={styles.panel}>
       <div className={styles.header}>
         <h2 className={styles.practiceTitle}>{t('practice_mode', { ns: 'common' })}</h2>
-        <div className={styles.streak}>{t('streak', { ns: 'common' })}: {streak}</div>
+        <div className={styles.streak}>
+          {t('streak', { ns: 'common' })}: {streak}
+        </div>
       </div>
 
       <div className={styles.targetDisplay}>
-        <div className={styles.label}>{t('label_convert_to_hex', { defaultValue: 'Convert to Hex' })}</div>
+        <div className={styles.label}>
+          {t('label_convert_to_hex', { defaultValue: 'Convert to Hex' })}
+        </div>
         <div className={styles.targetValue}>{target}</div>
       </div>
 
       <div className={styles.optionsGrid}>
-        {options.map(opt => (
-          <FUIButton 
-            key={opt} 
-            variant="outline" 
+        {options.map((opt) => (
+          <FUIButton
+            key={opt}
+            variant="outline"
             onClick={() => handleGuess(opt)}
             className={styles.optionBtn}
           >

@@ -12,13 +12,13 @@ export const RomanPractice: React.FC = () => {
   const getRandomVal = () => Math.floor(Math.random() * 1000) + 1;
 
   const { t } = useTranslation(['roman_numerals', 'common']);
-  
+
   const [direction, setDirection] = useState<'to_roman' | 'to_decimal'>('to_roman');
   const [questionVal, setQuestionVal] = useState<number>(getRandomVal);
   const [userInput, setUserInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [score, setScore] = useState(0);
-  
+
   const generateQuestion = () => {
     setQuestionVal(getRandomVal());
     setUserInput('');
@@ -30,64 +30,65 @@ export const RomanPractice: React.FC = () => {
     let isCorrect = false;
 
     if (direction === 'to_roman') {
-        isCorrect = userInput.toUpperCase() === toRoman(questionVal);
+      isCorrect = userInput.toUpperCase() === toRoman(questionVal);
     } else {
-        isCorrect = parseInt(userInput) === questionVal;
+      isCorrect = parseInt(userInput) === questionVal;
     }
 
     if (isCorrect) {
-        setFeedback('correct');
-        setScore(s => s + 10 + streak * 2);
-        setStreak(s => s + 1);
-        setTimeout(generateQuestion, 1500);
+      setFeedback('correct');
+      setScore((s) => s + 10 + streak * 2);
+      setStreak((s) => s + 1);
+      setTimeout(generateQuestion, 1500);
     } else {
-        setFeedback('incorrect');
-        setStreak(0);
+      setFeedback('incorrect');
+      setStreak(0);
     }
   };
 
   return (
     <FUIGlassPanel className={styles.panel}>
       <h2 className={styles.title}>{t('practice_mode', { ns: 'common' })}</h2>
-      
+
       <div className={styles.practiceContainer}>
-        
         <div className={styles.scoreBoard}>
-            <div>{t('score', { ns: 'common' })}: <span>{score}</span></div>
-            <div>{t('streak', { ns: 'common' })}: <span>{streak}</span></div>
+          <div>
+            {t('score', { ns: 'common' })}: <span>{score}</span>
+          </div>
+          <div>
+            {t('streak', { ns: 'common' })}: <span>{streak}</span>
+          </div>
         </div>
 
         <div className={styles.question}>
-            <div className={styles.questionLabel}>
-                {direction === 'to_roman' 
-                    ? t('convert_to_roman', { defaultValue: 'Convert to ROMAN' }) 
-                    : t('convert_to_decimal', { defaultValue: 'Convert to DECIMAL' })
-                }
-            </div>
-            <div className={styles.questionValue}>
-                {direction === 'to_roman' ? questionVal : toRoman(questionVal)}
-            </div>
+          <div className={styles.questionLabel}>
+            {direction === 'to_roman'
+              ? t('convert_to_roman', { defaultValue: 'Convert to ROMAN' })
+              : t('convert_to_decimal', { defaultValue: 'Convert to DECIMAL' })}
+          </div>
+          <div className={styles.questionValue}>
+            {direction === 'to_roman' ? questionVal : toRoman(questionVal)}
+          </div>
         </div>
 
         <div style={{ width: '200px' }}>
-            <CoreBaseInput
-                value={userInput}
-                onChangeValue={setUserInput}
-                allowedChars={direction === 'to_roman' ? /[IVXLCDM]/i : /[0-9]/}
-                transformToUpper={direction === 'to_roman'}
-                maxLength={direction === 'to_roman' ? 15 : 4}
-                placeholder="?"
-            />
+          <CoreBaseInput
+            value={userInput}
+            onChangeValue={setUserInput}
+            allowedChars={direction === 'to_roman' ? /[IVXLCDM]/i : /[0-9]/}
+            transformToUpper={direction === 'to_roman'}
+            maxLength={direction === 'to_roman' ? 15 : 4}
+            placeholder="?"
+          />
         </div>
 
         {feedback === 'correct' ? (
-             <div className={`${styles.feedback} ${styles.correct}`}>CORRECT</div>
+          <div className={`${styles.feedback} ${styles.correct}`}>CORRECT</div>
         ) : feedback === 'incorrect' ? (
-             <div className={`${styles.feedback} ${styles.incorrect}`}>INCORRECT</div>
+          <div className={`${styles.feedback} ${styles.incorrect}`}>INCORRECT</div>
         ) : (
-            <FUIButton onClick={checkAnswer}>CHECK</FUIButton>
+          <FUIButton onClick={checkAnswer}>CHECK</FUIButton>
         )}
-
       </div>
     </FUIGlassPanel>
   );

@@ -12,10 +12,10 @@ export const StorageUnitsPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('storage_units');
   const { t } = useTranslation(['storage_units', 'common']);
   const [problem, setProblem] = useState(generatePracticeProblem);
-  
+
   const [userAnswer, setUserAnswer] = useState('');
   const [feedback, setFeedback] = useState<'idle' | 'correct' | 'incorrect'>('idle');
-    const [showAnswer, setShowAnswer] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
 
   const newProblem = () => {
     setProblem(generatePracticeProblem());
@@ -28,12 +28,11 @@ export const StorageUnitsPractice: React.FC = () => {
 
   const handleSubmit = () => {
     const val = parseFloat(userAnswer);
-    // Allow 1% margin for floating point
     const margin = Math.abs(correctAnswer * 0.01);
-    
+
     if (Math.abs(val - correctAnswer) <= Math.max(margin, 0.01)) {
       setFeedback('correct');
-      setStreak(s => s + 1);
+      setStreak((s) => s + 1);
       setTimeout(newProblem, 1200);
     } else {
       setFeedback('incorrect');
@@ -46,9 +45,11 @@ export const StorageUnitsPractice: React.FC = () => {
     <div className={styles.toolContainer}>
       <FUIGlassPanel className={styles.panel}>
         <div className={styles.container}>
-           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-             <h2 className={styles.title}>{t('practice_title')}</h2>
-             <span style={{ fontFamily: 'JetBrains Mono', color: '#4ade80' }}>{t('streak', { ns: 'common' })}: {streak}</span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <h2 className={styles.title}>{t('practice_title')}</h2>
+            <span style={{ fontFamily: 'JetBrains Mono', color: '#4ade80' }}>
+              {t('streak', { ns: 'common' })}: {streak}
+            </span>
           </div>
 
           <div style={{ textAlign: 'center', margin: '2rem 0' }}>
@@ -68,15 +69,15 @@ export const StorageUnitsPractice: React.FC = () => {
               placeholder="?"
               allowedChars={/^[0-9.eE+-]*$/}
               className={clsx(
-                feedback === 'correct' && 'border-green-500 text-green-500', 
+                feedback === 'correct' && 'border-green-500 text-green-500',
                 feedback === 'incorrect' && 'border-red-500 text-red-500',
-                "text-center text-xl"
+                'text-center text-xl',
               )}
             />
           </div>
 
           <FUIButton onClick={handleSubmit}>{t('submit', { ns: 'common' })}</FUIButton>
-          
+
           {showAnswer && (
             <p className={styles.label} style={{ marginTop: '1rem', color: '#f87171' }}>
               {t('practice_answer')}: {formatValue(correctAnswer)}
@@ -84,9 +85,8 @@ export const StorageUnitsPractice: React.FC = () => {
           )}
 
           <p className={styles.label} style={{ marginTop: '1rem', fontSize: '0.7rem' }}>
-             {t('practice_hint_convert')}
+            {t('practice_hint_convert')}
           </p>
-
         </div>
       </FUIGlassPanel>
     </div>

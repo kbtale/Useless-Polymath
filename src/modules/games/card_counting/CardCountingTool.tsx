@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
@@ -15,7 +14,7 @@ const CardDisplay: React.FC<{ card: Card }> = ({ card }) => {
     hearts: '♥',
     diamonds: '♦',
     clubs: '♣',
-    spades: '♠'
+    spades: '♠',
   }[card.suit];
 
   return (
@@ -48,7 +47,7 @@ export const CardCountingTool: React.FC = () => {
     const card = deck.deal();
     if (card) {
       setCurrentCard(card);
-      setRunningCount(prev => prev + getHiLoValue(card.rank));
+      setRunningCount((prev) => prev + getHiLoValue(card.rank));
       setCardsLeft(deck.remaining);
     }
   };

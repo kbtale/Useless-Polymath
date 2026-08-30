@@ -83,7 +83,6 @@
     }
 }
 
-// Practice
 .practiceContainer {
     display: flex;
     flex-direction: column;
@@ -95,7 +94,7 @@
 .cipherText {
     font-family: $font-mono;
     font-size: 2rem;
-    color: $color-error; // "Encrypted" logic mostly implies 'red' or 'secure'
+    color: $color-error;
     text-align: center;
     padding: $spacing-lg;
     border: 1px dashed $color-error;

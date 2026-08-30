@@ -22,18 +22,18 @@ export const CoreSelect: React.FC<CoreSelectProps> = ({
   onChange,
   label,
   placeholder,
-  className
+  className,
 }) => {
   return (
     <div className={clsx(styles.selectContainer, className)}>
       {label && <label className={styles.label}>{label}</label>}
       <div className={styles.wrapper}>
-        <select
-          className={styles.select}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-        >
-          {placeholder && <option value="" disabled>{placeholder}</option>}
+        <select className={styles.select} value={value} onChange={(e) => onChange(e.target.value)}>
+          {placeholder && (
+            <option value="" disabled>
+              {placeholder}
+            </option>
+          )}
           {options.map((opt) => (
             <option key={opt.value} value={opt.value}>
               {opt.label}

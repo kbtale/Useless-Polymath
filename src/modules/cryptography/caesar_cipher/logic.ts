@@ -1,5 +1,5 @@
 export const encrypt = (text: string, shift: number): string => {
-  const s = ((shift % 26) + 26) % 26; // Normalize shift to 0-25
+  const s = ((shift % 26) + 26) % 26;
   return text.replace(/[a-zA-Z]/g, (char) => {
     const isUpper = char === char.toUpperCase();
     const base = isUpper ? 65 : 97;

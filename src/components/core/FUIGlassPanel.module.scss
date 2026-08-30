@@ -4,7 +4,6 @@
   background: $bg-canvas;
   border: var(--panel-border, 1px solid $line-color);
   border-radius: var(--radius-card, 0px);
-  // Outer padding for the double border effect
   padding: var(--panel-padding, $spacing-sm);
   position: relative;
   box-shadow: var(--shadow-card, 8px 8px 0px rgba(0,0,0,0.05));
@@ -16,7 +15,6 @@
     position: relative;
   }
 
-  // Corner Decorations
   .corner {
     display: var(--corner-decorations-display, block);
     position: absolute;

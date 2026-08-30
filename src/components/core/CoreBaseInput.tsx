@@ -23,18 +23,17 @@ export const CoreBaseInput: React.FC<CoreBaseInputProps> = ({
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let val = e.target.value;
-    
+
     if (transformToUpper) {
       val = val.toUpperCase();
     }
 
     if (allowedChars && val && !allowedChars.test(val)) {
-        // Validation logic matching previous simple implementation
-        return;
+      return;
     }
-    
+
     if (allowedChars && !allowedChars.test(val) && val !== '') {
-        return; 
+      return;
     }
 
     if (maxLength && val.length > maxLength) {
@@ -46,7 +45,7 @@ export const CoreBaseInput: React.FC<CoreBaseInputProps> = ({
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && onEnter) {
-        onEnter();
+      onEnter();
     }
   };
 

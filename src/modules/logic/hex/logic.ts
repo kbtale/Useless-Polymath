@@ -1,10 +1,10 @@
 export const decimalToHex = (n: number): string => {
-  if (n < 0) throw new Error("Negative numbers not supported");
+  if (n < 0) throw new Error('Negative numbers not supported');
   return n.toString(16).toUpperCase();
 };
 
 export const hexToDecimal = (h: string): number => {
-  if (!/^[0-9A-Fa-f]+$/.test(h)) throw new Error("Invalid hex string");
+  if (!/^[0-9A-Fa-f]+$/.test(h)) throw new Error('Invalid hex string');
   return parseInt(h, 16);
 };
 

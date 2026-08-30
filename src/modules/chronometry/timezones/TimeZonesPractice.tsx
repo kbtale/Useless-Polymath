@@ -15,7 +15,11 @@ export const TimeZonesPractice: React.FC = () => {
     let destIdx = Math.floor(Math.random() * COMMON_ZONES.length);
     while (destIdx === originIdx) destIdx = Math.floor(Math.random() * COMMON_ZONES.length);
     const hour = Math.floor(Math.random() * 24);
-    const correct = calculateDestinationTime(hour, COMMON_ZONES[originIdx].offset, COMMON_ZONES[destIdx].offset).hour;
+    const correct = calculateDestinationTime(
+      hour,
+      COMMON_ZONES[originIdx].offset,
+      COMMON_ZONES[destIdx].offset,
+    ).hour;
     const opts = new Set<number>();
     opts.add(correct);
     while (opts.size < 4) {
@@ -23,14 +27,14 @@ export const TimeZonesPractice: React.FC = () => {
     }
     return {
       question: { originIdx, destIdx, hour },
-      options: Array.from(opts).sort((a, b) => a - b)
+      options: Array.from(opts).sort((a, b) => a - b),
     };
   };
 
   const [round, setRound] = useState(getRandomRound);
   const question = round.question;
   const options = round.options;
-    const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
   const generateRound = () => {
     setRound(getRandomRound());
@@ -39,11 +43,15 @@ export const TimeZonesPractice: React.FC = () => {
 
   const handleGuess = (guess: number) => {
     if (!question) return;
-    const correct = calculateDestinationTime(question.hour, COMMON_ZONES[question.originIdx].offset, COMMON_ZONES[question.destIdx].offset).hour;
-    
+    const correct = calculateDestinationTime(
+      question.hour,
+      COMMON_ZONES[question.originIdx].offset,
+      COMMON_ZONES[question.destIdx].offset,
+    ).hour;
+
     if (guess === correct) {
       setFeedback('correct');
-      setStreak(s => s + 1);
+      setStreak((s) => s + 1);
       setTimeout(generateRound, 1000);
     } else {
       setFeedback('incorrect');
@@ -60,25 +68,27 @@ export const TimeZonesPractice: React.FC = () => {
     <FUIGlassPanel className={styles.panel}>
       <div className={styles.header}>
         <h2 className={styles.practiceTitle}>{t('practice_mode', { ns: 'common' })}</h2>
-        <div className={styles.streak}>{t('streak', { ns: 'common' })}: {streak}</div>
+        <div className={styles.streak}>
+          {t('streak', { ns: 'common' })}: {streak}
+        </div>
       </div>
 
       <div className={styles.problemDisplay}>
         <div>
-          If it's <span className={styles.highlight}>{question.hour}:00</span> in <br/>
+          If it's <span className={styles.highlight}>{question.hour}:00</span> in <br />
           <span className={styles.locationName}>{origin.name}</span>
         </div>
         <div className={styles.questionBlock}>
-          What time is it in <br/>
+          What time is it in <br />
           <span className={styles.locationName}>{dest.name}</span>?
         </div>
       </div>
 
       <div className={styles.optionsGrid}>
-        {options.map(opt => (
-          <FUIButton 
-            key={opt} 
-            variant="outline" 
+        {options.map((opt) => (
+          <FUIButton
+            key={opt}
+            variant="outline"
             onClick={() => handleGuess(opt)}
             className={styles.optionBtn}
           >

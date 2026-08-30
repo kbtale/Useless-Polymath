@@ -17,7 +17,6 @@ export const NatoTool: React.FC = () => {
       <h2 className={styles.title}>{t('title')}</h2>
 
       <div className={styles.container}>
-        
         <div className={styles.inputArea}>
           <label className={styles.label}>{t('text_input')}</label>
           <CoreBaseInput
@@ -30,18 +29,15 @@ export const NatoTool: React.FC = () => {
 
         <div className={styles.outputArea}>
           {result.length === 0 && (
-            <div style={{ padding: '1rem', color: '#666', fontFamily: 'JetBrains Mono' }}>
-                // {t('waiting_for_input')}
-            </div>
+            <div style={{ padding: '1rem', color: '#666', fontFamily: 'JetBrains Mono' }}></div>
           )}
           {result.map((item, idx) => (
-             <div key={idx} className={clsx(styles.card, !item.word && styles.unknown)}>
-                <span className={styles.char}>{item.char}</span>
-                {item.word && <span className={styles.word}>{item.word}</span>}
-             </div>
+            <div key={idx} className={clsx(styles.card, !item.word && styles.unknown)}>
+              <span className={styles.char}>{item.char}</span>
+              {item.word && <span className={styles.word}>{item.word}</span>}
+            </div>
           ))}
         </div>
-
       </div>
     </FUIGlassPanel>
   );

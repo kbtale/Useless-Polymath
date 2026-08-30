@@ -256,7 +256,6 @@
   }
 }
 
-// Backdrop Overlay on Mobile Menu Open
 .mobileBackdrop {
   position: fixed;
   top: 3rem;
@@ -311,7 +310,6 @@
     }
 
     &.collapsed {
-      // Overrule collapsed behavior on mobile drawer view
       width: 16rem !important;
       border-right: 1px solid var(--line-color) !important;
       
@@ -365,7 +363,6 @@
   }
 }
 
-// Settings Modal Styles
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -478,7 +475,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  min-height: 380px; /* Expands spacious height on mobile devices! */
+  min-height: 380px; 
 
   @media (min-width: 769px) {
     min-height: 0;

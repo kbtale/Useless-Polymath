@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 export const BitwiseTool: React.FC = () => {
   const { t } = useTranslation(['bitwise', 'common']);
-  
+
   const [valA, setValA] = useState(0);
   const [valB, setValB] = useState(0);
   const [op, setOp] = useState<BitwiseOperation>('AND');
@@ -27,7 +27,6 @@ export const BitwiseTool: React.FC = () => {
       <h2 className={styles.title}>{t('title')}</h2>
 
       <div className={styles.container}>
-        
         <div className={styles.controlRow}>
           <div style={{ width: '200px' }}>
             <CoreSelect
@@ -40,45 +39,38 @@ export const BitwiseTool: React.FC = () => {
         </div>
 
         <div className={styles.toolLayout}>
-        
           <div className={styles.bitRowWrapper}>
-             <div className={styles.sectionTitle}>{t('input_a')} ({valA})</div>
-             <CoreBitRow 
-               value={valA} 
-               onChange={setValA} 
-               bits={8} 
-               interactive={true}
-             />
+            <div className={styles.sectionTitle}>
+              {t('input_a')} ({valA})
+            </div>
+            <CoreBitRow value={valA} onChange={setValA} bits={8} interactive={true} />
           </div>
 
           <div className={styles.operatorDisplay}>
-            {OPERATIONS.find(o => o.value === op)?.label.split(' ')[0]}
+            {OPERATIONS.find((o) => o.value === op)?.label.split(' ')[0]}
           </div>
 
           {!isUnary && (
             <div className={styles.bitRowWrapper}>
-               <div className={styles.sectionTitle}>{isShift ? t('shift_amount') : t('input_b')} ({valB})</div>
-               <CoreBitRow 
-                 value={valB} 
-                 onChange={setValB} 
-                 bits={isShift ? 4 : 8} 
-                 interactive={true}
-               />
+              <div className={styles.sectionTitle}>
+                {isShift ? t('shift_amount') : t('input_b')} ({valB})
+              </div>
+              <CoreBitRow
+                value={valB}
+                onChange={setValB}
+                bits={isShift ? 4 : 8}
+                interactive={true}
+              />
             </div>
           )}
 
           <div className={styles.resultWrapper}>
-             <div className={styles.sectionTitle}>{t('result')} ({result})</div>
-             <CoreBitRow 
-               value={result} 
-               onChange={() => {}}
-               bits={8} 
-               interactive={false}
-             />
+            <div className={styles.sectionTitle}>
+              {t('result')} ({result})
+            </div>
+            <CoreBitRow value={result} onChange={() => {}} bits={8} interactive={false} />
           </div>
-
         </div>
-
       </div>
     </FUIGlassPanel>
   );

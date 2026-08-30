@@ -16,8 +16,14 @@ export const MoonPractice: React.FC = () => {
     const d = Math.floor(Math.random() * 28) + 1;
     const correct = getMoonPhase(d, m, y).phaseName;
     const allPhases = [
-      'New Moon', 'Waxing Crescent', 'First Quarter', 'Waxing Gibbous',
-      'Full Moon', 'Waning Gibbous', 'Last Quarter', 'Waning Crescent'
+      'New Moon',
+      'Waxing Crescent',
+      'First Quarter',
+      'Waxing Gibbous',
+      'Full Moon',
+      'Waning Gibbous',
+      'Last Quarter',
+      'Waning Crescent',
     ];
     const opts = new Set<string>();
     opts.add(correct);
@@ -26,14 +32,14 @@ export const MoonPractice: React.FC = () => {
     }
     return {
       targetDate: { d, m, y },
-      options: Array.from(opts).sort()
+      options: Array.from(opts).sort(),
     };
   };
 
   const [round, setRound] = useState(getRandomRound);
   const targetDate = round.targetDate;
   const options = round.options;
-    const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
   const generateRound = () => {
     setRound(getRandomRound());
@@ -43,10 +49,10 @@ export const MoonPractice: React.FC = () => {
   const handleGuess = (guess: string) => {
     if (!targetDate) return;
     const correct = getMoonPhase(targetDate.d, targetDate.m, targetDate.y).phaseName;
-    
+
     if (guess === correct) {
       setFeedback('correct');
-      setStreak(s => s + 1);
+      setStreak((s) => s + 1);
       setTimeout(generateRound, 1000);
     } else {
       setFeedback('incorrect');
@@ -60,23 +66,23 @@ export const MoonPractice: React.FC = () => {
     <FUIGlassPanel className={styles.panel}>
       <div className={styles.header}>
         <h2 className={styles.practiceTitle}>{t('practice_mode', { ns: 'common' })}</h2>
-        <div className={styles.streak}>{t('streak', { ns: 'common' })}: {streak}</div>
+        <div className={styles.streak}>
+          {t('streak', { ns: 'common' })}: {streak}
+        </div>
       </div>
 
       <div className={styles.targetDisplay}>
-        <div className={styles.label}>
-          Predict the phase for:
-        </div>
+        <div className={styles.label}>Predict the phase for:</div>
         <div className={styles.date}>
           {targetDate.d}/{targetDate.m}/{targetDate.y}
         </div>
       </div>
 
       <div className={styles.optionsGrid}>
-        {options.map(opt => (
-          <FUIButton 
-            key={opt} 
-            variant="outline" 
+        {options.map((opt) => (
+          <FUIButton
+            key={opt}
+            variant="outline"
             onClick={() => handleGuess(opt)}
             className={styles.optionBtn}
           >

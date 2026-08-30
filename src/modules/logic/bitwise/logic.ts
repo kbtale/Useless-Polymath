@@ -1,18 +1,23 @@
-
 export type BitwiseOperation = 'AND' | 'OR' | 'XOR' | 'NOT' | 'LSHIFT' | 'RSHIFT';
 
 export const calculateBitwise = (a: number, b: number, op: BitwiseOperation): number => {
   switch (op) {
-    case 'AND': return a & b;
-    case 'OR': return a | b;
-    case 'XOR': return a ^ b;
-    case 'NOT': return ~a;
-    case 'LSHIFT': return a << b;
-    case 'RSHIFT': return a >> b;
-    default: return 0;
+    case 'AND':
+      return a & b;
+    case 'OR':
+      return a | b;
+    case 'XOR':
+      return a ^ b;
+    case 'NOT':
+      return ~a;
+    case 'LSHIFT':
+      return a << b;
+    case 'RSHIFT':
+      return a >> b;
+    default:
+      return 0;
   }
 };
-
 
 export const OPERATIONS: { value: BitwiseOperation; label: string }[] = [
   { value: 'AND', label: 'AND (&)' },

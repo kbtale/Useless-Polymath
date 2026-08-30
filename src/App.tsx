@@ -9,7 +9,7 @@ const toTitleCase = (str: string): string => {
     .split('_')
     .join(' ')
     .split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 };
 import { DoomsdayTool } from './modules/chronometry/doomsday/DoomsdayTool';
@@ -65,7 +65,7 @@ import { StorageUnitsPractice } from './modules/networks/storage_units/StorageUn
 function AppContent() {
   const [mode, setMode] = useState<'tool' | 'practice' | 'guide'>('tool');
   const [activeModuleId, setActiveModuleId] = useState('doomsday');
-  
+
   const { t } = useTranslation([activeModuleId, 'common']);
 
   const renderModule = () => {
@@ -76,7 +76,12 @@ function AppContent() {
             {toTitleCase(activeModuleId)} {t('guide', { ns: 'common', defaultValue: 'Guide' })}
           </h2>
           <div className={styles.guideContainer}>
-            <CoreMarkdownRenderer content={t('guide', { ns: activeModuleId, defaultValue: t('documentation_coming_soon', { ns: 'common' }) })} />
+            <CoreMarkdownRenderer
+              content={t('guide', {
+                ns: activeModuleId,
+                defaultValue: t('documentation_coming_soon', { ns: 'common' }),
+              })}
+            />
           </div>
         </div>
       );
@@ -133,23 +138,41 @@ function AppContent() {
         return mode === 'tool' ? <StorageUnitsTool /> : <StorageUnitsPractice />;
       default:
         return (
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', flexDirection: 'column' }}>
-            <h2 style={{ fontFamily: 'Orbitron', color: '#00F3FF' }}>MODULE: {activeModuleId.toUpperCase()}</h2>
-            <p style={{ color: 'rgba(255,255,255,0.7)' }}>// {t('system_offline', { ns: 'common' })}</p>
-            <p style={{ color: 'rgba(255,255,255,0.5)' }}>// {t('awaiting_implementation', { ns: 'common' })}</p>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100%',
+              flexDirection: 'column',
+            }}
+          >
+            <h2 style={{ fontFamily: 'Orbitron', color: '#00F3FF' }}>
+              MODULE: {activeModuleId.toUpperCase()}
+            </h2>
+            <p style={{ color: 'rgba(255,255,255,0.7)' }}></p>
+            <p style={{ color: 'rgba(255,255,255,0.5)' }}></p>
           </div>
         );
     }
   };
 
   return (
-    <AppShell 
-      activeModule={activeModuleId} 
+    <AppShell
+      activeModule={activeModuleId}
       onModuleChange={setActiveModuleId}
       mode={mode}
       onModeChange={setMode}
     >
-      <div style={{ maxWidth: '800px', margin: '0 auto', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
+      <div
+        style={{
+          maxWidth: '800px',
+          margin: '0 auto',
+          minHeight: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
         {renderModule()}
       </div>
     </AppShell>
@@ -157,18 +180,27 @@ function AppContent() {
 }
 
 function App() {
-  const { t } = useTranslation(['common']); // Need this hook here if we want to translate generic loading
-  
+  const { t } = useTranslation(['common']);
+
   return (
-     <Suspense fallback={<div style={{ 
-       display: 'flex', 
-       justifyContent: 'center', 
-       alignItems: 'center', 
-       height: '100vh', 
-       background: '#0a0a0a', 
-       color: '#00F3FF',
-       fontFamily: 'JetBrains Mono' 
-     }}> {t('loading_system')} </div>}>
+    <Suspense
+      fallback={
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+            background: '#0a0a0a',
+            color: '#00F3FF',
+            fontFamily: 'JetBrains Mono',
+          }}
+        >
+          {' '}
+          {t('loading_system')}{' '}
+        </div>
+      }
+    >
       <AppContent />
     </Suspense>
   );

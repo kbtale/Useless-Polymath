@@ -17,7 +17,7 @@ export const DoomsdayPractice: React.FC = () => {
     return {
       y: date.getFullYear(),
       m: date.getMonth() + 1,
-      d: date.getDate()
+      d: date.getDate(),
     };
   };
 
@@ -34,7 +34,7 @@ export const DoomsdayPractice: React.FC = () => {
     const actual = getDayOfWeek(targetDate.y, targetDate.m, targetDate.d);
     if (dayIndex === actual) {
       setFeedback('correct');
-      setStreak(s => s + 1);
+      setStreak((s) => s + 1);
       setTimeout(generateDate, 1000);
     } else {
       setFeedback('incorrect');
@@ -46,22 +46,25 @@ export const DoomsdayPractice: React.FC = () => {
     <FUIGlassPanel className={styles.panel}>
       <div className={styles.header}>
         <h2 className={styles.practiceTitle}>{t('practice_mode', { ns: 'common' })}</h2>
-        <div className={styles.streak}>{t('streak', { ns: 'common' })}: {streak}</div>
+        <div className={styles.streak}>
+          {t('streak', { ns: 'common' })}: {streak}
+        </div>
       </div>
-      
+
       {targetDate && (
         <div className={styles.targetDate}>
           <div className={styles.dateDisplay}>
-            {targetDate.y}-{String(targetDate.m).padStart(2, '0')}-{String(targetDate.d).padStart(2, '0')}
+            {targetDate.y}-{String(targetDate.m).padStart(2, '0')}-
+            {String(targetDate.d).padStart(2, '0')}
           </div>
         </div>
       )}
 
       <div className={styles.grid}>
         {DAYS.map((day, i) => (
-          <FUIButton 
-            key={day} 
-            variant="outline" 
+          <FUIButton
+            key={day}
+            variant="outline"
             onClick={() => handleGuess(i)}
             className={styles.dayBtn}
           >

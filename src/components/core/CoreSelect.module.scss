@@ -19,8 +19,6 @@
   position: relative;
   width: 100%;
   
-  // Custom arrow using pseudo-element or separate div
-  // Using a simple CSS arrow for the .arrow div
   &:after {
     content: '';
     position: absolute;
@@ -38,7 +36,7 @@
 
 .select {
   width: 100%;
-  appearance: none; // Hide default arrow
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   
