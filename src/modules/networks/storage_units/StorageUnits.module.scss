@@ -69,8 +69,8 @@
   }
 
   &.active {
-    border-color: #4ade80;
-    background: rgba(#4ade80, 0.1);
+    border-color: var(--color-success, #4ade80);
+    background: rgba(74, 222, 128, 0.1);
   }
 
   .resultUnit {
@@ -104,7 +104,7 @@
 
 .problemUnit {
   font-size: 1.5rem;
-  color: #4ade80;
+  color: var(--color-success, #4ade80);
   font-weight: 600;
 }
 
@@ -112,4 +112,35 @@
   font-size: 2rem;
   color: $text-dim;
   margin: 0 $spacing-sm;
+}
+
+.streakDisplay {
+  font-family: $font-mono;
+  color: var(--color-success, #4ade80);
+}
+
+.practiceInput {
+  text-align: center;
+  font-size: 1.25rem;
+  font-family: $font-mono;
+
+  &.correct {
+    border-color: var(--color-success, #4ade80);
+    color: var(--color-success, #4ade80);
+  }
+
+  &.incorrect {
+    border-color: var(--color-error, #f87171);
+    color: var(--color-error, #f87171);
+  }
+}
+
+.answerDisplay {
+  margin-top: $spacing-md;
+  color: var(--color-error, #f87171);
+}
+
+.hintDisplay {
+  margin-top: $spacing-md;
+  font-size: 0.7rem;
 }

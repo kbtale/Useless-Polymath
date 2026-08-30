@@ -36,6 +36,19 @@
   text-align: center;
 }
 
+.label {
+  font-family: $font-mono;
+  color: $text-dim;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+.countInput {
+  text-align: center;
+  font-family: $font-mono;
+  font-size: 1.25rem;
+}
+
 .dealerTable {
   align-self: stretch;
   max-width: 500px;
@@ -47,7 +60,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
   margin-bottom: $spacing-lg;
   overflow: hidden;
 }
@@ -62,12 +75,16 @@
   justify-content: space-between;
   padding: 8px;
   font-family: 'Times New Roman', serif;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
   user-select: none;
-  
-  &.red { color: #dc2626; }
-  &.black { color: #000000; }
-  
+
+  &.red {
+    color: #dc2626;
+  }
+  &.black {
+    color: #000000;
+  }
+
   .corner {
     display: flex;
     flex-direction: column;
@@ -76,7 +93,7 @@
     font-size: 1.25rem;
     font-weight: bold;
   }
-  
+
   .center {
     font-size: 2.5rem;
     align-self: center;
@@ -90,18 +107,18 @@
   width: 100%;
   margin-bottom: $spacing-lg;
   font-family: $font-mono;
-  
+
   .statItem {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     .statLabel {
       font-size: 0.75rem;
       color: $text-dim;
       text-transform: uppercase;
     }
-    
+
     .statValue {
       font-size: 1.5rem;
       font-weight: 700;

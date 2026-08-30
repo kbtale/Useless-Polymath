@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { FUIButton } from '../../../components/core/FUIButton';
-import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
-import { ELEMENTS } from './logic';
-import type { Element } from './logic';
 import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
+import { FUIButton } from '../../../components/core/FUIButton';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import styles from './PeriodicTablePractice.module.scss';
+import { ELEMENTS, type Element } from './logic';
 
 const getRandomElement = () => ELEMENTS[Math.floor(Math.random() * ELEMENTS.length)];
 
@@ -61,7 +61,7 @@ export const PeriodicTablePractice: React.FC = () => {
             maxLength={3}
             autoFocus
             transformToUpper
-            className="text-center font-mono text-xl"
+            className={styles.symbolInput}
             placeholder={t('placeholder_example')}
           />
           <FUIButton onClick={checkAnswer} variant="solid" style={{ width: '100%' }}>

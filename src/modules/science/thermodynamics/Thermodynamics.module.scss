@@ -1,4 +1,3 @@
-
 @use '../../../styles/variables' as *;
 
 .toolCont {
@@ -121,23 +120,23 @@
   display: flex;
   justify-content: space-around;
   font-family: $font-mono;
-  
+
   .compItem {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: $spacing-xs;
-    
+
     .compLabel {
       font-size: 0.75rem;
       color: $text-dim;
       text-transform: uppercase;
     }
-    
+
     .compValue {
       font-size: 1.1rem;
       font-weight: 700;
-      
+
       &.mental {
         color: $text-main;
       }
@@ -148,5 +147,56 @@
         color: $text-main;
       }
     }
+  }
+}
+
+.practiceLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.targetTemp {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: $font-mono;
+  color: $text-main;
+}
+
+.streakDisplay {
+  margin-bottom: $spacing-md;
+  font-family: $font-mono;
+  color: var(--color-success, #4ade80);
+}
+
+.practiceInput {
+  text-align: center;
+  font-family: $font-mono;
+  font-size: 1.25rem;
+}
+
+.feedbackBox {
+  margin-top: $spacing-md;
+  padding: $spacing-sm;
+  font-family: $font-mono;
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  width: 100%;
+
+  &.correct {
+    color: var(--color-success, #4ade80);
+    border-color: var(--color-success, #4ade80);
+    background: rgba(74, 222, 128, 0.1);
+  }
+
+  &.incorrect {
+    color: var(--color-error, #f87171);
+    border-color: var(--color-error, #f87171);
+    background: rgba(248, 113, 113, 0.1);
   }
 }

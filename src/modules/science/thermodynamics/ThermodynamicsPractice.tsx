@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
-import { celsiusToFahrenheitMental } from './logic';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import styles from './Thermodynamics.module.scss';
+import { celsiusToFahrenheitMental } from './logic';
 
 const getRandomC = () => Math.floor(Math.random() * 40);
 
@@ -25,7 +27,7 @@ export const ThermodynamicsPractice: React.FC = () => {
 
   const checkAnswer = () => {
     const val = parseInt(input, 10);
-    if (isNaN(val)) return;
+    if (Number.isNaN(val)) return;
 
     const correct = celsiusToFahrenheitMental(targetC);
 
@@ -43,21 +45,12 @@ export const ThermodynamicsPractice: React.FC = () => {
     <FUIGlassPanel className={styles.panel}>
       <h2 className={styles.title}>{t('practice_title')}</h2>
 
-      <div style={{ marginBottom: '1rem', fontFamily: 'monospace' }}>
+      <div className={styles.streakDisplay}>
         {t('streak')}: {streak}
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '1rem',
-          width: '100%',
-          maxWidth: '300px',
-        }}
-      >
-        <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>{targetC}°C</div>
+      <div className={styles.practiceLayout}>
+        <div className={styles.targetTemp}>{targetC}°C</div>
 
         <div style={{ width: '100%' }}>
           <div className={styles.label} style={{ marginBottom: '0.5rem' }}>
@@ -68,7 +61,7 @@ export const ThermodynamicsPractice: React.FC = () => {
             onChangeValue={setInput}
             onEnter={checkAnswer}
             placeholder={t('practice_hint')}
-            className="text-center font-mono text-xl"
+            className={styles.practiceInput}
             allowedChars={/^[0-9-]*$/}
           />
         </div>
@@ -78,16 +71,7 @@ export const ThermodynamicsPractice: React.FC = () => {
         </FUIButton>
 
         {feedback && (
-          <div
-            style={{
-              marginTop: '1rem',
-              padding: '0.5rem',
-              color: feedback === 'correct' ? '#4ade80' : '#f87171',
-              border: `1px solid ${feedback === 'correct' ? '#4ade80' : '#f87171'}`,
-              background: 'rgba(0,0,0,0.2)',
-              fontFamily: 'monospace',
-            }}
-          >
+          <div className={clsx(styles.feedbackBox, styles[feedback])}>
             {feedback === 'correct' ? t('feedback_correct') : t('feedback_incorrect')}
           </div>
         )}

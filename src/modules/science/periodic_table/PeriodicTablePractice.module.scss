@@ -24,7 +24,7 @@
 
 .streak {
   font-family: $font-mono;
-  color: $text-main;
+  color: var(--color-success, #4ade80);
   font-weight: 700;
 }
 
@@ -39,7 +39,7 @@
 .card {
   padding: $spacing-xl;
   border: 2px solid $line-color;
-  background: white; 
+  background: var(--bg-canvas);
   min-width: 200px;
   min-height: 200px;
   display: flex;
@@ -47,7 +47,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  
+
   .prompt {
     font-family: $font-mono;
     font-size: 0.9rem;
@@ -72,6 +72,12 @@
   align-items: center;
 }
 
+.symbolInput {
+  text-align: center;
+  font-family: $font-mono;
+  font-size: 1.25rem;
+}
+
 .label {
   font-family: $font-mono;
   font-size: $text-sm;
@@ -90,12 +96,14 @@
   width: 100%;
 
   &.correct {
-    background: rgba(0, 255, 0, 0.05);
-    color: $text-main;
+    background: rgba(74, 222, 128, 0.1);
+    color: var(--color-success, #4ade80);
+    border-color: var(--color-success, #4ade80);
   }
 
   &.incorrect {
-    background: rgba(255, 0, 0, 0.05);
-    color: $text-main;
+    background: rgba(248, 113, 113, 0.1);
+    color: var(--color-error, #f87171);
+    border-color: var(--color-error, #f87171);
   }
 }

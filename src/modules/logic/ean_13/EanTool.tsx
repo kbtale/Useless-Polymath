@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
-import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
-import { isValidEan13 } from './logic';
-import styles from './Ean13.module.scss';
 import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
+import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import styles from './Ean13.module.scss';
+import { isValidEan13 } from './logic';
 
 export const EanTool: React.FC = () => {
   const { t } = useTranslation('ean_13');
@@ -22,11 +23,9 @@ export const EanTool: React.FC = () => {
     if (cleanInput.length < 13) return null;
     return (
       <div className={styles.bars}>
-        {}
         <div className={clsx(styles.bar, styles.thin)} />
         <div className={clsx(styles.bar, styles.thin)} />
 
-        {}
         {cleanInput.split('').map((d, i) => (
           <div
             key={i}
@@ -35,7 +34,6 @@ export const EanTool: React.FC = () => {
           />
         ))}
 
-        {}
         <div className={clsx(styles.bar, styles.thin)} />
         <div className={clsx(styles.bar, styles.thin)} />
       </div>
@@ -55,7 +53,7 @@ export const EanTool: React.FC = () => {
             allowedChars={/^[0-9]*$/}
             maxLength={13}
             placeholder="0000000000000"
-            className="font-mono text-center text-xl"
+            className={styles.numberInput}
           />
 
           {cleanInput.length === 13 && (

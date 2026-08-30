@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import type React from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
@@ -132,7 +133,7 @@ export const CardCountingPractice: React.FC = () => {
               onChangeValue={setInput}
               onEnter={checkAnswer}
               placeholder="0"
-              className="text-center font-mono text-xl"
+              className={styles.countInput}
               allowedChars={/^[0-9-]*$/}
             />
 

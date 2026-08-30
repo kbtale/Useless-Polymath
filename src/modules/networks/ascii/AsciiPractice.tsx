@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
-import { codeToChar } from './logic';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import styles from './Ascii.module.scss';
-import clsx from 'clsx';
+import { codeToChar } from './logic';
 
 export const AsciiPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('ascii');
@@ -37,7 +38,7 @@ export const AsciiPractice: React.FC = () => {
   const handleSubmit = () => {
     let corrected = false;
     if (mode === 'charToCode') {
-      if (parseInt(userAnswer) === targetCode) corrected = true;
+      if (parseInt(userAnswer, 10) === targetCode) corrected = true;
     } else {
       if (userAnswer === targetChar) corrected = true;
     }
@@ -58,7 +59,7 @@ export const AsciiPractice: React.FC = () => {
         <div className={styles.container}>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <h2 className={styles.title}>{t('practice_title')}</h2>
-            <span style={{ fontFamily: 'JetBrains Mono', color: '#4ade80' }}>
+            <span className={styles.streakDisplay}>
               {t('streak', { ns: 'common' })}: {streak}
             </span>
           </div>
@@ -67,7 +68,7 @@ export const AsciiPractice: React.FC = () => {
             <p className={styles.label}>
               {mode === 'charToCode' ? t('label_convert_to_dec') : t('label_convert_to_char')}
             </p>
-            <div style={{ fontSize: '4rem', fontFamily: 'JetBrains Mono', margin: '1rem' }}>
+            <div className={styles.targetDisplay}>
               {mode === 'charToCode' ? targetChar : targetCode}
             </div>
           </div>
@@ -79,9 +80,9 @@ export const AsciiPractice: React.FC = () => {
               maxLength={3}
               placeholder="?"
               className={clsx(
-                feedback === 'correct' && 'border-green-500 text-green-500',
-                feedback === 'incorrect' && 'border-red-500 text-red-500',
-                'text-center text-xl',
+                styles.practiceInput,
+                feedback === 'correct' && styles.correct,
+                feedback === 'incorrect' && styles.incorrect,
               )}
             />
           </div>

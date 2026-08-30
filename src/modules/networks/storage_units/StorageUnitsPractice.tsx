@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
-import { generatePracticeProblem, calculateAnswer, UNITS, formatValue } from './logic';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import styles from './StorageUnits.module.scss';
-import clsx from 'clsx';
+import { UNITS, calculateAnswer, formatValue, generatePracticeProblem } from './logic';
 
 export const StorageUnitsPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('storage_units');
@@ -47,7 +48,7 @@ export const StorageUnitsPractice: React.FC = () => {
         <div className={styles.container}>
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <h2 className={styles.title}>{t('practice_title')}</h2>
-            <span style={{ fontFamily: 'JetBrains Mono', color: '#4ade80' }}>
+            <span className={styles.streakDisplay}>
               {t('streak', { ns: 'common' })}: {streak}
             </span>
           </div>
@@ -69,9 +70,9 @@ export const StorageUnitsPractice: React.FC = () => {
               placeholder="?"
               allowedChars={/^[0-9.eE+-]*$/}
               className={clsx(
-                feedback === 'correct' && 'border-green-500 text-green-500',
-                feedback === 'incorrect' && 'border-red-500 text-red-500',
-                'text-center text-xl',
+                styles.practiceInput,
+                feedback === 'correct' && styles.correct,
+                feedback === 'incorrect' && styles.incorrect,
               )}
             />
           </div>
@@ -79,14 +80,12 @@ export const StorageUnitsPractice: React.FC = () => {
           <FUIButton onClick={handleSubmit}>{t('submit', { ns: 'common' })}</FUIButton>
 
           {showAnswer && (
-            <p className={styles.label} style={{ marginTop: '1rem', color: '#f87171' }}>
+            <p className={clsx(styles.label, styles.answerDisplay)}>
               {t('practice_answer')}: {formatValue(correctAnswer)}
             </p>
           )}
 
-          <p className={styles.label} style={{ marginTop: '1rem', fontSize: '0.7rem' }}>
-            {t('practice_hint_convert')}
-          </p>
+          <p className={clsx(styles.label, styles.hintDisplay)}>{t('practice_hint_convert')}</p>
         </div>
       </FUIGlassPanel>
     </div>

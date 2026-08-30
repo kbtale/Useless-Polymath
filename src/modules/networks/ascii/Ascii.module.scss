@@ -25,6 +25,13 @@
   text-align: center;
 }
 
+.label {
+  font-family: $font-mono;
+  color: $text-dim;
+  font-size: $text-sm;
+  text-transform: uppercase;
+}
+
 .converter {
   display: flex;
   gap: $spacing-xl;
@@ -46,6 +53,40 @@
     color: $text-dim;
     text-transform: uppercase;
   }
+}
+
+.charInput,
+.codeInput {
+  text-align: center;
+  font-size: 1.25rem;
+  font-family: $font-mono;
+}
+
+.practiceInput {
+  text-align: center;
+  font-size: 1.25rem;
+  font-family: $font-mono;
+
+  &.correct {
+    border-color: var(--color-success, #4ade80);
+    color: var(--color-success, #4ade80);
+  }
+
+  &.incorrect {
+    border-color: var(--color-error, #f87171);
+    color: var(--color-error, #f87171);
+  }
+}
+
+.streakDisplay {
+  font-family: $font-mono;
+  color: var(--color-success, #4ade80);
+}
+
+.targetDisplay {
+  font-size: 4rem;
+  font-family: $font-mono;
+  margin: $spacing-md;
 }
 
 .arrow {
