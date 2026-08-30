@@ -1,4 +1,6 @@
-export const BRAILLE_MAP: Record<string, number[]> = {
+export type BrailleDotPattern = [boolean, boolean, boolean, boolean, boolean, boolean];
+
+export const BRAILLE_MAP: Record<string, readonly number[]> = {
   A: [1],
   B: [1, 2],
   C: [1, 4],
@@ -38,13 +40,15 @@ export const BRAILLE_MAP: Record<string, number[]> = {
   ' ': [],
 };
 
-export const getBraillePattern = (char: string): boolean[] => {
+export const getBraillePattern = (char: string): BrailleDotPattern => {
   const indices = BRAILLE_MAP[char.toUpperCase()] || [];
-  const pattern = [false, false, false, false, false, false];
-  indices.forEach((i) => {
-    if (i >= 1 && i <= 6) pattern[i - 1] = true;
-  });
+  const pattern: BrailleDotPattern = [false, false, false, false, false, false];
+  for (const i of indices) {
+    if (i >= 1 && i <= 6) {
+      pattern[i - 1] = true;
+    }
+  }
   return pattern;
 };
 
-export const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+export const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' as const;

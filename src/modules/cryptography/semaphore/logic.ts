@@ -1,4 +1,9 @@
-export const SEMAPHORE_MAP: Record<string, { left: number; right: number }> = {
+export interface SemaphoreAngle {
+  readonly left: number;
+  readonly right: number;
+}
+
+export const SEMAPHORE_MAP: Record<string, SemaphoreAngle> = {
   a: { left: 225, right: 180 },
   b: { left: 270, right: 180 },
   c: { left: 315, right: 180 },
@@ -28,7 +33,7 @@ export const SEMAPHORE_MAP: Record<string, { left: number; right: number }> = {
   rest: { left: 180, right: 180 },
 };
 
-export const getSemaphorePattern = (char: string) => {
+export const getSemaphorePattern = (char: string): SemaphoreAngle => {
   const lower = char.toLowerCase();
 
   if (/[0-9]/.test(lower)) {
@@ -47,5 +52,5 @@ export const getSemaphorePattern = (char: string) => {
     return SEMAPHORE_MAP[numMap[lower] || 'rest'];
   }
 
-  return SEMAPHORE_MAP[lower] || SEMAPHORE_MAP['rest'];
+  return SEMAPHORE_MAP[lower] || SEMAPHORE_MAP.rest;
 };
