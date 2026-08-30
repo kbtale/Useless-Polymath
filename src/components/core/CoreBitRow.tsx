@@ -1,12 +1,13 @@
-import React from 'react';
-import styles from './CoreBitRow.module.scss';
 import clsx from 'clsx';
+import type React from 'react';
+import styles from './CoreBitRow.module.scss';
 
-interface CoreBitRowProps {
+export interface CoreBitRowProps {
   bits?: number;
   value: number;
   onChange?: (val: number) => void;
   interactive?: boolean;
+  'aria-label'?: string;
 }
 
 export const CoreBitRow: React.FC<CoreBitRowProps> = ({
@@ -14,6 +15,7 @@ export const CoreBitRow: React.FC<CoreBitRowProps> = ({
   value,
   onChange,
   interactive = false,
+  'aria-label': ariaLabel,
 }) => {
   const toggleBit = (index: number) => {
     if (!interactive || !onChange) return;
@@ -30,15 +32,33 @@ export const CoreBitRow: React.FC<CoreBitRowProps> = ({
   });
 
   return (
-    <div className={styles.coreBitRow}>
+    <div
+      className={styles.coreBitRow}
+      role="group"
+      aria-label={ariaLabel || 'Binary bit array'}
+    >
       {bitArray.map(({ bitIndex, isActive }) => (
         <div
           key={bitIndex}
-          className={clsx(styles.bit, isActive && styles.active, interactive && styles.interactive)}
+          role={interactive ? 'checkbox' : undefined}
+          aria-checked={interactive ? isActive : undefined}
+          tabIndex={interactive ? 0 : undefined}
+          aria-label={`Bit ${bitIndex}, value ${Math.pow(2, bitIndex)}`}
+          className={clsx(
+            styles.bit,
+            isActive && styles.active,
+            interactive && styles.interactive,
+          )}
           onClick={() => toggleBit(bitIndex)}
+          onKeyDown={(e) => {
+            if (interactive && (e.key === 'Enter' || e.key === ' ')) {
+              e.preventDefault();
+              toggleBit(bitIndex);
+            }
+          }}
           title={`Bit ${bitIndex} (${Math.pow(2, bitIndex)})`}
         >
-          <div className={styles.led}></div>
+          <div className={styles.led} />
           <span className={styles.label}>{isActive ? '1' : '0'}</span>
         </div>
       ))}
