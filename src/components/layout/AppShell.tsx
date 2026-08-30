@@ -70,33 +70,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   mode,
   onModeChange,
 }) => {
-  const { t, i18n } = useTranslation([
-    'common',
-    'doomsday',
-    'time_zones',
-    'moon',
-    'ordinal',
-    'binary',
-    'hexadecimal',
-    'roman_numerals',
-    'bitwise',
-    'rule_72',
-    'subnetting',
-    'color_theory',
-    'ascii',
-    'storage_units',
-    'morse_code',
-    'nato_alphabet',
-    'caesar_cipher',
-    'braille',
-    'semaphore',
-    'periodic_table',
-    'thermodynamics',
-    'resistor_codes',
-    'luhn_algorithm',
-    'ean_13',
-    'card_counting',
-  ]);
+  const { t, i18n } = useTranslation(['common', 'navigation']);
   const [showSettings, setShowSettings] = useState(false);
   const [scoresVersion, setScoresVersion] = useState(0);
 
@@ -205,7 +179,10 @@ export const AppShell: React.FC<AppShellProps> = ({
     : 'UNKNOWN';
   const moduleName = currentModule
     ? toTitleCase(
-        t('title', { ns: currentModule.id, defaultValue: formatDefaultTitle(currentModule.id) }),
+        t(currentModule.id, {
+          ns: 'navigation',
+          defaultValue: formatDefaultTitle(currentModule.id),
+        }),
       )
     : 'UNKNOWN';
 
@@ -324,7 +301,7 @@ export const AppShell: React.FC<AppShellProps> = ({
                         }}
                       >
                         {toTitleCase(
-                          t('title', { ns: m.id, defaultValue: formatDefaultTitle(m.id) }),
+                          t(m.id, { ns: 'navigation', defaultValue: formatDefaultTitle(m.id) }),
                         )}
                       </li>
                     ))}
@@ -498,7 +475,10 @@ export const AppShell: React.FC<AppShellProps> = ({
                             </td>
                             <td style={{ opacity: isModVisible && isCatVisible ? 1 : 0.5 }}>
                               {toTitleCase(
-                                t('title', { ns: m.id, defaultValue: formatDefaultTitle(m.id) }),
+                                t(m.id, {
+                                  ns: 'navigation',
+                                  defaultValue: formatDefaultTitle(m.id),
+                                }),
                               )}
                             </td>
                             <td style={{ textAlign: 'center' }}>
