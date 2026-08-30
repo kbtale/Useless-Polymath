@@ -5,11 +5,19 @@
   line-height: 1.6;
   color: $text-main;
 
+  > *:first-child {
+    margin-top: 0 !important;
+  }
+
   h1, h2, h3, h4, h5, h6 {
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
+    margin-top: 1.2em;
+    margin-bottom: 0.4em;
     border-bottom: 1px solid $line-color;
     padding-bottom: 0.25em;
+
+    &:first-child {
+      margin-top: 0 !important;
+    }
   }
 
   p {
@@ -22,7 +30,7 @@
   }
 
   code {
-    background: rgba(0,0,0,0.05);
+    background: rgba(0, 0, 0, 0.05);
     padding: 0.2em 0.4em;
     border-radius: 3px;
     font-size: 0.9em;
@@ -62,11 +70,11 @@
       border: 1px solid $line-color;
       padding: 0.5em;
       text-align: left;
-      min-width: 100px; 
+      min-width: 100px;
     }
 
     th {
-      background: rgba(0,0,0,0.02);
+      background: rgba(0, 0, 0, 0.02);
       font-weight: bold;
     }
   }
