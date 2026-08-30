@@ -5,13 +5,7 @@ import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import styles from './CardCounting.module.scss';
-import {
-  type Card,
-  createStandardDeck,
-  dealCard,
-  getHiLoValue,
-  shuffleDeck,
-} from './logic';
+import { type Card, createStandardDeck, dealCard, getHiLoValue, shuffleDeck } from './logic';
 
 const CardDisplay: React.FC<{ card: Card }> = memo(({ card }) => {
   const isRed = card.suit === 'hearts' || card.suit === 'diamonds';
@@ -40,7 +34,7 @@ const CardDisplay: React.FC<{ card: Card }> = memo(({ card }) => {
 export const CardCountingPractice: React.FC = () => {
   const { t } = useTranslation('card_counting');
 
-  const [deck, setDeck] = useState<Card[]>(() => shuffleDeck(createStandardDeck()));
+  const [, setDeck] = useState<Card[]>(() => shuffleDeck(createStandardDeck()));
   const [currentCard, setCurrentCard] = useState<Card | null>(null);
   const [trueRunningCount, setTrueRunningCount] = useState(0);
   const [isActive, setIsActive] = useState(false);

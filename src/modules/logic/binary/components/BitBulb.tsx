@@ -9,18 +9,16 @@ export interface BitBulbProps {
   disabled?: boolean;
 }
 
-export const BitBulb: React.FC<BitBulbProps> = memo(
-  ({ value, active, onClick, disabled }) => {
-    return (
-      <button
-        className={clsx(styles.bulb, { [styles.active]: active })}
-        onClick={onClick}
-        disabled={disabled}
-        aria-label={`Toggle bit ${value}`}
-      >
-        <div className={styles.light} />
-        <span className={styles.value}>{value}</span>
-      </button>
-    );
-  },
-);
+export const BitBulb: React.FC<BitBulbProps> = memo(({ value, active, onClick, disabled }) => {
+  return (
+    <button
+      className={clsx(styles.bulb, { [styles.active]: active })}
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={`Toggle bit ${value}`}
+    >
+      <div className={styles.light} />
+      <span className={styles.value}>{value}</span>
+    </button>
+  );
+});

@@ -7,13 +7,7 @@ export interface FUIButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEle
 }
 
 export const FUIButton: React.FC<FUIButtonProps> = memo(
-  ({
-    children,
-    variant = 'outline',
-    type = 'button',
-    className,
-    ...props
-  }) => {
+  ({ children, variant = 'outline', type = 'button', className, ...props }) => {
     return (
       <button
         type={type}
