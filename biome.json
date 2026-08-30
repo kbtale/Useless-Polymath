@@ -12,7 +12,40 @@
     "lineWidth": 100
   },
   "linter": {
-    "enabled": true
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "correctness": {
+        "useHookAtTopLevel": "error",
+        "useExhaustiveDependencies": "error",
+        "noUnusedVariables": "error",
+        "noUnusedImports": "error",
+        "noInnerDeclarations": "error"
+      },
+      "a11y": {
+        "useKeyWithClickEvents": "error",
+        "useFocusableInteractive": "error",
+        "useValidAriaValues": "error",
+        "useButtonType": "error",
+        "useAltText": "error",
+        "noAriaHiddenOnFocusable": "error"
+      },
+      "style": {
+        "useConst": "error",
+        "useTemplate": "error",
+        "useSelfClosingElements": "error",
+        "useNodejsImportProtocol": "error"
+      },
+      "suspicious": {
+        "noDoubleEquals": "error",
+        "noExplicitAny": "error",
+        "noVar": "error"
+      },
+      "performance": {
+        "noAccumulatingSpread": "error",
+        "noDelete": "error"
+      }
+    }
   },
   "javascript": {
     "formatter": {
