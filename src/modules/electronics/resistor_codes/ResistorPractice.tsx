@@ -38,8 +38,9 @@ export const ResistorPractice: React.FC = () => {
 
     const userVal = parseFloat(valStr) * mult;
     const { value: correctVal } = calculateResistance(bands, 4);
+    const toleranceMargin = correctVal < 1 ? 0.005 : 0.1;
 
-    if (Math.abs(userVal - correctVal) < 0.1) {
+    if (Math.abs(userVal - correctVal) <= toleranceMargin) {
       setFeedback('correct');
       setStreak((s) => s + 1);
       setTimeout(generateNew, 1500);

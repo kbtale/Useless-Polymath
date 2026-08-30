@@ -105,7 +105,7 @@ export interface ResistorState {
 export const calculateResistance = (bands: string[], mode: 4 | 5) => {
   const getBand = (color: string) => BAND_COLORS.find((b) => b.name === color);
 
-  let value = 0;
+  let rawValue = 0;
   let multiplier = 1;
   let tolerance = 20;
 
@@ -115,7 +115,7 @@ export const calculateResistance = (bands: string[], mode: 4 | 5) => {
     const b3 = getBand(bands[2])?.multipliers[4] ?? 1;
     const b4 = getBand(bands[3])?.tolerance ?? 20;
 
-    value = (b1 * 10 + b2) * b3;
+    rawValue = (b1 * 10 + b2) * b3;
     multiplier = b3;
     tolerance = b4;
   } else {
@@ -125,19 +125,21 @@ export const calculateResistance = (bands: string[], mode: 4 | 5) => {
     const b4 = getBand(bands[3])?.multipliers[5] ?? 1;
     const b5 = getBand(bands[4])?.tolerance ?? 20;
 
-    value = (b1 * 100 + b2 * 10 + b3) * b4;
+    rawValue = (b1 * 100 + b2 * 10 + b3) * b4;
     multiplier = b4;
     tolerance = b5;
   }
+
+  const value = parseFloat(rawValue.toFixed(4));
 
   return { value, tolerance, multiplier };
 };
 
 export const formatOhms = (ohms: number): string => {
-  if (ohms >= 1000000000) return `${(ohms / 1000000000).toFixed(1).replace(/\.0$/, '')}GΩ`;
-  if (ohms >= 1000000) return `${(ohms / 1000000).toFixed(1).replace(/\.0$/, '')}MΩ`;
-  if (ohms >= 1000) return `${(ohms / 1000).toFixed(1).replace(/\.0$/, '')}kΩ`;
-  return `${ohms}Ω`;
+  if (ohms >= 1000000000) return `${parseFloat((ohms / 1000000000).toFixed(2))}GΩ`;
+  if (ohms >= 1000000) return `${parseFloat((ohms / 1000000).toFixed(2))}MΩ`;
+  if (ohms >= 1000) return `${parseFloat((ohms / 1000).toFixed(2))}kΩ`;
+  return `${parseFloat(ohms.toFixed(4))}Ω`;
 };
 
 export const getRandomResistor = (mode: 4 | 5) => {
@@ -154,5 +156,5 @@ export const getRandomResistor = (mode: 4 | 5) => {
   const tol = validTolerances[Math.floor(Math.random() * validTolerances.length)];
 
   if (mode === 4) return [b1, b2, mult, tol];
-  return [b1, b2, b3!, mult, tol];
+  return [b1, b2, b3 as string, mult, tol];
 };
