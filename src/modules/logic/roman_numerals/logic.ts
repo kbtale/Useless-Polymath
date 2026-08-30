@@ -1,12 +1,38 @@
+export const ROMAN_VALUE_MAP: Readonly<Record<string, number>> = {
+  I: 1,
+  V: 5,
+  X: 10,
+  L: 50,
+  C: 100,
+  D: 500,
+  M: 1000,
+};
+
+const ROMAN_SYMBOLS = [
+  'M',
+  'CM',
+  'D',
+  'CD',
+  'C',
+  'XC',
+  'L',
+  'XL',
+  'X',
+  'IX',
+  'V',
+  'IV',
+  'I',
+] as const;
+const ROMAN_VALUES = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1] as const;
+
 export const toRoman = (num: number): string => {
   if (num < 1 || num > 3999) return '';
-  const val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
-  const syms = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+  let remaining = num;
   let result = '';
-  for (let i = 0; i < val.length; i++) {
-    while (num >= val[i]) {
-      num -= val[i];
-      result += syms[i];
+  for (let i = 0; i < ROMAN_VALUES.length; i++) {
+    while (remaining >= ROMAN_VALUES[i]) {
+      remaining -= ROMAN_VALUES[i];
+      result += ROMAN_SYMBOLS[i];
     }
   }
   return result;
@@ -14,22 +40,12 @@ export const toRoman = (num: number): string => {
 
 export const fromRoman = (str: string): number => {
   const roman = str.toUpperCase();
-  const val: Record<string, number> = {
-    I: 1,
-    V: 5,
-    X: 10,
-    L: 50,
-    C: 100,
-    D: 500,
-    M: 1000,
-  };
-
   let num = 0;
   for (let i = 0; i < roman.length; i++) {
-    const cur = val[roman[i]];
-    const next = val[roman[i + 1]];
+    const cur = ROMAN_VALUE_MAP[roman[i]];
+    const next = ROMAN_VALUE_MAP[roman[i + 1]];
 
-    if (cur === undefined) return NaN;
+    if (cur === undefined) return Number.NaN;
 
     if (next && cur < next) {
       num -= cur;
