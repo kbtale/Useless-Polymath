@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
-import { Deck, getHiLoValue } from './logic';
+import { createStandardDeck, dealCard, getHiLoValue, shuffleDeck } from './logic';
 import type { Card } from './logic';
 import styles from './CardCounting.module.scss';
 import clsx from 'clsx';
@@ -35,7 +35,7 @@ const CardDisplay: React.FC<{ card: Card }> = ({ card }) => {
 export const CardCountingPractice: React.FC = () => {
   const { t } = useTranslation('card_counting');
 
-  const [deck] = useState(() => new Deck());
+  const [, setDeck] = useState<Card[]>(() => shuffleDeck(createStandardDeck()));
   const [currentCard, setCurrentCard] = useState<Card | null>(null);
   const [trueRunningCount, setTrueRunningCount] = useState(0);
   const [isActive, setIsActive] = useState(false);
@@ -48,23 +48,25 @@ export const CardCountingPractice: React.FC = () => {
     let interval: ReturnType<typeof setInterval>;
     if (isActive && !isFinished) {
       interval = setInterval(() => {
-        const card = deck.deal();
-        if (card) {
-          setCurrentCard(card);
-          setTrueRunningCount((prev) => prev + getHiLoValue(card.rank));
-        } else {
-          setIsFinished(true);
-          setIsActive(false);
-          setCurrentCard(null);
-        }
+        setDeck((prevDeck) => {
+          const { card, remainingDeck } = dealCard(prevDeck);
+          if (card) {
+            setCurrentCard(card);
+            setTrueRunningCount((prev) => prev + getHiLoValue(card.rank));
+          } else {
+            setIsFinished(true);
+            setIsActive(false);
+            setCurrentCard(null);
+          }
+          return remainingDeck;
+        });
       }, 1500);
     }
     return () => clearInterval(interval);
-  }, [isActive, isFinished, deck]);
+  }, [isActive, isFinished]);
 
   const startDrill = () => {
-    deck.reset();
-    deck.shuffle();
+    setDeck(shuffleDeck(createStandardDeck()));
     setIsActive(true);
     setIsFinished(false);
     setTrueRunningCount(0);
