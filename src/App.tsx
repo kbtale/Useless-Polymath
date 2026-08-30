@@ -1,9 +1,10 @@
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './App.module.scss';
 import { CoreMarkdownRenderer } from './components/core/CoreMarkdownRenderer';
 import { ModuleLoadingFallback } from './components/core/ModuleLoadingFallback';
 import { AppShell } from './components/layout/AppShell';
+import { useModuleNavigation } from './hooks/useModuleNavigation';
 import { getModuleDefinition } from './registry/moduleRegistry';
 
 const toTitleCase = (str: string): string => {
@@ -17,9 +18,7 @@ const toTitleCase = (str: string): string => {
 };
 
 function AppContent() {
-  const [mode, setMode] = useState<'tool' | 'practice' | 'guide'>('tool');
-  const [activeModuleId, setActiveModuleId] = useState('doomsday');
-
+  const { activeModuleId, mode, setActiveModuleId, setMode } = useModuleNavigation('doomsday');
   const { t } = useTranslation([activeModuleId, 'common']);
 
   const renderModule = () => {
