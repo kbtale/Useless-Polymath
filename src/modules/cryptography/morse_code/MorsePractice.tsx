@@ -30,7 +30,6 @@ export const MorsePractice: React.FC = () => {
   const checkAnswer = () => {
     if (!question) return;
 
-    // Check if input matches character
     if (input.toUpperCase() === question.char) {
       setFeedback('correct');
       setStreak((s) => s + 1);

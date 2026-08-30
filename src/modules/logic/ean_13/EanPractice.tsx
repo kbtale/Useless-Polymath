@@ -17,7 +17,7 @@ export const EanPractice: React.FC = () => {
   const correctDigit = targetNumber.slice(-1);
   const d1 = displayBase.slice(0, 1);
   const g1 = displayBase.slice(1, 7);
-  const g2 = displayBase.slice(7, 12); // First 5 of second group
+  const g2 = displayBase.slice(7, 12);
 
   const handleCheck = () => {
     if (input === correctDigit) {
@@ -73,7 +73,7 @@ export const EanPractice: React.FC = () => {
             <div
               style={{
                 padding: '1rem',
-                color: feedback === 'correct' ? '#4ade80' : '#ff3333', // fallback hex
+                color: feedback === 'correct' ? '#4ade80' : '#ff3333',
                 textAlign: 'center',
                 fontFamily: 'monospace',
               }}

@@ -37,10 +37,8 @@ export const AsciiPractice: React.FC = () => {
   const handleSubmit = () => {
     let corrected = false;
     if (mode === 'charToCode') {
-      // User inputs code
       if (parseInt(userAnswer) === targetCode) corrected = true;
     } else {
-      // User inputs char
       if (userAnswer === targetChar) corrected = true;
     }
 

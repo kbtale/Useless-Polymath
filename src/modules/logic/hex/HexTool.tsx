@@ -20,9 +20,7 @@ export const HexTool: React.FC = () => {
       if (isNaN(n)) return;
       setHex(decimalToHex(n));
       setBin(n.toString(2).padStart(8, '0'));
-    } catch (e) {
-      /* ignore */
-    }
+    } catch (e) {}
   };
 
   const handleHexChange = (val: string) => {
@@ -36,9 +34,7 @@ export const HexTool: React.FC = () => {
       const n = hexToDecimal(val);
       setDec(n.toString());
       setBin(n.toString(2).padStart(8, '0'));
-    } catch (e) {
-      /* ignore */
-    }
+    } catch (e) {}
   };
 
   return (

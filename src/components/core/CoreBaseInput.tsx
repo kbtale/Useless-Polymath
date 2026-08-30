@@ -29,7 +29,6 @@ export const CoreBaseInput: React.FC<CoreBaseInputProps> = ({
     }
 
     if (allowedChars && val && !allowedChars.test(val)) {
-      // Validation logic matching previous simple implementation
       return;
     }
 

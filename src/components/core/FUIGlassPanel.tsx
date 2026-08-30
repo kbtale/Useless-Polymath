@@ -11,7 +11,7 @@ export const FUIGlassPanel: React.FC<FUIGlassPanelProps> = ({ children, style, c
   return (
     <div className={`${styles.glassPanel} ${className || ''}`} style={style}>
       <div className={styles.innerBorder}>
-        {/* Corner Decorations */}
+        {}
         <div className={`${styles.corner} ${styles.tl}`} />
         <div className={`${styles.corner} ${styles.tr}`} />
         <div className={`${styles.corner} ${styles.bl}`} />

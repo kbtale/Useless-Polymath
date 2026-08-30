@@ -38,7 +38,6 @@ export const BRAILLE_MAP: Record<string, number[]> = {
   ' ': [],
 };
 
-// Returns array of 6 booleans [dot1, dot2, dot3, dot4, dot5, dot6]
 export const getBraillePattern = (char: string): boolean[] => {
   const indices = BRAILLE_MAP[char.toUpperCase()] || [];
   const pattern = [false, false, false, false, false, false];

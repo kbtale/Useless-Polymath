@@ -46,7 +46,6 @@
   max-width: 500px;
 }
 
-// Results grid for converter
 .resultsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -88,7 +87,6 @@
   }
 }
 
-// Practice mode styles
 .problemDisplay {
   display: flex;
   align-items: center;

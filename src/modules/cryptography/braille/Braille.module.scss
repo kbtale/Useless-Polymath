@@ -76,10 +76,10 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #e0e0e0; // Inactive color
+  background: #e0e0e0;
   
   &.active {
-    background: $text-main; // Active color
+    background: $text-main;
   }
 }
 
@@ -91,7 +91,6 @@
   min-height: 1.5rem;
 }
 
-// Practice
 .practiceContainer {
   display: flex;
   flex-direction: column;

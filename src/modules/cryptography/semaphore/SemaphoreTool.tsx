@@ -14,7 +14,6 @@ export const SemaphoreTool: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // Normalize input to A-Z 0-9
   const cleanInput = input.replace(/[^a-zA-Z0-9 ]/g, '');
   const currentChar = cleanInput[currentIndex] || 'rest';
   const pattern = getSemaphorePattern(currentChar);
@@ -50,7 +49,7 @@ export const SemaphoreTool: React.FC = () => {
               leftAngle={pattern.left}
               rightAngle={pattern.right}
               size={300}
-              className="text-black" // Using standard coloration, SVG uses currentColor
+              className="text-black"
             />
             <div className={styles.charDisplay}>
               {currentChar === 'rest' ? 'READY' : currentChar.toUpperCase()}

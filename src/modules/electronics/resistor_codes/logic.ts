@@ -98,7 +98,7 @@ export const BAND_COLORS = [
 ];
 
 export interface ResistorState {
-  bands: string[]; // Array of color names
+  bands: string[];
   mode: 4 | 5;
 }
 
@@ -107,7 +107,7 @@ export const calculateResistance = (bands: string[], mode: 4 | 5) => {
 
   let value = 0;
   let multiplier = 1;
-  let tolerance = 20; // Default if no tolerance band
+  let tolerance = 20;
 
   if (mode === 4) {
     const b1 = getBand(bands[0])?.value ?? 0;
@@ -145,10 +145,9 @@ export const getRandomResistor = (mode: 4 | 5) => {
   const validMultipliers = BAND_COLORS.filter((c) => c.multipliers[mode] !== undefined).map(
     (c) => c.name,
   );
-  // Simplified tolerance pool for practice
   const validTolerances = ['gold', 'silver', 'brown', 'red'];
 
-  const b1 = validDigits[Math.floor(Math.random() * (validDigits.length - 1)) + 1]; // First digit can't be black (0) usually
+  const b1 = validDigits[Math.floor(Math.random() * (validDigits.length - 1)) + 1];
   const b2 = validDigits[Math.floor(Math.random() * validDigits.length)];
   const b3 = mode === 5 ? validDigits[Math.floor(Math.random() * validDigits.length)] : null;
   const mult = validMultipliers[Math.floor(Math.random() * validMultipliers.length)];

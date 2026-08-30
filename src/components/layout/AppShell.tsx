@@ -198,9 +198,6 @@ export const AppShell: React.FC<AppShellProps> = ({
 
   const categories = Array.from(new Set(MODULES.map((m) => m.categoryKey)));
 
-  // Resolve current module
-  // Note: activeModule from App.tsx is now normalized to match module IDs (e.g. 'hexadecimal', 'ordinal').
-
   const currentModule = MODULES.find((m) => m.id === activeModule);
 
   const categoryName = currentModule
@@ -235,7 +232,7 @@ export const AppShell: React.FC<AppShellProps> = ({
         </div>
 
         <div className={styles.quickControls}>
-          {/* Style Selector */}
+          {}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', opacity: 0.7 }}>
               STYLE:
@@ -263,7 +260,7 @@ export const AppShell: React.FC<AppShellProps> = ({
             </select>
           </div>
 
-          {/* Language Selector */}
+          {}
           <div style={{ display: 'flex', gap: '0.5rem' }}>
             <FUIButton
               onClick={() => changeLanguage('en')}

@@ -3,34 +3,24 @@ export const getMoonPhase = (
   month: number,
   year: number,
 ): { age: number; phaseName: string; phaseIcon: string } => {
-  // 1. Golden Number (G)
   const G = (year % 19) + 1;
 
-  // 2. Century (C)
   const C = Math.floor(year / 100);
 
-  // 3. Corrections
-  // Solar
   const S = Math.floor((3 * C) / 4) - 12;
-  // Lunar
   const L = Math.floor((8 * C + 5) / 25) - 5;
 
-  // 4. Julian Epact (Ej)
   const Ej = (11 * (G - 1)) % 30;
 
-  // 5. Gregorian Epact (E)
   let E = (Ej - S + L) % 30;
   if (E < 0) E += 30;
 
-  // 6. Month Offsets
   const monthOffsets = [0, 2, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const offset = monthOffsets[month - 1];
 
-  // 7. Lunar Age
   let age = (E + day + offset) % 30;
   if (age < 0) age += 30;
 
-  // 8. Phase Mapping
   let phaseName = '';
   let phaseIcon = '';
 

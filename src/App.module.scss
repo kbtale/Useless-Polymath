@@ -32,7 +32,7 @@
   border: var(--panel-border, 1px solid var(--line-color));
   border-radius: var(--radius-card, 4px);
   width: 100%;
-  overflow-x: hidden; /* Prevent horizontal container leak */
+  overflow-x: hidden; 
 
   @media (max-width: 768px) {
     padding: $spacing-md;

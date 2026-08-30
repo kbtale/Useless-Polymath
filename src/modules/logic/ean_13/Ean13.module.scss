@@ -61,7 +61,7 @@
   gap: $spacing-md;
   margin-top: $spacing-md;
   padding: $spacing-md;
-  background: white; // Barcodes need white background
+  background: white;
   border-radius: 8px;
   border: 1px solid $line-color;
 }
@@ -80,13 +80,12 @@
   &.thin { height: 100%; }
   &.short { height: 85%; }
   
-  // Pseudo-random generation for visual flair since we aren't implementing strictly accurate encoding width yet
 }
 
 .digits {
   display: flex;
   gap: 12px;
-  font-family: 'Courier New', monospace; // Classic OCR font style
+  font-family: 'Courier New', monospace;
   font-size: 1.5rem;
   font-weight: bold;
   color: black;

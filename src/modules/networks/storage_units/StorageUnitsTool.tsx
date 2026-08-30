@@ -11,7 +11,7 @@ import clsx from 'clsx';
 export const StorageUnitsTool: React.FC = () => {
   const { t } = useTranslation('storage_units');
   const [amount, setAmount] = useState('1');
-  const [unitIdx, setUnitIdx] = useState('3'); // GB default
+  const [unitIdx, setUnitIdx] = useState('3');
 
   const am = parseFloat(amount);
   const results = convertStorage(am, parseInt(unitIdx));

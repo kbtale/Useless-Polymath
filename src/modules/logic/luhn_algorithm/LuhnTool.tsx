@@ -15,10 +15,7 @@ export const LuhnTool: React.FC = () => {
   const isValid = cleanInput.length > 1 && calculateLuhnSum(cleanInput) % 10 === 0;
   const digits = cleanInput.split('').map(Number);
 
-  // Visualize steps
-  // Luhn works backwards: Every 2nd from right is doubled
   const visualization = [...digits].map((d, index) => {
-    // Distance from right (0-indexed)
     const distFromRight = digits.length - 1 - index;
     const isDoubled = distFromRight % 2 === 1;
     let val = d;

@@ -8,7 +8,6 @@ export const codeToChar = (code: number): string => {
   return String.fromCharCode(code);
 };
 
-// Generate printable range (32-126) for grid
 export const getPrintableAscii = () => {
   const arr = [];
   for (let i = 32; i <= 126; i++) {

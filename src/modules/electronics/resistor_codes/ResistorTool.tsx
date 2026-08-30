@@ -29,7 +29,6 @@ export const ResistorTool: React.FC = () => {
 
   const { value, tolerance } = calculateResistance(bands, mode);
 
-  // Helper to get hex for SVG
   const getHex = (name: string) => BAND_COLORS.find((c) => c.name === name)?.hex ?? '#ccc';
 
   return (
@@ -47,13 +46,13 @@ export const ResistorTool: React.FC = () => {
             </FUIButton>
           </div>
 
-          {/* Resistor SVG Visualizer */}
+          {}
           <div className={styles.resistorDisplay}>
             <svg viewBox="0 0 400 150">
-              {/* Wires */}
+              {}
               <path d="M0,75 L50,75 M350,75 L400,75" stroke="#999" strokeWidth="10" />
 
-              {/* Body */}
+              {}
               <path
                 d="M50,40 Q50,25 75,25 L325,25 Q350,25 350,40 L350,110 Q350,125 325,125 L75,125 Q50,125 50,110 Z"
                 fill="#E8D5B5"
@@ -61,11 +60,8 @@ export const ResistorTool: React.FC = () => {
                 strokeWidth="2"
               />
 
-              {/* Bands */}
+              {}
               {bands.map((color, i) => {
-                // Calculate x position based on mode and index
-                // 4 Bands: 100, 140, 180 ... 300
-                // 5 Bands: 90, 130, 170, 210 ... 310
                 let x = 0;
                 if (mode === 4) {
                   if (i < 3) x = 100 + i * 40;
@@ -90,7 +86,7 @@ export const ResistorTool: React.FC = () => {
             </svg>
           </div>
 
-          {/* Controls */}
+          {}
           <div className={styles.controls}>
             {bands.map((color, i) => (
               <div key={i} className={styles.controlGroup}>
@@ -98,10 +94,9 @@ export const ResistorTool: React.FC = () => {
                   value={color}
                   onChange={(val) => updateBand(i, val)}
                   options={BAND_COLORS.filter((c) => {
-                    // Filter logic: Only show valid colors for this position
-                    if (i < (mode === 4 ? 2 : 3)) return c.value !== null; // Digits
-                    if (i === (mode === 4 ? 2 : 3)) return c.multipliers[mode] !== undefined; // Multiplier
-                    if (i === (mode === 4 ? 3 : 4)) return c.tolerance !== null; // Tolerance
+                    if (i < (mode === 4 ? 2 : 3)) return c.value !== null;
+                    if (i === (mode === 4 ? 2 : 3)) return c.multipliers[mode] !== undefined;
+                    if (i === (mode === 4 ? 3 : 4)) return c.tolerance !== null;
                     return true;
                   }).map((c) => ({
                     value: c.name,
@@ -122,7 +117,7 @@ export const ResistorTool: React.FC = () => {
             ))}
           </div>
 
-          {/* Result */}
+          {}
           <div className={styles.result}>
             <div className={styles.value}>{formatOhms(value)}</div>
             <div className={styles.tol}>±{tolerance}%</div>

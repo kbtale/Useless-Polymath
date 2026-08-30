@@ -45,7 +45,7 @@ export const CaesarTool: React.FC = () => {
             <label className={styles.label}>{t('ciphertext')}</label>
             <CoreBaseInput
               value={output}
-              onChangeValue={() => {}} // Read only roughly, or bi-directional later? keeping simple 1-way for now
+              onChangeValue={() => {}}
               readOnly
               placeholder={encrypt('HELLO WORLD', shift)}
             />

@@ -14,23 +14,19 @@ export const EanTool: React.FC = () => {
   const cleanInput = input.replace(/\D/g, '');
   const isValid = isValidEan13(cleanInput);
 
-  // Simple visualizer: First digit, then two groups of 6
-  // EAN-13 Structure: D1 [G1: 6 Digits] [G2: 6 Digits]
   const d1 = cleanInput.slice(0, 1);
   const g1 = cleanInput.slice(1, 7);
   const g2 = cleanInput.slice(7, 13);
 
-  // Generate some "fake" bars based on digits for aesthetic visualization
-  // In real EAN, encoding is complex (A/B/C parity). Here we just render stripes.
   const renderBars = () => {
     if (cleanInput.length < 13) return null;
     return (
       <div className={styles.bars}>
-        {/* Start Guard */}
+        {}
         <div className={clsx(styles.bar, styles.thin)} />
         <div className={clsx(styles.bar, styles.thin)} />
 
-        {/* Data Bars (Schematic) */}
+        {}
         {cleanInput.split('').map((d, i) => (
           <div
             key={i}
@@ -39,7 +35,7 @@ export const EanTool: React.FC = () => {
           />
         ))}
 
-        {/* Center Guard */}
+        {}
         <div className={clsx(styles.bar, styles.thin)} />
         <div className={clsx(styles.bar, styles.thin)} />
       </div>

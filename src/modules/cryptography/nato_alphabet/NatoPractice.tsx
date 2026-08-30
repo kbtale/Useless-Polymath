@@ -9,11 +9,10 @@ import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 export const NatoPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('nato_alphabet');
   const getRandomQuestion = () => {
-    const keys = Object.keys(NATO_DICTIONARY).filter((k) => isNaN(parseInt(k))); // Letters only for now
+    const keys = Object.keys(NATO_DICTIONARY).filter((k) => isNaN(parseInt(k)));
     const char = keys[Math.floor(Math.random() * keys.length)];
     const correct = NATO_DICTIONARY[char];
 
-    // Generate distractors
     const allWords = Object.values(NATO_DICTIONARY).filter(
       (w) => isNaN(parseInt(w)) && w !== correct,
     );
@@ -29,13 +28,11 @@ export const NatoPractice: React.FC = () => {
 
   const { t } = useTranslation(['nato_alphabet', 'common']);
 
-  // Question State
   const [question, setQuestion] = useState(getRandomQuestion);
   const questionChar = question.char;
   const correctAnswer = question.correct;
   const options = question.options;
 
-  // Game State
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [score, setScore] = useState(0);
 
@@ -45,7 +42,7 @@ export const NatoPractice: React.FC = () => {
   };
 
   const handleSelect = (selected: string) => {
-    if (feedback !== null) return; // Block input during feedback
+    if (feedback !== null) return;
 
     if (selected === correctAnswer) {
       setFeedback('correct');
@@ -93,12 +90,11 @@ export const NatoPractice: React.FC = () => {
                         ? '#2ecc71'
                         : feedback === 'incorrect' && opt === correctAnswer
                           ? '#2ecc71'
-                          : // Show correct one even on fail
-                            feedback === 'incorrect' &&
+                          : feedback === 'incorrect' &&
                               options.includes(opt) &&
                               opt !== correctAnswer
                             ? undefined
-                            : undefined, // Keep neutral style ?
+                            : undefined,
                   }}
                 >
                   {opt}

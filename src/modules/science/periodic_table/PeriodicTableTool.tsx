@@ -21,7 +21,7 @@ export const PeriodicTableTool: React.FC = () => {
 
         <div className={styles.scrollContainer}>
           <div className={styles.gridWrapper}>
-            {/* Main Table */}
+            {}
             <div className={styles.mainGrid}>
               {mainElements.map((el) => (
                 <div
@@ -40,13 +40,10 @@ export const PeriodicTableTool: React.FC = () => {
               ))}
             </div>
 
-            {/* F-Block (Lanthanides & Actinides) */}
+            {}
             <div className={styles.fBlockGrid}>
               {fBlockElements.map((el) => {
-                // Calculate visual column offset.
-                // Logic: First F-block element (58 or 90) starts at Column 4 (Period 8/9)
-                // There are 14 elements.
-                const colOffset = 4; // Visual Start Column
+                const colOffset = 4;
                 const indexInRow = el.number >= 90 ? el.number - 90 : el.number - 58;
 
                 return (
@@ -55,7 +52,7 @@ export const PeriodicTableTool: React.FC = () => {
                     className={clsx(styles.elementCell, styles[el.category])}
                     style={{
                       gridColumn: colOffset + indexInRow,
-                      gridRow: el.period - 7, // Visual row 1 or 2
+                      gridRow: el.period - 7,
                     }}
                     onClick={() => setSelectedElement(el)}
                     onMouseEnter={() => setSelectedElement(el)}

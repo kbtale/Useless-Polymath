@@ -28,9 +28,7 @@ export const RomanTool: React.FC = () => {
       const num = fromRoman(val);
       if (!isNaN(num)) {
         if (toRoman(num) !== val) {
-          // Technically valid sum, but non-standard form
           setDecimal(num.toString());
-          // Optional: setError(t('non_standard'));
         } else {
           setDecimal(num.toString());
         }

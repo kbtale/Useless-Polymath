@@ -35,7 +35,7 @@ const CardDisplay: React.FC<{ card: Card }> = ({ card }) => {
 export const CardCountingPractice: React.FC = () => {
   const { t } = useTranslation('card_counting');
 
-  const [deck] = useState(() => new Deck()); // Single deck instance for now
+  const [deck] = useState(() => new Deck());
   const [currentCard, setCurrentCard] = useState<Card | null>(null);
   const [trueRunningCount, setTrueRunningCount] = useState(0);
   const [isActive, setIsActive] = useState(false);
@@ -44,7 +44,6 @@ export const CardCountingPractice: React.FC = () => {
   const [input, setInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
-  // Interval for auto-dealing
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
     if (isActive && !isFinished) {
@@ -58,7 +57,7 @@ export const CardCountingPractice: React.FC = () => {
           setIsActive(false);
           setCurrentCard(null);
         }
-      }, 1500); // 1.5s per card speed
+      }, 1500);
     }
     return () => clearInterval(interval);
   }, [isActive, isFinished, deck]);

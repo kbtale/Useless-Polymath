@@ -37,14 +37,13 @@ export const formatValue = (value: number): string => {
   return value.toLocaleString(undefined, { maximumFractionDigits: 4 });
 };
 
-// For practice mode: convert between two random units
 export const generatePracticeProblem = () => {
   const fromIdx = Math.floor(Math.random() * UNITS.length);
   let toIdx = Math.floor(Math.random() * UNITS.length);
   while (toIdx === fromIdx) {
     toIdx = Math.floor(Math.random() * UNITS.length);
   }
-  const amount = Math.pow(2, Math.floor(Math.random() * 10)); // Powers of 2 for clean answers
+  const amount = Math.pow(2, Math.floor(Math.random() * 10));
 
   return { fromIdx, toIdx, amount };
 };

@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Roboto+Mono:wght@100;300;400&family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@400;700;900&display=swap");
 
 :root {
-  /* Default font fallback */
   font-family: var(--font-primary, system-ui, Avenir, Helvetica, Arial, sans-serif);
   line-height: 1.5;
   font-weight: 400;
@@ -10,7 +9,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Theme mappings for CSS variables default */
   --bg-canvas: #ffffff;
   --line-color: #000000;
   --text-main: #000000;
@@ -42,7 +40,6 @@
   --btn-solid-bg: var(--line-color);
   --btn-solid-text: var(--bg-canvas);
 
-  /* Layout Overrides Defaults */
   --border-header: 1px solid var(--line-color);
   --bg-header: var(--bg-canvas);
   --color-square: var(--line-color);
@@ -59,7 +56,6 @@
   --crosshair-display: block;
 }
 
-/* 1. MONO - Architectural grid on Canvas White (Light Theme) */
 [data-style="mono"] {
   color-scheme: light;
   --bg-canvas: #ffffff;
@@ -93,7 +89,6 @@
   --btn-solid-bg: var(--line-color);
   --btn-solid-text: var(--bg-canvas);
 
-  /* Layout */
   --border-header: 1px solid var(--line-color);
   --bg-header: var(--bg-canvas);
   --color-square: var(--line-color);
@@ -110,15 +105,14 @@
   --crosshair-display: block;
 }
 
-/* 2. WELLFOUND - Startup Canvas, Clean Bold Type (Light Theme - BORDERLESS) */
 [data-style="wellfound"] {
   color-scheme: light;
-  --bg-canvas: #f8f9fa; /* Off-white canvas */
-  --line-color: #e9ecef; /* Soft gray line color */
-  --text-main: #051316; /* Midnight Ink */
-  --text-dim: #495057; /* Muted gray text */
-  --text-highlight: #ec2e3a; /* Vermillion */
-  --hover-bg: #fff4f6; /* Rose Blush */
+  --bg-canvas: #f8f9fa;
+  --line-color: #e9ecef;
+  --text-main: #051316;
+  --text-dim: #495057;
+  --text-highlight: #ec2e3a;
+  --hover-bg: #fff4f6;
   --color-error: #ec2e3a;
 
   --font-primary: "Inter", sans-serif;
@@ -144,13 +138,12 @@
   --btn-solid-bg: var(--text-main);
   --btn-solid-text: var(--bg-canvas);
 
-  /* Layout (No structural grid borders!) */
   --border-header: none;
   --bg-header: #ffffff;
   --color-square: var(--text-main);
   --square-display: none;
   --border-sidebar: none;
-  --bg-sidebar: #fff4f6; /* Soft pink sidebar */
+  --bg-sidebar: #fff4f6;
   --border-sidebar-footer: none;
   --bg-content-area: #ffffff;
   --border-statusbar: none;
@@ -161,15 +154,14 @@
   --crosshair-display: none;
 }
 
-/* 3. ORI - Dark Command Center with Radiant Orange (Dark Theme) */
 [data-style="ori"] {
   color-scheme: dark;
   --bg-canvas: #0a0a0a;
-  --line-color: #1a1a1a; /* Deep Gray */
-  --text-main: #f5f5f5; /* Ghost Canvas */
-  --text-dim: #bfbfbf; /* Faded Silver */
-  --text-highlight: #ff4f2b; /* Radiant Orange */
-  --hover-bg: #111111; /* Subtle dark */
+  --line-color: #1a1a1a;
+  --text-main: #f5f5f5;
+  --text-dim: #bfbfbf;
+  --text-highlight: #ff4f2b;
+  --hover-bg: #111111;
   --color-error: #ff4f2b;
 
   --font-primary: "Poppins", "Inter", sans-serif;
@@ -195,7 +187,6 @@
   --btn-solid-bg: var(--text-highlight);
   --btn-solid-text: #000000;
 
-  /* Layout */
   --border-header: 1px solid var(--line-color);
   --bg-header: #000000;
   --color-square: var(--text-highlight);
@@ -212,15 +203,14 @@
   --crosshair-display: none;
 }
 
-/* 4. MOTHERDUCK - Playful blueprint on paper bag (Warm Oat theme) */
 [data-style="motherduck"] {
   color-scheme: light;
-  --bg-canvas: #f4efea; /* Canvas Oat */
-  --line-color: #383838; /* Ink */
+  --bg-canvas: #f4efea;
+  --line-color: #383838;
   --text-main: #383838;
-  --text-dim: #818181; /* Slate */
-  --text-highlight: #6fc2ff; /* Sky Blue */
-  --hover-bg: #ffffff; /* Paper White */
+  --text-dim: #818181;
+  --text-highlight: #6fc2ff;
+  --hover-bg: #ffffff;
   --color-error: #ff7169;
 
   --font-primary: "Space Mono", monospace;
@@ -246,7 +236,6 @@
   --btn-solid-bg: var(--line-color);
   --btn-solid-text: var(--bg-canvas);
 
-  /* Layout */
   --border-header: 2px solid var(--line-color);
   --bg-header: #f4efea;
   --color-square: var(--text-highlight);
@@ -331,7 +320,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* Custom High-Contrast Scrollbars styled dynamically based on active theme variables */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -353,7 +341,6 @@ button:focus-visible {
   background-color: var(--text-highlight, rgba(128, 128, 128, 0.7));
 }
 
-/* Firefox compatibility */
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(128, 128, 128, 0.45) var(--bg-canvas);

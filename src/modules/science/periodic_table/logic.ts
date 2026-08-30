@@ -18,10 +18,8 @@ export interface Element {
 }
 
 export const ELEMENTS: Element[] = [
-  // Period 1
   { number: 1, symbol: 'H', mass: 1.008, group: 1, period: 1, category: 'nonmetal' },
   { number: 2, symbol: 'He', mass: 4.0026, group: 18, period: 1, category: 'noble' },
-  // Period 2
   { number: 3, symbol: 'Li', mass: 6.94, group: 1, period: 2, category: 'alkali' },
   { number: 4, symbol: 'Be', mass: 9.0122, group: 2, period: 2, category: 'alkaline' },
   { number: 5, symbol: 'B', mass: 10.81, group: 13, period: 2, category: 'metalloid' },
@@ -30,7 +28,6 @@ export const ELEMENTS: Element[] = [
   { number: 8, symbol: 'O', mass: 15.999, group: 16, period: 2, category: 'nonmetal' },
   { number: 9, symbol: 'F', mass: 18.998, group: 17, period: 2, category: 'halogen' },
   { number: 10, symbol: 'Ne', mass: 20.18, group: 18, period: 2, category: 'noble' },
-  // Period 3
   { number: 11, symbol: 'Na', mass: 22.99, group: 1, period: 3, category: 'alkali' },
   { number: 12, symbol: 'Mg', mass: 24.305, group: 2, period: 3, category: 'alkaline' },
   { number: 13, symbol: 'Al', mass: 26.982, group: 13, period: 3, category: 'transition' },
@@ -39,7 +36,6 @@ export const ELEMENTS: Element[] = [
   { number: 16, symbol: 'S', mass: 32.06, group: 16, period: 3, category: 'nonmetal' },
   { number: 17, symbol: 'Cl', mass: 35.45, group: 17, period: 3, category: 'halogen' },
   { number: 18, symbol: 'Ar', mass: 39.948, group: 18, period: 3, category: 'noble' },
-  // Period 4
   { number: 19, symbol: 'K', mass: 39.098, group: 1, period: 4, category: 'alkali' },
   { number: 20, symbol: 'Ca', mass: 40.078, group: 2, period: 4, category: 'alkaline' },
   { number: 21, symbol: 'Sc', mass: 44.956, group: 3, period: 4, category: 'transition' },
@@ -58,7 +54,6 @@ export const ELEMENTS: Element[] = [
   { number: 34, symbol: 'Se', mass: 78.96, group: 16, period: 4, category: 'nonmetal' },
   { number: 35, symbol: 'Br', mass: 79.904, group: 17, period: 4, category: 'halogen' },
   { number: 36, symbol: 'Kr', mass: 83.798, group: 18, period: 4, category: 'noble' },
-  // Period 5
   { number: 37, symbol: 'Rb', mass: 85.468, group: 1, period: 5, category: 'alkali' },
   { number: 38, symbol: 'Sr', mass: 87.62, group: 2, period: 5, category: 'alkaline' },
   { number: 39, symbol: 'Y', mass: 88.906, group: 3, period: 5, category: 'transition' },
@@ -77,7 +72,6 @@ export const ELEMENTS: Element[] = [
   { number: 52, symbol: 'Te', mass: 127.6, group: 16, period: 5, category: 'metalloid' },
   { number: 53, symbol: 'I', mass: 126.9, group: 17, period: 5, category: 'halogen' },
   { number: 54, symbol: 'Xe', mass: 131.29, group: 18, period: 5, category: 'noble' },
-  // Period 6
   { number: 55, symbol: 'Cs', mass: 132.91, group: 1, period: 6, category: 'alkali' },
   { number: 56, symbol: 'Ba', mass: 137.33, group: 2, period: 6, category: 'alkaline' },
   { number: 57, symbol: 'La', mass: 138.91, group: 3, period: 6, category: 'lanthanide' },
@@ -96,7 +90,6 @@ export const ELEMENTS: Element[] = [
   { number: 84, symbol: 'Po', mass: 209, group: 16, period: 6, category: 'transition' },
   { number: 85, symbol: 'At', mass: 210, group: 17, period: 6, category: 'halogen' },
   { number: 86, symbol: 'Rn', mass: 222, group: 18, period: 6, category: 'noble' },
-  // Period 7
   { number: 87, symbol: 'Fr', mass: 223, group: 1, period: 7, category: 'alkali' },
   { number: 88, symbol: 'Ra', mass: 226, group: 2, period: 7, category: 'alkaline' },
   { number: 89, symbol: 'Ac', mass: 227, group: 3, period: 7, category: 'actinide' },
@@ -115,7 +108,6 @@ export const ELEMENTS: Element[] = [
   { number: 116, symbol: 'Lv', mass: 293, group: 16, period: 7, category: 'unknown' },
   { number: 117, symbol: 'Ts', mass: 294, group: 17, period: 7, category: 'unknown' },
   { number: 118, symbol: 'Og', mass: 294, group: 18, period: 7, category: 'unknown' },
-  // Lanthanides
   { number: 58, symbol: 'Ce', mass: 140.12, group: 3, period: 8, category: 'lanthanide' },
   { number: 59, symbol: 'Pr', mass: 140.91, group: 3, period: 8, category: 'lanthanide' },
   { number: 60, symbol: 'Nd', mass: 144.24, group: 3, period: 8, category: 'lanthanide' },
@@ -130,7 +122,6 @@ export const ELEMENTS: Element[] = [
   { number: 69, symbol: 'Tm', mass: 168.93, group: 3, period: 8, category: 'lanthanide' },
   { number: 70, symbol: 'Yb', mass: 173.05, group: 3, period: 8, category: 'lanthanide' },
   { number: 71, symbol: 'Lu', mass: 174.97, group: 3, period: 8, category: 'lanthanide' },
-  // Actinides
   { number: 90, symbol: 'Th', mass: 232.04, group: 3, period: 9, category: 'actinide' },
   { number: 91, symbol: 'Pa', mass: 231.04, group: 3, period: 9, category: 'actinide' },
   { number: 92, symbol: 'U', mass: 238.03, group: 3, period: 9, category: 'actinide' },

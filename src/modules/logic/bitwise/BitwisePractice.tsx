@@ -20,12 +20,11 @@ export const BitwisePractice: React.FC = () => {
   const [score, setScore] = useState(0);
 
   if (!question) {
-    // Init question
     generateQuestion();
   }
 
   function generateQuestion() {
-    const ops: BitwiseOperation[] = ['AND', 'OR', 'XOR']; // SImple ops for now
+    const ops: BitwiseOperation[] = ['AND', 'OR', 'XOR'];
     const nextOp = ops[Math.floor(Math.random() * ops.length)];
     const a = Math.floor(Math.random() * 255);
     const b = Math.floor(Math.random() * 255);

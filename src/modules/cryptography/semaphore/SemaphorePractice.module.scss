@@ -37,10 +37,8 @@
 
 .card {
   padding: $spacing-xl;
-  border: 4px solid $line-color; // Standard schematic thick border?
-  // Doomsday uses 'targetDate' display. Here we show the figure.
-  // Using simple border for now or FUIGlassPanel inside? No, just a styled div.
-  background: white; // Match canvas
+  border: 4px solid $line-color;
+  background: white;
   transition: all 0.3s ease;
   
   &.correct {

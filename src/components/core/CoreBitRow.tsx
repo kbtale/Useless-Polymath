@@ -23,9 +23,6 @@ export const CoreBitRow: React.FC<CoreBitRowProps> = ({
   };
 
   const bitArray = Array.from({ length: bits }, (_, i) => {
-    // Determine bit index (usually 0 is LSB, on the right)
-    // Visualization: [7][6][5][4][3][2][1][0]
-    // i=0 -> left (bit index = bits - 1)
     const bitIndex = bits - 1 - i;
     const isActive = !!((value >> bitIndex) & 1);
 

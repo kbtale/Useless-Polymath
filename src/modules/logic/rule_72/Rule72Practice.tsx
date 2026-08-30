@@ -21,7 +21,6 @@ export const Rule72Practice: React.FC = () => {
   }
 
   function generateQuestion() {
-    // Pick "friendly" numbers for mental math: 1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72
     const rates = [1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72];
     const nextRate = rates[Math.floor(Math.random() * rates.length)];
     setQuestionRate(nextRate);

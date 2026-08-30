@@ -27,7 +27,6 @@ export const PeriodicTablePractice: React.FC = () => {
   const checkAnswer = () => {
     if (!target) return;
 
-    // Check if input matches Symbol
     if (input.trim().toLowerCase() === target.symbol.toLowerCase()) {
       setFeedback('correct');
       setStreak((s) => s + 1);

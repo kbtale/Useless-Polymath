@@ -13,7 +13,6 @@ export const getActivePowers = (n: number): number[] => {
   const powers: number[] = [];
   let current = n;
 
-  // Check powers from 128 down to 1
   [128, 64, 32, 16, 8, 4, 2, 1].forEach((power) => {
     if (current >= power) {
       powers.push(power);

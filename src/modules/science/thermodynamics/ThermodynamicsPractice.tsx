@@ -5,16 +5,14 @@ import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
 import { celsiusToFahrenheitMental } from './logic';
-import styles from './Thermodynamics.module.scss'; // Reuse styles
+import styles from './Thermodynamics.module.scss';
 
-// Generate random C between 0 and 40 (common range)
 const getRandomC = () => Math.floor(Math.random() * 40);
 
 export const ThermodynamicsPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('thermodynamics');
   const { t } = useTranslation('thermodynamics');
 
-  // Lazy init state
   const [targetC, setTargetC] = useState<number>(() => getRandomC());
   const [input, setInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
@@ -31,8 +29,6 @@ export const ThermodynamicsPractice: React.FC = () => {
 
     const correct = celsiusToFahrenheitMental(targetC);
 
-    // Allow margin of error +/- 2 degrees for mental math?
-    // Actually the rule is strict: (C*2)+30. Let's enforce exact match to the formula.
     if (val === correct) {
       setFeedback('correct');
       setStreak((s) => s + 1);

@@ -28,7 +28,6 @@ export const StorageUnitsPractice: React.FC = () => {
 
   const handleSubmit = () => {
     const val = parseFloat(userAnswer);
-    // Allow 1% margin for floating point
     const margin = Math.abs(correctAnswer * 0.01);
 
     if (Math.abs(val - correctAnswer) <= Math.max(margin, 0.01)) {

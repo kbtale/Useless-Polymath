@@ -10,11 +10,9 @@ export interface DoomsdayLog {
 }
 
 export const getDoomsday = (year: number): number => {
-  // Anchor day for the century
   const century = Math.floor(year / 100);
   const anchor = (5 * (century % 4) + 2) % 7;
 
-  // Year part
   const yearPart = year % 100;
   const a = Math.floor(yearPart / 12);
   const b = yearPart % 12;
@@ -35,7 +33,6 @@ export const getDayOfWeek = (year: number, month: number, day: number): number =
 export const calculateDoomsdayWithLog = (year: number, month: number, day: number): DoomsdayLog => {
   const steps = [];
 
-  // 1. Century Anchor
   const century = Math.floor(year / 100);
   const anchor = (5 * (century % 4) + 2) % 7;
   steps.push({
@@ -45,7 +42,6 @@ export const calculateDoomsdayWithLog = (year: number, month: number, day: numbe
     details: `Anchor for ${century}00s is ${anchor} (${DAYS[anchor]})`,
   });
 
-  // 2. Year Part
   const yearPart = year % 100;
   const a = Math.floor(yearPart / 12);
   const b = yearPart % 12;
@@ -58,22 +54,8 @@ export const calculateDoomsdayWithLog = (year: number, month: number, day: numbe
     details: `(${a} * 12) + ${b} + (${c} leap days) = Doomsday ${yearDoomsday}`,
   });
 
-  // 3. Month Anchor
   const leap = isLeapYear(year);
-  const monthDoomsdays = [
-    leap ? 4 : 3, // Jan
-    leap ? 29 : 28, // Feb
-    14, // Mar
-    4, // Apr
-    9, // May
-    6, // Jun
-    11, // Jul
-    8, // Aug
-    5, // Sep
-    10, // Oct
-    7, // Nov
-    12, // Dec
-  ];
+  const monthDoomsdays = [leap ? 4 : 3, leap ? 29 : 28, 14, 4, 9, 6, 11, 8, 5, 10, 7, 12];
   const monthAnchorDay = monthDoomsdays[month - 1];
   steps.push({
     title: 'Month Anchor',
@@ -82,7 +64,6 @@ export const calculateDoomsdayWithLog = (year: number, month: number, day: numbe
     details: `Doomsday for month ${month} is the ${monthAnchorDay}${getDaySuffix(monthAnchorDay)}`,
   });
 
-  // 4. Summation
   const diff = day - monthAnchorDay;
   let result = (yearDoomsday + diff) % 7;
   if (result < 0) result += 7;

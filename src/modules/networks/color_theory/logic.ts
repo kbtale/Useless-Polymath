@@ -6,10 +6,6 @@ export const rgbToHex = (r: number, g: number, b: number): string => {
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 };
 
-/**
- * Calculates Euclidean distance between two colors suitable for scoring.
- * Max distance (between black and white) is sqrt(255^2 * 3) ~= 441.67
- */
 export const calculateColorDistance = (
   c1: [number, number, number],
   c2: [number, number, number],

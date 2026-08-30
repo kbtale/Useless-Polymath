@@ -43,9 +43,7 @@ export const BrailleTool: React.FC = () => {
           })}
 
           {input.length === 0 && (
-            <div style={{ color: '#999', fontFamily: 'JetBrains Mono', padding: '1rem' }}>
-              // {t('output_placeholder')}
-            </div>
+            <div style={{ color: '#999', fontFamily: 'JetBrains Mono', padding: '1rem' }}></div>
           )}
         </div>
       </div>

@@ -150,12 +150,8 @@ function AppContent() {
             <h2 style={{ fontFamily: 'Orbitron', color: '#00F3FF' }}>
               MODULE: {activeModuleId.toUpperCase()}
             </h2>
-            <p style={{ color: 'rgba(255,255,255,0.7)' }}>
-              // {t('system_offline', { ns: 'common' })}
-            </p>
-            <p style={{ color: 'rgba(255,255,255,0.5)' }}>
-              // {t('awaiting_implementation', { ns: 'common' })}
-            </p>
+            <p style={{ color: 'rgba(255,255,255,0.7)' }}></p>
+            <p style={{ color: 'rgba(255,255,255,0.5)' }}></p>
           </div>
         );
     }
@@ -184,7 +180,7 @@ function AppContent() {
 }
 
 function App() {
-  const { t } = useTranslation(['common']); // Need this hook here if we want to translate generic loading
+  const { t } = useTranslation(['common']);
 
   return (
     <Suspense

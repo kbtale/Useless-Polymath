@@ -30,7 +30,7 @@ export const BinaryPractice: React.FC = () => {
   const targetPowers = getActivePowers(target);
 
   const toggleBit = (bitValue: number) => {
-    if (mode === 'read') return; // Read only in read mode
+    if (mode === 'read') return;
 
     let newValue = current;
     if (activePowers.includes(bitValue)) {
@@ -40,7 +40,6 @@ export const BinaryPractice: React.FC = () => {
     }
     setCurrent(newValue);
 
-    // Auto-check in write mode
     if (newValue === target) {
       handleSuccess();
     }

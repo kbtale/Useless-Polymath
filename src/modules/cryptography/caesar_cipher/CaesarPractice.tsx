@@ -24,7 +24,7 @@ export const CaesarPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('caesar_cipher');
   const getRandomQuestion = () => {
     const word = WORDS[Math.floor(Math.random() * WORDS.length)];
-    const s = Math.floor(Math.random() * 25) + 1; // 1-25
+    const s = Math.floor(Math.random() * 25) + 1;
     return { word, shift: s };
   };
 

@@ -39,8 +39,6 @@ export const ColorTheoryPractice: React.FC = () => {
 
   const handleSubmit = () => {
     const dist = calculateColorDistance([targetR, targetG, targetB], [userR, userG, userB]);
-    // Max distance is ~442. Map to 0-100 score.
-    // 0 dist = 100 score. 442 dist = 0 score.
     const maxDist = 442;
     const calcScore = Math.max(0, 100 - (dist / maxDist) * 100);
     setScore(calcScore);
@@ -61,7 +59,7 @@ export const ColorTheoryPractice: React.FC = () => {
           </div>
 
           <div className={styles.flexRow} style={{ alignItems: 'center' }}>
-            {/* Target */}
+            {}
             <div style={{ textAlign: 'center' }}>
               <div
                 className={styles.colorPreview}
@@ -74,7 +72,7 @@ export const ColorTheoryPractice: React.FC = () => {
               </div>
             </div>
 
-            {/* User */}
+            {}
             <div style={{ textAlign: 'center' }}>
               <div
                 className={styles.colorPreview}

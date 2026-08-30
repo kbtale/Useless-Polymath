@@ -9,7 +9,6 @@ import styles from './LuhnAlgorithm.module.scss';
 export const LuhnPractice: React.FC = () => {
   const { t } = useTranslation('luhn_algorithm');
 
-  // State: 'number' is the full valid number. We hide the last digit.
   const [targetNumber, setTargetNumber] = useState(() => generateLuhnNumber(16));
   const [input, setInput] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
@@ -51,7 +50,7 @@ export const LuhnPractice: React.FC = () => {
 
         <CoreBaseInput
           value={input}
-          onChangeValue={(v) => setInput(v.slice(0, 1))} // Max 1 char
+          onChangeValue={(v) => setInput(v.slice(0, 1))}
           onEnter={handleCheck}
           placeholder="?"
           allowedChars={/^[0-9]*$/}

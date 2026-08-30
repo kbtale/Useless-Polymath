@@ -1,7 +1,7 @@
 @use '../../styles/variables' as *;
 
 .markdownContainer {
-  font-family: 'JetBrains Mono', monospace; // Or $font-mono
+  font-family: 'JetBrains Mono', monospace;
   line-height: 1.6;
   color: $text-main;
 
@@ -62,7 +62,7 @@
       border: 1px solid $line-color;
       padding: 0.5em;
       text-align: left;
-      min-width: 100px; /* Ensure content columns don't compress excessively */
+      min-width: 100px; 
     }
 
     th {

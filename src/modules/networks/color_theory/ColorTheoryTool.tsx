@@ -10,7 +10,7 @@ export const ColorTheoryTool: React.FC = () => {
   const { t } = useTranslation('color_theory');
   const [r, setR] = useState(100);
   const [g, setG] = useState(149);
-  const [b, setB] = useState(237); // Cornflower blueish default
+  const [b, setB] = useState(237);
 
   const hex = rgbToHex(r, g, b);
 
