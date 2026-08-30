@@ -15,35 +15,30 @@ export const getHiLoValue = (rank: Rank): number => {
   return -1;
 };
 
-export class Deck {
-  cards: Card[];
-
-  constructor() {
-    this.cards = [];
-    this.reset();
-  }
-
-  reset() {
-    this.cards = [];
-    for (const suit of SUITS) {
-      for (const rank of RANKS) {
-        this.cards.push({ suit, rank });
-      }
+export const createStandardDeck = (): Card[] => {
+  const cards: Card[] = [];
+  for (const suit of SUITS) {
+    for (const rank of RANKS) {
+      cards.push({ suit, rank });
     }
   }
+  return cards;
+};
 
-  shuffle() {
-    for (let i = this.cards.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
-    }
+export const shuffleDeck = (deck: Card[]): Card[] => {
+  const copy = [...deck];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
   }
+  return copy;
+};
 
-  deal(): Card | undefined {
-    return this.cards.pop();
+export const dealCard = (deck: Card[]): { card: Card | undefined; remainingDeck: Card[] } => {
+  if (deck.length === 0) {
+    return { card: undefined, remainingDeck: [] };
   }
-
-  get remaining(): number {
-    return this.cards.length;
-  }
-}
+  const card = deck[deck.length - 1];
+  const remainingDeck = deck.slice(0, -1);
+  return { card, remainingDeck };
+};

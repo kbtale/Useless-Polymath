@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
 import { FUIButton } from '../../../components/core/FUIButton';
-import { Deck, getHiLoValue } from './logic';
+import { createStandardDeck, dealCard, getHiLoValue, shuffleDeck } from './logic';
 import type { Card } from './logic';
 import styles from './CardCounting.module.scss';
 import clsx from 'clsx';
@@ -34,31 +34,25 @@ const CardDisplay: React.FC<{ card: Card }> = ({ card }) => {
 
 export const CardCountingTool: React.FC = () => {
   const { t } = useTranslation('card_counting');
-  const [deck, setDeck] = useState(() => {
-    const d = new Deck();
-    d.shuffle();
-    return d;
-  });
+  const [deck, setDeck] = useState<Card[]>(() => shuffleDeck(createStandardDeck()));
   const [currentCard, setCurrentCard] = useState<Card | null>(null);
   const [runningCount, setRunningCount] = useState(0);
-  const [cardsLeft, setCardsLeft] = useState(52);
 
   const handleDeal = () => {
-    const card = deck.deal();
-    if (card) {
-      setCurrentCard(card);
-      setRunningCount((prev) => prev + getHiLoValue(card.rank));
-      setCardsLeft(deck.remaining);
-    }
+    setDeck((prevDeck) => {
+      const { card, remainingDeck } = dealCard(prevDeck);
+      if (card) {
+        setCurrentCard(card);
+        setRunningCount((prev) => prev + getHiLoValue(card.rank));
+      }
+      return remainingDeck;
+    });
   };
 
   const handleReset = () => {
-    const d = new Deck();
-    d.shuffle();
-    setDeck(d);
+    setDeck(shuffleDeck(createStandardDeck()));
     setCurrentCard(null);
     setRunningCount(0);
-    setCardsLeft(52);
   };
 
   return (
@@ -84,12 +78,12 @@ export const CardCountingTool: React.FC = () => {
             </div>
             <div className={styles.statItem}>
               <span className={styles.statLabel}>{t('label_cards_left')}</span>
-              <span className={styles.statValue}>{cardsLeft}</span>
+              <span className={styles.statValue}>{deck.length}</span>
             </div>
           </div>
 
           <div className={styles.controls}>
-            <FUIButton onClick={handleDeal} disabled={cardsLeft === 0} variant="solid">
+            <FUIButton onClick={handleDeal} disabled={deck.length === 0} variant="solid">
               {t('action_deal')}
             </FUIButton>
             <FUIButton onClick={handleReset} variant="outline">

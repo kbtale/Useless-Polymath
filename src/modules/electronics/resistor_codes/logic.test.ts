@@ -2,21 +2,21 @@ import { describe, expect, it } from 'vitest';
 import { calculateResistance, formatOhms, getRandomResistor } from './logic';
 
 describe('Resistor Codes Logic', () => {
-  it('calculates standard 4-band resistor values accurately', () => {
+  it('calculates 4-band resistor values', () => {
     const result = calculateResistance(['brown', 'black', 'red', 'gold'], 4);
     expect(result.value).toBe(1000);
     expect(result.tolerance).toBe(5);
     expect(result.multiplier).toBe(100);
   });
 
-  it('calculates standard 5-band resistor values accurately', () => {
+  it('calculates 5-band resistor values', () => {
     const result = calculateResistance(['yellow', 'violet', 'black', 'red', 'brown'], 5);
     expect(result.value).toBe(47000);
     expect(result.tolerance).toBe(1);
     expect(result.multiplier).toBe(100);
   });
 
-  it('accurately computes fractional gold and silver multipliers without floating-point errors', () => {
+  it('computes fractional gold and silver multipliers', () => {
     const goldResult = calculateResistance(['brown', 'red', 'gold', 'gold'], 4);
     expect(goldResult.value).toBe(1.2);
 
