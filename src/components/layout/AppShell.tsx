@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { storageService } from '../../services/storage';
 import { FUIButton } from '../core/FUIButton';
-import { SettingsModal } from './SettingsModal';
 import styles from './AppShell.module.scss';
+import { SettingsModal } from './SettingsModal';
 
 interface Module {
   id: string;
@@ -76,12 +78,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   const [scoresVersion, setScoresVersion] = useState(0);
 
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() => {
-    try {
-      const saved = localStorage.getItem('polymath_sidebar_collapsed');
-      return saved === 'true';
-    } catch {
-      return false;
-    }
+    return storageService.getSidebarCollapsed();
   });
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -89,27 +86,17 @@ export const AppShell: React.FC<AppShellProps> = ({
   const toggleSidebar = () => {
     setIsSidebarCollapsed((prev) => {
       const next = !prev;
-      localStorage.setItem('polymath_sidebar_collapsed', String(next));
+      storageService.setSidebarCollapsed(next);
       return next;
     });
   };
 
   const [hiddenModules, setHiddenModules] = useState<string[]>(() => {
-    try {
-      const saved = localStorage.getItem('polymath_hidden_modules');
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
+    return storageService.getHiddenModules();
   });
 
   const [hiddenCategories, setHiddenCategories] = useState<string[]>(() => {
-    try {
-      const saved = localStorage.getItem('polymath_hidden_categories');
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
+    return storageService.getHiddenCategories();
   });
 
   const toggleModuleVisibility = (moduleId: string) => {
@@ -117,7 +104,7 @@ export const AppShell: React.FC<AppShellProps> = ({
       const next = prev.includes(moduleId)
         ? prev.filter((id) => id !== moduleId)
         : [...prev, moduleId];
-      localStorage.setItem('polymath_hidden_modules', JSON.stringify(next));
+      storageService.setHiddenModules(next);
       return next;
     });
   };
@@ -125,14 +112,13 @@ export const AppShell: React.FC<AppShellProps> = ({
   const toggleCategoryVisibility = (catKey: string) => {
     setHiddenCategories((prev) => {
       const next = prev.includes(catKey) ? prev.filter((k) => k !== catKey) : [...prev, catKey];
-      localStorage.setItem('polymath_hidden_categories', JSON.stringify(next));
+      storageService.setHiddenCategories(next);
       return next;
     });
   };
 
   const handleIndividualReset = (moduleId: string) => {
-    localStorage.removeItem(`polymath_streak_${moduleId}`);
-    localStorage.removeItem(`polymath_high_${moduleId}`);
+    storageService.resetModuleScores(moduleId);
     setScoresVersion((v) => v + 1);
   };
 
@@ -142,10 +128,7 @@ export const AppShell: React.FC<AppShellProps> = ({
         'Are you sure you want to reset all practice streaks and high scores? This action cannot be undone.',
       )
     ) {
-      MODULES.forEach((m) => {
-        localStorage.removeItem(`polymath_streak_${m.id}`);
-        localStorage.removeItem(`polymath_high_${m.id}`);
-      });
+      storageService.resetAllScores(MODULES);
       setScoresVersion((v) => v + 1);
     }
   };
@@ -158,17 +141,17 @@ export const AppShell: React.FC<AppShellProps> = ({
   ];
 
   const [activeStyle, setActiveStyle] = useState(() => {
-    return localStorage.getItem('app-style') || 'mono';
+    return storageService.getAppStyle('mono');
   });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-style', activeStyle);
-    localStorage.setItem('app-style', activeStyle);
+    storageService.setAppStyle(activeStyle);
   }, [activeStyle]);
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
-    localStorage.setItem('language', lng);
+    storageService.setLanguage(lng);
   };
 
   const categories = Array.from(new Set(MODULES.map((m) => m.categoryKey)));

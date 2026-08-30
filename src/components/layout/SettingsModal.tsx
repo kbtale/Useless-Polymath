@@ -1,6 +1,8 @@
 import clsx from 'clsx';
-import React, { useEffect, useRef } from 'react';
+import type React from 'react';
+import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { storageService } from '../../services/storage';
 import { FUIButton } from '../core/FUIButton';
 import styles from './AppShell.module.scss';
 
@@ -122,7 +124,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
-    localStorage.setItem('language', lng);
+    storageService.setLanguage(lng);
   };
 
   return (
@@ -231,11 +233,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 </thead>
                 <tbody>
                   {modules.map((m) => {
-                    const streak = parseInt(
-                      localStorage.getItem(`polymath_streak_${m.id}`) || '0',
-                      10,
-                    );
-                    const high = parseInt(localStorage.getItem(`polymath_high_${m.id}`) || '0', 10);
+                    const streak = storageService.getStreak(m.id);
+                    const high = storageService.getHighScore(m.id);
                     const isCatVisible = !hiddenCategories.includes(m.categoryKey);
                     const isModVisible = !hiddenModules.includes(m.id);
                     const categoryName = toTitleCase(t(m.categoryKey, { ns: 'common' }));

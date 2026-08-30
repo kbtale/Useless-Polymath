@@ -1,45 +1,25 @@
 import { useCallback, useEffect, useState } from 'react';
+import { storageService } from '../services/storage';
 
 export function usePracticeStreak(moduleId: string) {
-  const streakKey = `polymath_streak_${moduleId}`;
-  const highScoreKey = `polymath_high_${moduleId}`;
-
   const [streak, setStreakState] = useState<number>(() => {
-    try {
-      const saved = localStorage.getItem(streakKey);
-      return saved ? parseInt(saved, 10) : 0;
-    } catch {
-      return 0;
-    }
+    return storageService.getStreak(moduleId);
   });
 
   const [highScore, setHighScoreState] = useState<number>(() => {
-    try {
-      const saved = localStorage.getItem(highScoreKey);
-      return saved ? parseInt(saved, 10) : 0;
-    } catch {
-      return 0;
-    }
+    return storageService.getHighScore(moduleId);
   });
 
   useEffect(() => {
-    try {
-      localStorage.setItem(streakKey, streak.toString());
-    } catch (e) {
-      console.error('Failed to save streak to localStorage:', e);
-    }
-  }, [streakKey, streak]);
+    storageService.setStreak(moduleId, streak);
+  }, [moduleId, streak]);
 
   useEffect(() => {
     if (streak > highScore) {
       setHighScoreState(streak);
-      try {
-        localStorage.setItem(highScoreKey, streak.toString());
-      } catch (e) {
-        console.error('Failed to save high score to localStorage:', e);
-      }
+      storageService.setHighScore(moduleId, streak);
     }
-  }, [highScoreKey, streak, highScore]);
+  }, [moduleId, streak, highScore]);
 
   const setStreak = useCallback((newStreak: number | ((prev: number) => number)) => {
     setStreakState(newStreak);
