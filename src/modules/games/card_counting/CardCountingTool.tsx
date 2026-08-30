@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
-import { FUIButton } from '../../../components/core/FUIButton';
-import { createStandardDeck, dealCard, getHiLoValue, shuffleDeck } from './logic';
-import type { Card } from './logic';
-import styles from './CardCounting.module.scss';
 import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FUIButton } from '../../../components/core/FUIButton';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import styles from './CardCounting.module.scss';
+import { type Card, createStandardDeck, dealCard, getHiLoValue, shuffleDeck } from './logic';
 
 const CardDisplay: React.FC<{ card: Card }> = ({ card }) => {
   const isRed = card.suit === 'hearts' || card.suit === 'diamonds';
@@ -91,10 +90,6 @@ export const CardCountingTool: React.FC = () => {
             </FUIButton>
           </div>
         </div>
-      </FUIGlassPanel>
-
-      <FUIGlassPanel className={styles.panel}>
-        <CoreMarkdownRenderer content={t('guide')} />
       </FUIGlassPanel>
     </div>
   );

@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
 import { FUIButton } from '../../../components/core/FUIButton';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreSelect } from '../../../components/core/CoreSelect';
-import { BAND_COLORS, calculateResistance, formatOhms } from './logic';
 import styles from './ResistorCodes.module.scss';
+import { BAND_COLORS, calculateResistance, formatOhms } from './logic';
 
 export const ResistorTool: React.FC = () => {
   const { t } = useTranslation('resistor_codes');
@@ -46,21 +46,15 @@ export const ResistorTool: React.FC = () => {
             </FUIButton>
           </div>
 
-          {}
           <div className={styles.resistorDisplay}>
             <svg viewBox="0 0 400 150">
-              {}
               <path d="M0,75 L50,75 M350,75 L400,75" stroke="#999" strokeWidth="10" />
-
-              {}
               <path
                 d="M50,40 Q50,25 75,25 L325,25 Q350,25 350,40 L350,110 Q350,125 325,125 L75,125 Q50,125 50,110 Z"
                 fill="#E8D5B5"
                 stroke="#333"
                 strokeWidth="2"
               />
-
-              {}
               {bands.map((color, i) => {
                 let x = 0;
                 if (mode === 4) {
@@ -86,7 +80,6 @@ export const ResistorTool: React.FC = () => {
             </svg>
           </div>
 
-          {}
           <div className={styles.controls}>
             {bands.map((color, i) => (
               <div key={i} className={styles.controlGroup}>
@@ -117,16 +110,11 @@ export const ResistorTool: React.FC = () => {
             ))}
           </div>
 
-          {}
           <div className={styles.result}>
             <div className={styles.value}>{formatOhms(value)}</div>
             <div className={styles.tol}>±{tolerance}%</div>
           </div>
         </div>
-      </FUIGlassPanel>
-
-      <FUIGlassPanel className={styles.panel}>
-        <CoreMarkdownRenderer content={t('guide')} />
       </FUIGlassPanel>
     </div>
   );
