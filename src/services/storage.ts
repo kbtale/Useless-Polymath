@@ -49,8 +49,8 @@ class StorageService {
   }
 
   getSidebarCollapsed(): boolean {
-    const val = this.getItem(STORAGE_KEYS.SIDEBAR_COLLAPSED, 'false');
-    return val === 'true' || val === true;
+    const val = this.getItem<string | boolean>(STORAGE_KEYS.SIDEBAR_COLLAPSED, false);
+    return val === true || val === 'true';
   }
 
   setSidebarCollapsed(collapsed: boolean): void {
