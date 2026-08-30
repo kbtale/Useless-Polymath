@@ -1,5 +1,5 @@
 export const ipToInt = (ip: string): number => {
-  return ip.split('.').reduce((acc, octet) => (acc << 8) + parseInt(octet, 10), 0) >>> 0;
+  return ip.split('.').reduce((acc, octet) => ((acc << 8) + parseInt(octet, 10)) >>> 0, 0) >>> 0;
 };
 
 export const intToIp = (int: number): string => {
@@ -7,14 +7,23 @@ export const intToIp = (int: number): string => {
 };
 
 export const calculateSubnet = (ip: string, cidr: number) => {
+  if (cidr < 0 || cidr > 32 || !Number.isInteger(cidr)) return null;
+
   const ipRegex = /^(\d{1,3}\.){3}\d{1,3}$/;
   if (!ipRegex.test(ip)) return null;
 
   const octets = ip.split('.');
-  if (octets.some((o) => parseInt(o) > 255)) return null;
+  if (
+    octets.some((o) => {
+      const num = parseInt(o, 10);
+      return num < 0 || num > 255 || (o.length > 1 && o.startsWith('0'));
+    })
+  ) {
+    return null;
+  }
 
   const ipInt = ipToInt(ip);
-  const maskInt = cidr === 0 ? 0 : ~0 >>> (32 - cidr);
+  const maskInt = cidr === 0 ? 0 : (-1 << (32 - cidr)) >>> 0;
 
   const networkInt = (ipInt & maskInt) >>> 0;
   const broadcastInt = (networkInt | (~maskInt >>> 0)) >>> 0;
@@ -27,7 +36,7 @@ export const calculateSubnet = (ip: string, cidr: number) => {
     network: intToIp(networkInt),
     broadcast: intToIp(broadcastInt),
     mask: intToIp(maskInt),
-    hosts: hosts,
+    hosts,
     range: `${intToIp(usableStart)} - ${intToIp(usableEnd)}`,
   };
 };

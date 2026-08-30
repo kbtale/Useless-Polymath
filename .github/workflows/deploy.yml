@@ -1,4 +1,4 @@
-name: CI & Deployment
+name: CI and Deployment
 
 on:
   push:
@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   quality-gates:
-    name: Quality & Security Gates
+    name: Quality and Security Gates
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
