@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreSlider } from '../../../components/core/CoreSlider';
-import { CoreSelect } from '../../../components/core/CoreSelect';
-import { COMMON_ZONES, calculateDestinationTime } from './logic';
-import styles from './TimeZones.module.scss';
+import type React from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { CoreSelect } from '../../../components/core/CoreSelect';
+import { CoreSlider } from '../../../components/core/CoreSlider';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import styles from './TimeZones.module.scss';
+import { COMMON_ZONES, calculateDestinationTime } from './logic';
+
+const ZONE_OPTIONS = COMMON_ZONES.map((z) => ({
+  value: z.id,
+  label: `${z.name} (UTC${z.offset >= 0 ? '+' : ''}${z.offset})`,
+}));
 
 export const TimeZonesTool: React.FC = () => {
   const { t } = useTranslation(['time_zones', 'common']);
@@ -12,10 +18,19 @@ export const TimeZonesTool: React.FC = () => {
   const [destId, setDestId] = useState('tokyo');
   const [hour, setHour] = useState(12);
 
-  const origin = COMMON_ZONES.find((z) => z.id === originId) || COMMON_ZONES[0];
-  const dest = COMMON_ZONES.find((z) => z.id === destId) || COMMON_ZONES[3];
+  const origin = useMemo(
+    () => COMMON_ZONES.find((z) => z.id === originId) || COMMON_ZONES[0],
+    [originId],
+  );
+  const dest = useMemo(
+    () => COMMON_ZONES.find((z) => z.id === destId) || COMMON_ZONES[3],
+    [destId],
+  );
 
-  const result = calculateDestinationTime(hour, origin.offset, dest.offset);
+  const result = useMemo(
+    () => calculateDestinationTime(hour, origin.offset, dest.offset),
+    [hour, origin.offset, dest.offset],
+  );
 
   return (
     <FUIGlassPanel className={styles.panel}>
@@ -27,10 +42,7 @@ export const TimeZonesTool: React.FC = () => {
             label={t('origin')}
             value={originId}
             onChange={(val) => setOriginId(val)}
-            options={COMMON_ZONES.map((z) => ({
-              value: z.id,
-              label: `${z.name} (UTC${z.offset >= 0 ? '+' : ''}${z.offset})`,
-            }))}
+            options={ZONE_OPTIONS}
           />
 
           <CoreSlider
@@ -51,10 +63,7 @@ export const TimeZonesTool: React.FC = () => {
             label={t('destination')}
             value={destId}
             onChange={(val) => setDestId(val)}
-            options={COMMON_ZONES.map((z) => ({
-              value: z.id,
-              label: `${z.name} (UTC${z.offset >= 0 ? '+' : ''}${z.offset})`,
-            }))}
+            options={ZONE_OPTIONS}
           />
 
           <div>

@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
-import { ELEMENTS } from './logic';
-import type { Element } from './logic';
 import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import styles from './PeriodicTable.module.scss';
+import { ELEMENTS, type Element } from './logic';
+
+const MAIN_ELEMENTS = ELEMENTS.filter((e) => e.period <= 7);
+const F_BLOCK_ELEMENTS = ELEMENTS.filter((e) => e.period > 7);
 
 export const PeriodicTableTool: React.FC = () => {
   const { t } = useTranslation('periodic_table');
   const [selectedElement, setSelectedElement] = useState<Element | null>(null);
-
-  const mainElements = ELEMENTS.filter((e) => e.period <= 7);
-  const fBlockElements = ELEMENTS.filter((e) => e.period > 7);
 
   return (
     <div className={styles.toolContainer}>
@@ -21,9 +21,8 @@ export const PeriodicTableTool: React.FC = () => {
 
         <div className={styles.scrollContainer}>
           <div className={styles.gridWrapper}>
-            {}
             <div className={styles.mainGrid}>
-              {mainElements.map((el) => (
+              {MAIN_ELEMENTS.map((el) => (
                 <div
                   key={el.number}
                   className={clsx(styles.elementCell, styles[el.category])}
@@ -40,9 +39,8 @@ export const PeriodicTableTool: React.FC = () => {
               ))}
             </div>
 
-            {}
             <div className={styles.fBlockGrid}>
-              {fBlockElements.map((el) => {
+              {F_BLOCK_ELEMENTS.map((el) => {
                 const colOffset = 4;
                 const indexInRow = el.number >= 90 ? el.number - 90 : el.number - 58;
 
