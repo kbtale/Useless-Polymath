@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
 import { FUIButton } from '../../../components/core/FUIButton';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import {
-  celsiusToFahrenheit,
-  fahrenheitToCelsius,
-  celsiusToFahrenheitMental,
   BENCHMARKS,
+  celsiusToFahrenheit,
+  celsiusToFahrenheitMental,
+  fahrenheitToCelsius,
 } from './logic';
 import styles from './Thermodynamics.module.scss';
 
@@ -50,13 +52,13 @@ export const ThermodynamicsTool: React.FC = () => {
           <h2 className={styles.title}>{t('title')}</h2>
 
           <div className={styles.thermometerWrapper}>
-            {}
             <div className={styles.scale}>
               <span className={styles.label}>{t('label_celsius')}</span>
               <div className={styles.track}>
                 <div className={styles.fill} style={{ height: `${percentC}%` }} />
                 <input
                   type="range"
+                  aria-label={t('label_celsius')}
                   min={minC}
                   max={maxC}
                   value={celsius}
@@ -67,13 +69,13 @@ export const ThermodynamicsTool: React.FC = () => {
               <span className={styles.valueDisplay}>{Math.round(celsius)}°</span>
             </div>
 
-            {}
             <div className={styles.scale}>
               <span className={styles.label}>{t('label_fahrenheit')}</span>
               <div className={styles.track}>
                 <div className={styles.fill} style={{ height: `${percentF}%` }} />
                 <input
                   type="range"
+                  aria-label={t('label_fahrenheit')}
                   min={minF}
                   max={maxF}
                   value={Math.round(fExact)}
@@ -85,7 +87,6 @@ export const ThermodynamicsTool: React.FC = () => {
             </div>
           </div>
 
-          {}
           <div className={styles.comparison}>
             <div className={styles.compItem}>
               <span className={styles.compLabel}>{t('label_mental_math')}</span>
@@ -101,7 +102,6 @@ export const ThermodynamicsTool: React.FC = () => {
             </div>
           </div>
 
-          {}
           <div className={styles.benchmarks}>
             {BENCHMARKS.map((b) => (
               <FUIButton
@@ -122,5 +122,3 @@ export const ThermodynamicsTool: React.FC = () => {
     </div>
   );
 };
-
-import clsx from 'clsx';

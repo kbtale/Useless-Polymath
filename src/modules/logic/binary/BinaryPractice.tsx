@@ -121,6 +121,8 @@ export const BinaryPractice: React.FC = () => {
       {mode === 'read' && (
         <div className={styles.inputArea}>
           <input
+            id="binary-decimal-input"
+            aria-label="Enter Decimal Value"
             type="number"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}

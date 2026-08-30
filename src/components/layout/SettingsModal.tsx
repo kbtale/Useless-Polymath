@@ -84,8 +84,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             <h3 className={styles.sectionHeader}>{t('general', 'General')}</h3>
 
             <div className={styles.settingsRow}>
-              <span className={styles.rowLabel}>{t('theme', 'Style Theme')}</span>
+              <label htmlFor="settings-theme-select" className={styles.rowLabel}>
+                {t('theme', 'Style Theme')}
+              </label>
               <select
+                id="settings-theme-select"
+                aria-label={t('theme', 'Style Theme')}
                 value={activeStyle}
                 onChange={(e) => onStyleChange(e.target.value)}
                 className={styles.selectInput}
@@ -104,6 +108,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 {['en', 'es', 'it'].map((lng) => (
                   <FUIButton
                     key={lng}
+                    aria-label={`Switch language to ${lng.toUpperCase()}`}
                     onClick={() => changeLanguage(lng)}
                     variant={i18n.language === lng ? 'solid' : 'outline'}
                     style={{
@@ -164,6 +169,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     const high = parseInt(localStorage.getItem(`polymath_high_${m.id}`) || '0', 10);
                     const isCatVisible = !hiddenCategories.includes(m.categoryKey);
                     const isModVisible = !hiddenModules.includes(m.id);
+                    const categoryName = toTitleCase(t(m.categoryKey, { ns: 'common' }));
+                    const moduleName = toTitleCase(
+                      t(m.id, {
+                        ns: 'navigation',
+                        defaultValue: formatDefaultTitle(m.id),
+                      }),
+                    );
                     return (
                       <tr key={m.id}>
                         <td>
@@ -177,26 +189,21 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                           >
                             <input
                               type="checkbox"
+                              aria-label={`Toggle category ${categoryName}`}
                               checked={isCatVisible}
                               onChange={() => onToggleCategory(m.categoryKey)}
                               className={styles.visibilityCheckbox}
                             />
-                            <span style={{ opacity: isCatVisible ? 1 : 0.5 }}>
-                              {toTitleCase(t(m.categoryKey, { ns: 'common' }))}
-                            </span>
+                            <span style={{ opacity: isCatVisible ? 1 : 0.5 }}>{categoryName}</span>
                           </label>
                         </td>
                         <td style={{ opacity: isModVisible && isCatVisible ? 1 : 0.5 }}>
-                          {toTitleCase(
-                            t(m.id, {
-                              ns: 'navigation',
-                              defaultValue: formatDefaultTitle(m.id),
-                            }),
-                          )}
+                          {moduleName}
                         </td>
                         <td style={{ textAlign: 'center' }}>
                           <input
                             type="checkbox"
+                            aria-label={`Toggle module ${moduleName}`}
                             checked={isModVisible}
                             onChange={() => onToggleModule(m.id)}
                             disabled={!isCatVisible}
@@ -208,6 +215,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                         <td>
                           <button
                             className={styles.rowResetBtn}
+                            aria-label={`Reset score for ${moduleName}`}
                             onClick={() => onResetIndividual(m.id)}
                           >
                             {t('reset', 'Reset')}
