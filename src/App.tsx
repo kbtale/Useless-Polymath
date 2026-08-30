@@ -1,7 +1,10 @@
-import { useState, Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AppShell } from './components/layout/AppShell';
+import styles from './App.module.scss';
 import { CoreMarkdownRenderer } from './components/core/CoreMarkdownRenderer';
+import { ModuleLoadingFallback } from './components/core/ModuleLoadingFallback';
+import { AppShell } from './components/layout/AppShell';
+import { getModuleDefinition } from './registry/moduleRegistry';
 
 const toTitleCase = (str: string): string => {
   return str
@@ -12,55 +15,6 @@ const toTitleCase = (str: string): string => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 };
-import { DoomsdayTool } from './modules/chronometry/doomsday/DoomsdayTool';
-import { DoomsdayPractice } from './modules/chronometry/doomsday/DoomsdayPractice';
-import { BinaryTool } from './modules/logic/binary/BinaryTool';
-import { BinaryPractice } from './modules/logic/binary/BinaryPractice';
-import { BitwiseTool } from './modules/logic/bitwise/BitwiseTool';
-import { BitwisePractice } from './modules/logic/bitwise/BitwisePractice';
-import { HexTool } from './modules/logic/hex/HexTool';
-import { HexPractice } from './modules/logic/hex/HexPractice';
-import styles from './App.module.scss';
-import { TimeZonesTool } from './modules/chronometry/timezones/TimeZonesTool';
-import { TimeZonesPractice } from './modules/chronometry/timezones/TimeZonesPractice';
-import { MoonTool } from './modules/chronometry/moon/MoonTool';
-import { MoonPractice } from './modules/chronometry/moon/MoonPractice';
-import { RomanTool } from './modules/logic/roman_numerals/RomanTool';
-import { RomanPractice } from './modules/logic/roman_numerals/RomanPractice';
-import { CalendarOrdinalTool } from './modules/chronometry/ordinal/CalendarOrdinalTool';
-import { CalendarOrdinalPractice } from './modules/chronometry/ordinal/CalendarOrdinalPractice';
-import { Rule72Tool } from './modules/logic/rule_72/Rule72Tool';
-import { Rule72Practice } from './modules/logic/rule_72/Rule72Practice';
-import { NatoTool } from './modules/cryptography/nato_alphabet/NatoTool';
-import { NatoPractice } from './modules/cryptography/nato_alphabet/NatoPractice';
-import { CaesarTool } from './modules/cryptography/caesar_cipher/CaesarTool';
-import { CaesarPractice } from './modules/cryptography/caesar_cipher/CaesarPractice';
-import { MorseTool } from './modules/cryptography/morse_code/MorseTool';
-import { MorsePractice } from './modules/cryptography/morse_code/MorsePractice';
-import { BrailleTool } from './modules/cryptography/braille/BrailleTool';
-import { BraillePractice } from './modules/cryptography/braille/BraillePractice';
-import { SemaphoreTool } from './modules/cryptography/semaphore/SemaphoreTool';
-import { SemaphorePractice } from './modules/cryptography/semaphore/SemaphorePractice';
-import { PeriodicTableTool } from './modules/science/periodic_table/PeriodicTableTool';
-import { PeriodicTablePractice } from './modules/science/periodic_table/PeriodicTablePractice';
-import { ThermodynamicsTool } from './modules/science/thermodynamics/ThermodynamicsTool';
-import { ThermodynamicsPractice } from './modules/science/thermodynamics/ThermodynamicsPractice';
-import { ResistorTool } from './modules/electronics/resistor_codes/ResistorTool';
-import { ResistorPractice } from './modules/electronics/resistor_codes/ResistorPractice';
-import { CardCountingTool } from './modules/games/card_counting/CardCountingTool';
-import { CardCountingPractice } from './modules/games/card_counting/CardCountingPractice';
-import { LuhnTool } from './modules/logic/luhn_algorithm/LuhnTool';
-import { LuhnPractice } from './modules/logic/luhn_algorithm/LuhnPractice';
-import { EanTool } from './modules/logic/ean_13/EanTool';
-import { EanPractice } from './modules/logic/ean_13/EanPractice';
-import { SubnettingTool } from './modules/networks/subnetting/SubnettingTool';
-import { SubnettingPractice } from './modules/networks/subnetting/SubnettingPractice';
-import { ColorTheoryTool } from './modules/networks/color_theory/ColorTheoryTool';
-import { ColorTheoryPractice } from './modules/networks/color_theory/ColorTheoryPractice';
-import { AsciiTool } from './modules/networks/ascii/AsciiTool';
-import { AsciiPractice } from './modules/networks/ascii/AsciiPractice';
-import { StorageUnitsTool } from './modules/networks/storage_units/StorageUnitsTool';
-import { StorageUnitsPractice } from './modules/networks/storage_units/StorageUnitsPractice';
 
 function AppContent() {
   const [mode, setMode] = useState<'tool' | 'practice' | 'guide'>('tool');
@@ -87,74 +41,32 @@ function AppContent() {
       );
     }
 
-    switch (activeModuleId) {
-      case 'doomsday':
-        return mode === 'tool' ? <DoomsdayTool /> : <DoomsdayPractice />;
-      case 'time_zones':
-        return mode === 'tool' ? <TimeZonesTool /> : <TimeZonesPractice />;
-      case 'moon':
-        return mode === 'tool' ? <MoonTool /> : <MoonPractice />;
-      case 'ordinal':
-        return mode === 'tool' ? <CalendarOrdinalTool /> : <CalendarOrdinalPractice />;
-      case 'binary':
-        return mode === 'tool' ? <BinaryTool /> : <BinaryPractice />;
-      case 'bitwise':
-        return mode === 'tool' ? <BitwiseTool /> : <BitwisePractice />;
-      case 'roman_numerals':
-        return mode === 'tool' ? <RomanTool /> : <RomanPractice />;
-      case 'hexadecimal':
-        return mode === 'tool' ? <HexTool /> : <HexPractice />;
-      case 'rule_72':
-        return mode === 'tool' ? <Rule72Tool /> : <Rule72Practice />;
-      case 'nato_alphabet':
-        return mode === 'tool' ? <NatoTool /> : <NatoPractice />;
-      case 'caesar_cipher':
-        return mode === 'tool' ? <CaesarTool /> : <CaesarPractice />;
-      case 'morse_code':
-        return mode === 'tool' ? <MorseTool /> : <MorsePractice />;
-      case 'braille':
-        return mode === 'tool' ? <BrailleTool /> : <BraillePractice />;
-      case 'semaphore':
-        return mode === 'tool' ? <SemaphoreTool /> : <SemaphorePractice />;
-      case 'periodic_table':
-        return mode === 'tool' ? <PeriodicTableTool /> : <PeriodicTablePractice />;
-      case 'thermodynamics':
-        return mode === 'tool' ? <ThermodynamicsTool /> : <ThermodynamicsPractice />;
-      case 'resistor_codes':
-        return mode === 'tool' ? <ResistorTool /> : <ResistorPractice />;
-      case 'card_counting':
-        return mode === 'tool' ? <CardCountingTool /> : <CardCountingPractice />;
-      case 'luhn_algorithm':
-        return mode === 'tool' ? <LuhnTool /> : <LuhnPractice />;
-      case 'ean_13':
-        return mode === 'tool' ? <EanTool /> : <EanPractice />;
-      case 'subnetting':
-        return mode === 'tool' ? <SubnettingTool /> : <SubnettingPractice />;
-      case 'color_theory':
-        return mode === 'tool' ? <ColorTheoryTool /> : <ColorTheoryPractice />;
-      case 'ascii':
-        return mode === 'tool' ? <AsciiTool /> : <AsciiPractice />;
-      case 'storage_units':
-        return mode === 'tool' ? <StorageUnitsTool /> : <StorageUnitsPractice />;
-      default:
-        return (
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '100%',
-              flexDirection: 'column',
-            }}
-          >
-            <h2 style={{ fontFamily: 'Orbitron', color: '#00F3FF' }}>
-              MODULE: {activeModuleId.toUpperCase()}
-            </h2>
-            <p style={{ color: 'rgba(255,255,255,0.7)' }}></p>
-            <p style={{ color: 'rgba(255,255,255,0.5)' }}></p>
-          </div>
-        );
+    const definition = getModuleDefinition(activeModuleId);
+    if (!definition) {
+      return (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100%',
+            flexDirection: 'column',
+          }}
+        >
+          <h2 style={{ fontFamily: 'Orbitron', color: '#00F3FF' }}>
+            MODULE: {activeModuleId.toUpperCase()}
+          </h2>
+        </div>
+      );
     }
+
+    const Component = mode === 'tool' ? definition.tool : definition.practice;
+
+    return (
+      <Suspense fallback={<ModuleLoadingFallback />}>
+        <Component />
+      </Suspense>
+    );
   };
 
   return (
@@ -196,8 +108,7 @@ function App() {
             fontFamily: 'JetBrains Mono',
           }}
         >
-          {' '}
-          {t('loading_system')}{' '}
+          {t('loading_system')}
         </div>
       }
     >
