@@ -1,12 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import {
-  createStandardDeck,
-  dealCard,
-  getHiLoValue,
-  shuffleDeck,
-  SUITS,
-  type Card,
-} from './logic';
+import { createStandardDeck, dealCard, getHiLoValue, shuffleDeck, SUITS, type Card } from './logic';
 
 describe('Card Counting Logic', () => {
   it('creates 52-card deck with 13 cards per suit', () => {
