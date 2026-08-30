@@ -43,18 +43,8 @@ function AppContent() {
     const definition = getModuleDefinition(activeModuleId);
     if (!definition) {
       return (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-            flexDirection: 'column',
-          }}
-        >
-          <h2 style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-highlight)' }}>
-            MODULE: {activeModuleId.toUpperCase()}
-          </h2>
+        <div className={styles.moduleNotFound}>
+          <h2>MODULE: {activeModuleId.toUpperCase()}</h2>
         </div>
       );
     }
@@ -75,17 +65,7 @@ function AppContent() {
       mode={mode}
       onModeChange={setMode}
     >
-      <div
-        style={{
-          maxWidth: '800px',
-          margin: '0 auto',
-          minHeight: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        {renderModule()}
-      </div>
+      <div className={styles.contentContainer}>{renderModule()}</div>
     </AppShell>
   );
 }
@@ -94,23 +74,7 @@ function App() {
   const { t } = useTranslation(['common']);
 
   return (
-    <Suspense
-      fallback={
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh',
-            background: 'var(--bg-canvas)',
-            color: 'var(--text-main)',
-            fontFamily: 'var(--font-mono)',
-          }}
-        >
-          {t('loading_system')}
-        </div>
-      }
-    >
+    <Suspense fallback={<div className={styles.initialLoading}>{t('loading_system')}</div>}>
       <AppContent />
     </Suspense>
   );

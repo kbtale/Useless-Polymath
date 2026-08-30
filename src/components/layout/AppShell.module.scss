@@ -63,6 +63,41 @@
     align-items: center;
     gap: 1.5rem;
     margin-right: 1rem;
+
+    .styleControl {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .styleLabel {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      opacity: 0.7;
+    }
+
+    .styleSelect {
+      background: var(--bg-canvas);
+      color: var(--text-main);
+      border: 1px solid var(--line-color);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      cursor: pointer;
+      outline: none;
+      border-radius: var(--radius-button);
+    }
+
+    .langButtonGroup {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .langButton {
+      padding: 0.25rem 0.75rem;
+      min-height: 32px;
+      font-size: 0.7rem;
+    }
   }
 
   .cornerDeco {
