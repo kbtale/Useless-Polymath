@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { FUIButton } from '../../../components/core/FUIButton';
-import { getMoonPhase } from './logic';
-import styles from './Moon.module.scss';
 import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FUIButton } from '../../../components/core/FUIButton';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
+import styles from './Moon.module.scss';
+import { getMoonPhase } from './logic';
 
 export const MoonPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('moon');
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(['moon', 'common']);
   const getRandomRound = () => {
     const y = new Date().getFullYear();
     const m = Math.floor(Math.random() * 12) + 1;
@@ -72,28 +73,35 @@ export const MoonPractice: React.FC = () => {
       </div>
 
       <div className={styles.targetDisplay}>
-        <div className={styles.label}>Predict the phase for:</div>
+        <div className={styles.label}>
+          {t('predict_phase', { defaultValue: 'Predict the phase for:' })}
+        </div>
         <div className={styles.date}>
           {targetDate.d}/{targetDate.m}/{targetDate.y}
         </div>
       </div>
 
       <div className={styles.optionsGrid}>
-        {options.map((opt) => (
-          <FUIButton
-            key={opt}
-            variant="outline"
-            onClick={() => handleGuess(opt)}
-            className={styles.optionBtn}
-          >
-            {opt.toUpperCase()}
-          </FUIButton>
-        ))}
+        {options.map((opt) => {
+          const optKey = opt.toLowerCase().replace(/ /g, '_');
+          return (
+            <FUIButton
+              key={opt}
+              variant="outline"
+              onClick={() => handleGuess(opt)}
+              className={styles.optionBtn}
+            >
+              {t(`phases.${optKey}`, { defaultValue: opt }).toUpperCase()}
+            </FUIButton>
+          );
+        })}
       </div>
 
       {feedback && (
         <div className={clsx(styles.feedback, styles[feedback])}>
-          {feedback === 'correct' ? 'PHASE ALIGNED' : 'ORBIT DECAY'}
+          {feedback === 'correct'
+            ? t('phase_aligned', { defaultValue: 'PHASE ALIGNED' })
+            : t('orbit_decay', { defaultValue: 'ORBIT DECAY' })}
         </div>
       )}
     </FUIGlassPanel>

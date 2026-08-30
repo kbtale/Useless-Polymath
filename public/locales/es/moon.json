@@ -1,4 +1,18 @@
 {
   "title": "Fases Lunares",
-  "guide": "# La Calculadora Lunar: Cómo leer el cielo\n\n## 1. El Concepto\nImagina que la Luna es una galleta redonda.\n* A veces no la vemos (está oscura). Es la **Luna Nueva** (Edad 0).\n* Luego crece hasta una galleta entera brillante. Es la **Luna Llena** (Edad 15).\n\nLa \"Edad\" de la Luna es solo un número del **0 al 29**.\n\n---\n\n## 2. Tabla B: El \"Número del Mes\"\n\n| Mes | Número |\n| :--- | :--- |\n| **Enero** | 0 |\n| **Febrero** | 2 |\n| **Marzo** | 0 |\n| **Abril** | 2 |\n| **Mayo** | 3 |\n| **Junio** | 4 |\n| **Julio** | 5 |\n| **Agosto** | 6 |\n| **Septiembre** | 7 |\n| **Octubre** | 8 |\n| **Noviembre** | 9 |\n| **Diciembre** | 10 |\n\n---\n\n## 3. Tabla C: El Resultado\n\n| Edad | Fase |\n| :--- | :--- |\n| **0** | Luna Nueva |\n| **7** | Cuarto Creciente (D) |\n| **14-15** | Luna Llena |\n| **22** | Cuarto Menguante (C) |\n\n---\n\n## 4. Mnemotecnias Nativas (Español)\n\n### \"La Luna es Mentirosa\"\n* Cuando tiene forma de **C**, es **D**ecreciente.\n* Cuando tiene forma de **D**, es **C**reciente.\n\n***\n"
+  "lunar_age": "EDAD LUNAR: {{age}} / 29.5",
+  "predict_phase": "Predice la fase para:",
+  "phase_aligned": "FASE ALINEADA",
+  "orbit_decay": "DECAIMIENTO ORBITAL",
+  "phases": {
+    "new_moon": "Luna Nueva",
+    "waxing_crescent": "Luna Creciente",
+    "first_quarter": "Cuarto Creciente",
+    "waxing_gibbous": "Gibosa Creciente",
+    "full_moon": "Luna Llena",
+    "waning_gibbous": "Gibosa Menguante",
+    "last_quarter": "Cuarto Menguante",
+    "waning_crescent": "Luna Menguante"
+  },
+  "guide": "# La Calculadora Lunar: Cómo leer el cielo\n\n## El Concepto\nImagina que la Luna es una galleta redonda.\n* A veces no la vemos (está oscura). Es la **Luna Nueva** (Edad 0).\n* Luego crece hasta una galleta entera brillante. Es la **Luna Llena** (Edad 15).\n\nLa \"Edad\" de la Luna es solo un número del **0 al 29**.\n\n---\n\n## El \"Número del Mes\"\n\n| Mes | Número |\n| :--- | :--- |\n| **Enero** | 0 |\n| **Febrero** | 2 |\n| **Marzo** | 0 |\n| **Abril** | 2 |\n| **Mayo** | 3 |\n| **Junio** | 4 |\n| **Julio** | 5 |\n| **Agosto** | 6 |\n| **Septiembre** | 7 |\n| **Octubre** | 8 |\n| **Noviembre** | 9 |\n| **Diciembre** | 10 |\n\n---\n\n## El Resultado\n\n| Edad | Fase |\n| :--- | :--- |\n| **0** | Luna Nueva |\n| **7** | Cuarto Creciente (D) |\n| **14-15** | Luna Llena |\n| **22** | Cuarto Menguante (C) |\n\n---\n\n## Mnemotecnias Nativas (Español)\n\n### \"La Luna es Mentirosa\"\n* Cuando tiene forma de **C**, es **D**ecreciente.\n* Cuando tiene forma de **D**, es **C**reciente.\n\n***"
 }
