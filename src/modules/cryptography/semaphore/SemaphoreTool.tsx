@@ -1,41 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
-import { CoreSemaphoreFigure } from '../../../components/core/CoreSemaphoreFigure';
 import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
+import { CoreSemaphoreFigure } from '../../../components/core/CoreSemaphoreFigure';
 import { FUIButton } from '../../../components/core/FUIButton';
-import { getSemaphorePattern } from './logic';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import styles from './SemaphoreTool.module.scss';
+import { getSemaphorePattern } from './logic';
 
 export const SemaphoreTool: React.FC = () => {
   const { t } = useTranslation('semaphore');
-  const [input, setInput] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentChar, setCurrentChar] = useState<string>('a');
+  const [inputText, setInputText] = useState<string>('a');
 
-  const cleanInput = input.replace(/[^a-zA-Z0-9 ]/g, '');
-  const currentChar = cleanInput[currentIndex] || 'rest';
   const pattern = getSemaphorePattern(currentChar);
 
-  useEffect(() => {
-    let interval: ReturnType<typeof setInterval>;
-    if (isPlaying && cleanInput.length > 0) {
-      interval = setInterval(() => {
-        setCurrentIndex((prev) => {
-          if (prev >= cleanInput.length - 1) {
-            setIsPlaying(false);
-            return prev;
-          }
-          return prev + 1;
-        });
-      }, 1500);
+  const handleInputChange = (val: string) => {
+    setInputText(val);
+    if (val.length > 0) {
+      setCurrentChar(val[val.length - 1].toLowerCase());
+    } else {
+      setCurrentChar('rest');
     }
-    return () => clearInterval(interval);
-  }, [isPlaying, cleanInput]);
+  };
 
-  const handleStopStart = () => {
-    setIsPlaying(!isPlaying);
+  const handleCharSelect = (char: string) => {
+    setCurrentChar(char.toLowerCase());
+    setInputText(char);
   };
 
   return (
@@ -49,7 +41,7 @@ export const SemaphoreTool: React.FC = () => {
               leftAngle={pattern.left}
               rightAngle={pattern.right}
               size={300}
-              className="text-black"
+              className={styles.figureIcon}
             />
             <div className={styles.charDisplay}>
               {currentChar === 'rest' ? 'READY' : currentChar.toUpperCase()}
@@ -58,37 +50,22 @@ export const SemaphoreTool: React.FC = () => {
 
           <div className={styles.controls}>
             <FUIButton
-              onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
-              disabled={currentIndex === 0}
-              variant="outline"
+              variant={currentChar === 'rest' ? 'solid' : 'outline'}
+              onClick={() => handleCharSelect('rest')}
             >
-              {t('prev', 'Prev')}
-            </FUIButton>
-
-            <FUIButton onClick={handleStopStart} variant={isPlaying ? 'solid' : 'outline'}>
-              {isPlaying ? t('stop', 'Stop') : t('play', 'Play')}
-            </FUIButton>
-
-            <FUIButton
-              onClick={() => setCurrentIndex(Math.min(cleanInput.length - 1, currentIndex + 1))}
-              disabled={currentIndex >= cleanInput.length - 1}
-              variant="outline"
-            >
-              {t('next', 'Next')}
+              REST
             </FUIButton>
           </div>
 
           <div className={styles.inputArea}>
-            <label className={styles.label}>{t('text_input')}</label>
+            <label className={styles.label}>{t('label_type_char')}</label>
             <CoreBaseInput
-              value={input}
-              onChangeValue={(val) => {
-                setInput(val);
-                setCurrentIndex(0);
-                setIsPlaying(false);
-              }}
-              placeholder="HELLO WORLD"
-              maxLength={50}
+              value={inputText}
+              onChangeValue={handleInputChange}
+              placeholder={t('placeholder_type')}
+              maxLength={1}
+              allowedChars={/[a-zA-Z]/}
+              transformToUpper={true}
             />
           </div>
         </div>

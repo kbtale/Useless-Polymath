@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
-import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
-import { calculateLuhnSum } from './logic';
-import styles from './LuhnAlgorithm.module.scss';
 import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
+import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import styles from './LuhnAlgorithm.module.scss';
+import { calculateLuhnSum } from './logic';
 
 export const LuhnTool: React.FC = () => {
   const { t } = useTranslation('luhn_algorithm');
@@ -32,14 +33,12 @@ export const LuhnTool: React.FC = () => {
         <div className={styles.container}>
           <h2 className={styles.title}>{t('title')}</h2>
 
-          <p className={styles.label} style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
-            {t('label_input')}
-          </p>
+          <p className={styles.label}>{t('label_input')}</p>
           <CoreBaseInput
             value={input}
             onChangeValue={setInput}
             placeholder="0000 0000 0000 0000"
-            className="font-mono text-center text-xl"
+            className={styles.numberInput}
           />
 
           {cleanInput.length > 1 && (

@@ -1,29 +1,30 @@
-import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
-import { getBraillePattern } from './logic';
-import styles from './Braille.module.scss';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import clsx from 'clsx';
+import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
+import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import styles from './Braille.module.scss';
+import { getBraillePattern } from './logic';
 
 export const BrailleTool: React.FC = () => {
-  const { t } = useTranslation(['braille', 'common']);
-  const [input, setInput] = useState('');
+  const { t } = useTranslation('braille');
+  const [input, setInput] = useState('HELLO');
 
   return (
-    <FUIGlassPanel className={styles.panel}>
-      <h2 className={styles.title}>{t('title')}</h2>
+    <div className={styles.toolContainer}>
+      <FUIGlassPanel className={styles.panel}>
+        <h2 className={styles.title}>{t('title')}</h2>
 
-      <div className={styles.container}>
         <div className={styles.inputSection}>
-          <label className={styles.label}>{t('text_input')}</label>
+          <label className={styles.label}>{t('label_type_text')}</label>
           <CoreBaseInput
             value={input}
             onChangeValue={setInput}
             placeholder="A B C"
             allowedChars={/[a-zA-Z0-9\s]/}
             transformToUpper={true}
-            className="font-mono text-lg uppercase"
+            className={styles.textInput}
           />
         </div>
 
@@ -33,20 +34,23 @@ export const BrailleTool: React.FC = () => {
             return (
               <div key={idx} className={styles.brailleCell}>
                 <div className={styles.dotsGrid}>
-                  {pattern.map((isActive, i) => (
-                    <div key={i} className={clsx(styles.dot, isActive && styles.active)} />
+                  {[0, 1, 2, 3, 4, 5].map((dotIndex) => (
+                    <div
+                      key={dotIndex}
+                      className={`${styles.dot} ${pattern[dotIndex] ? styles.active : ''}`}
+                    />
                   ))}
                 </div>
-                <span className={styles.charLabel}>{char}</span>
+                <div className={styles.charLabel}>{char}</div>
               </div>
             );
           })}
-
-          {input.length === 0 && (
-            <div style={{ color: '#999', fontFamily: 'JetBrains Mono', padding: '1rem' }}></div>
-          )}
         </div>
-      </div>
-    </FUIGlassPanel>
+      </FUIGlassPanel>
+
+      <FUIGlassPanel className={styles.panel}>
+        <CoreMarkdownRenderer content={t('guide')} />
+      </FUIGlassPanel>
+    </div>
   );
 };

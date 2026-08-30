@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
-import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
-import { charToCode, codeToChar, getPrintableAscii } from './logic';
-import styles from './Ascii.module.scss';
 import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
+import { CoreMarkdownRenderer } from '../../../components/core/CoreMarkdownRenderer';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import styles from './Ascii.module.scss';
+import { charToCode, codeToChar, getPrintableAscii } from './logic';
 
 export const AsciiTool: React.FC = () => {
   const { t } = useTranslation('ascii');
@@ -39,7 +40,7 @@ export const AsciiTool: React.FC = () => {
                 value={char}
                 onChangeValue={handleCharChange}
                 maxLength={1}
-                className="text-center text-xl"
+                className={styles.charInput}
               />
             </div>
 
@@ -52,7 +53,7 @@ export const AsciiTool: React.FC = () => {
                 onChangeValue={handleCodeChange}
                 allowedChars={/^[0-9]*$/}
                 maxLength={3}
-                className="text-center text-xl"
+                className={styles.codeInput}
               />
             </div>
           </div>

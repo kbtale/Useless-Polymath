@@ -40,9 +40,13 @@
   justify-content: center;
   border: 1px dashed $line-color;
   padding: $spacing-xl;
-  background: rgba(0,0,0,0.02);
+  background: rgba(0, 0, 0, 0.02);
   width: 100%;
   max-width: 500px;
+}
+
+.figureIcon {
+  color: var(--text-main);
 }
 
 .charDisplay {

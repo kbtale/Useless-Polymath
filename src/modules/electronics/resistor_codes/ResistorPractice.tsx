@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
-import { BAND_COLORS, calculateResistance, getRandomResistor, formatOhms } from './logic';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
 import styles from './ResistorCodes.module.scss';
+import { BAND_COLORS, calculateResistance, formatOhms, getRandomResistor } from './logic';
 
 export const ResistorPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('resistor_codes');
@@ -57,7 +59,7 @@ export const ResistorPractice: React.FC = () => {
     <FUIGlassPanel className={styles.panel}>
       <h2 className={styles.title}>{t('practice_title')}</h2>
 
-      <div style={{ marginBottom: '1rem', fontFamily: 'monospace' }}>
+      <div className={styles.streakDisplay}>
         {t('streak')}: {streak}
       </div>
 
@@ -93,16 +95,14 @@ export const ResistorPractice: React.FC = () => {
       </div>
 
       <div className={styles.practiceContainer}>
-        <p className={styles.label} style={{ textAlign: 'center' }}>
-          {t('practice_prompt')}
-        </p>
+        <p className={styles.label}>{t('practice_prompt')}</p>
 
         <CoreBaseInput
           value={input}
           onChangeValue={setInput}
           onEnter={checkAnswer}
           placeholder="e.g. 4700 or 4.7k"
-          className="text-center font-mono text-xl"
+          className={styles.resistanceInput}
           allowedChars={/^[0-9.kKmM]*$/}
         />
 
@@ -111,17 +111,7 @@ export const ResistorPractice: React.FC = () => {
         </FUIButton>
 
         {feedback && (
-          <div
-            style={{
-              marginTop: '1rem',
-              padding: '0.5rem',
-              color: feedback === 'correct' ? '#4ade80' : '#f87171',
-              border: `1px solid ${feedback === 'correct' ? '#4ade80' : '#f87171'}`,
-              background: 'rgba(0,0,0,0.2)',
-              fontFamily: 'monospace',
-              textAlign: 'center',
-            }}
-          >
+          <div className={clsx(styles.feedbackBox, styles[feedback])}>
             {feedback === 'correct'
               ? t('feedback_correct')
               : t('feedback_incorrect', { value: lastValue })}

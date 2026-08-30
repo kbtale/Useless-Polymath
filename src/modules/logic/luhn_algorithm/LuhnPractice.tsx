@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
-import { generateLuhnNumber } from './logic';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import styles from './LuhnAlgorithm.module.scss';
+import { generateLuhnNumber } from './logic';
 
 export const LuhnPractice: React.FC = () => {
   const { t } = useTranslation('luhn_algorithm');
@@ -35,9 +37,7 @@ export const LuhnPractice: React.FC = () => {
       <h2 className={styles.title}>{t('practice_title')}</h2>
 
       <div className={styles.practiceContainer}>
-        <p className={styles.label} style={{ textAlign: 'center' }}>
-          {t('practice_prompt')}
-        </p>
+        <p className={styles.label}>{t('practice_prompt')}</p>
 
         <div className={styles.quizNumber}>
           {displayBase.split('').map((d, i) => (
@@ -54,7 +54,7 @@ export const LuhnPractice: React.FC = () => {
           onEnter={handleCheck}
           placeholder="?"
           allowedChars={/^[0-9]*$/}
-          className="text-center font-mono text-2xl w-16"
+          className={styles.checkDigitInput}
         />
 
         {!feedback && (
@@ -65,14 +65,7 @@ export const LuhnPractice: React.FC = () => {
 
         {feedback && (
           <>
-            <div
-              style={{
-                padding: '1rem',
-                color: feedback === 'correct' ? '#4ade80' : '#f87171',
-                textAlign: 'center',
-                fontFamily: 'monospace',
-              }}
-            >
+            <div className={clsx(styles.feedbackMessage, styles[feedback])}>
               {t(feedback === 'correct' ? 'feedback_correct' : 'feedback_incorrect', {
                 digit: correctDigit,
               })}

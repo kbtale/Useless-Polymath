@@ -13,6 +13,14 @@
   width: 100%;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+  width: 100%;
+}
+
 .title {
   font-family: $font-mono;
   color: $text-main;
@@ -29,7 +37,20 @@
   color: $text-dim;
   font-size: $text-sm;
   text-transform: uppercase;
-  margin-bottom: $spacing-sm;
+}
+
+.numberInput {
+  font-family: $font-mono;
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.checkDigitInput {
+  text-align: center;
+  font-family: $font-mono;
+  font-size: 1.5rem;
+  width: 4rem;
+  max-width: 4rem;
 }
 
 .statusIndicator {
@@ -40,17 +61,17 @@
   border-radius: 8px;
   text-transform: uppercase;
   transition: all 0.3s ease;
-  
+
   &.valid {
     background: rgba(74, 222, 128, 0.2);
-    color: #4ade80;
-    border: 2px solid #4ade80;
+    color: var(--color-success, #4ade80);
+    border: 2px solid var(--color-success, #4ade80);
   }
-  
+
   &.invalid {
     background: rgba(248, 113, 113, 0.2);
-    color: $color-error;
-    border: 2px solid $color-error;
+    color: var(--color-error, #f87171);
+    border: 2px solid var(--color-error, #f87171);
   }
 }
 
@@ -64,6 +85,10 @@
   background: white;
   border-radius: 8px;
   border: 1px solid $line-color;
+
+  &.practiceBarcode {
+    padding: $spacing-xl;
+  }
 }
 
 .bars {
@@ -76,10 +101,13 @@
 .bar {
   width: 4px;
   background-color: black;
-  
-  &.thin { height: 100%; }
-  &.short { height: 85%; }
-  
+
+  &.thin {
+    height: 100%;
+  }
+  &.short {
+    height: 85%;
+  }
 }
 
 .digits {
@@ -92,7 +120,11 @@
 }
 
 .practiceContainer {
-  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+  max-width: 400px;
   margin: 0 auto;
 }
 
@@ -104,11 +136,33 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  
+
   .missing {
-    color: $color-error;
-    border-bottom: 2px solid $color-error;
+    color: var(--color-error, #f87171);
+    border-bottom: 2px solid var(--color-error, #f87171);
     min-width: 1em;
     text-align: center;
+  }
+}
+
+.feedbackBox {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  align-items: center;
+  width: 100%;
+}
+
+.feedbackMessage {
+  padding: $spacing-md;
+  text-align: center;
+  font-family: $font-mono;
+
+  &.correct {
+    color: var(--color-success, #4ade80);
+  }
+
+  &.incorrect {
+    color: var(--color-error, #f87171);
   }
 }

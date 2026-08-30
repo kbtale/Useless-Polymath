@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import clsx from 'clsx';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
 import { FUIButton } from '../../../components/core/FUIButton';
-import { generateEan13 } from './logic';
+import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
 import styles from './Ean13.module.scss';
+import { generateEan13 } from './logic';
 
 export const EanPractice: React.FC = () => {
   const { t } = useTranslation('ean_13');
@@ -38,11 +40,9 @@ export const EanPractice: React.FC = () => {
       <h2 className={styles.title}>{t('practice_title')}</h2>
 
       <div className={styles.practiceContainer}>
-        <p className={styles.label} style={{ textAlign: 'center' }}>
-          {t('practice_prompt')}
-        </p>
+        <p className={styles.label}>{t('practice_prompt')}</p>
 
-        <div className={styles.barcodeContainer} style={{ padding: '2rem' }}>
+        <div className={clsx(styles.barcodeContainer, styles.practiceBarcode)}>
           <div className={styles.digits}>
             <span>{d1}</span>
             <span>{g1}</span>
@@ -57,7 +57,7 @@ export const EanPractice: React.FC = () => {
           onEnter={handleCheck}
           placeholder="?"
           allowedChars={/^[0-9]*$/}
-          className="text-center font-mono text-2xl w-16"
+          className={styles.checkDigitInput}
         />
 
         {!feedback && (
@@ -67,17 +67,8 @@ export const EanPractice: React.FC = () => {
         )}
 
         {feedback && (
-          <div
-            style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}
-          >
-            <div
-              style={{
-                padding: '1rem',
-                color: feedback === 'correct' ? '#4ade80' : '#ff3333',
-                textAlign: 'center',
-                fontFamily: 'monospace',
-              }}
-            >
+          <div className={styles.feedbackBox}>
+            <div className={clsx(styles.feedbackMessage, styles[feedback])}>
               {t(feedback === 'correct' ? 'feedback_correct' : 'feedback_incorrect', {
                 digit: correctDigit,
               })}
