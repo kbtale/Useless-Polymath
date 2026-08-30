@@ -6,7 +6,7 @@
   width: 100%;
   margin: 0 auto;
   color: var(--text-main);
-  
+
   h2 {
     border-bottom: 1px solid var(--line-color);
     padding-bottom: $spacing-sm;
@@ -17,7 +17,7 @@
 
   @media (max-width: 768px) {
     padding: $spacing-md $spacing-sm;
-    
+
     h2 {
       font-size: 1.2rem;
       margin-bottom: $spacing-md;
@@ -32,10 +32,41 @@
   border: var(--panel-border, 1px solid var(--line-color));
   border-radius: var(--radius-card, 4px);
   width: 100%;
-  overflow-x: hidden; 
+  overflow-x: hidden;
 
   @media (max-width: 768px) {
     padding: $spacing-md;
     margin-top: $spacing-sm;
   }
+}
+
+.moduleNotFound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-direction: column;
+
+  h2 {
+    font-family: var(--font-mono);
+    color: var(--text-highlight);
+  }
+}
+
+.contentContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.initialLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--bg-canvas);
+  color: var(--text-main);
+  font-family: var(--font-mono);
 }

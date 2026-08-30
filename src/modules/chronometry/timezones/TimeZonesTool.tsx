@@ -53,9 +53,7 @@ export const TimeZonesTool: React.FC = () => {
             className={styles.rangeInput}
           />
 
-          <div className={styles.resultValue} style={{ fontSize: '1.5rem', marginTop: '0.5rem' }}>
-            {hour.toString().padStart(2, '0')}:00
-          </div>
+          <div className={styles.originTimeValue}>{hour.toString().padStart(2, '0')}:00</div>
         </div>
 
         <div className={styles.resultArea}>

@@ -197,11 +197,8 @@ export const AppShell: React.FC<AppShellProps> = ({
         </div>
 
         <div className={styles.quickControls}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <label
-              htmlFor="theme-style-select"
-              style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', opacity: 0.7 }}
-            >
+          <div className={styles.styleControl}>
+            <label htmlFor="theme-style-select" className={styles.styleLabel}>
               STYLE:
             </label>
             <select
@@ -209,17 +206,7 @@ export const AppShell: React.FC<AppShellProps> = ({
               aria-label="Theme Style"
               value={activeStyle}
               onChange={(e) => setActiveStyle(e.target.value)}
-              style={{
-                background: 'var(--bg-canvas)',
-                color: 'var(--text-main)',
-                border: '1px solid var(--line-color)',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                padding: '0.25rem 0.5rem',
-                cursor: 'pointer',
-                outline: 'none',
-                borderRadius: 'var(--radius-button)',
-              }}
+              className={styles.styleSelect}
             >
               {STYLES.map((s) => (
                 <option key={s.id} value={s.id}>
@@ -229,16 +216,12 @@ export const AppShell: React.FC<AppShellProps> = ({
             </select>
           </div>
 
-          <div
-            style={{ display: 'flex', gap: '0.5rem' }}
-            role="group"
-            aria-label="Language options"
-          >
+          <div className={styles.langButtonGroup} role="group" aria-label="Language options">
             <FUIButton
               onClick={() => changeLanguage('en')}
               variant={i18n.language === 'en' ? 'solid' : 'outline'}
               aria-label="Switch to English"
-              style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
+              className={styles.langButton}
             >
               EN
             </FUIButton>
@@ -246,7 +229,7 @@ export const AppShell: React.FC<AppShellProps> = ({
               onClick={() => changeLanguage('es')}
               variant={i18n.language === 'es' ? 'solid' : 'outline'}
               aria-label="Cambiar a Español"
-              style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
+              className={styles.langButton}
             >
               ES
             </FUIButton>
@@ -254,7 +237,7 @@ export const AppShell: React.FC<AppShellProps> = ({
               onClick={() => changeLanguage('it')}
               variant={i18n.language === 'it' ? 'solid' : 'outline'}
               aria-label="Passa all'Italiano"
-              style={{ padding: '0.25rem 0.75rem', minHeight: '32px', fontSize: '0.7rem' }}
+              className={styles.langButton}
             >
               IT
             </FUIButton>
