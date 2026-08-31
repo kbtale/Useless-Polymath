@@ -31,5 +31,6 @@
   "incorrect_try_again": "Incorrecto. Inténtalo de nuevo.",
   "correct": "¡Correcto!",
   "incorrect": "¡Incorrecto!",
-  "correct_answer": "Respuesta correcta: {{answer}}"
+  "correct_answer": "Respuesta correcta: {{answer}}",
+  "date_format": "Formato de fecha"
 }
