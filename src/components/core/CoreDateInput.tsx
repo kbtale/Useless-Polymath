@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import type React from 'react';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { storageService } from '@/services/storage';
 import styles from './CoreDateInput.module.scss';
 
 export interface CoreDateInputProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -13,6 +14,7 @@ export interface CoreDateInputProps extends Omit<React.HTMLAttributes<HTMLDivEle
   showDay?: boolean;
   showMonth?: boolean;
   showYear?: boolean;
+  format?: 'DMY' | 'MDY' | 'YMD';
 }
 
 export const CoreDateInput: React.FC<CoreDateInputProps> = ({
@@ -25,10 +27,29 @@ export const CoreDateInput: React.FC<CoreDateInputProps> = ({
   showDay = true,
   showMonth = true,
   showYear = true,
+  format: propFormat,
   className,
   ...props
 }) => {
   const dateInputRef = useRef<HTMLInputElement>(null);
+  const [dateFormat, setDateFormat] = useState<'DMY' | 'MDY' | 'YMD'>(
+    () => propFormat || storageService.getDateFormat(),
+  );
+
+  useEffect(() => {
+    if (propFormat) {
+      setDateFormat(propFormat);
+      return;
+    }
+    const handler = (e: Event) => {
+      const customEvent = e as CustomEvent<'DMY' | 'MDY' | 'YMD'>;
+      if (customEvent.detail) {
+        setDateFormat(customEvent.detail);
+      }
+    };
+    window.addEventListener('polymath:dateformat_changed', handler);
+    return () => window.removeEventListener('polymath:dateformat_changed', handler);
+  }, [propFormat]);
 
   const handleIconClick = () => {
     if (dateInputRef.current) {
@@ -44,6 +65,52 @@ export const CoreDateInput: React.FC<CoreDateInputProps> = ({
       if (showMonth) setMonth(m);
       if (showDay) setDay(d);
     }
+  };
+
+  const dayInput = showDay && (
+    <input
+      key="day"
+      className={styles.cellInput}
+      aria-label="Day"
+      placeholder="DD"
+      value={day}
+      onChange={(e) => setDay(e.target.value)}
+      maxLength={2}
+    />
+  );
+
+  const monthInput = showMonth && (
+    <input
+      key="month"
+      className={styles.cellInput}
+      aria-label="Month"
+      placeholder="MM"
+      value={month}
+      onChange={(e) => setMonth(e.target.value)}
+      maxLength={2}
+    />
+  );
+
+  const yearInput = showYear && (
+    <input
+      key="year"
+      className={clsx(styles.cellInput, styles.year)}
+      aria-label="Year"
+      placeholder="YYYY"
+      value={year}
+      onChange={(e) => setYear(e.target.value)}
+      maxLength={4}
+    />
+  );
+
+  const renderInputs = () => {
+    if (dateFormat === 'MDY') {
+      return [monthInput, dayInput, yearInput];
+    }
+    if (dateFormat === 'YMD') {
+      return [yearInput, monthInput, dayInput];
+    }
+    return [dayInput, monthInput, yearInput];
   };
 
   return (
@@ -77,38 +144,7 @@ export const CoreDateInput: React.FC<CoreDateInputProps> = ({
           tabIndex={-1}
         />
 
-        {showMonth && (
-          <input
-            className={styles.cellInput}
-            aria-label="Month"
-            placeholder="MM"
-            value={month}
-            onChange={(e) => setMonth(e.target.value)}
-            maxLength={2}
-          />
-        )}
-
-        {showDay && (
-          <input
-            className={styles.cellInput}
-            aria-label="Day"
-            placeholder="DD"
-            value={day}
-            onChange={(e) => setDay(e.target.value)}
-            maxLength={2}
-          />
-        )}
-
-        {showYear && (
-          <input
-            className={clsx(styles.cellInput, styles.year)}
-            aria-label="Year"
-            placeholder="YYYY"
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-            maxLength={4}
-          />
-        )}
+        {renderInputs()}
       </div>
     </div>
   );
