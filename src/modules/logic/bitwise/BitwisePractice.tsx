@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreBitRow } from '../../../components/core/CoreBitRow';
-import { FUIButton } from '../../../components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { CoreBitRow } from '@/components/core/CoreBitRow';
+import { FUIButton } from '@/components/core/FUIButton';
 import { calculateBitwise } from './logic';
 import type { BitwiseOperation } from './logic';
 import styles from './Bitwise.module.scss';
 import { useTranslation } from 'react-i18next';
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 
 export const BitwisePractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('bitwise');

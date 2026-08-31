@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
-import { FUIButton } from '../../../components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { CoreBaseInput } from '@/components/core/CoreBaseInput';
+import { FUIButton } from '@/components/core/FUIButton';
 import { toRoman } from './logic';
 import styles from './Roman.module.scss';
 import { useTranslation } from 'react-i18next';
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 
 export const RomanPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('roman_numerals');

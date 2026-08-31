@@ -1,8 +1,8 @@
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { FUIButton } from '../../../components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { FUIButton } from '@/components/core/FUIButton';
 import { getOrdinalDate, getDaysInMonth } from './logic';
 import styles from './Ordinal.module.scss';
 

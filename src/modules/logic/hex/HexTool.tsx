@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { decimalToHex, hexToDecimal } from './logic';
 import styles from './Hex.module.scss';
 

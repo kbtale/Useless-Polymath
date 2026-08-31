@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { toNato } from './logic';
 import styles from './Nato.module.scss';
 import { useTranslation } from 'react-i18next';

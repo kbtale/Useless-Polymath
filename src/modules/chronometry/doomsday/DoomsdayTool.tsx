@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreDateInput } from '../../../components/core/CoreDateInput';
-import { FUIButton } from '../../../components/core/FUIButton';
-import { calculateDoomsdayWithLog } from './logic';
-import type { DoomsdayLog } from './logic';
-import styles from './Doomsday.module.scss';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { CoreDateInput } from '@/components/core/CoreDateInput';
+import { FUIButton } from '@/components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import styles from './Doomsday.module.scss';
+import { type DoomsdayLog, calculateDoomsdayWithLog } from './logic';
 
 const toTitleCase = (str: string): string => {
   return str
@@ -23,11 +23,14 @@ export const DoomsdayTool: React.FC = () => {
   const [log, setLog] = useState<DoomsdayLog | null>(() => calculateDoomsdayWithLog(2025, 3, 12));
 
   const handleCalculate = () => {
-    const d = parseInt(day);
-    const m = parseInt(month);
-    const y = parseInt(year);
+    const d = parseInt(day, 10);
+    const m = parseInt(month, 10);
+    const y = parseInt(year, 10);
 
-    if (isNaN(d) || isNaN(m) || isNaN(y)) return;
+    if (Number.isNaN(d) || Number.isNaN(m) || Number.isNaN(y)) {
+      setLog(null);
+      return;
+    }
 
     const resultLog = calculateDoomsdayWithLog(y, m, d);
     setLog(resultLog);
@@ -67,7 +70,7 @@ export const DoomsdayTool: React.FC = () => {
           </FUIButton>
         </div>
 
-        {log && (
+        {log?.finalDay && (
           <div className={styles.resultDisplay}>
             <div className={styles.resultLabel}>{t('calculated_day', { ns: 'common' })}</div>
             <div className={styles.resultValue}>{log.finalDay.toUpperCase()}</div>
@@ -99,7 +102,7 @@ export const DoomsdayTool: React.FC = () => {
             <div className={styles.finalResult}>
               <div className={styles.resultContent}>
                 {t('final_result')}: {t('total')} ({log.finalNumber}) MOD 7 = {log.finalNumber} (
-                {toTitleCase(log.finalDay)})
+                {toTitleCase(log.finalDay || '')})
               </div>
             </div>
           </div>

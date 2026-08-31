@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
-import { FUIButton } from '../../../components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { CoreBaseInput } from '@/components/core/CoreBaseInput';
+import { FUIButton } from '@/components/core/FUIButton';
 import { calculateDoublingTime } from './logic';
 import styles from './Rule72.module.scss';
 import { useTranslation } from 'react-i18next';
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 
 export const Rule72Practice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('rule_72');

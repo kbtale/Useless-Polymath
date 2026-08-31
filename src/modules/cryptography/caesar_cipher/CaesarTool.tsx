@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
-import { CoreSlider } from '../../../components/core/CoreSlider';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { CoreBaseInput } from '@/components/core/CoreBaseInput';
+import { CoreSlider } from '@/components/core/CoreSlider';
 import { encrypt } from './logic';
 import styles from './Caesar.module.scss';
 import { useTranslation } from 'react-i18next';

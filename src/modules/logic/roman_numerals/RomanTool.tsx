@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
-import { FUIButton } from '../../../components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { CoreBaseInput } from '@/components/core/CoreBaseInput';
+import { FUIButton } from '@/components/core/FUIButton';
 import { toRoman, fromRoman, isValidRoman } from './logic';
 import styles from './Roman.module.scss';
 import { useTranslation } from 'react-i18next';

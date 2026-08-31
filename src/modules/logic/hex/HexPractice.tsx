@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { FUIButton } from '../../../components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { FUIButton } from '@/components/core/FUIButton';
 import { decimalToHex, hexToDecimal } from './logic';
 import styles from './Hex.module.scss';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 
 export const HexPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('hex');

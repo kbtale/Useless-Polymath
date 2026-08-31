@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { FUIButton } from '../../../components/core/FUIButton';
-import { CoreSemaphoreFigure } from '../../../components/core/CoreSemaphoreFigure';
-import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { FUIButton } from '@/components/core/FUIButton';
+import { CoreSemaphoreFigure } from '@/components/core/CoreSemaphoreFigure';
+import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { getSemaphorePattern } from './logic';
 import clsx from 'clsx';
 import styles from './SemaphorePractice.module.scss';

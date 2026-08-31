@@ -2,9 +2,9 @@ import clsx from 'clsx';
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
-import { FUIButton } from '../../../components/core/FUIButton';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { CoreBaseInput } from '@/components/core/CoreBaseInput';
+import { FUIButton } from '@/components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import styles from './Ean13.module.scss';
 import { generateEan13 } from './logic';
 

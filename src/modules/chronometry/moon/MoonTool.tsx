@@ -1,8 +1,8 @@
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CoreDateInput } from '../../../components/core/CoreDateInput';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { CoreDateInput } from '@/components/core/CoreDateInput';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import styles from './Moon.module.scss';
 import { getMoonPhase } from './logic';
 

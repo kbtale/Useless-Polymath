@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import styles from './PeriodicTable.module.scss';
 import { ELEMENTS, type Element } from './logic';
 

@@ -1,9 +1,9 @@
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
-import { CoreSlider } from '../../../components/core/CoreSlider';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { CoreBaseInput } from '@/components/core/CoreBaseInput';
+import { CoreSlider } from '@/components/core/CoreSlider';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import styles from './Subnetting.module.scss';
 import { calculateSubnet } from './logic';
 

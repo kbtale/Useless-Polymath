@@ -1,9 +1,9 @@
 import type React from 'react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CoreSelect } from '../../../components/core/CoreSelect';
-import { CoreSlider } from '../../../components/core/CoreSlider';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { CoreSelect } from '@/components/core/CoreSelect';
+import { CoreSlider } from '@/components/core/CoreSlider';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import styles from './TimeZones.module.scss';
 import { COMMON_ZONES, calculateDestinationTime } from './logic';
 
