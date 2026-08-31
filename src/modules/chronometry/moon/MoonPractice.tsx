@@ -2,9 +2,9 @@ import clsx from 'clsx';
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FUIButton } from '../../../components/core/FUIButton';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
+import { FUIButton } from '@/components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 import styles from './Moon.module.scss';
 import { getMoonPhase } from './logic';
 

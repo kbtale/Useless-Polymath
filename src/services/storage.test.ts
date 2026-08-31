@@ -37,6 +37,11 @@ describe('StorageService', () => {
     expect(storageService.getLanguage()).toBe('en');
     storageService.setLanguage('es');
     expect(storageService.getLanguage()).toBe('es');
+
+    expect(storageService.getDateFormat()).toBe('DMY');
+    storageService.setDateFormat('MDY');
+    expect(storageService.getDateFormat()).toBe('MDY');
+    expect(localStorage.getItem(STORAGE_KEYS.DATE_FORMAT)).toBe('MDY');
   });
 
   it('handles streak and high score tracking and reset', () => {

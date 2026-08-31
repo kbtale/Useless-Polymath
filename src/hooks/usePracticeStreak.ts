@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { storageService } from '../services/storage';
+import { storageService } from '@/services/storage';
 
 export function usePracticeStreak(moduleId: string) {
   const [streak, setStreakState] = useState<number>(() => {

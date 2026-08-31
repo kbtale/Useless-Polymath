@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import type React from 'react';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { storageService } from '../../services/storage';
+import { storageService } from '@/services/storage';
 import { FUIButton } from '../core/FUIButton';
 import styles from './AppShell.module.scss';
 
@@ -192,6 +192,25 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   </FUIButton>
                 ))}
               </div>
+            </div>
+
+            <div className={styles.settingsRow}>
+              <label htmlFor="settings-date-format-select" className={styles.rowLabel}>
+                {t('date_format', 'Date Format')}
+              </label>
+              <select
+                id="settings-date-format-select"
+                aria-label={t('date_format', 'Date Format')}
+                value={storageService.getDateFormat()}
+                onChange={(e) =>
+                  storageService.setDateFormat(e.target.value as 'DMY' | 'MDY' | 'YMD')
+                }
+                className={styles.selectInput}
+              >
+                <option value="DMY">DD / MM / YYYY (Day - Month - Year)</option>
+                <option value="MDY">MM / DD / YYYY (Month - Day - Year)</option>
+                <option value="YMD">YYYY / MM / DD (Year - Month - Day)</option>
+              </select>
             </div>
 
             <div

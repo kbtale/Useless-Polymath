@@ -4,6 +4,7 @@ export const STORAGE_KEYS = {
   HIDDEN_CATEGORIES: 'polymath_hidden_categories',
   APP_STYLE: 'app-style',
   LANGUAGE: 'language',
+  DATE_FORMAT: 'polymath_date_format',
   streak: (id: string) => `polymath_streak_${id}`,
   highScore: (id: string) => `polymath_high_${id}`,
 } as const;
@@ -87,6 +88,17 @@ class StorageService {
 
   setLanguage(language: string): void {
     this.setItem(STORAGE_KEYS.LANGUAGE, language);
+  }
+
+  getDateFormat(defaultFormat: 'DMY' | 'MDY' | 'YMD' = 'DMY'): 'DMY' | 'MDY' | 'YMD' {
+    return this.getItem<'DMY' | 'MDY' | 'YMD'>(STORAGE_KEYS.DATE_FORMAT, defaultFormat);
+  }
+
+  setDateFormat(format: 'DMY' | 'MDY' | 'YMD'): void {
+    this.setItem(STORAGE_KEYS.DATE_FORMAT, format);
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('polymath:dateformat_changed', { detail: format }));
+    }
   }
 
   getStreak(moduleId: string): number {

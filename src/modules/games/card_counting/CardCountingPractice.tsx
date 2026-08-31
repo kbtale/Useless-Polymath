@@ -2,9 +2,9 @@ import clsx from 'clsx';
 import type React from 'react';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CoreBaseInput } from '../../../components/core/CoreBaseInput';
-import { FUIButton } from '../../../components/core/FUIButton';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { CoreBaseInput } from '@/components/core/CoreBaseInput';
+import { FUIButton } from '@/components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import styles from './CardCounting.module.scss';
 import { type Card, createStandardDeck, dealCard, getHiLoValue, shuffleDeck } from './logic';
 

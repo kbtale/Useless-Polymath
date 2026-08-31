@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreBitRow } from '../../../components/core/CoreBitRow';
-import { CoreSelect } from '../../../components/core/CoreSelect';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { CoreBitRow } from '@/components/core/CoreBitRow';
+import { CoreSelect } from '@/components/core/CoreSelect';
 import { calculateBitwise, OPERATIONS } from './logic';
 import type { BitwiseOperation } from './logic';
 import styles from './Bitwise.module.scss';

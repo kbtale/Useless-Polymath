@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { FUIButton } from '../../../components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { FUIButton } from '@/components/core/FUIButton';
 import { getDayOfWeek, DAYS } from './logic';
 import styles from './Doomsday.module.scss';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 
 export const DoomsdayPractice: React.FC = () => {
   const { t } = useTranslation(['common']);

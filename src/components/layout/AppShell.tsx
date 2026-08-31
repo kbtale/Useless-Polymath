@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import type React from 'react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { storageService } from '../../services/storage';
+import { storageService } from '@/services/storage';
 import { FUIButton } from '../core/FUIButton';
 import styles from './AppShell.module.scss';
 import { SettingsModal } from './SettingsModal';

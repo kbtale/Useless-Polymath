@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { BitBulb } from './components/BitBulb';
 import { getActivePowers } from './logic';
 import styles from './Binary.module.scss';

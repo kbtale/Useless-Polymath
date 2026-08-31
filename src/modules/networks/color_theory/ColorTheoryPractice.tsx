@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreSlider } from '../../../components/core/CoreSlider';
-import { FUIButton } from '../../../components/core/FUIButton';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { CoreSlider } from '@/components/core/CoreSlider';
+import { FUIButton } from '@/components/core/FUIButton';
 import { calculateColorDistance, rgbToHex } from './logic';
 import styles from './ColorTheory.module.scss';
 

@@ -1,9 +1,9 @@
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FUIButton } from '../../../components/core/FUIButton';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { CoreSelect } from '../../../components/core/CoreSelect';
+import { FUIButton } from '@/components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { CoreSelect } from '@/components/core/CoreSelect';
 import styles from './ResistorCodes.module.scss';
 import { BAND_COLORS, calculateResistance, formatOhms } from './logic';
 

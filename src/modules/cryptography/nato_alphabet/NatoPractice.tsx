@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { FUIGlassPanel } from '../../../components/core/FUIGlassPanel';
-import { FUIButton } from '../../../components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { FUIButton } from '@/components/core/FUIButton';
 import { NATO_DICTIONARY } from './logic';
 import styles from './Nato.module.scss';
 import { useTranslation } from 'react-i18next';
-import { usePracticeStreak } from '../../../hooks/usePracticeStreak';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 
 export const NatoPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('nato_alphabet');

@@ -31,53 +31,59 @@ export const getDayOfWeek = (year: number, month: number, day: number): number =
 };
 
 export const calculateDoomsdayWithLog = (year: number, month: number, day: number): DoomsdayLog => {
+  const safeYear = Number.isFinite(year) ? Math.floor(year) : 2025;
+  const safeMonth = Number.isFinite(month) ? Math.min(Math.max(1, Math.floor(month)), 12) : 1;
+  const safeDay = Number.isFinite(day) ? Math.min(Math.max(1, Math.floor(day)), 31) : 1;
+
   const steps = [];
 
-  const century = Math.floor(year / 100);
-  const anchor = (5 * (century % 4) + 2) % 7;
+  const century = Math.floor(safeYear / 100);
+  const anchor = (((5 * (century % 4) + 2) % 7) + 7) % 7;
   steps.push({
     title: 'Century Anchor',
-    input: `Year ${year} (Century ${century})`,
-    result: DAYS[anchor],
-    details: `Anchor for ${century}00s is ${anchor} (${DAYS[anchor]})`,
+    input: `Year ${safeYear} (Century ${century})`,
+    result: DAYS[anchor] || DAYS[0],
+    details: `Anchor for ${century}00s is ${anchor} (${DAYS[anchor] || DAYS[0]})`,
   });
 
-  const yearPart = year % 100;
+  const yearPart = ((safeYear % 100) + 100) % 100;
   const a = Math.floor(yearPart / 12);
   const b = yearPart % 12;
   const c = Math.floor(b / 4);
-  const yearDoomsday = (anchor + a + b + c) % 7;
+  const yearDoomsday = (((anchor + a + b + c) % 7) + 7) % 7;
   steps.push({
     title: 'Year Anchor',
-    input: `Year XX${yearPart}`,
-    result: DAYS[yearDoomsday],
+    input: `Year XX${yearPart.toString().padStart(2, '0')}`,
+    result: DAYS[yearDoomsday] || DAYS[0],
     details: `(${a} * 12) + ${b} + (${c} leap days) = Doomsday ${yearDoomsday}`,
   });
 
-  const leap = isLeapYear(year);
+  const leap = isLeapYear(safeYear);
   const monthDoomsdays = [leap ? 4 : 3, leap ? 29 : 28, 14, 4, 9, 6, 11, 8, 5, 10, 7, 12];
-  const monthAnchorDay = monthDoomsdays[month - 1];
+  const monthAnchorDay = monthDoomsdays[safeMonth - 1] ?? 4;
   steps.push({
     title: 'Month Anchor',
-    input: `${month}/${day} (Leap: ${leap})`,
-    result: `${month}/${monthAnchorDay}`,
-    details: `Doomsday for month ${month} is the ${monthAnchorDay}${getDaySuffix(monthAnchorDay)}`,
+    input: `${safeMonth}/${safeDay} (Leap: ${leap})`,
+    result: `${safeMonth}/${monthAnchorDay}`,
+    details: `Doomsday for month ${safeMonth} is the ${monthAnchorDay}${getDaySuffix(monthAnchorDay)}`,
   });
 
-  const diff = day - monthAnchorDay;
-  let result = (yearDoomsday + diff) % 7;
-  if (result < 0) result += 7;
+  const diff = safeDay - monthAnchorDay;
+  let result = (((yearDoomsday + diff) % 7) + 7) % 7;
+  if (Number.isNaN(result) || result < 0 || result > 6) result = 0;
+
+  const finalDayName = DAYS[result] || DAYS[0];
 
   steps.push({
     title: 'Summation',
-    input: `Target ${day} vs Anchor ${monthAnchorDay}`,
-    result: DAYS[result],
+    input: `Target ${safeDay} vs Anchor ${monthAnchorDay}`,
+    result: finalDayName,
     details: `Diff: ${diff} days. (${yearDoomsday} + ${diff}) mod 7 = ${result}`,
   });
 
   return {
     steps,
-    finalDay: DAYS[result],
+    finalDay: finalDayName,
     finalNumber: result,
   };
 };
