@@ -33,7 +33,7 @@ const CardDisplay: React.FC<{ card: Card }> = memo(({ card }) => {
 });
 
 export const CardCountingPractice: React.FC = () => {
-  const { t } = useTranslation('card_counting');
+  const { t } = useTranslation(['card_counting', 'common']);
 
   const [, setDeck] = useState<Card[]>(() => shuffleDeck(createStandardDeck()));
   const [currentCard, setCurrentCard] = useState<Card | null>(null);
@@ -108,7 +108,7 @@ export const CardCountingPractice: React.FC = () => {
 
         {!isActive && !isFinished && (
           <FUIButton onClick={startDrill} variant="solid">
-            Start
+            {t('start', { ns: 'common' })}
           </FUIButton>
         )}
 
@@ -170,7 +170,7 @@ export const CardCountingPractice: React.FC = () => {
 
             {feedback && (
               <FUIButton onClick={startDrill} variant="outline" style={{ marginTop: '1rem' }}>
-                Retry
+                {t('retry', { ns: 'common' })}
               </FUIButton>
             )}
           </div>
