@@ -127,3 +127,27 @@
     }
   }
 }
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.questionBlock {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.inputWrap {
+  max-width: 200px;
+  width: 100%;
+}
+
+.tableSection {
+  width: 100%;
+}
+
+.tableTitle {
+  margin-top: 2rem;
+}

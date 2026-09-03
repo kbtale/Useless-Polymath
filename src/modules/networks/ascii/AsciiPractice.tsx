@@ -57,14 +57,14 @@ export const AsciiPractice: React.FC = () => {
     <div className={styles.toolContainer}>
       <FUIGlassPanel className={styles.panel}>
         <div className={styles.container}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+          <div className={styles.headerRow}>
             <h2 className={styles.title}>{t('practice_title')}</h2>
             <span className={styles.streakDisplay}>
               {t('streak', { ns: 'common' })}: {streak}
             </span>
           </div>
 
-          <div style={{ textAlign: 'center', margin: '2rem 0' }}>
+          <div className={styles.questionBlock}>
             <p className={styles.label}>
               {mode === 'charToCode' ? t('label_convert_to_dec') : t('label_convert_to_char')}
             </p>
@@ -73,7 +73,7 @@ export const AsciiPractice: React.FC = () => {
             </div>
           </div>
 
-          <div style={{ maxWidth: 200, width: '100%' }}>
+          <div className={styles.inputWrap}>
             <CoreBaseInput
               value={userAnswer}
               onChangeValue={setUserAnswer}

@@ -57,8 +57,8 @@ export const AsciiTool: React.FC = () => {
             </div>
           </div>
 
-          <div style={{ width: '100%' }}>
-            <h3 className={styles.label} style={{ marginTop: '2rem' }}>
+          <div className={styles.tableSection}>
+            <h3 className={clsx(styles.label, styles.tableTitle)}>
               {t('label_table')}
             </h3>
             <div className={styles.grid}>
