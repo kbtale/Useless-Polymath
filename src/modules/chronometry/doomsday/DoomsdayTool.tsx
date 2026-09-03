@@ -5,15 +5,7 @@ import { CoreDateInput } from '@/components/core/CoreDateInput';
 import { FUIButton } from '@/components/core/FUIButton';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import styles from './Doomsday.module.scss';
-import { type DoomsdayLog, calculateDoomsdayWithLog } from './logic';
-
-const toTitleCase = (str: string): string => {
-  return str
-    .toLowerCase()
-    .split(' ')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-};
+import { type DoomsdayLog, DAY_KEYS, calculateDoomsdayWithLog } from './logic';
 
 export const DoomsdayTool: React.FC = () => {
   const { t } = useTranslation(['doomsday', 'common']);
@@ -70,10 +62,12 @@ export const DoomsdayTool: React.FC = () => {
           </FUIButton>
         </div>
 
-        {log?.finalDay && (
+        {log?.finalDayIndex !== undefined && (
           <div className={styles.resultDisplay}>
             <div className={styles.resultLabel}>{t('calculated_day', { ns: 'common' })}</div>
-            <div className={styles.resultValue}>{log.finalDay.toUpperCase()}</div>
+            <div className={styles.resultValue}>
+              {t(`days.${DAY_KEYS[log.finalDayIndex]}`, { ns: 'doomsday' })}
+            </div>
             <div className={styles.helperText}>{t('see_full_calculations', { ns: 'common' })}</div>
           </div>
         )}
@@ -88,7 +82,7 @@ export const DoomsdayTool: React.FC = () => {
               <div key={idx} className={styles.logStep}>
                 <div className={styles.stepHeader}>
                   <span>
-                    {t('step', { ns: 'common' })} {idx + 1}: {step.title}
+                    {t('step', { ns: 'common' })} {idx + 1}: {t(step.titleKey, { ns: 'doomsday' })}
                   </span>
                 </div>
                 <div className={styles.stepContent}>
@@ -102,7 +96,7 @@ export const DoomsdayTool: React.FC = () => {
             <div className={styles.finalResult}>
               <div className={styles.resultContent}>
                 {t('final_result')}: {t('total')} ({log.finalNumber}) MOD 7 = {log.finalNumber} (
-                {toTitleCase(log.finalDay || '')})
+                {t(`days.${DAY_KEYS[log.finalDayIndex]}`, { ns: 'doomsday' })})
               </div>
             </div>
           </div>
