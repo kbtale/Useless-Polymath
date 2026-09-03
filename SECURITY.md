@@ -6,7 +6,7 @@ Useless Polymath is deployed continuously from `master`. Only the latest version
 
 | Version | Supported |
 | ------- | --------- |
-| Latest (0.0.1) | Yes |
+| Latest (0.0.5) | Yes |
 
 ## Reporting a Vulnerability
 
