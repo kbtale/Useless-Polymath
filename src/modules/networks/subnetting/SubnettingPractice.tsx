@@ -68,20 +68,18 @@ export const SubnettingPractice: React.FC = () => {
     <div className={styles.toolContainer}>
       <FUIGlassPanel className={styles.panel}>
         <div className={styles.container}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+          <div className={styles.headerRow}>
             <h2 className={styles.title}>{t('practice_title')}</h2>
-            <span style={{ fontFamily: 'JetBrains Mono', color: 'var(--text-highlight)' }}>
+            <span className={styles.streakValue}>
               {t('streak', { ns: 'common' })}: {streak}
             </span>
           </div>
 
-          <div style={{ textAlign: 'center', margin: '2rem 0' }}>
+          <div className={styles.questionBlock}>
             <p className={styles.label}>{t('label_calculate')}</p>
-            <h3 style={{ fontSize: '1.5rem', margin: '0.5rem 0', color: 'var(--text-main)' }}>
-              {getQuestionText()}
-            </h3>
+            <h3 className={styles.questionTitle}>{getQuestionText()}</h3>
             <p className={styles.label}>{t('label_for')}</p>
-            <div style={{ fontSize: '2rem', fontFamily: 'JetBrains Mono', marginTop: '1rem' }}>
+            <div className={styles.ipDisplay}>
               {targetIp} / {targetCidr}
             </div>
           </div>
@@ -92,8 +90,9 @@ export const SubnettingPractice: React.FC = () => {
               onChangeValue={setUserAnswer}
               placeholder={targetType === 'hosts' ? '123' : 'x.x.x.x'}
               className={clsx(
-                feedback === 'correct' && 'border-green-500 text-green-500',
-                feedback === 'incorrect' && 'border-red-500 text-red-500',
+                styles.practiceInput,
+                feedback === 'correct' && styles.correct,
+                feedback === 'incorrect' && styles.incorrect,
               )}
             />
           </div>
@@ -101,7 +100,7 @@ export const SubnettingPractice: React.FC = () => {
           <FUIButton onClick={handleSubmit}>{t('submit', { ns: 'common' })}</FUIButton>
 
           {feedback === 'incorrect' && (
-            <p style={{ color: 'var(--color-error)', fontFamily: 'JetBrains Mono' }}>
+            <p className={styles.errorText}>
               {t('incorrect_try_again', { ns: 'common' })}
             </p>
           )}

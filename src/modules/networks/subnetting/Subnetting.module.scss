@@ -68,3 +68,63 @@
     color: $text-main;
   }
 }
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.streakValue {
+  font-family: $font-mono;
+  color: $text-highlight;
+}
+
+.questionBlock {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.questionTitle {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  color: $text-main;
+}
+
+.ipDisplay {
+  font-size: 2rem;
+  font-family: $font-mono;
+  margin-top: 1rem;
+}
+
+.practiceInput {
+}
+
+.correct {
+  border-color: $text-highlight;
+  color: $text-highlight;
+}
+
+.incorrect {
+  border-color: $color-error;
+  color: $color-error;
+}
+
+.errorText {
+  color: $color-error;
+  font-family: $font-mono;
+}
+
+.sliderHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.spanTwo {
+  grid-column: span 2;
+}
+
+.invalidResult {
+  text-align: center;
+  color: $color-error;
+}
