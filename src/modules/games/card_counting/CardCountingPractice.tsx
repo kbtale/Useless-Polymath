@@ -24,7 +24,7 @@ const CardDisplay: React.FC<{ card: Card }> = memo(({ card }) => {
         <span>{suitSymbol}</span>
       </div>
       <div className={styles.center}>{suitSymbol}</div>
-      <div className={styles.corner} style={{ transform: 'rotate(180deg)' }}>
+      <div className={styles.cornerFlipped}>
         <span>{card.rank}</span>
         <span>{suitSymbol}</span>
       </div>
@@ -95,12 +95,7 @@ export const CardCountingPractice: React.FC = () => {
           {isActive && currentCard ? (
             <CardDisplay card={currentCard} />
           ) : (
-            <div
-              style={{
-                color: 'var(--text-dim, rgba(255,255,255,0.5))',
-                fontFamily: 'var(--font-mono)',
-              }}
-            >
+            <div className={styles.promptPlaceholder}>
               {isFinished ? t('feedback_finished') : t('practice_prompt')}
             </div>
           )}
@@ -113,16 +108,8 @@ export const CardCountingPractice: React.FC = () => {
         )}
 
         {isFinished && (
-          <div
-            style={{
-              width: '100%',
-              maxWidth: '300px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1rem',
-            }}
-          >
-            <p className={styles.label} style={{ textAlign: 'center' }}>
+          <div className={styles.answerColumn}>
+            <p className={clsx(styles.label, styles.labelCenter)}>
               {t('practice_question')}
             </p>
 
@@ -138,28 +125,22 @@ export const CardCountingPractice: React.FC = () => {
             />
 
             {!feedback && (
-              <FUIButton onClick={checkAnswer} variant="solid" style={{ width: '100%' }}>
+              <FUIButton onClick={checkAnswer} variant="solid" className={styles.wideButton}>
                 {t('submit')}
               </FUIButton>
             )}
 
             {feedback && (
               <div
+                className={styles.feedbackBox}
                 style={{
-                  marginTop: '1rem',
-                  padding: '0.5rem',
                   color:
                     feedback === 'correct'
-                      ? 'var(--text-highlight, #4ade80)'
-                      : 'var(--color-error, #f87171)',
+                      ? 'var(--text-highlight)'
+                      : 'var(--color-error)',
                   border: `1px solid ${
-                    feedback === 'correct'
-                      ? 'var(--text-highlight, #4ade80)'
-                      : 'var(--color-error, #f87171)'
+                    feedback === 'correct' ? 'var(--text-highlight)' : 'var(--color-error)'
                   }`,
-                  background: 'var(--bg-canvas)',
-                  fontFamily: 'var(--font-mono)',
-                  textAlign: 'center',
                 }}
               >
                 {t(feedback === 'correct' ? 'feedback_correct' : 'feedback_incorrect', {
@@ -169,7 +150,7 @@ export const CardCountingPractice: React.FC = () => {
             )}
 
             {feedback && (
-              <FUIButton onClick={startDrill} variant="outline" style={{ marginTop: '1rem' }}>
+              <FUIButton onClick={startDrill} variant="outline" className={clsx(styles.wideButton, styles.retryButton)}>
                 {t('retry', { ns: 'common' })}
               </FUIButton>
             )}

@@ -142,3 +142,40 @@
   width: 100%;
   max-width: 500px;
 }
+
+.cornerFlipped {
+  transform: rotate(180deg);
+}
+
+.promptPlaceholder {
+  color: $text-dim;
+  font-family: $font-mono;
+}
+
+.answerColumn {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.labelCenter {
+  text-align: center;
+}
+
+.wideButton {
+  width: 100%;
+}
+
+.retryButton {
+  margin-top: 1rem;
+}
+
+.feedbackBox {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: $bg-canvas;
+  font-family: $font-mono;
+  text-align: center;
+}
