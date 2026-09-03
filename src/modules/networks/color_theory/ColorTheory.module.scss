@@ -74,3 +74,48 @@
     text-transform: uppercase;
   }
 }
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.streakValue {
+  font-family: $font-mono;
+  color: $text-highlight;
+}
+
+.flexRowCentered {
+  align-items: center;
+}
+
+.centerCol {
+  text-align: center;
+}
+
+.colorPreviewSpacing {
+  margin-bottom: 1rem;
+}
+
+.labelRed {
+  color: $color-error;
+}
+
+.labelGreen {
+  color: $text-highlight;
+}
+
+.labelBlue {
+  color: $text-dim;
+}
+
+.actionRow {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.scoreValue {
+  font-size: 2rem;
+}

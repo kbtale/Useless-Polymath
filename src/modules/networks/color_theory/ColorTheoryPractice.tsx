@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreSlider } from '@/components/core/CoreSlider';
@@ -51,32 +52,27 @@ export const ColorTheoryPractice: React.FC = () => {
     <div className={styles.toolContainer}>
       <FUIGlassPanel className={styles.panel}>
         <div className={styles.container}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+          <div className={styles.headerRow}>
             <h2 className={styles.title}>{t('practice_title')}</h2>
-            <span style={{ fontFamily: 'JetBrains Mono', color: '#4ade80' }}>
+            <span className={styles.streakValue}>
               {t('streak', { ns: 'common' })}: {streak}
             </span>
           </div>
 
-          <div className={styles.flexRow} style={{ alignItems: 'center' }}>
-            {}
-            <div style={{ textAlign: 'center' }}>
+          <div className={clsx(styles.flexRow, styles.flexRowCentered)}>
+            <div className={styles.centerCol}>
               <div
-                className={styles.colorPreview}
-                style={{
-                  backgroundColor: rgbToHex(targetR, targetG, targetB),
-                  marginBottom: '1rem',
-                }}
+                className={clsx(styles.colorPreview, styles.colorPreviewSpacing)}
+                style={{ backgroundColor: rgbToHex(targetR, targetG, targetB) }}
               >
                 <span className={styles.hexDisplay}>{t('target', { ns: 'common' })}</span>
               </div>
             </div>
 
-            {}
-            <div style={{ textAlign: 'center' }}>
+            <div className={styles.centerCol}>
               <div
-                className={styles.colorPreview}
-                style={{ backgroundColor: rgbToHex(userR, userG, userB), marginBottom: '1rem' }}
+                className={clsx(styles.colorPreview, styles.colorPreviewSpacing)}
+                style={{ backgroundColor: rgbToHex(userR, userG, userB) }}
               >
                 <span className={styles.hexDisplay}>{t('result', { ns: 'common' })}</span>
               </div>
@@ -85,20 +81,20 @@ export const ColorTheoryPractice: React.FC = () => {
 
           <div className={styles.controls}>
             <div className={styles.sliderGroup}>
-              <label style={{ color: '#ff6b6b' }}>{t('label_red')}</label>
+              <label className={styles.labelRed}>{t('label_red')}</label>
               <CoreSlider min={0} max={255} value={userR} onChange={setUserR} />
             </div>
             <div className={styles.sliderGroup}>
-              <label style={{ color: '#4ade80' }}>{t('label_green')}</label>
+              <label className={styles.labelGreen}>{t('label_green')}</label>
               <CoreSlider min={0} max={255} value={userG} onChange={setUserG} />
             </div>
             <div className={styles.sliderGroup}>
-              <label style={{ color: '#60a5fa' }}>{t('label_blue')}</label>
+              <label className={styles.labelBlue}>{t('label_blue')}</label>
               <CoreSlider min={0} max={255} value={userB} onChange={setUserB} />
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <div className={styles.actionRow}>
             <FUIButton onClick={handleSubmit}>{t('submit', { ns: 'common' })}</FUIButton>
             <FUIButton onClick={generateColor} variant="outline">
               {t('next', { ns: 'common' })}
@@ -106,7 +102,10 @@ export const ColorTheoryPractice: React.FC = () => {
           </div>
 
           {score !== null && (
-            <h3 style={{ fontSize: '2rem', color: score > 90 ? '#4ade80' : '#ff6b6b' }}>
+            <h3
+              className={styles.scoreValue}
+              style={{ color: score > 90 ? 'var(--text-highlight)' : 'var(--color-error)' }}
+            >
               {score.toFixed(1)}%
             </h3>
           )}

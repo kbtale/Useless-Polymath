@@ -27,19 +27,19 @@ export const ColorTheoryTool: React.FC = () => {
 
             <div className={styles.controls}>
               <div className={styles.sliderGroup}>
-                <label style={{ color: '#ff6b6b' }}>
+                <label className={styles.labelRed}>
                   {t('label_red')} ({r})
                 </label>
                 <CoreSlider min={0} max={255} value={r} onChange={setR} />
               </div>
               <div className={styles.sliderGroup}>
-                <label style={{ color: '#4ade80' }}>
+                <label className={styles.labelGreen}>
                   {t('label_green')} ({g})
                 </label>
                 <CoreSlider min={0} max={255} value={g} onChange={setG} />
               </div>
               <div className={styles.sliderGroup}>
-                <label style={{ color: '#60a5fa' }}>
+                <label className={styles.labelBlue}>
                   {t('label_blue')} ({b})
                 </label>
                 <CoreSlider min={0} max={255} value={b} onChange={setB} />
