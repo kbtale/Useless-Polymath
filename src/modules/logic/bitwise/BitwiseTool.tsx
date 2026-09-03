@@ -28,7 +28,7 @@ export const BitwiseTool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.controlRow}>
-          <div style={{ width: '200px' }}>
+          <div className={styles.controlField}>
             <CoreSelect
               label={t('operation', { defaultValue: 'OPERATION' })}
               options={OPERATIONS}

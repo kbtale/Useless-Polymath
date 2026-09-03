@@ -1,5 +1,6 @@
 import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 import React, { useState } from 'react';
+import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { FUIButton } from '@/components/core/FUIButton';
@@ -47,18 +48,16 @@ export const CalendarOrdinalPractice: React.FC = () => {
   return (
     <div className={styles.toolLayout}>
       <FUIGlassPanel className={styles.panel}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
+        <div className={styles.headerRow}>
           <span className={styles.key}>PRACTICE MODE</span>
           <span className={styles.key}>STREAK: {streak}</span>
         </div>
 
         <h2 className={styles.title}>CALCULATE ORDINAL DAY</h2>
 
-        <div style={{ textAlign: 'center', margin: '2rem 0' }}>
-          <div style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>
-            TARGET DATE
-          </div>
-          <div style={{ fontSize: '3rem', fontFamily: 'JetBrains Mono', fontWeight: 800 }}>
+        <div className={styles.questionBlock}>
+          <div className={styles.targetLabel}>TARGET DATE</div>
+          <div className={styles.targetValue}>
             {targetDate.y}-{targetDate.m.toString().padStart(2, '0')}-
             {targetDate.d.toString().padStart(2, '0')}
           </div>
@@ -66,11 +65,10 @@ export const CalendarOrdinalPractice: React.FC = () => {
 
         <div className={styles.dateInputContainer}>
           <input
-            className={styles.dateBlock}
+            className={clsx(styles.dateBlock, styles.fullWidthInput)}
             placeholder="???"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            style={{ width: '100%' }}
             autoFocus
           />
         </div>
@@ -83,14 +81,10 @@ export const CalendarOrdinalPractice: React.FC = () => {
 
         {feedback && (
           <div
+            className={styles.feedbackPanel}
             style={{
-              marginTop: '1rem',
-              padding: '1rem',
-              textAlign: 'center',
-              border: '2px solid black',
-              background: feedback === 'correct' ? '#eee' : '#000',
-              color: feedback === 'correct' ? '#000' : '#fff',
-              fontWeight: 700,
+              background: feedback === 'correct' ? 'var(--text-main)' : 'var(--bg-canvas)',
+              color: feedback === 'correct' ? 'var(--bg-canvas)' : 'var(--text-main)',
             }}
           >
             {feedback === 'correct'

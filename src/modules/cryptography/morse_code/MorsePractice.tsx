@@ -51,7 +51,7 @@ export const MorsePractice: React.FC = () => {
 
         {question && <div className={styles.flashcard}>{question.morse}</div>}
 
-        <div style={{ width: '100px' }}>
+        <div className={styles.inputWrap}>
           <CoreBaseInput
             value={input}
             onChangeValue={setInput}
@@ -59,7 +59,7 @@ export const MorsePractice: React.FC = () => {
             maxLength={1}
             transformToUpper={true}
             onEnter={checkAnswer}
-            style={{ textAlign: 'center', fontSize: '2rem' }}
+            className={styles.answerInput}
           />
         </div>
 

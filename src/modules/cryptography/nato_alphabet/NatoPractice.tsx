@@ -87,9 +87,9 @@ export const NatoPractice: React.FC = () => {
                   style={{
                     borderColor:
                       feedback === 'correct' && opt === correctAnswer
-                        ? '#2ecc71'
+                        ? 'var(--text-highlight)'
                         : feedback === 'incorrect' && opt === correctAnswer
-                          ? '#2ecc71'
+                          ? 'var(--text-highlight)'
                           : feedback === 'incorrect' &&
                               options.includes(opt) &&
                               opt !== correctAnswer
