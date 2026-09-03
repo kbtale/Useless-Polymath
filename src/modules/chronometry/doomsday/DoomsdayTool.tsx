@@ -88,12 +88,12 @@ export const DoomsdayTool: React.FC = () => {
               <div key={idx} className={styles.logStep}>
                 <div className={styles.stepHeader}>
                   <span>
-                    Step {idx + 1}: {step.title}
+                    {t('step', { ns: 'common' })} {idx + 1}: {step.title}
                   </span>
                 </div>
                 <div className={styles.stepContent}>
-                  <div>Input: {step.input}</div>
-                  <div>Result: {step.result}</div>
+                  <div>{t('input_label', { ns: 'common' })}: {step.input}</div>
+                  <div>{t('result_label', { ns: 'common' })}: {step.result}</div>
                   {step.details && <div style={{ opacity: 0.6 }}>{step.details}</div>}
                 </div>
               </div>
