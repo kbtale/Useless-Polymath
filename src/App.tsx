@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CoreMarkdownRenderer } from '@/components/core/CoreMarkdownRenderer';
+import { ErrorBoundary } from '@/components/core/ErrorBoundary';
 import { ModuleLoadingFallback } from '@/components/core/ModuleLoadingFallback';
 import { AppShell } from '@/components/layout/AppShell';
 import { useModuleNavigation } from '@/hooks/useModuleNavigation';
@@ -45,9 +46,11 @@ function AppContent() {
     const Component = mode === 'practice' ? definition.practice : definition.tool;
 
     return (
-      <Suspense fallback={<ModuleLoadingFallback />}>
-        <Component />
-      </Suspense>
+      <ErrorBoundary key={activeModuleId}>
+        <Suspense fallback={<ModuleLoadingFallback />}>
+          <Component />
+        </Suspense>
+      </ErrorBoundary>
     );
   };
 
