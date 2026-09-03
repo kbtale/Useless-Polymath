@@ -32,5 +32,12 @@
   "correct": "Corretto!",
   "incorrect": "Errato!",
   "correct_answer": "Risposta corretta: {{answer}}",
-  "date_format": "Formato data"
+  "date_format": "Formato data",
+  "start": "Inizia",
+  "retry": "Riprova",
+  "step": "Passo",
+  "input_label": "Input",
+  "result_label": "Risultato",
+  "style_label": "Stile",
+  "confirm_reset_all": "Sei sicuro di voler reimpostare tutte le serie e i punteggi più alti? Questa azione non può essere annullata."
 }

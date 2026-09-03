@@ -32,5 +32,12 @@
   "correct": "¡Correcto!",
   "incorrect": "¡Incorrecto!",
   "correct_answer": "Respuesta correcta: {{answer}}",
-  "date_format": "Formato de fecha"
+  "date_format": "Formato de fecha",
+  "start": "Iniciar",
+  "retry": "Reintentar",
+  "step": "Paso",
+  "input_label": "Entrada",
+  "result_label": "Resultado",
+  "style_label": "Estilo",
+  "confirm_reset_all": "¿Estás seguro de que quieres restablecer todas las rachas y puntuaciones máximas? Esta acción no se puede deshacer."
 }
