@@ -124,9 +124,7 @@ export const AppShell: React.FC<AppShellProps> = ({
 
   const handleMasterReset = () => {
     if (
-      window.confirm(
-        'Are you sure you want to reset all practice streaks and high scores? This action cannot be undone.',
-      )
+      window.confirm(t('confirm_reset_all'))
     ) {
       storageService.resetAllScores(MODULES);
       setScoresVersion((v) => v + 1);
@@ -199,7 +197,7 @@ export const AppShell: React.FC<AppShellProps> = ({
         <div className={styles.quickControls}>
           <div className={styles.styleControl}>
             <label htmlFor="theme-style-select" className={styles.styleLabel}>
-              STYLE:
+              {t('style_label')}:
             </label>
             <select
               id="theme-style-select"
