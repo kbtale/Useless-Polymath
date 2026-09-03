@@ -63,7 +63,7 @@ export const ResistorPractice: React.FC = () => {
         {t('streak')}: {streak}
       </div>
 
-      <div className={styles.resistorDisplay} style={{ width: '300px', height: '100px' }}>
+      <div className={clsx(styles.resistorDisplay, styles.resistorDisplayFixed)}>
         <svg viewBox="0 0 400 150">
           <path d="M0,75 L50,75 M350,75 L400,75" stroke="#999" strokeWidth="10" />
           <path
@@ -106,7 +106,7 @@ export const ResistorPractice: React.FC = () => {
           allowedChars={/^[0-9.kKmM]*$/}
         />
 
-        <FUIButton onClick={checkAnswer} variant="solid" style={{ width: '100%' }}>
+        <FUIButton onClick={checkAnswer} variant="solid" className={styles.wideButton}>
           {t('submit')}
         </FUIButton>
 

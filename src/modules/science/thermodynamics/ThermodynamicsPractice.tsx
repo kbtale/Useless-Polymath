@@ -52,8 +52,8 @@ export const ThermodynamicsPractice: React.FC = () => {
       <div className={styles.practiceLayout}>
         <div className={styles.targetTemp}>{targetC}°C</div>
 
-        <div style={{ width: '100%' }}>
-          <div className={styles.label} style={{ marginBottom: '0.5rem' }}>
+        <div className={styles.section}>
+          <div className={clsx(styles.label, styles.sectionLabel)}>
             {t('practice_convert')}
           </div>
           <CoreBaseInput
@@ -66,7 +66,7 @@ export const ThermodynamicsPractice: React.FC = () => {
           />
         </div>
 
-        <FUIButton onClick={checkAnswer} variant="solid" style={{ width: '100%' }}>
+        <FUIButton onClick={checkAnswer} variant="solid" className={styles.wideButton}>
           {t('submit')}
         </FUIButton>
 

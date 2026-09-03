@@ -67,7 +67,7 @@ export const SemaphorePractice: React.FC = () => {
             transformToUpper
           />
           <div className={styles.submitBtn}>
-            <FUIButton onClick={checkAnswer} variant="solid" style={{ width: '100%' }}>
+            <FUIButton onClick={checkAnswer} variant="solid" className={styles.wideButton}>
               {t('submit', 'SUBMIT')}
             </FUIButton>
           </div>

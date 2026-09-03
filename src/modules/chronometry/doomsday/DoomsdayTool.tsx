@@ -94,7 +94,7 @@ export const DoomsdayTool: React.FC = () => {
                 <div className={styles.stepContent}>
                   <div>{t('input_label', { ns: 'common' })}: {step.input}</div>
                   <div>{t('result_label', { ns: 'common' })}: {step.result}</div>
-                  {step.details && <div style={{ opacity: 0.6 }}>{step.details}</div>}
+                  {step.details && <div className={styles.stepDetails}>{step.details}</div>}
                 </div>
               </div>
             ))}

@@ -144,3 +144,27 @@
   margin-top: $spacing-md;
   font-size: 0.7rem;
 }
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.questionBlock {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.inputWrap {
+  max-width: 200px;
+  width: 100%;
+}
+
+.amountField {
+  flex: 1;
+}
+
+.unitField {
+  width: 100px;
+}

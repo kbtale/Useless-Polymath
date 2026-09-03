@@ -68,7 +68,7 @@ export const CaesarPractice: React.FC = () => {
 
         <div className={styles.hint}>{t('hint_shift', { shift })}</div>
 
-        <div style={{ width: '100%', maxWidth: '300px' }}>
+        <div className={styles.answerWrap}>
           <CoreBaseInput
             value={userInput}
             onChangeValue={setUserInput}

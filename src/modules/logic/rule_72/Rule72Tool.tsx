@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import clsx from 'clsx';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { calculateDoublingTime, preciseDoublingTime } from './logic';
@@ -43,10 +44,7 @@ export const Rule72Tool: React.FC = () => {
 
             <div className={styles.resultBox}>
               <span className={styles.resultLabel}>{t('years_precise')}</span>
-              <div
-                className={styles.resultValue}
-                style={{ fontSize: '1.5rem', marginTop: '0.4rem' }}
-              >
+              <div className={clsx(styles.resultValue, styles.resultValueDetail)}>
                 {preciseResult.toFixed(2)}
               </div>
               <div className={styles.difference}>

@@ -29,7 +29,7 @@ export const NatoTool: React.FC = () => {
 
         <div className={styles.outputArea}>
           {result.length === 0 && (
-            <div style={{ padding: '1rem', color: '#666', fontFamily: 'JetBrains Mono' }}></div>
+            <div className={styles.emptyHint}></div>
           )}
           {result.map((item, idx) => (
             <div key={idx} className={clsx(styles.card, !item.word && styles.unknown)}>

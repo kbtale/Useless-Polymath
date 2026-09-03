@@ -60,7 +60,7 @@ export const BraillePractice: React.FC = () => {
           </div>
         )}
 
-        <div style={{ width: '100px' }}>
+        <div className={styles.inputWrap}>
           <CoreBaseInput
             value={input}
             onChangeValue={setInput}
@@ -68,7 +68,7 @@ export const BraillePractice: React.FC = () => {
             maxLength={1}
             transformToUpper={true}
             onEnter={checkAnswer}
-            style={{ textAlign: 'center', fontSize: '2rem' }}
+            className={styles.answerInput}
           />
         </div>
 

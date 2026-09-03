@@ -23,7 +23,7 @@ const CardDisplay: React.FC<{ card: Card }> = ({ card }) => {
         <span>{suitSymbol}</span>
       </div>
       <div className={styles.center}>{suitSymbol}</div>
-      <div className={styles.corner} style={{ transform: 'rotate(180deg)' }}>
+      <div className={styles.cornerFlipped}>
         <span>{card.rank}</span>
         <span>{suitSymbol}</span>
       </div>
@@ -64,9 +64,7 @@ export const CardCountingTool: React.FC = () => {
             {currentCard ? (
               <CardDisplay card={currentCard} />
             ) : (
-              <div style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'monospace' }}>
-                [DECK READY]
-              </div>
+              <div className={styles.promptPlaceholder}>[DECK READY]</div>
             )}
           </div>
 

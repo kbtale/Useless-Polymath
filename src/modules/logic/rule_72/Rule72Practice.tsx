@@ -62,7 +62,7 @@ export const Rule72Practice: React.FC = () => {
           <div className={styles.questionValue}>{questionRate}%</div>
         </div>
 
-        <div style={{ width: '200px' }}>
+        <div className={styles.inputWrap}>
           <CoreBaseInput
             value={userInput}
             onChangeValue={setUserInput}

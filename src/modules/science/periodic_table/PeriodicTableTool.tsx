@@ -100,7 +100,7 @@ export const PeriodicTableTool: React.FC = () => {
               </div>
             </>
           ) : (
-            <div style={{ fontStyle: 'italic', opacity: 0.5 }}>{t('placeholder_hover')}</div>
+            <div className={styles.placeholderHint}>{t('placeholder_hover')}</div>
           )}
         </div>
       </FUIGlassPanel>

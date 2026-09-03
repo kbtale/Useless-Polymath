@@ -97,3 +97,38 @@
     color: white;
   }
 }
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.questionBlock {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.targetLabel {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.targetValue {
+  font-size: 3rem;
+  font-family: $font-mono;
+  font-weight: 800;
+}
+
+.fullWidthInput {
+  width: 100%;
+}
+
+.feedbackPanel {
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: center;
+  border: 2px solid $line-color;
+  font-weight: 700;
+}

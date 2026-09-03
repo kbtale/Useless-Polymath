@@ -1,6 +1,7 @@
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { CoreSlider } from '@/components/core/CoreSlider';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
@@ -35,7 +36,7 @@ export const SubnettingTool: React.FC = () => {
           </div>
 
           <div className={styles.inputGroup}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div className={styles.sliderHeader}>
               <label htmlFor="subnetting-cidr-slider" className={styles.label}>
                 {t('label_cidr')}
               </label>
@@ -68,21 +69,14 @@ export const SubnettingTool: React.FC = () => {
                 <span className={styles.resLabel}>{t('label_hosts')}</span>
                 <span className={styles.resValue}>{result.hosts.toLocaleString()}</span>
               </div>
-              <div className={styles.resultItem} style={{ gridColumn: 'span 2' }}>
+              <div className={clsx(styles.resultItem, styles.spanTwo)}>
                 <span className={styles.resLabel}>{t('label_range')}</span>
                 <span className={styles.resValue}>{result.range}</span>
               </div>
             </div>
           ) : (
             <div className={styles.results}>
-              <div
-                className={styles.resultItem}
-                style={{
-                  gridColumn: 'span 2',
-                  textAlign: 'center',
-                  color: 'var(--color-error)',
-                }}
-              >
+              <div className={clsx(styles.resultItem, styles.spanTwo, styles.invalidResult)}>
                 {t('label_invalid_ip')}
               </div>
             </div>

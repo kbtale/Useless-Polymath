@@ -64,7 +64,7 @@ export const BitwisePractice: React.FC = () => {
         </div>
 
         {question && (
-          <div className={styles.toolLayout} style={{ width: '100%' }}>
+          <div className={styles.toolLayout}>
             <div className={styles.bitRowWrapper}>
               <div className={styles.sectionTitle}>A ({question.a})</div>
               <CoreBitRow value={question.a} onChange={() => {}} bits={8} interactive={false} />

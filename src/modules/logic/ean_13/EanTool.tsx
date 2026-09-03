@@ -28,8 +28,8 @@ export const EanTool: React.FC = () => {
         {cleanInput.split('').map((d, i) => (
           <div
             key={i}
-            className={clsx(styles.bar, styles.short)}
-            style={{ opacity: Number(d) % 2 === 0 ? 1 : 0.3, width: '3px' }}
+            className={clsx(styles.bar, styles.short, styles.digitBar)}
+            style={{ opacity: Number(d) % 2 === 0 ? 1 : 0.3 }}
           />
         ))}
 

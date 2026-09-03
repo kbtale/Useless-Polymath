@@ -64,7 +64,7 @@ export const PeriodicTablePractice: React.FC = () => {
             className={styles.symbolInput}
             placeholder={t('placeholder_example')}
           />
-          <FUIButton onClick={checkAnswer} variant="solid" style={{ width: '100%' }}>
+          <FUIButton onClick={checkAnswer} variant="solid" className={styles.wideButton}>
             {t('submit')}
           </FUIButton>
         </div>

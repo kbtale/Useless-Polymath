@@ -23,11 +23,11 @@ export const StorageUnitsTool: React.FC = () => {
           <h2 className={styles.title}>{t('title')}</h2>
 
           <div className={styles.inputSection}>
-            <div style={{ flex: 1 }}>
+            <div className={styles.amountField}>
               <label className={styles.label}>{t('label_amount')}</label>
               <CoreBaseInput value={amount} onChangeValue={setAmount} allowedChars={/^[0-9.]*$/} />
             </div>
-            <div style={{ width: 100 }}>
+            <div className={styles.unitField}>
               <label className={styles.label}>{t('label_unit')}</label>
               <CoreSelect
                 value={unitIdx}
