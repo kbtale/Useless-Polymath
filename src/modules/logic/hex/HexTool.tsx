@@ -64,14 +64,7 @@ export const HexTool: React.FC = () => {
 
         <div className={styles.inputGroup}>
           <label className={styles.label}>BINARY (Base 2)</label>
-          <div
-            style={{
-              fontFamily: 'JetBrains Mono, monospace',
-              fontSize: '1rem',
-              color: '#666666',
-              letterSpacing: '0.1em',
-            }}
-          >
+          <div className={styles.binGroup}>
             {bin.match(/.{1,4}/g)?.join(' ') || bin}
           </div>
         </div>

@@ -107,3 +107,10 @@
     text-decoration: line-through;
   }
 }
+
+.binGroup {
+  font-family: $font-mono;
+  font-size: 1rem;
+  color: $text-dim;
+  letter-spacing: 0.1em;
+}

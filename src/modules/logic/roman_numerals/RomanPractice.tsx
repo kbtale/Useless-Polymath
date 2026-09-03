@@ -71,7 +71,7 @@ export const RomanPractice: React.FC = () => {
           </div>
         </div>
 
-        <div style={{ width: '200px' }}>
+        <div className={styles.inputWrap}>
           <CoreBaseInput
             value={userInput}
             onChangeValue={setUserInput}
