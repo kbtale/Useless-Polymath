@@ -3,6 +3,7 @@ import type React from 'react';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { storageService } from '@/services/storage';
+import { formatDefaultTitle, toTitleCase } from '@/utils/text';
 import { FUIButton } from '../core/FUIButton';
 import styles from './AppShell.module.scss';
 
@@ -31,21 +32,6 @@ export interface SettingsModalProps {
   onResetAll: () => void;
   scoresVersion: number;
 }
-
-const formatDefaultTitle = (id: string): string => {
-  return id
-    .split('_')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-};
-
-const toTitleCase = (str: string): string => {
-  return str
-    .toLowerCase()
-    .split(' ')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-};
 
 const FOCUSABLE_SELECTOR =
   'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
