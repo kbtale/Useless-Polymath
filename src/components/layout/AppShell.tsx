@@ -3,6 +3,7 @@ import type React from 'react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { storageService } from '@/services/storage';
+import { formatDefaultTitle, toTitleCase } from '@/utils/text';
 import { FUIButton } from '../core/FUIButton';
 import styles from './AppShell.module.scss';
 import { SettingsModal } from './SettingsModal';
@@ -42,21 +43,6 @@ const MODULES: Module[] = [
   { id: 'ean_13', categoryKey: 'modules.science' },
   { id: 'card_counting', categoryKey: 'modules.science' },
 ];
-
-const formatDefaultTitle = (id: string): string => {
-  return id
-    .split('_')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-};
-
-const toTitleCase = (str: string): string => {
-  return str
-    .toLowerCase()
-    .split(' ')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-};
 
 interface AppShellProps {
   children: React.ReactNode;
