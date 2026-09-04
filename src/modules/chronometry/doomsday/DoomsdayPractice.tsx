@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { FUIButton } from '@/components/core/FUIButton';
-import { getDayOfWeek, DAYS } from './logic';
+import { getDayOfWeek, DAY_KEYS } from './logic';
 import styles from './Doomsday.module.scss';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 
 export const DoomsdayPractice: React.FC = () => {
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(['doomsday', 'common']);
   const { streak, setStreak } = usePracticeStreak('doomsday');
   const getRandomDate = () => {
     const start = new Date(1900, 0, 1);
@@ -61,14 +61,16 @@ export const DoomsdayPractice: React.FC = () => {
       )}
 
       <div className={styles.grid}>
-        {DAYS.map((day, i) => (
+        {DAY_KEYS.map((dayKey, i) => (
           <FUIButton
-            key={day}
+            key={dayKey}
             variant="outline"
             onClick={() => handleGuess(i)}
             className={styles.dayBtn}
           >
-            {day.substring(0, 3).toUpperCase()}
+            {t(`days.${dayKey}`, { ns: 'doomsday' })
+              .substring(0, 3)
+              .toUpperCase()}
           </FUIButton>
         ))}
       </div>

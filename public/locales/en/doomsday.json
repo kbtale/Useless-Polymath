@@ -4,5 +4,18 @@
   "log_title": "How does it get calculated?",
   "final_result": "Result",
   "total": "Total",
-  "final_day": "Day"
+  "final_day": "Day",
+  "days": {
+    "sunday": "Sunday",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday"
+  },
+  "step_century_anchor": "Century Anchor",
+  "step_year_anchor": "Year Anchor",
+  "step_month_anchor": "Month Anchor",
+  "step_summation": "Summation"
 }

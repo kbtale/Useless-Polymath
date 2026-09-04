@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getDayOfWeek, isLeapYear } from './logic';
+import { getDayOfWeek, isLeapYear, calculateDoomsdayWithLog } from './logic';
 
 describe('Doomsday Algorithm', () => {
   it('should correctly identify leap years', () => {
@@ -15,5 +15,14 @@ describe('Doomsday Algorithm', () => {
     expect(getDayOfWeek(2024, 2, 29)).toBe(4);
 
     expect(getDayOfWeek(2000, 1, 1)).toBe(6);
+  });
+
+  it('should expose day indices and step title keys', () => {
+    const log = calculateDoomsdayWithLog(2023, 12, 2);
+    expect(log.finalDayIndex).toBe(6);
+    expect(log.finalNumber).toBe(6);
+    expect(log.steps).toHaveLength(4);
+    expect(log.steps[0].titleKey).toBe('step_century_anchor');
+    expect(log.steps[3].titleKey).toBe('step_summation');
   });
 });
