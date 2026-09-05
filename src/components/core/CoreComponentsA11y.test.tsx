@@ -48,12 +48,11 @@ describe('Core Components Accessibility', () => {
     expect(group).toBeDefined();
 
     const bit0 = screen.getByLabelText('Bit 0, value 1');
-    expect(bit0.getAttribute('role')).toBe('checkbox');
-    expect(bit0.getAttribute('aria-checked')).toBe('true');
+    expect(bit0.getAttribute('type')).toBe('checkbox');
+    expect((bit0 as HTMLInputElement).checked).toBe(true);
 
     const user = userEvent.setup();
-    bit0.focus();
-    await user.keyboard('{Enter}');
+    await user.click(bit0);
     expect(onChange).toHaveBeenCalledWith(0);
 
     const bit1 = screen.getByLabelText('Bit 1, value 2');

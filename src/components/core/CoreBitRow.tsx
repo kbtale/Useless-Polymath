@@ -35,27 +35,23 @@ export const CoreBitRow: React.FC<CoreBitRowProps> = ({
     <fieldset className={styles.coreBitRow} aria-label={ariaLabel || 'Binary bit array'}>
       {bitArray.map(({ bitIndex, isActive }) =>
         interactive ? (
-          <button
+          <label
             key={bitIndex}
-            type="button"
-            role="checkbox"
-            aria-checked={isActive}
-            tabIndex={0}
-            aria-label={`Bit ${bitIndex}, value ${2 ** bitIndex}`}
             className={clsx(styles.bit, isActive && styles.active, styles.interactive)}
-            onClick={() => toggleBit(bitIndex)}
             title={`Bit ${bitIndex} (${2 ** bitIndex})`}
           >
-            <div className={styles.led} />
+            <input
+              type="checkbox"
+              checked={isActive}
+              onChange={() => toggleBit(bitIndex)}
+              aria-label={`Bit ${bitIndex}, value ${2 ** bitIndex}`}
+              className={styles.visuallyHiddenInput}
+            />
+            <span className={styles.led} />
             <span className={styles.label}>{isActive ? '1' : '0'}</span>
-          </button>
+          </label>
         ) : (
-          <div
-            key={bitIndex}
-            aria-label={`Bit ${bitIndex}, value ${2 ** bitIndex}`}
-            className={clsx(styles.bit, isActive && styles.active)}
-            title={`Bit ${bitIndex} (${2 ** bitIndex})`}
-          >
+          <div key={bitIndex} className={clsx(styles.bit, isActive && styles.active)}>
             <div className={styles.led} />
             <span className={styles.label}>{isActive ? '1' : '0'}</span>
           </div>
