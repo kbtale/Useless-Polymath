@@ -1,9 +1,19 @@
+export const DATE_FORMAT_CHANGED_EVENT = 'polymath:dateformat_changed';
+
+export type DateFormat = 'DMY' | 'MDY' | 'YMD';
+
+export interface DateFormatEventDetail {
+  format: DateFormat;
+}
+
 export const STORAGE_KEYS = {
   SIDEBAR_COLLAPSED: 'polymath_sidebar_collapsed',
   HIDDEN_MODULES: 'polymath_hidden_modules',
   HIDDEN_CATEGORIES: 'polymath_hidden_categories',
-  APP_STYLE: 'app-style',
-  LANGUAGE: 'language',
+  APP_STYLE: 'polymath_app_style',
+  APP_STYLE_LEGACY: 'app-style',
+  LANGUAGE: 'polymath_language',
+  LANGUAGE_LEGACY: 'language',
   DATE_FORMAT: 'polymath_date_format',
   streak: (id: string) => `polymath_streak_${id}`,
   highScore: (id: string) => `polymath_high_${id}`,
@@ -75,7 +85,9 @@ class StorageService {
   }
 
   getAppStyle(defaultStyle: string = 'mono'): string {
-    return this.getItem<string>(STORAGE_KEYS.APP_STYLE, defaultStyle);
+    const primary = this.getItem<string | null>(STORAGE_KEYS.APP_STYLE, null);
+    if (primary !== null && primary !== undefined) return primary;
+    return this.getItem<string>(STORAGE_KEYS.APP_STYLE_LEGACY, defaultStyle);
   }
 
   setAppStyle(style: string): void {
@@ -83,21 +95,25 @@ class StorageService {
   }
 
   getLanguage(defaultLang: string = 'en'): string {
-    return this.getItem<string>(STORAGE_KEYS.LANGUAGE, defaultLang);
+    const primary = this.getItem<string | null>(STORAGE_KEYS.LANGUAGE, null);
+    if (primary !== null && primary !== undefined) return primary;
+    return this.getItem<string>(STORAGE_KEYS.LANGUAGE_LEGACY, defaultLang);
   }
 
   setLanguage(language: string): void {
     this.setItem(STORAGE_KEYS.LANGUAGE, language);
   }
 
-  getDateFormat(defaultFormat: 'DMY' | 'MDY' | 'YMD' = 'DMY'): 'DMY' | 'MDY' | 'YMD' {
-    return this.getItem<'DMY' | 'MDY' | 'YMD'>(STORAGE_KEYS.DATE_FORMAT, defaultFormat);
+  getDateFormat(defaultFormat: DateFormat = 'DMY'): DateFormat {
+    return this.getItem<DateFormat>(STORAGE_KEYS.DATE_FORMAT, defaultFormat);
   }
 
-  setDateFormat(format: 'DMY' | 'MDY' | 'YMD'): void {
+  setDateFormat(format: DateFormat): void {
     this.setItem(STORAGE_KEYS.DATE_FORMAT, format);
     if (typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('polymath:dateformat_changed', { detail: format }));
+      window.dispatchEvent(
+        new CustomEvent<DateFormat>(DATE_FORMAT_CHANGED_EVENT, { detail: format }),
+      );
     }
   }
 

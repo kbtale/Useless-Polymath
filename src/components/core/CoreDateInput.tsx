@@ -1,7 +1,11 @@
 import clsx from 'clsx';
 import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { storageService } from '@/services/storage';
+import {
+  DATE_FORMAT_CHANGED_EVENT,
+  type DateFormat,
+  storageService,
+} from '@/services/storage';
 import styles from './CoreDateInput.module.scss';
 
 export interface CoreDateInputProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -14,7 +18,7 @@ export interface CoreDateInputProps extends Omit<React.HTMLAttributes<HTMLDivEle
   showDay?: boolean;
   showMonth?: boolean;
   showYear?: boolean;
-  format?: 'DMY' | 'MDY' | 'YMD';
+  format?: DateFormat;
   id?: string;
 }
 
@@ -34,7 +38,7 @@ export const CoreDateInput: React.FC<CoreDateInputProps> = ({
   ...props
 }) => {
   const dateInputRef = useRef<HTMLInputElement>(null);
-  const [dateFormat, setDateFormat] = useState<'DMY' | 'MDY' | 'YMD'>(
+  const [dateFormat, setDateFormat] = useState<DateFormat>(
     () => propFormat || storageService.getDateFormat(),
   );
 
@@ -44,13 +48,13 @@ export const CoreDateInput: React.FC<CoreDateInputProps> = ({
       return;
     }
     const handler = (e: Event) => {
-      const customEvent = e as CustomEvent<'DMY' | 'MDY' | 'YMD'>;
+      const customEvent = e as CustomEvent<DateFormat>;
       if (customEvent.detail) {
         setDateFormat(customEvent.detail);
       }
     };
-    window.addEventListener('polymath:dateformat_changed', handler);
-    return () => window.removeEventListener('polymath:dateformat_changed', handler);
+    window.addEventListener(DATE_FORMAT_CHANGED_EVENT, handler);
+    return () => window.removeEventListener(DATE_FORMAT_CHANGED_EVENT, handler);
   }, [propFormat]);
 
   const handleIconClick = () => {
