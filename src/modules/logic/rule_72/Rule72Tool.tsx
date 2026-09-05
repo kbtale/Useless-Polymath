@@ -26,8 +26,9 @@ export const Rule72Tool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.inputGroup}>
-          <label className={styles.label}>{t('interest_rate')}</label>
+          <label htmlFor="rule72-rate-input" className={styles.label}>{t('interest_rate')}</label>
           <CoreBaseInput
+            id="rule72-rate-input"
             value={rate}
             onChangeValue={setRate}
             allowedChars={/[0-9.]/}

@@ -44,8 +44,9 @@ export const HexTool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.inputGroup}>
-          <label className={styles.label}>DECIMAL (Base 10)</label>
+          <label htmlFor="hex-dec-input" className={styles.label}>DECIMAL (Base 10)</label>
           <input
+            id="hex-dec-input"
             type="number"
             value={dec}
             onChange={(e) => handleDecChange(e.target.value)}
@@ -54,8 +55,9 @@ export const HexTool: React.FC = () => {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label}>HEXADECIMAL (Base 16)</label>
+          <label htmlFor="hex-value-input" className={styles.label}>HEXADECIMAL (Base 16)</label>
           <input
+            id="hex-value-input"
             type="text"
             value={hex}
             onChange={(e) => handleHexChange(e.target.value)}
@@ -64,7 +66,7 @@ export const HexTool: React.FC = () => {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label}>BINARY (Base 2)</label>
+          <div className={styles.label}>BINARY (Base 2)</div>
           <div className={styles.binGroup}>
             {bin.match(/.{1,4}/g)?.join(' ') || bin}
           </div>

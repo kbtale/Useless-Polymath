@@ -16,8 +16,11 @@ export const BrailleTool: React.FC = () => {
         <h2 className={styles.title}>{t('title')}</h2>
 
         <div className={styles.inputSection}>
-          <label className={styles.label}>{t('label_type_text')}</label>
-          <CoreBaseInput
+<label htmlFor="braille-text-input" className={styles.label}>
+          {t('label_type_text')}
+        </label>
+        <CoreBaseInput
+          id="braille-text-input"
             value={input}
             onChangeValue={setInput}
             placeholder="A B C"
@@ -31,7 +34,7 @@ export const BrailleTool: React.FC = () => {
           {input.split('').map((char, idx) => {
             const pattern = getBraillePattern(char);
             return (
-              <div key={idx} className={styles.brailleCell}>
+              <div key={`${char}-${idx}`} className={styles.brailleCell}>
                 <div className={styles.dotsGrid}>
                   {[0, 1, 2, 3, 4, 5].map((dotIndex) => (
                     <div

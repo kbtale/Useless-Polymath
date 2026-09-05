@@ -57,8 +57,11 @@ export const SemaphoreTool: React.FC = () => {
           </div>
 
           <div className={styles.inputArea}>
-            <label className={styles.label}>{t('label_type_char')}</label>
-            <CoreBaseInput
+<label htmlFor="semaphore-char-input" className={styles.label}>
+            {t('label_type_char')}
+          </label>
+          <CoreBaseInput
+            id="semaphore-char-input"
               value={inputText}
               onChangeValue={handleInputChange}
               placeholder={t('placeholder_type')}

@@ -102,9 +102,11 @@
   width: 100%;
   margin-top: $spacing-lg;
 
-  .cell {
+.cell {
     border: 1px solid $line-color;
     padding: $spacing-xs;
+    background: none;
+    color: inherit;
     text-align: center;
     font-family: $font-mono;
     font-size: 0.9rem;

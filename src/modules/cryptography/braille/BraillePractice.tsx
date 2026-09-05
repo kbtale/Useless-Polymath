@@ -55,7 +55,7 @@ export const BraillePractice: React.FC = () => {
           <div className={styles.flashcard}>
             <div className={styles.dotsGrid}>
               {pattern.map((isActive, i) => (
-                <div key={i} className={clsx(styles.dot, isActive && styles.active)} />
+                <div key={`dot-${i}`} className={clsx(styles.dot, isActive && styles.active)} />
               ))}
             </div>
           </div>

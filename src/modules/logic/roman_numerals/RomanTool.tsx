@@ -69,10 +69,11 @@ export const RomanTool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.inputGroup}>
-          <label className={styles.label}>
+<label htmlFor="roman-decimal-input" className={styles.label}>
             {t('decimal', { defaultValue: 'DECIMAL (Integer)' })}
           </label>
           <CoreBaseInput
+            id="roman-decimal-input"
             value={decimal}
             onChangeValue={handleDecimalChange}
             allowedChars={/[0-9]/}
@@ -82,8 +83,11 @@ export const RomanTool: React.FC = () => {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label}>{t('roman', { defaultValue: 'ROMAN NUMERALS' })}</label>
-          <CoreBaseInput
+<label htmlFor="roman-numeral-input" className={styles.label}>
+          {t('roman', { defaultValue: 'ROMAN NUMERALS' })}
+        </label>
+        <CoreBaseInput
+          id="roman-numeral-input"
             value={roman}
             onChangeValue={handleRomanChange}
             allowedChars={/[IVXLCDM]/i}

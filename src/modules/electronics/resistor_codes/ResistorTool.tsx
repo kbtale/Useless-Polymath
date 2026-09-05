@@ -48,6 +48,7 @@ export const ResistorTool: React.FC = () => {
 
           <div className={styles.resistorDisplay}>
             <svg viewBox="0 0 400 150">
+          <title>Resistor color band diagram</title>
               <path d="M0,75 L50,75 M350,75 L400,75" stroke="#999" strokeWidth="10" />
               <path
                 d="M50,40 Q50,25 75,25 L325,25 Q350,25 350,40 L350,110 Q350,125 325,125 L75,125 Q50,125 50,110 Z"
@@ -67,7 +68,7 @@ export const ResistorTool: React.FC = () => {
 
                 return (
                   <rect
-                    key={i}
+                    key={color.name}
                     x={x}
                     y="25"
                     width="15"
@@ -82,7 +83,7 @@ export const ResistorTool: React.FC = () => {
 
           <div className={styles.controls}>
             {bands.map((color, i) => (
-              <div key={i} className={styles.controlGroup}>
+              <div key={color.name} className={styles.controlGroup}>
                 <CoreSelect
                   value={color}
                   onChange={(val) => updateBand(i, val)}

@@ -82,16 +82,16 @@ export const ColorTheoryPractice: React.FC = () => {
 
           <div className={styles.controls}>
             <div className={styles.sliderGroup}>
-              <label className={styles.labelRed}>{t('label_red')}</label>
-              <CoreSlider min={0} max={255} value={userR} onChange={setUserR} />
+              <label htmlFor="color-r-slider" className={styles.labelRed}>{t('label_red')}</label>
+              <CoreSlider id="color-r-slider" min={0} max={255} value={userR} onChange={setUserR} />
             </div>
             <div className={styles.sliderGroup}>
-              <label className={styles.labelGreen}>{t('label_green')}</label>
-              <CoreSlider min={0} max={255} value={userG} onChange={setUserG} />
+              <label htmlFor="color-g-slider" className={styles.labelGreen}>{t('label_green')}</label>
+              <CoreSlider id="color-g-slider" min={0} max={255} value={userG} onChange={setUserG} />
             </div>
             <div className={styles.sliderGroup}>
-              <label className={styles.labelBlue}>{t('label_blue')}</label>
-              <CoreSlider min={0} max={255} value={userB} onChange={setUserB} />
+              <label htmlFor="color-b-slider" className={styles.labelBlue}>{t('label_blue')}</label>
+              <CoreSlider id="color-b-slider" min={0} max={255} value={userB} onChange={setUserB} />
             </div>
           </div>
 

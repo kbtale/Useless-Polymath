@@ -24,12 +24,14 @@ export const StorageUnitsTool: React.FC = () => {
 
           <div className={styles.inputSection}>
             <div className={styles.amountField}>
-              <label className={styles.label}>{t('label_amount')}</label>
-              <CoreBaseInput value={amount} onChangeValue={setAmount} allowedChars={/^[0-9.]*$/} />
+              <label htmlFor="storage-amount-input" className={styles.label}>{t('label_amount')}</label>
+              <CoreBaseInput
+                id="storage-amount-input" value={amount} onChangeValue={setAmount} allowedChars={/^[0-9.]*$/} />
             </div>
             <div className={styles.unitField}>
-              <label className={styles.label}>{t('label_unit')}</label>
+              <label htmlFor="storage-unit-select" className={styles.label}>{t('label_unit')}</label>
               <CoreSelect
+                id="storage-unit-select"
                 value={unitIdx}
                 onChange={setUnitIdx}
                 options={UNITS.map((u, i) => ({ value: i.toString(), label: u.label }))}

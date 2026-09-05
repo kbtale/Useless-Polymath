@@ -41,7 +41,7 @@ export const LuhnPractice: React.FC = () => {
 
         <div className={styles.quizNumber}>
           {displayBase.split('').map((d, i) => (
-            <span key={i} className={styles.dimmed}>
+            <span key={`${d}-${i}`} className={styles.dimmed}>
               {d}
             </span>
           ))}

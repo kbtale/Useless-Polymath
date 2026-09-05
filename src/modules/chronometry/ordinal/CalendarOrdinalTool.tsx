@@ -42,10 +42,13 @@ export const CalendarOrdinalTool: React.FC = () => {
       <FUIGlassPanel className={styles.panel}>
         <h2 className={styles.title}>{t('tool_title')}</h2>
 
-        <label className={styles.label}>{t('target_date', { ns: 'common' })}</label>
+        <label htmlFor="ordinal-date-input" className={styles.label}>
+          {t('target_date', { ns: 'common' })}
+        </label>
 
         <div className={styles.dateInputContainer}>
           <CoreDateInput
+            id="ordinal-date-input"
             day={day}
             month={month}
             year={year}

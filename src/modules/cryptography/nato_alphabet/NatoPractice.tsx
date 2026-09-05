@@ -81,7 +81,7 @@ export const NatoPractice: React.FC = () => {
             <div className={styles.optionsGrid}>
               {options.map((opt, idx) => (
                 <FUIButton
-                  key={idx}
+                  key={`${opt}-${idx}`}
                   onClick={() => handleSelect(opt)}
                   variant="outline"
                   disabled={feedback !== null}

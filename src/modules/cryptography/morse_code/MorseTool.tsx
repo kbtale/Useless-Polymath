@@ -27,8 +27,9 @@ export const MorseTool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.ioSection}>
-          <label className={styles.label}>{t('text_input')}</label>
+          <label htmlFor="morse-text-input" className={styles.label}>{t('text_input')}</label>
           <CoreBaseInput
+            id="morse-text-input"
             value={textInput}
             onChangeValue={handleTextChange}
             placeholder="SOS"
@@ -38,8 +39,9 @@ export const MorseTool: React.FC = () => {
         </div>
 
         <div className={styles.ioSection}>
-          <label className={styles.label}>{t('morse_input')}</label>
+          <label htmlFor="morse-code-input" className={styles.label}>{t('morse_input')}</label>
           <CoreBaseInput
+            id="morse-code-input"
             value={morseInput}
             onChangeValue={handleMorseChange}
             placeholder="... --- ..."
@@ -49,9 +51,9 @@ export const MorseTool: React.FC = () => {
 
         <div className={styles.visualOutput}>
           {morseInput.split('').map((char, idx) => {
-            if (char === '.') return <div key={idx} className={styles.dot} />;
-            if (char === '-') return <div key={idx} className={styles.dash} />;
-            if (char === ' ' || char === '/') return <div key={idx} className={styles.space} />;
+            if (char === '.') return <div key={`${char}-${idx}`} className={styles.dot} />;
+            if (char === '-') return <div key={`${char}-${idx}`} className={styles.dash} />;
+            if (char === ' ' || char === '/') return <div key={`${char}-${idx}`} className={styles.space} />;
             return null;
           })}
         </div>

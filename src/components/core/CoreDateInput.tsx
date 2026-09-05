@@ -15,6 +15,7 @@ export interface CoreDateInputProps extends Omit<React.HTMLAttributes<HTMLDivEle
   showMonth?: boolean;
   showYear?: boolean;
   format?: 'DMY' | 'MDY' | 'YMD';
+  id?: string;
 }
 
 export const CoreDateInput: React.FC<CoreDateInputProps> = ({
@@ -29,6 +30,7 @@ export const CoreDateInput: React.FC<CoreDateInputProps> = ({
   showYear = true,
   format: propFormat,
   className,
+  id,
   ...props
 }) => {
   const dateInputRef = useRef<HTMLInputElement>(null);
@@ -132,6 +134,7 @@ export const CoreDateInput: React.FC<CoreDateInputProps> = ({
         <input
           type="date"
           ref={dateInputRef}
+          id={id}
           aria-label="Calendar date picker"
           className={styles.hiddenDateInput}
           onChange={handleDateChange}
