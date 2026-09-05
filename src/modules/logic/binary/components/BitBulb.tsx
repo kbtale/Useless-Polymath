@@ -12,6 +12,7 @@ export interface BitBulbProps {
 export const BitBulb: React.FC<BitBulbProps> = memo(({ value, active, onClick, disabled }) => {
   return (
     <button
+      type="button"
       className={clsx(styles.bulb, { [styles.active]: active })}
       onClick={onClick}
       disabled={disabled}
