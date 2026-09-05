@@ -200,7 +200,7 @@ export const AppShell: React.FC<AppShellProps> = ({
             </select>
           </div>
 
-          <div className={styles.langButtonGroup} role="group" aria-label="Language options">
+          <fieldset className={styles.langButtonGroup} aria-label="Language options">
             <FUIButton
               onClick={() => changeLanguage('en')}
               variant={i18n.language === 'en' ? 'solid' : 'outline'}
@@ -225,7 +225,7 @@ export const AppShell: React.FC<AppShellProps> = ({
             >
               IT
             </FUIButton>
-          </div>
+          </fieldset>
         </div>
 
         <FUIButton
@@ -262,29 +262,27 @@ export const AppShell: React.FC<AppShellProps> = ({
                   <h2 className={styles.sectionTitle}>
                     {t(catKey, { ns: 'common', defaultValue: catKey })}
                   </h2>
-                  <ul className={styles.menuList} >
+                  <ul className={styles.menuList}>
                     {MODULES.filter(
                       (m) => m.categoryKey === catKey && !hiddenModules.includes(m.id),
                     ).map((m) => (
-                      <li
-                        key={m.id}
-                        aria-current={activeModule === m.id ? 'page' : undefined}
-                        className={clsx(styles.menuItem, activeModule === m.id && styles.active)}
-                        onClick={() => {
-                          onModuleChange(m.id);
-                          setIsMobileMenuOpen(false);
-                        }}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
+                      <li key={m.id}>
+                        <button
+                          type="button"
+                          aria-current={activeModule === m.id ? 'page' : undefined}
+                          className={clsx(
+                            styles.menuItem,
+                            activeModule === m.id && styles.active,
+                          )}
+                          onClick={() => {
                             onModuleChange(m.id);
                             setIsMobileMenuOpen(false);
-                          }
-                        }}
-                      >
-                        {toTitleCase(
-                          t(m.id, { ns: 'navigation', defaultValue: formatDefaultTitle(m.id) }),
-                        )}
+                          }}
+                        >
+                          {toTitleCase(
+                            t(m.id, { ns: 'navigation', defaultValue: formatDefaultTitle(m.id) }),
+                          )}
+                        </button>
                       </li>
                     ))}
                   </ul>
@@ -297,7 +295,12 @@ export const AppShell: React.FC<AppShellProps> = ({
         </aside>
 
         {isMobileMenuOpen && (
-          <div className={styles.mobileBackdrop} onClick={() => setIsMobileMenuOpen(false)} />
+          <button
+            type="button"
+            className={styles.mobileBackdrop}
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-label="Close menu"
+          />
         )}
 
         <main className={styles.contentArea}>

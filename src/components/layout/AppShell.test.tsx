@@ -1,5 +1,6 @@
 // @vitest-environment jsdom
 import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { AppShell } from './AppShell';
 
@@ -51,7 +52,7 @@ describe('AppShell Accessibility', () => {
     expect(settingsBtn.getAttribute('aria-haspopup')).toBe('dialog');
   });
 
-  it('allows keyboard navigation and selection on sidebar menu items', () => {
+  it('allows keyboard navigation and selection on sidebar menu items', async () => {
     const onModuleChange = vi.fn();
 
     const { container } = render(
@@ -65,13 +66,15 @@ describe('AppShell Accessibility', () => {
       </AppShell>,
     );
 
-    const items = container.querySelectorAll('li[role="menuitem"]');
+    const items = container.querySelectorAll('ul button');
     expect(items.length).toBeGreaterThan(1);
 
     fireEvent.click(items[0]);
     expect(onModuleChange).toHaveBeenCalledWith('doomsday');
 
-    fireEvent.keyDown(items[1], { key: 'Enter' });
+    const user = userEvent.setup();
+    items[1].focus();
+    await user.keyboard('{Enter}');
     expect(onModuleChange).toHaveBeenCalledWith('time_zones');
   });
 });
