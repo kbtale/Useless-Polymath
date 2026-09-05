@@ -1,35 +1,41 @@
-export const calculateLuhnSum = (number: string): number => {
-  const digits = number.replace(/\D/g, '').split('').map(Number);
-  let sum = 0;
-  let isDouble = false;
+const doubleAndSumDigits = (digit: number): number => {
+  const doubled = digit * 2;
+  return doubled > 9 ? doubled - 9 : doubled;
+};
+
+export const calculateLuhnSum = (numericString: string): number => {
+  const digits = numericString.replace(/\D/g, '').split('').map(Number);
+  let checksumTotal = 0;
+  let shouldDoubleCurrentDigit = false;
 
   for (let i = digits.length - 1; i >= 0; i--) {
-    let d = digits[i];
-    if (isDouble) {
-      d *= 2;
-      if (d > 9) d -= 9;
+    let processedDigit = digits[i];
+    if (shouldDoubleCurrentDigit) {
+      processedDigit = doubleAndSumDigits(processedDigit);
     }
-    sum += d;
-    isDouble = !isDouble;
+    checksumTotal += processedDigit;
+    shouldDoubleCurrentDigit = !shouldDoubleCurrentDigit;
   }
-  return sum;
+  return checksumTotal;
 };
 
-export const calculateCheckDigit = (number: string): number => {
-  const sum = calculateLuhnSum(`${number}0`);
-  return sum % 10 === 0 ? 0 : 10 - (sum % 10);
+export const calculateCheckDigit = (payloadWithoutCheckDigit: string): number => {
+  const checkSumWithZeroPadded = calculateLuhnSum(`${payloadWithoutCheckDigit}0`);
+  const remainder = checkSumWithZeroPadded % 10;
+  return remainder === 0 ? 0 : 10 - remainder;
 };
 
-export const isValidLuhn = (number: string): boolean => {
-  if (number.length < 2) return false;
-  return calculateLuhnSum(number) % 10 === 0;
+export const isValidLuhn = (candidateNumber: string): boolean => {
+  const sanitized = candidateNumber.replace(/\D/g, '');
+  if (sanitized.length < 2) return false;
+  return calculateLuhnSum(sanitized) % 10 === 0;
 };
 
-export const generateLuhnNumber = (length: number): string => {
-  let num = '';
-  for (let i = 0; i < length - 1; i++) {
-    num += Math.floor(Math.random() * 10);
+export const generateLuhnNumber = (totalLength: number): string => {
+  let basePayload = '';
+  for (let i = 0; i < totalLength - 1; i++) {
+    basePayload += Math.floor(Math.random() * 10);
   }
-  const check = calculateCheckDigit(num);
-  return num + check;
+  const checkDigit = calculateCheckDigit(basePayload);
+  return `${basePayload}${checkDigit}`;
 };
