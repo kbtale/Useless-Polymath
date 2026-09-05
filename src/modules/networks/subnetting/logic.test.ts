@@ -1,11 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { calculateSubnet, intToIp, ipToInt } from './logic';
+import { calculateSubnet, intToIp, ipToInt, ipToUint32, uint32ToIp } from './logic';
 
 describe('Subnetting Logic', () => {
   it('converts IP string to 32-bit integer and back', () => {
     const ip = '192.168.1.1';
-    const int = ipToInt(ip);
+    const int = ipToUint32(ip);
     expect(int).toBe(3232235777);
+    expect(uint32ToIp(int)).toBe(ip);
+    expect(ipToInt(ip)).toBe(int);
     expect(intToIp(int)).toBe(ip);
   });
 
@@ -43,6 +45,12 @@ describe('Subnetting Logic', () => {
     const defaultRoute = calculateSubnet('0.0.0.0', 0);
     expect(defaultRoute?.mask).toBe('0.0.0.0');
     expect(defaultRoute?.network).toBe('0.0.0.0');
+  });
+
+  it('handles upper 32-bit unsigned range addresses correctly', () => {
+    const multicast = calculateSubnet('224.0.0.1', 24);
+    expect(multicast?.network).toBe('224.0.0.0');
+    expect(multicast?.broadcast).toBe('224.0.0.255');
   });
 
   it('returns null for invalid IP inputs or out-of-range octets', () => {
