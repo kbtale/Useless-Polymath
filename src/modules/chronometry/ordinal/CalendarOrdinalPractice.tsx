@@ -1,5 +1,6 @@
 import { usePracticeStreak } from '@/hooks/usePracticeStreak';
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';

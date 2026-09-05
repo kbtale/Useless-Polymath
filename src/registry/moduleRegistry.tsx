@@ -1,6 +1,6 @@
 import { type ComponentType, type LazyExoticComponent, lazy } from 'react';
 
-const lazyWithRetry = <T extends ComponentType<never>>(
+const lazyWithRetry = <T extends ComponentType<object>>(
   factory: () => Promise<{ default: T }>,
 ): LazyExoticComponent<T> => {
   return lazy(async () => {

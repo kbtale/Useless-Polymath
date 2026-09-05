@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreDateInput } from '@/components/core/CoreDateInput';
 import { FUIButton } from '@/components/core/FUIButton';
@@ -87,7 +88,7 @@ export const CalendarOrdinalTool: React.FC = () => {
             </div>
 
             <div className={styles.progressBar}>
-              <div className={styles.fill} style={{ width: `${result.percentage}%` }}></div>
+              <div className={styles.fill} style={{ width: `${result.percentage}%` }} />
               <div className={styles.text}>
                 {result.percentage}% {t('complete')}
               </div>

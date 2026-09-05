@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreBitRow } from '@/components/core/CoreBitRow';
 import { FUIButton } from '@/components/core/FUIButton';

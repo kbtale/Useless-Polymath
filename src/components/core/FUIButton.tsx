@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import React, { memo } from 'react';
+import type React from 'react';
+import { memo } from 'react';
 import styles from './FUIButton.module.scss';
 
 export interface FUIButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

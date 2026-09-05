@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';

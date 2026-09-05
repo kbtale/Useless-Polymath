@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { toNato } from './logic';
@@ -29,7 +30,7 @@ export const NatoTool: React.FC = () => {
 
         <div className={styles.outputArea}>
           {result.length === 0 && (
-            <div className={styles.emptyHint}></div>
+            <div className={styles.emptyHint} />
           )}
           {result.map((item, idx) => (
             <div key={idx} className={clsx(styles.card, !item.word && styles.unknown)}>

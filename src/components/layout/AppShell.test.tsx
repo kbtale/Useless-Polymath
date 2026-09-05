@@ -73,7 +73,7 @@ describe('AppShell Accessibility', () => {
     expect(onModuleChange).toHaveBeenCalledWith('doomsday');
 
     const user = userEvent.setup();
-    items[1].focus();
+    (items[1] as HTMLElement).focus();
     await user.keyboard('{Enter}');
     expect(onModuleChange).toHaveBeenCalledWith('time_zones');
   });
