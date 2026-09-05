@@ -82,7 +82,7 @@ export const ResistorPractice: React.FC = () => {
             }
             return (
               <rect
-                key={color.name}
+                key={color}
                 x={x}
                 y="25"
                 width="15"

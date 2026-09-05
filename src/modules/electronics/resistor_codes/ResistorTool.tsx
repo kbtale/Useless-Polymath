@@ -68,7 +68,7 @@ export const ResistorTool: React.FC = () => {
 
                 return (
                   <rect
-                    key={color.name}
+                    key={color}
                     x={x}
                     y="25"
                     width="15"
@@ -83,7 +83,7 @@ export const ResistorTool: React.FC = () => {
 
           <div className={styles.controls}>
             {bands.map((color, i) => (
-              <div key={color.name} className={styles.controlGroup}>
+              <div key={color} className={styles.controlGroup}>
                 <CoreSelect
                   value={color}
                   onChange={(val) => updateBand(i, val)}
