@@ -14,7 +14,7 @@ export interface ConversionResult {
 }
 
 export const convertStorage = (amount: number, fromUnitIdx: number): ConversionResult[] => {
-  if (isNaN(amount) || amount < 0) return [];
+  if (Number.isNaN(amount) || amount < 0) return [];
 
   const fromUnit = UNITS[fromUnitIdx];
   const totalBytes = amount * fromUnit.bytes;
@@ -43,7 +43,7 @@ export const generatePracticeProblem = () => {
   while (toIdx === fromIdx) {
     toIdx = Math.floor(Math.random() * UNITS.length);
   }
-  const amount = Math.pow(2, Math.floor(Math.random() * 10));
+  const amount = 2 ** Math.floor(Math.random() * 10);
 
   return { fromIdx, toIdx, amount };
 };

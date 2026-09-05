@@ -173,6 +173,12 @@
     transition: opacity 0.2s;
     cursor: pointer;
     font-size: 0.875rem;
+    font-family: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
 
     &:hover {
       opacity: 1;
@@ -297,6 +303,8 @@
   left: 0;
   width: 100vw;
   height: calc(100vh - 3rem);
+  border: none;
+  padding: 0;
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(2px);
   z-index: 99;

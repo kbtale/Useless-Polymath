@@ -22,8 +22,10 @@ export const PeriodicTableTool: React.FC = () => {
           <div className={styles.gridWrapper}>
             <div className={styles.mainGrid}>
               {MAIN_ELEMENTS.map((el) => (
-                <div
+                <button
                   key={el.number}
+                  type="button"
+                  aria-label={`${el.symbol}, atomic number ${el.number}`}
                   className={clsx(styles.elementCell, styles[el.category])}
                   style={{
                     gridColumn: el.group,
@@ -34,7 +36,7 @@ export const PeriodicTableTool: React.FC = () => {
                 >
                   <div className={styles.atomicNumber}>{el.number}</div>
                   <div className={styles.symbol}>{el.symbol}</div>
-                </div>
+                </button>
               ))}
             </div>
 
@@ -44,8 +46,10 @@ export const PeriodicTableTool: React.FC = () => {
                 const indexInRow = el.number >= 90 ? el.number - 90 : el.number - 58;
 
                 return (
-                  <div
+                  <button
                     key={el.number}
+                    type="button"
+                    aria-label={`${el.symbol}, atomic number ${el.number}`}
                     className={clsx(styles.elementCell, styles[el.category])}
                     style={{
                       gridColumn: colOffset + indexInRow,
@@ -56,7 +60,7 @@ export const PeriodicTableTool: React.FC = () => {
                   >
                     <div className={styles.atomicNumber}>{el.number}</div>
                     <div className={styles.symbol}>{el.symbol}</div>
-                  </div>
+                  </button>
                 );
               })}
             </div>

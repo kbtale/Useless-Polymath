@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import React, { memo } from 'react';
+import type React from 'react';
+import { memo } from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import styles from './CoreMarkdownRenderer.module.scss';

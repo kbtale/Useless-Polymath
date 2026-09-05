@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreDateInput } from '@/components/core/CoreDateInput';
 import { FUIButton } from '@/components/core/FUIButton';
@@ -19,11 +20,11 @@ export const CalendarOrdinalTool: React.FC = () => {
   } | null>(null);
 
   const handleCalculate = () => {
-    const d = parseInt(day);
-    const m = parseInt(month);
-    const y = parseInt(year);
+    const d = parseInt(day, 10);
+    const m = parseInt(month, 10);
+    const y = parseInt(year, 10);
 
-    if (isNaN(d) || isNaN(m) || isNaN(y)) return;
+    if (Number.isNaN(d) || Number.isNaN(m) || Number.isNaN(y)) return;
 
     const res = getOrdinalDate(d, m, y);
     setResult(res);
@@ -41,10 +42,13 @@ export const CalendarOrdinalTool: React.FC = () => {
       <FUIGlassPanel className={styles.panel}>
         <h2 className={styles.title}>{t('tool_title')}</h2>
 
-        <label className={styles.label}>{t('target_date', { ns: 'common' })}</label>
+        <label htmlFor="ordinal-date-input" className={styles.label}>
+          {t('target_date', { ns: 'common' })}
+        </label>
 
         <div className={styles.dateInputContainer}>
           <CoreDateInput
+            id="ordinal-date-input"
             day={day}
             month={month}
             year={year}
@@ -87,7 +91,7 @@ export const CalendarOrdinalTool: React.FC = () => {
             </div>
 
             <div className={styles.progressBar}>
-              <div className={styles.fill} style={{ width: `${result.percentage}%` }}></div>
+              <div className={styles.fill} style={{ width: `${result.percentage}%` }} />
               <div className={styles.text}>
                 {result.percentage}% {t('complete')}
               </div>

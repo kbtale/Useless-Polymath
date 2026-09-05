@@ -114,13 +114,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   };
 
   return (
-    <div className={styles.modalOverlay} onClick={onClose}>
+    <div className={styles.modalOverlay}>
       <div
         ref={modalRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="settings-dialog-title"
-        onClick={(e: React.MouseEvent) => e.stopPropagation()}
         className={styles.settingsModal}
       >
         <div className={styles.modalHeader}>
@@ -128,6 +127,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             {t('settings', 'Settings')}
           </h2>
           <button
+            type="button"
             aria-label={t('close', { ns: 'common', defaultValue: 'Close settings' })}
             className={styles.closeBtn}
             onClick={onClose}
@@ -287,6 +287,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                         <td>{high}</td>
                         <td>
                           <button
+                            type="button"
                             className={styles.rowResetBtn}
                             aria-label={`Reset score for ${moduleName}`}
                             onClick={() => onResetIndividual(m.id)}

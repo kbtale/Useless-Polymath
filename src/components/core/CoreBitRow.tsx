@@ -32,28 +32,31 @@ export const CoreBitRow: React.FC<CoreBitRowProps> = ({
   });
 
   return (
-    <div className={styles.coreBitRow} role="group" aria-label={ariaLabel || 'Binary bit array'}>
-      {bitArray.map(({ bitIndex, isActive }) => (
-        <div
-          key={bitIndex}
-          role={interactive ? 'checkbox' : undefined}
-          aria-checked={interactive ? isActive : undefined}
-          tabIndex={interactive ? 0 : undefined}
-          aria-label={`Bit ${bitIndex}, value ${Math.pow(2, bitIndex)}`}
-          className={clsx(styles.bit, isActive && styles.active, interactive && styles.interactive)}
-          onClick={() => toggleBit(bitIndex)}
-          onKeyDown={(e) => {
-            if (interactive && (e.key === 'Enter' || e.key === ' ')) {
-              e.preventDefault();
-              toggleBit(bitIndex);
-            }
-          }}
-          title={`Bit ${bitIndex} (${Math.pow(2, bitIndex)})`}
-        >
-          <div className={styles.led} />
-          <span className={styles.label}>{isActive ? '1' : '0'}</span>
-        </div>
-      ))}
-    </div>
+    <fieldset className={styles.coreBitRow} aria-label={ariaLabel || 'Binary bit array'}>
+      {bitArray.map(({ bitIndex, isActive }) =>
+        interactive ? (
+          <label
+            key={bitIndex}
+            className={clsx(styles.bit, isActive && styles.active, styles.interactive)}
+            title={`Bit ${bitIndex} (${2 ** bitIndex})`}
+          >
+            <input
+              type="checkbox"
+              checked={isActive}
+              onChange={() => toggleBit(bitIndex)}
+              aria-label={`Bit ${bitIndex}, value ${2 ** bitIndex}`}
+              className={styles.visuallyHiddenInput}
+            />
+            <span className={styles.led} />
+            <span className={styles.label}>{isActive ? '1' : '0'}</span>
+          </label>
+        ) : (
+          <div key={bitIndex} className={clsx(styles.bit, isActive && styles.active)}>
+            <div className={styles.led} />
+            <span className={styles.label}>{isActive ? '1' : '0'}</span>
+          </div>
+        ),
+      )}
+    </fieldset>
   );
 };

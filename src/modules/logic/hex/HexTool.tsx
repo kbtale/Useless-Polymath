@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { decimalToHex, hexToDecimal } from './logic';
 import styles from './Hex.module.scss';
@@ -16,11 +17,11 @@ export const HexTool: React.FC = () => {
       return;
     }
     try {
-      const n = parseInt(val);
-      if (isNaN(n)) return;
+      const n = parseInt(val, 10);
+      if (Number.isNaN(n)) return;
       setHex(decimalToHex(n));
       setBin(n.toString(2).padStart(8, '0'));
-    } catch (e) {}
+    } catch (_e) {}
   };
 
   const handleHexChange = (val: string) => {
@@ -34,7 +35,7 @@ export const HexTool: React.FC = () => {
       const n = hexToDecimal(val);
       setDec(n.toString());
       setBin(n.toString(2).padStart(8, '0'));
-    } catch (e) {}
+    } catch (_e) {}
   };
 
   return (
@@ -43,8 +44,9 @@ export const HexTool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.inputGroup}>
-          <label className={styles.label}>DECIMAL (Base 10)</label>
+          <label htmlFor="hex-dec-input" className={styles.label}>DECIMAL (Base 10)</label>
           <input
+            id="hex-dec-input"
             type="number"
             value={dec}
             onChange={(e) => handleDecChange(e.target.value)}
@@ -53,8 +55,9 @@ export const HexTool: React.FC = () => {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label}>HEXADECIMAL (Base 16)</label>
+          <label htmlFor="hex-value-input" className={styles.label}>HEXADECIMAL (Base 16)</label>
           <input
+            id="hex-value-input"
             type="text"
             value={hex}
             onChange={(e) => handleHexChange(e.target.value)}
@@ -63,7 +66,7 @@ export const HexTool: React.FC = () => {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label}>BINARY (Base 2)</label>
+          <div className={styles.label}>BINARY (Base 2)</div>
           <div className={styles.binGroup}>
             {bin.match(/.{1,4}/g)?.join(' ') || bin}
           </div>

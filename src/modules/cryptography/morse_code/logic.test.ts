@@ -3,7 +3,7 @@ import { MORSE_CODE, REVERSE_MORSE, encodeMode, decodeMorse } from './logic';
 
 describe('Morse Code Logic', () => {
   it('should map characters to Morse code', () => {
-    expect(MORSE_CODE['A']).toBe('.-');
+    expect(MORSE_CODE.A).toBe('.-');
     expect(REVERSE_MORSE['.-']).toBe('A');
   });
 

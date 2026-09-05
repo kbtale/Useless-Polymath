@@ -27,22 +27,22 @@ export const ColorTheoryTool: React.FC = () => {
 
             <div className={styles.controls}>
               <div className={styles.sliderGroup}>
-                <label className={styles.labelRed}>
+                <label htmlFor="color-tool-r" className={styles.labelRed}>
                   {t('label_red')} ({r})
                 </label>
-                <CoreSlider min={0} max={255} value={r} onChange={setR} />
+                <CoreSlider id="color-tool-r" min={0} max={255} value={r} onChange={setR} />
               </div>
               <div className={styles.sliderGroup}>
-                <label className={styles.labelGreen}>
+                <label htmlFor="color-tool-g" className={styles.labelGreen}>
                   {t('label_green')} ({g})
                 </label>
-                <CoreSlider min={0} max={255} value={g} onChange={setG} />
+                <CoreSlider id="color-tool-g" min={0} max={255} value={g} onChange={setG} />
               </div>
               <div className={styles.sliderGroup}>
-                <label className={styles.labelBlue}>
+                <label htmlFor="color-tool-b" className={styles.labelBlue}>
                   {t('label_blue')} ({b})
                 </label>
-                <CoreSlider min={0} max={255} value={b} onChange={setB} />
+                <CoreSlider id="color-tool-b" min={0} max={255} value={b} onChange={setB} />
               </div>
             </div>
           </div>

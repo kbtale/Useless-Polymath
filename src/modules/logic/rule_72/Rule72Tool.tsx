@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
@@ -11,7 +12,7 @@ export const Rule72Tool: React.FC = () => {
   const [rate, setRate] = useState('');
 
   const rateNum = parseFloat(rate);
-  const isValid = !isNaN(rateNum) && rateNum > 0;
+  const isValid = !Number.isNaN(rateNum) && rateNum > 0;
 
   const rule72Result = isValid ? calculateDoublingTime(rateNum) : 0;
   const preciseResult = isValid ? preciseDoublingTime(rateNum) : 0;
@@ -25,8 +26,9 @@ export const Rule72Tool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.inputGroup}>
-          <label className={styles.label}>{t('interest_rate')}</label>
+          <label htmlFor="rule72-rate-input" className={styles.label}>{t('interest_rate')}</label>
           <CoreBaseInput
+            id="rule72-rate-input"
             value={rate}
             onChangeValue={setRate}
             allowedChars={/[0-9.]/}

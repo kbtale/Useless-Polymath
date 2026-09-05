@@ -27,7 +27,7 @@ export const EanTool: React.FC = () => {
 
         {cleanInput.split('').map((d, i) => (
           <div
-            key={i}
+            key={`${d}-${i}`}
             className={clsx(styles.bar, styles.short, styles.digitBar)}
             style={{ opacity: Number(d) % 2 === 0 ? 1 : 0.3 }}
           />
@@ -45,8 +45,9 @@ export const EanTool: React.FC = () => {
         <div className={styles.container}>
           <h2 className={styles.title}>{t('title')}</h2>
 
-          <label className={styles.label}>{t('label_input')}</label>
+          <label htmlFor="ean-input" className={styles.label}>{t('label_input')}</label>
           <CoreBaseInput
+            id="ean-input"
             value={input}
             onChangeValue={setInput}
             allowedChars={/^[0-9]*$/}

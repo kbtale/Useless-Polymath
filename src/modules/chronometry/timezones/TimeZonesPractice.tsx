@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { FUIButton } from '@/components/core/FUIButton';
 import { COMMON_ZONES, calculateDestinationTime } from './logic';

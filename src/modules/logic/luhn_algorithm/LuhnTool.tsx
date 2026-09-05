@@ -48,7 +48,7 @@ export const LuhnTool: React.FC = () => {
 
           <div className={styles.visualization}>
             {visualization.map((item, i) => (
-              <div key={i} className={styles.digitBox}>
+              <div key={`${item.original}-${i}`} className={styles.digitBox}>
                 <div className={styles.original}>{item.original}</div>
                 <div className={clsx(styles.processed, item.isDoubled && styles.doubled)}>
                   {item.processed}

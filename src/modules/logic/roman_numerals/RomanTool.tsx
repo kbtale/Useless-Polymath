@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { FUIButton } from '@/components/core/FUIButton';
@@ -26,7 +27,7 @@ export const RomanTool: React.FC = () => {
       setDecimal(num.toString());
     } else {
       const num = fromRoman(val);
-      if (!isNaN(num)) {
+      if (!Number.isNaN(num)) {
         if (toRoman(num) !== val) {
           setDecimal(num.toString());
         } else {
@@ -45,8 +46,8 @@ export const RomanTool: React.FC = () => {
       return;
     }
 
-    const num = parseInt(val);
-    if (isNaN(num)) return;
+    const num = parseInt(val, 10);
+    if (Number.isNaN(num)) return;
 
     if (num > 3999) {
       setError(t('range_limit', { defaultValue: 'Max value is 3999' }));
@@ -68,10 +69,11 @@ export const RomanTool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.inputGroup}>
-          <label className={styles.label}>
+<label htmlFor="roman-decimal-input" className={styles.label}>
             {t('decimal', { defaultValue: 'DECIMAL (Integer)' })}
           </label>
           <CoreBaseInput
+            id="roman-decimal-input"
             value={decimal}
             onChangeValue={handleDecimalChange}
             allowedChars={/[0-9]/}
@@ -81,8 +83,11 @@ export const RomanTool: React.FC = () => {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label}>{t('roman', { defaultValue: 'ROMAN NUMERALS' })}</label>
-          <CoreBaseInput
+<label htmlFor="roman-numeral-input" className={styles.label}>
+          {t('roman', { defaultValue: 'ROMAN NUMERALS' })}
+        </label>
+        <CoreBaseInput
+          id="roman-numeral-input"
             value={roman}
             onChangeValue={handleRomanChange}
             allowedChars={/[IVXLCDM]/i}

@@ -28,7 +28,7 @@ export const calculateSubnet = (ip: string, cidr: number) => {
   const networkInt = (ipInt & maskInt) >>> 0;
   const broadcastInt = (networkInt | (~maskInt >>> 0)) >>> 0;
 
-  const hosts = cidr === 32 ? 1 : cidr === 31 ? 2 : Math.pow(2, 32 - cidr) - 2;
+  const hosts = cidr === 32 ? 1 : cidr === 31 ? 2 : 2 ** (32 - cidr) - 2;
   const usableStart = cidr >= 31 ? networkInt : networkInt + 1;
   const usableEnd = cidr >= 31 ? broadcastInt : broadcastInt - 1;
 

@@ -53,8 +53,9 @@ export const PeriodicTablePractice: React.FC = () => {
         </div>
 
         <div className={styles.inputArea}>
-          <label className={styles.label}>{t('enter_symbol')}</label>
-          <CoreBaseInput
+<label htmlFor="periodic-symbol-input" className={styles.label}>{t('enter_symbol')}</label>
+            <CoreBaseInput
+              id="periodic-symbol-input"
             value={input}
             onChangeValue={setInput}
             onEnter={checkAnswer}

@@ -40,10 +40,13 @@ export const DoomsdayTool: React.FC = () => {
       <FUIGlassPanel className={styles.panel}>
         <h2 className={styles.title}>{t('title')}</h2>
 
-        <label className={styles.label}>{t('target_date', { ns: 'common' })}</label>
+        <label htmlFor="doomsday-date-input" className={styles.label}>
+          {t('target_date', { ns: 'common' })}
+        </label>
 
         <div className={styles.dateInputContainer}>
           <CoreDateInput
+            id="doomsday-date-input"
             day={day}
             month={month}
             year={year}
@@ -79,7 +82,7 @@ export const DoomsdayTool: React.FC = () => {
 
           <div className={styles.logContainer}>
             {log.steps.map((step, idx) => (
-              <div key={idx} className={styles.logStep}>
+              <div key={step.titleKey} className={styles.logStep}>
                 <div className={styles.stepHeader}>
                   <span>
                     {t('step', { ns: 'common' })} {idx + 1}: {t(step.titleKey, { ns: 'doomsday' })}

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { toNato } from './logic';
@@ -18,8 +19,9 @@ export const NatoTool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.inputArea}>
-          <label className={styles.label}>{t('text_input')}</label>
+          <label htmlFor="nato-text-input" className={styles.label}>{t('text_input')}</label>
           <CoreBaseInput
+            id="nato-text-input"
             value={input}
             onChangeValue={setInput}
             placeholder="Hello World"
@@ -29,10 +31,10 @@ export const NatoTool: React.FC = () => {
 
         <div className={styles.outputArea}>
           {result.length === 0 && (
-            <div className={styles.emptyHint}></div>
+            <div className={styles.emptyHint} />
           )}
           {result.map((item, idx) => (
-            <div key={idx} className={clsx(styles.card, !item.word && styles.unknown)}>
+            <div key={`${item.char}-${idx}`} className={clsx(styles.card, !item.word && styles.unknown)}>
               <span className={styles.char}>{item.char}</span>
               {item.word && <span className={styles.word}>{item.word}</span>}
             </div>

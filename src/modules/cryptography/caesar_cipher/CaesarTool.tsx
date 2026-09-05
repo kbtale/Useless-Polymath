@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { CoreSlider } from '@/components/core/CoreSlider';
@@ -19,18 +20,19 @@ export const CaesarTool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.controls}>
-          <label className={styles.label}>
+<label htmlFor="caesar-shift" className={styles.label}>
             {t('shift_key')}
             <span>{shift}</span>
           </label>
-          <CoreSlider min={0} max={25} value={shift} onChange={setShift} />
+          <CoreSlider id="caesar-shift" min={0} max={25} value={shift} onChange={setShift} />
           <div className={styles.shiftDisplay}>A → {encrypt('A', shift)}</div>
         </div>
 
         <div className={styles.ioSection}>
           <div className={styles.column}>
-            <label className={styles.label}>{t('plaintext')}</label>
-            <CoreBaseInput
+<label htmlFor="caesar-plain-input" className={styles.label}>{t('plaintext')}</label>
+          <CoreBaseInput
+            id="caesar-plain-input"
               value={input}
               onChangeValue={setInput}
               placeholder="HELLO WORLD"
@@ -42,8 +44,9 @@ export const CaesarTool: React.FC = () => {
           <div className={styles.arrow}>➜</div>
 
           <div className={styles.column}>
-            <label className={styles.label}>{t('ciphertext')}</label>
-            <CoreBaseInput
+<label htmlFor="caesar-cipher-input" className={styles.label}>{t('ciphertext')}</label>
+          <CoreBaseInput
+            id="caesar-cipher-input"
               value={output}
               onChangeValue={() => {}}
               readOnly

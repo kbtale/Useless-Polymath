@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { FUIButton } from '@/components/core/FUIButton';
@@ -32,7 +33,7 @@ export const RomanPractice: React.FC = () => {
     if (direction === 'to_roman') {
       isCorrect = userInput.toUpperCase() === toRoman(questionVal);
     } else {
-      isCorrect = parseInt(userInput) === questionVal;
+      isCorrect = parseInt(userInput, 10) === questionVal;
     }
 
     if (isCorrect) {

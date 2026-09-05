@@ -1,5 +1,6 @@
 import { usePracticeStreak } from '@/hooks/usePracticeStreak';
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { FUIButton } from '@/components/core/FUIButton';
@@ -52,7 +53,7 @@ export const BinaryPractice: React.FC = () => {
   };
 
   const checkReadAnswer = () => {
-    if (parseInt(inputValue) === target) {
+    if (parseInt(inputValue, 10) === target) {
       handleSuccess();
     } else {
       setFeedback('incorrect');

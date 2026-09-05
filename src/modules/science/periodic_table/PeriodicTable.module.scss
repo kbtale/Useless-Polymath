@@ -58,6 +58,8 @@
 .elementCell {
   aspect-ratio: 1;
   border: 1px solid rgba($line-color, 0.5);
+  background: none;
+  color: inherit;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,6 +69,7 @@
   font-family: $font-mono;
   position: relative;
   min-width: 32px;
+  padding: 0;
 
   &:hover {
     transform: scale(1.2);

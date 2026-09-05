@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 
@@ -37,6 +37,7 @@ export const CoreSemaphoreFigure: React.FC<CoreSemaphoreFigureProps> = ({
       viewBox="0 0 200 200"
       className={clsx('semaphore-figure', className)}
     >
+      <title>Semaphore signal figure</title>
       {}
       <circle cx="100" cy="40" r="15" fill="currentColor" opacity={0.8} />
 

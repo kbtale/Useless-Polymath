@@ -53,5 +53,26 @@
       "trailingCommas": "all",
       "semicolons": "always"
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": [
+        "src/modules/cryptography/braille/BraillePractice.tsx",
+        "src/modules/cryptography/braille/BrailleTool.tsx",
+        "src/modules/cryptography/morse_code/MorseTool.tsx",
+        "src/modules/cryptography/nato_alphabet/NatoPractice.tsx",
+        "src/modules/cryptography/nato_alphabet/NatoTool.tsx",
+        "src/modules/logic/ean_13/EanTool.tsx",
+        "src/modules/logic/luhn_algorithm/LuhnPractice.tsx",
+        "src/modules/logic/luhn_algorithm/LuhnTool.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noArrayIndexKey": "off"
+          }
+        }
+      }
+    }
+  ]
 }

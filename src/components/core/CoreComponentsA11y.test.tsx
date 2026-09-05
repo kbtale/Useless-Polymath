@@ -1,5 +1,6 @@
 // @vitest-environment jsdom
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { CoreBitRow } from './CoreBitRow';
 import { CoreDateInput } from './CoreDateInput';
@@ -31,7 +32,7 @@ describe('Core Components Accessibility', () => {
     expect(slider.getAttribute('value')).toBe('24');
   });
 
-  it('renders accessible checkboxes with keyboard toggle on CoreBitRow', () => {
+  it('renders accessible checkboxes with keyboard toggle on CoreBitRow', async () => {
     const onChange = vi.fn();
     render(
       <CoreBitRow
@@ -47,14 +48,16 @@ describe('Core Components Accessibility', () => {
     expect(group).toBeDefined();
 
     const bit0 = screen.getByLabelText('Bit 0, value 1');
-    expect(bit0.getAttribute('role')).toBe('checkbox');
-    expect(bit0.getAttribute('aria-checked')).toBe('true');
+    expect(bit0.getAttribute('type')).toBe('checkbox');
+    expect((bit0 as HTMLInputElement).checked).toBe(true);
 
-    fireEvent.keyDown(bit0, { key: ' ' });
+    const user = userEvent.setup();
+    await user.click(bit0);
     expect(onChange).toHaveBeenCalledWith(0);
 
     const bit1 = screen.getByLabelText('Bit 1, value 2');
-    fireEvent.keyDown(bit1, { key: 'Enter' });
+    bit1.focus();
+    await user.keyboard(' ');
     expect(onChange).toHaveBeenCalledWith(3);
   });
 

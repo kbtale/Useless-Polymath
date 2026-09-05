@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { BitBulb } from './components/BitBulb';
 import { getActivePowers } from './logic';
@@ -35,7 +36,7 @@ export const BinaryTool: React.FC = () => {
         <div className={styles.label}>DECIMAL VALUE</div>
         <div className={styles.valueDisplay}>{value}</div>
         <div className={styles.equation}>
-          {activePowers.length > 0 ? activePowers.join(' + ') + ' = ' + value : '0 = 0'}
+          {activePowers.length > 0 ? `${activePowers.join(' + ')} = ${value}` : '0 = 0'}
         </div>
       </div>
     </FUIGlassPanel>

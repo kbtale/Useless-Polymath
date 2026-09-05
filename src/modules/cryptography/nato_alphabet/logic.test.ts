@@ -3,7 +3,7 @@ import { NATO_DICTIONARY, toNato } from './logic';
 
 describe('NATO Alphabet Logic', () => {
   it('should map letters to NATO words', () => {
-    expect(NATO_DICTIONARY['A']).toBe('Alpha');
+    expect(NATO_DICTIONARY.A).toBe('Alpha');
     expect(toNato('A')).toEqual([{ char: 'A', word: 'Alpha' }]);
   });
 

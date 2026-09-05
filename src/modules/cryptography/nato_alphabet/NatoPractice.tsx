@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { FUIButton } from '@/components/core/FUIButton';
 import { NATO_DICTIONARY } from './logic';
@@ -9,12 +10,12 @@ import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 export const NatoPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('nato_alphabet');
   const getRandomQuestion = () => {
-    const keys = Object.keys(NATO_DICTIONARY).filter((k) => isNaN(parseInt(k)));
+    const keys = Object.keys(NATO_DICTIONARY).filter((k) => Number.isNaN(parseInt(k, 10)));
     const char = keys[Math.floor(Math.random() * keys.length)];
     const correct = NATO_DICTIONARY[char];
 
     const allWords = Object.values(NATO_DICTIONARY).filter(
-      (w) => isNaN(parseInt(w)) && w !== correct,
+      (w) => Number.isNaN(parseInt(w, 10)) && w !== correct,
     );
     const distractors: string[] = [];
     while (distractors.length < 3) {
@@ -80,7 +81,7 @@ export const NatoPractice: React.FC = () => {
             <div className={styles.optionsGrid}>
               {options.map((opt, idx) => (
                 <FUIButton
-                  key={idx}
+                  key={`${opt}-${idx}`}
                   onClick={() => handleSelect(opt)}
                   variant="outline"
                   disabled={feedback !== null}

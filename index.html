@@ -36,11 +36,11 @@
       rel="stylesheet"
     />
     <script>
-      (function () {
+      (() => {
         try {
-          var saved = localStorage.getItem('app-style') || 'mono';
+          const saved = localStorage.getItem('app-style') || 'mono';
           document.documentElement.setAttribute('data-style', saved);
-        } catch (e) {}
+        } catch (_e) {}
       })();
     </script>
   </head>
