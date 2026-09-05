@@ -14,7 +14,7 @@ export interface ConversionResult {
 }
 
 export const convertStorage = (amount: number, fromUnitIdx: number): ConversionResult[] => {
-  if (isNaN(amount) || amount < 0) return [];
+  if (Number.isNaN(amount) || amount < 0) return [];
 
   const fromUnit = UNITS[fromUnitIdx];
   const totalBytes = amount * fromUnit.bytes;

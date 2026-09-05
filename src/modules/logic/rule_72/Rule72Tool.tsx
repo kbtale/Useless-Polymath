@@ -11,7 +11,7 @@ export const Rule72Tool: React.FC = () => {
   const [rate, setRate] = useState('');
 
   const rateNum = parseFloat(rate);
-  const isValid = !isNaN(rateNum) && rateNum > 0;
+  const isValid = !Number.isNaN(rateNum) && rateNum > 0;
 
   const rule72Result = isValid ? calculateDoublingTime(rateNum) : 0;
   const preciseResult = isValid ? preciseDoublingTime(rateNum) : 0;

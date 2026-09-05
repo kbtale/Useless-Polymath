@@ -32,7 +32,7 @@ export const RomanPractice: React.FC = () => {
     if (direction === 'to_roman') {
       isCorrect = userInput.toUpperCase() === toRoman(questionVal);
     } else {
-      isCorrect = parseInt(userInput) === questionVal;
+      isCorrect = parseInt(userInput, 10) === questionVal;
     }
 
     if (isCorrect) {

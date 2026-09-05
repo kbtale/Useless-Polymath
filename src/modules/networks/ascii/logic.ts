@@ -4,7 +4,7 @@ export const charToCode = (char: string): number => {
 };
 
 export const codeToChar = (code: number): string => {
-  if (isNaN(code) || code < 0 || code > 65535) return '';
+  if (Number.isNaN(code) || code < 0 || code > 65535) return '';
   return String.fromCharCode(code);
 };
 

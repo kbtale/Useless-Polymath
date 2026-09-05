@@ -262,14 +262,12 @@ export const AppShell: React.FC<AppShellProps> = ({
                   <h2 className={styles.sectionTitle}>
                     {t(catKey, { ns: 'common', defaultValue: catKey })}
                   </h2>
-                  <ul className={styles.menuList} role="menu">
+                  <ul className={styles.menuList} >
                     {MODULES.filter(
                       (m) => m.categoryKey === catKey && !hiddenModules.includes(m.id),
                     ).map((m) => (
                       <li
                         key={m.id}
-                        role="menuitem"
-                        tabIndex={0}
                         aria-current={activeModule === m.id ? 'page' : undefined}
                         className={clsx(styles.menuItem, activeModule === m.id && styles.active)}
                         onClick={() => {

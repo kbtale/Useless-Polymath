@@ -52,7 +52,7 @@ export const BinaryPractice: React.FC = () => {
   };
 
   const checkReadAnswer = () => {
-    if (parseInt(inputValue) === target) {
+    if (parseInt(inputValue, 10) === target) {
       handleSuccess();
     } else {
       setFeedback('incorrect');

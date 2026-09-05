@@ -16,7 +16,7 @@ export const calculateLuhnSum = (number: string): number => {
 };
 
 export const calculateCheckDigit = (number: string): number => {
-  const sum = calculateLuhnSum(number + '0');
+  const sum = calculateLuhnSum(`${number}0`);
   return sum % 10 === 0 ? 0 : 10 - (sum % 10);
 };
 

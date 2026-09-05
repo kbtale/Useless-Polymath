@@ -9,12 +9,12 @@ import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 export const NatoPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('nato_alphabet');
   const getRandomQuestion = () => {
-    const keys = Object.keys(NATO_DICTIONARY).filter((k) => isNaN(parseInt(k)));
+    const keys = Object.keys(NATO_DICTIONARY).filter((k) => Number.isNaN(parseInt(k, 10)));
     const char = keys[Math.floor(Math.random() * keys.length)];
     const correct = NATO_DICTIONARY[char];
 
     const allWords = Object.values(NATO_DICTIONARY).filter(
-      (w) => isNaN(parseInt(w)) && w !== correct,
+      (w) => Number.isNaN(parseInt(w, 10)) && w !== correct,
     );
     const distractors: string[] = [];
     while (distractors.length < 3) {

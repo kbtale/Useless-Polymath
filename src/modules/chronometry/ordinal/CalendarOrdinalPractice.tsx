@@ -33,7 +33,7 @@ export const CalendarOrdinalPractice: React.FC = () => {
 
     const { ordinal } = getOrdinalDate(targetDate.d, targetDate.m, targetDate.y);
 
-    if (parseInt(input) === ordinal) {
+    if (parseInt(input, 10) === ordinal) {
       setFeedback('correct');
       setStreak((s) => s + 1);
       setTimeout(generateProblem, 1500);
@@ -69,7 +69,6 @@ export const CalendarOrdinalPractice: React.FC = () => {
             placeholder="???"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            autoFocus
           />
         </div>
 

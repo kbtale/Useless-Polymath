@@ -35,7 +35,7 @@ export const BinaryTool: React.FC = () => {
         <div className={styles.label}>DECIMAL VALUE</div>
         <div className={styles.valueDisplay}>{value}</div>
         <div className={styles.equation}>
-          {activePowers.length > 0 ? activePowers.join(' + ') + ' = ' + value : '0 = 0'}
+          {activePowers.length > 0 ? `${activePowers.join(' + ')} = ${value}` : '0 = 0'}
         </div>
       </div>
     </FUIGlassPanel>

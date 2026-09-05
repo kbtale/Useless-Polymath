@@ -26,7 +26,7 @@ export const RomanTool: React.FC = () => {
       setDecimal(num.toString());
     } else {
       const num = fromRoman(val);
-      if (!isNaN(num)) {
+      if (!Number.isNaN(num)) {
         if (toRoman(num) !== val) {
           setDecimal(num.toString());
         } else {
@@ -45,8 +45,8 @@ export const RomanTool: React.FC = () => {
       return;
     }
 
-    const num = parseInt(val);
-    if (isNaN(num)) return;
+    const num = parseInt(val, 10);
+    if (Number.isNaN(num)) return;
 
     if (num > 3999) {
       setError(t('range_limit', { defaultValue: 'Max value is 3999' }));

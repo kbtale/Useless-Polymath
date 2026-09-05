@@ -22,6 +22,6 @@ describe('Bitwise Logic (8-Bit Unsigned)', () => {
   });
 
   it('returns 0 for invalid operations', () => {
-    expect(calculateBitwise(10, 5, 'INVALID' as any)).toBe(0);
+    expect(calculateBitwise(10, 5, 'INVALID' as never)).toBe(0);
   });
 });

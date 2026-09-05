@@ -19,11 +19,11 @@ export const CalendarOrdinalTool: React.FC = () => {
   } | null>(null);
 
   const handleCalculate = () => {
-    const d = parseInt(day);
-    const m = parseInt(month);
-    const y = parseInt(year);
+    const d = parseInt(day, 10);
+    const m = parseInt(month, 10);
+    const y = parseInt(year, 10);
 
-    if (isNaN(d) || isNaN(m) || isNaN(y)) return;
+    if (Number.isNaN(d) || Number.isNaN(m) || Number.isNaN(y)) return;
 
     const res = getOrdinalDate(d, m, y);
     setResult(res);
