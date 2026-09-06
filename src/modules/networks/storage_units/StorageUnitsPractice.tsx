@@ -7,7 +7,7 @@ import { FUIButton } from '@/components/core/FUIButton';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 import styles from './StorageUnits.module.scss';
-import { UNITS, calculateAnswer, formatValue, generatePracticeProblem } from './logic';
+import { calculateAnswer, formatValue, generatePracticeProblem } from './logic';
 
 export const StorageUnitsPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('storage_units');
@@ -28,10 +28,10 @@ export const StorageUnitsPractice: React.FC = () => {
   const correctAnswer = calculateAnswer(problem.amount, problem.fromIdx, problem.toIdx);
 
   const handleSubmit = () => {
-    const val = parseFloat(userAnswer);
+    const parsedNumericAnswer = parseFloat(userAnswer);
     const margin = Math.abs(correctAnswer * 0.01);
 
-    if (Math.abs(val - correctAnswer) <= Math.max(margin, 0.01)) {
+    if (Math.abs(parsedNumericAnswer - correctAnswer) <= Math.max(margin, 0.01)) {
       setFeedback('correct');
       setStreak((s) => s + 1);
       setTimeout(newProblem, 1200);
@@ -57,9 +57,9 @@ export const StorageUnitsPractice: React.FC = () => {
             <p className={styles.label}>{t('practice_question_convert')}</p>
             <div className={styles.problemDisplay}>
               <span className={styles.problemAmount}>{problem.amount}</span>
-              <span className={styles.problemUnit}>{UNITS[problem.fromIdx].label}</span>
+              <span className={styles.problemUnit}>{problem.fromSymbol}</span>
               <span className={styles.problemArrow}>→</span>
-              <span className={styles.problemUnit}>{UNITS[problem.toIdx].label}</span>
+              <span className={styles.problemUnit}>{problem.toSymbol}</span>
             </div>
           </div>
 

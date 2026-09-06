@@ -6,15 +6,19 @@ import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { CoreSelect } from '@/components/core/CoreSelect';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import styles from './StorageUnits.module.scss';
-import { UNITS, convertStorage } from './logic';
+import {
+  STORAGE_UNITS,
+  type StorageUnitSymbol,
+  convertStorageBySymbol,
+} from './logic';
 
 export const StorageUnitsTool: React.FC = () => {
   const { t } = useTranslation('storage_units');
-  const [amount, setAmount] = useState('1');
-  const [unitIdx, setUnitIdx] = useState('3');
+  const [amountInput, setAmountInput] = useState('1');
+  const [selectedUnit, setSelectedUnit] = useState<StorageUnitSymbol>('GB');
 
-  const am = parseFloat(amount);
-  const results = convertStorage(am, parseInt(unitIdx, 10));
+  const parsedAmount = parseFloat(amountInput);
+  const conversionResults = convertStorageBySymbol(parsedAmount, selectedUnit);
 
   return (
     <div className={styles.toolContainer}>
@@ -26,31 +30,35 @@ export const StorageUnitsTool: React.FC = () => {
             <div className={styles.amountField}>
               <label htmlFor="storage-amount-input" className={styles.label}>{t('label_amount')}</label>
               <CoreBaseInput
-                id="storage-amount-input" value={amount} onChangeValue={setAmount} allowedChars={/^[0-9.]*$/} />
+                id="storage-amount-input"
+                value={amountInput}
+                onChangeValue={setAmountInput}
+                allowedChars={/^[0-9.]*$/}
+              />
             </div>
             <div className={styles.unitField}>
               <label htmlFor="storage-unit-select" className={styles.label}>{t('label_unit')}</label>
               <CoreSelect
                 id="storage-unit-select"
-                value={unitIdx}
-                onChange={setUnitIdx}
-                options={UNITS.map((u, i) => ({ value: i.toString(), label: u.label }))}
+                value={selectedUnit}
+                onChange={(val) => setSelectedUnit(val as StorageUnitSymbol)}
+                options={STORAGE_UNITS.map((unit) => ({ value: unit.symbol, label: unit.label }))}
               />
             </div>
           </div>
 
-          {results.length > 0 && (
+          {conversionResults.length > 0 && (
             <div className={styles.resultsGrid}>
-              {results.map((res) => (
+              {conversionResults.map((result) => (
                 <div
-                  key={res.unit}
+                  key={result.unit}
                   className={clsx(
                     styles.resultCard,
-                    UNITS[parseInt(unitIdx, 10)].label === res.unit && styles.active,
+                    selectedUnit === result.unit && styles.active,
                   )}
                 >
-                  <span className={styles.resultUnit}>{res.unit}</span>
-                  <span className={styles.resultValue}>{res.formatted}</span>
+                  <span className={styles.resultUnit}>{result.unit}</span>
+                  <span className={styles.resultValue}>{result.formatted}</span>
                 </div>
               ))}
             </div>

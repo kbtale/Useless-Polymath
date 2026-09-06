@@ -6,12 +6,17 @@ import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreSlider } from '@/components/core/CoreSlider';
 import { FUIButton } from '@/components/core/FUIButton';
-import { calculateColorDistance, rgbToHex } from './logic';
+import {
+  type RGBColor,
+  calculateColorDistance,
+  calculateColorScore,
+  rgbToHex,
+} from './logic';
 import styles from './ColorTheory.module.scss';
 
 export const ColorTheoryPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('color_theory');
-  const getRandomColor = () => {
+  const getRandomColor = (): RGBColor => {
     return {
       r: Math.floor(Math.random() * 256),
       g: Math.floor(Math.random() * 256),
@@ -20,33 +25,38 @@ export const ColorTheoryPractice: React.FC = () => {
   };
 
   const { t } = useTranslation(['color_theory', 'common']);
-  const [target, setTarget] = useState(getRandomColor);
-  const targetR = target.r;
-  const targetG = target.g;
-  const targetB = target.b;
+  const [targetColor, setTargetColor] = useState<RGBColor>(getRandomColor);
+  const targetR = targetColor.r;
+  const targetG = targetColor.g;
+  const targetB = targetColor.b;
 
   const [userR, setUserR] = useState(128);
   const [userG, setUserG] = useState(128);
   const [userB, setUserB] = useState(128);
 
-  const [score, setScore] = useState<number | null>(null);
+  const [matchScore, setMatchScore] = useState<number | null>(null);
 
   const generateColor = () => {
-    setTarget(getRandomColor());
+    setTargetColor(getRandomColor());
     setUserR(128);
     setUserG(128);
     setUserB(128);
-    setScore(null);
+    setMatchScore(null);
   };
 
   const handleSubmit = () => {
-    const dist = calculateColorDistance([targetR, targetG, targetB], [userR, userG, userB]);
-    const maxDist = 442;
-    const calcScore = Math.max(0, 100 - (dist / maxDist) * 100);
-    setScore(calcScore);
+    const distance = calculateColorDistance(
+      [targetR, targetG, targetB],
+      [userR, userG, userB],
+    );
+    const calculatedScore = calculateColorScore(distance);
+    setMatchScore(calculatedScore);
 
-    if (calcScore > 90) setStreak((s) => s + 1);
-    else setStreak(0);
+    if (calculatedScore > 90) {
+      setStreak((s) => s + 1);
+    } else {
+      setStreak(0);
+    }
   };
 
   return (
@@ -102,12 +112,12 @@ export const ColorTheoryPractice: React.FC = () => {
             </FUIButton>
           </div>
 
-          {score !== null && (
+          {matchScore !== null && (
             <h3
               className={styles.scoreValue}
-              style={{ color: score > 90 ? 'var(--text-highlight)' : 'var(--color-error)' }}
+              style={{ color: matchScore > 90 ? 'var(--text-highlight)' : 'var(--color-error)' }}
             >
-              {score.toFixed(1)}%
+              {matchScore.toFixed(1)}%
             </h3>
           )}
         </div>

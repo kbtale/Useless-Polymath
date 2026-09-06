@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { rgbToHex, calculateColorDistance } from './logic';
+import {
+  rgbToHex,
+  calculateColorDistance,
+  calculateColorScore,
+  MAX_RGB_COLOR_DISTANCE,
+} from './logic';
 
 describe('Color Theory Logic', () => {
   it('should convert RGB values to hex', () => {
@@ -18,5 +23,12 @@ describe('Color Theory Logic', () => {
 
   it('should calculate the maximum distance between black and white', () => {
     expect(calculateColorDistance([0, 0, 0], [255, 255, 255])).toBeCloseTo(441.67, 2);
+    expect(MAX_RGB_COLOR_DISTANCE).toBeCloseTo(441.67, 2);
+  });
+
+  it('should calculate color scores correctly across distance range', () => {
+    expect(calculateColorScore(0)).toBe(100);
+    expect(calculateColorScore(MAX_RGB_COLOR_DISTANCE)).toBe(0);
+    expect(calculateColorScore(MAX_RGB_COLOR_DISTANCE / 2)).toBe(50);
   });
 });

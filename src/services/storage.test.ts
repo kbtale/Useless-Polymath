@@ -33,15 +33,25 @@ describe('StorageService', () => {
     expect(storageService.getAppStyle()).toBe('mono');
     storageService.setAppStyle('wellfound');
     expect(storageService.getAppStyle()).toBe('wellfound');
+    expect(localStorage.getItem(STORAGE_KEYS.APP_STYLE)).toBe('wellfound');
 
     expect(storageService.getLanguage()).toBe('en');
     storageService.setLanguage('es');
     expect(storageService.getLanguage()).toBe('es');
+    expect(localStorage.getItem(STORAGE_KEYS.LANGUAGE)).toBe('es');
 
     expect(storageService.getDateFormat()).toBe('DMY');
     storageService.setDateFormat('MDY');
     expect(storageService.getDateFormat()).toBe('MDY');
     expect(localStorage.getItem(STORAGE_KEYS.DATE_FORMAT)).toBe('MDY');
+  });
+
+  it('falls back to legacy storage keys when primary keys are absent', () => {
+    localStorage.setItem(STORAGE_KEYS.APP_STYLE_LEGACY, 'neobrutalism');
+    localStorage.setItem(STORAGE_KEYS.LANGUAGE_LEGACY, 'zh');
+
+    expect(storageService.getAppStyle()).toBe('neobrutalism');
+    expect(storageService.getLanguage()).toBe('zh');
   });
 
   it('handles streak and high score tracking and reset', () => {
