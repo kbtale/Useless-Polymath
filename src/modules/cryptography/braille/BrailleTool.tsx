@@ -16,11 +16,11 @@ export const BrailleTool: React.FC = () => {
         <h2 className={styles.title}>{t('title')}</h2>
 
         <div className={styles.inputSection}>
-<label htmlFor="braille-text-input" className={styles.label}>
-          {t('label_type_text')}
-        </label>
-        <CoreBaseInput
-          id="braille-text-input"
+          <label htmlFor="braille-text-input" className={styles.label}>
+            {t('label_type_text')}
+          </label>
+          <CoreBaseInput
+            id="braille-text-input"
             value={input}
             onChangeValue={setInput}
             placeholder="A B C"

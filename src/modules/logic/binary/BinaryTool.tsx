@@ -1,9 +1,9 @@
 import type React from 'react';
 import { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import styles from './Binary.module.scss';
 import { BitBulb } from './components/BitBulb';
 import { getActivePowers } from './logic';
-import styles from './Binary.module.scss';
 
 export const BinaryTool: React.FC = () => {
   const [value, setValue] = useState(0);

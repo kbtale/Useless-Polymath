@@ -1,11 +1,11 @@
 import type React from 'react';
 import { useState } from 'react';
-import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { useTranslation } from 'react-i18next';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { FUIButton } from '@/components/core/FUIButton';
-import { toRoman, fromRoman, isValidRoman } from './logic';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { fromRoman, isValidRoman, toRoman } from './logic';
 import styles from './Roman.module.scss';
-import { useTranslation } from 'react-i18next';
 
 export const RomanTool: React.FC = () => {
   const { t } = useTranslation(['roman_numerals', 'common']);
@@ -69,7 +69,7 @@ export const RomanTool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.inputGroup}>
-<label htmlFor="roman-decimal-input" className={styles.label}>
+          <label htmlFor="roman-decimal-input" className={styles.label}>
             {t('decimal', { defaultValue: 'DECIMAL (Integer)' })}
           </label>
           <CoreBaseInput
@@ -83,11 +83,11 @@ export const RomanTool: React.FC = () => {
         </div>
 
         <div className={styles.inputGroup}>
-<label htmlFor="roman-numeral-input" className={styles.label}>
-          {t('roman', { defaultValue: 'ROMAN NUMERALS' })}
-        </label>
-        <CoreBaseInput
-          id="roman-numeral-input"
+          <label htmlFor="roman-numeral-input" className={styles.label}>
+            {t('roman', { defaultValue: 'ROMAN NUMERALS' })}
+          </label>
+          <CoreBaseInput
+            id="roman-numeral-input"
             value={roman}
             onChangeValue={handleRomanChange}
             allowedChars={/[IVXLCDM]/i}

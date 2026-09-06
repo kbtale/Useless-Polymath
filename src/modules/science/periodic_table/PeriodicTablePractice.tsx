@@ -6,8 +6,8 @@ import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { FUIButton } from '@/components/core/FUIButton';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { usePracticeStreak } from '@/hooks/usePracticeStreak';
-import styles from './PeriodicTablePractice.module.scss';
 import { ELEMENTS, type Element } from './logic';
+import styles from './PeriodicTablePractice.module.scss';
 
 const getRandomElement = () => ELEMENTS[Math.floor(Math.random() * ELEMENTS.length)];
 
@@ -53,9 +53,11 @@ export const PeriodicTablePractice: React.FC = () => {
         </div>
 
         <div className={styles.inputArea}>
-<label htmlFor="periodic-symbol-input" className={styles.label}>{t('enter_symbol')}</label>
-            <CoreBaseInput
-              id="periodic-symbol-input"
+          <label htmlFor="periodic-symbol-input" className={styles.label}>
+            {t('enter_symbol')}
+          </label>
+          <CoreBaseInput
+            id="periodic-symbol-input"
             value={input}
             onChangeValue={setInput}
             onEnter={checkAnswer}

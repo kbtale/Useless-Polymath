@@ -1,12 +1,12 @@
+import clsx from 'clsx';
 import type React from 'react';
 import { useState } from 'react';
-import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
-import { FUIButton } from '@/components/core/FUIButton';
-import { decimalToHex, hexToDecimal } from './logic';
-import styles from './Hex.module.scss';
-import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
+import { FUIButton } from '@/components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { usePracticeStreak } from '@/hooks/usePracticeStreak';
+import styles from './Hex.module.scss';
+import { decimalToHex, hexToDecimal } from './logic';
 
 export const HexPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('hex');

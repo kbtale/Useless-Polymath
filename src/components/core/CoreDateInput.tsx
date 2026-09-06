@@ -1,11 +1,7 @@
 import clsx from 'clsx';
 import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
-import {
-  DATE_FORMAT_CHANGED_EVENT,
-  type DateFormat,
-  storageService,
-} from '@/services/storage';
+import { DATE_FORMAT_CHANGED_EVENT, type DateFormat, storageService } from '@/services/storage';
 import styles from './CoreDateInput.module.scss';
 
 export interface CoreDateInputProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {

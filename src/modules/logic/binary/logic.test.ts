@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { decimalToBinary, binaryToDecimal, getActivePowers } from './logic';
+import { describe, expect, it } from 'vitest';
+import { binaryToDecimal, decimalToBinary, getActivePowers } from './logic';
 
 describe('Binary Logic', () => {
   it('should convert decimal to binary correctly', () => {

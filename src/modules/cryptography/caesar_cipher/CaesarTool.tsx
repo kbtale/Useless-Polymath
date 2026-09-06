@@ -1,11 +1,11 @@
 import type React from 'react';
 import { useState } from 'react';
-import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { useTranslation } from 'react-i18next';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { CoreSlider } from '@/components/core/CoreSlider';
-import { encrypt } from './logic';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import styles from './Caesar.module.scss';
-import { useTranslation } from 'react-i18next';
+import { encrypt } from './logic';
 
 export const CaesarTool: React.FC = () => {
   const { t } = useTranslation(['caesar_cipher', 'common']);
@@ -20,7 +20,7 @@ export const CaesarTool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.controls}>
-<label htmlFor="caesar-shift" className={styles.label}>
+          <label htmlFor="caesar-shift" className={styles.label}>
             {t('shift_key')}
             <span>{shift}</span>
           </label>
@@ -30,9 +30,11 @@ export const CaesarTool: React.FC = () => {
 
         <div className={styles.ioSection}>
           <div className={styles.column}>
-<label htmlFor="caesar-plain-input" className={styles.label}>{t('plaintext')}</label>
-          <CoreBaseInput
-            id="caesar-plain-input"
+            <label htmlFor="caesar-plain-input" className={styles.label}>
+              {t('plaintext')}
+            </label>
+            <CoreBaseInput
+              id="caesar-plain-input"
               value={input}
               onChangeValue={setInput}
               placeholder="HELLO WORLD"
@@ -44,9 +46,11 @@ export const CaesarTool: React.FC = () => {
           <div className={styles.arrow}>➜</div>
 
           <div className={styles.column}>
-<label htmlFor="caesar-cipher-input" className={styles.label}>{t('ciphertext')}</label>
-          <CoreBaseInput
-            id="caesar-cipher-input"
+            <label htmlFor="caesar-cipher-input" className={styles.label}>
+              {t('ciphertext')}
+            </label>
+            <CoreBaseInput
+              id="caesar-cipher-input"
               value={output}
               onChangeValue={() => {}}
               readOnly

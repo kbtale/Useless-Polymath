@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { encrypt, decrypt, ROT13 } from './logic';
+import { describe, expect, it } from 'vitest';
+import { decrypt, encrypt, ROT13 } from './logic';
 
 describe('Caesar Cipher Logic', () => {
   it('should encrypt text with a shift', () => {

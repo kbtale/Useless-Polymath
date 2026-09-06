@@ -1,6 +1,6 @@
-import type React from 'react';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
+import type React from 'react';
 
 interface CoreSemaphoreFigureProps {
   leftAngle: number;

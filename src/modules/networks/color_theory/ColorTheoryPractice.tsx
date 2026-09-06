@@ -1,18 +1,13 @@
+import clsx from 'clsx';
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import clsx from 'clsx';
-import { usePracticeStreak } from '@/hooks/usePracticeStreak';
-import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreSlider } from '@/components/core/CoreSlider';
 import { FUIButton } from '@/components/core/FUIButton';
-import {
-  type RGBColor,
-  calculateColorDistance,
-  calculateColorScore,
-  rgbToHex,
-} from './logic';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 import styles from './ColorTheory.module.scss';
+import { calculateColorDistance, calculateColorScore, type RGBColor, rgbToHex } from './logic';
 
 export const ColorTheoryPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('color_theory');
@@ -45,10 +40,7 @@ export const ColorTheoryPractice: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    const distance = calculateColorDistance(
-      [targetR, targetG, targetB],
-      [userR, userG, userB],
-    );
+    const distance = calculateColorDistance([targetR, targetG, targetB], [userR, userG, userB]);
     const calculatedScore = calculateColorScore(distance);
     setMatchScore(calculatedScore);
 
@@ -92,15 +84,21 @@ export const ColorTheoryPractice: React.FC = () => {
 
           <div className={styles.controls}>
             <div className={styles.sliderGroup}>
-              <label htmlFor="color-r-slider" className={styles.labelRed}>{t('label_red')}</label>
+              <label htmlFor="color-r-slider" className={styles.labelRed}>
+                {t('label_red')}
+              </label>
               <CoreSlider id="color-r-slider" min={0} max={255} value={userR} onChange={setUserR} />
             </div>
             <div className={styles.sliderGroup}>
-              <label htmlFor="color-g-slider" className={styles.labelGreen}>{t('label_green')}</label>
+              <label htmlFor="color-g-slider" className={styles.labelGreen}>
+                {t('label_green')}
+              </label>
               <CoreSlider id="color-g-slider" min={0} max={255} value={userG} onChange={setUserG} />
             </div>
             <div className={styles.sliderGroup}>
-              <label htmlFor="color-b-slider" className={styles.labelBlue}>{t('label_blue')}</label>
+              <label htmlFor="color-b-slider" className={styles.labelBlue}>
+                {t('label_blue')}
+              </label>
               <CoreSlider id="color-b-slider" min={0} max={255} value={userB} onChange={setUserB} />
             </div>
           </div>

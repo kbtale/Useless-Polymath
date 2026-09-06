@@ -1,10 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import {
-  calculateLuhnSum,
-  calculateCheckDigit,
-  isValidLuhn,
-  generateLuhnNumber,
-} from './logic';
+import { describe, expect, it } from 'vitest';
+import { calculateCheckDigit, calculateLuhnSum, generateLuhnNumber, isValidLuhn } from './logic';
 
 describe('Luhn Algorithm Logic', () => {
   it('should calculate the Luhn weighted sum', () => {

@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { isLeapYear, getDaysInMonth, getOrdinalDate, getMonthFromOrdinal } from './logic';
+import { describe, expect, it } from 'vitest';
+import { getDaysInMonth, getMonthFromOrdinal, getOrdinalDate, isLeapYear } from './logic';
 
 describe('Ordinal Logic', () => {
   it('should detect leap years correctly', () => {

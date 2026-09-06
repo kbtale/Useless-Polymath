@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { CoreSelect } from '@/components/core/CoreSelect';
 import { CoreSlider } from '@/components/core/CoreSlider';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
-import styles from './TimeZones.module.scss';
 import { COMMON_ZONES, calculateDestinationTime } from './logic';
+import styles from './TimeZones.module.scss';
 
 const ZONE_OPTIONS = COMMON_ZONES.map((z) => ({
   value: z.id,

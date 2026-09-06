@@ -9,8 +9,7 @@ import { getModuleDefinition } from '@/registry/moduleRegistry';
 import styles from './App.module.scss';
 
 function AppContent() {
-  const { activeModuleId, mode, setActiveModuleId, setMode } =
-    useModuleNavigation('doomsday');
+  const { activeModuleId, mode, setActiveModuleId, setMode } = useModuleNavigation('doomsday');
   const { t } = useTranslation([activeModuleId, 'common']);
 
   const renderModule = () => {

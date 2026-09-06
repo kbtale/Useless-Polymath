@@ -5,12 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { CoreSelect } from '@/components/core/CoreSelect';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { convertStorageBySymbol, STORAGE_UNITS, type StorageUnitSymbol } from './logic';
 import styles from './StorageUnits.module.scss';
-import {
-  STORAGE_UNITS,
-  type StorageUnitSymbol,
-  convertStorageBySymbol,
-} from './logic';
 
 export const StorageUnitsTool: React.FC = () => {
   const { t } = useTranslation('storage_units');
@@ -28,7 +24,9 @@ export const StorageUnitsTool: React.FC = () => {
 
           <div className={styles.inputSection}>
             <div className={styles.amountField}>
-              <label htmlFor="storage-amount-input" className={styles.label}>{t('label_amount')}</label>
+              <label htmlFor="storage-amount-input" className={styles.label}>
+                {t('label_amount')}
+              </label>
               <CoreBaseInput
                 id="storage-amount-input"
                 value={amountInput}
@@ -37,7 +35,9 @@ export const StorageUnitsTool: React.FC = () => {
               />
             </div>
             <div className={styles.unitField}>
-              <label htmlFor="storage-unit-select" className={styles.label}>{t('label_unit')}</label>
+              <label htmlFor="storage-unit-select" className={styles.label}>
+                {t('label_unit')}
+              </label>
               <CoreSelect
                 id="storage-unit-select"
                 value={selectedUnit}
@@ -52,10 +52,7 @@ export const StorageUnitsTool: React.FC = () => {
               {conversionResults.map((result) => (
                 <div
                   key={result.unit}
-                  className={clsx(
-                    styles.resultCard,
-                    selectedUnit === result.unit && styles.active,
-                  )}
+                  className={clsx(styles.resultCard, selectedUnit === result.unit && styles.active)}
                 >
                   <span className={styles.resultUnit}>{result.unit}</span>
                   <span className={styles.resultValue}>{result.formatted}</span>

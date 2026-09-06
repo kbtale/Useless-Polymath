@@ -109,9 +109,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   };
 
   const handleMasterReset = () => {
-    if (
-      window.confirm(t('confirm_reset_all'))
-    ) {
+    if (window.confirm(t('confirm_reset_all'))) {
       storageService.resetAllScores(MODULES);
       setScoresVersion((v) => v + 1);
     }
@@ -270,10 +268,7 @@ export const AppShell: React.FC<AppShellProps> = ({
                         <button
                           type="button"
                           aria-current={activeModule === m.id ? 'page' : undefined}
-                          className={clsx(
-                            styles.menuItem,
-                            activeModule === m.id && styles.active,
-                          )}
+                          className={clsx(styles.menuItem, activeModule === m.id && styles.active)}
                           onClick={() => {
                             onModuleChange(m.id);
                             setIsMobileMenuOpen(false);

@@ -6,8 +6,8 @@ import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { FUIButton } from '@/components/core/FUIButton';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { usePracticeStreak } from '@/hooks/usePracticeStreak';
-import styles from './StorageUnits.module.scss';
 import { calculateAnswer, formatValue, generatePracticeProblem } from './logic';
+import styles from './StorageUnits.module.scss';
 
 export const StorageUnitsPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('storage_units');

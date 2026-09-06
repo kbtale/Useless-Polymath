@@ -1,13 +1,13 @@
+import clsx from 'clsx';
 import type React from 'react';
 import { useState } from 'react';
-import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { useTranslation } from 'react-i18next';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { FUIButton } from '@/components/core/FUIButton';
-import { ALPHABET, getBraillePattern } from './logic';
-import styles from './Braille.module.scss';
-import { useTranslation } from 'react-i18next';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { usePracticeStreak } from '@/hooks/usePracticeStreak';
-import clsx from 'clsx';
+import styles from './Braille.module.scss';
+import { ALPHABET, getBraillePattern } from './logic';
 
 export const BraillePractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('braille');
