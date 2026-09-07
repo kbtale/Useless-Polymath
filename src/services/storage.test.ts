@@ -54,16 +54,58 @@ describe('StorageService', () => {
     expect(storageService.getLanguage()).toBe('zh');
   });
 
-  it('handles streak and high score tracking and reset', () => {
-    storageService.setStreak('binary', 8);
-    storageService.setHighScore('binary', 15);
+  it('records practice attempts and updates telemetry and daily activity', () => {
+    const attempt1 = storageService.recordPracticeAttempt('binary', true);
+    expect(attempt1.telemetry.attempts).toBe(1);
+    expect(attempt1.telemetry.correct).toBe(1);
+    expect(attempt1.telemetry.currentStreak).toBe(1);
+    expect(attempt1.telemetry.highScore).toBe(1);
 
-    expect(storageService.getStreak('binary')).toBe(8);
-    expect(storageService.getHighScore('binary')).toBe(15);
+    const attempt2 = storageService.recordPracticeAttempt('binary', true);
+    expect(attempt2.telemetry.attempts).toBe(2);
+    expect(attempt2.telemetry.currentStreak).toBe(2);
+    expect(attempt2.telemetry.highScore).toBe(2);
 
-    storageService.resetModuleScores('binary');
-    expect(storageService.getStreak('binary')).toBe(0);
-    expect(storageService.getHighScore('binary')).toBe(0);
+    const attempt3 = storageService.recordPracticeAttempt('binary', false);
+    expect(attempt3.telemetry.attempts).toBe(3);
+    expect(attempt3.telemetry.correct).toBe(2);
+    expect(attempt3.telemetry.currentStreak).toBe(0);
+    expect(attempt3.telemetry.highScore).toBe(2);
+
+    const daily = storageService.getDailyActivity();
+    const todayKey = new Date().toISOString().slice(0, 10);
+    expect(daily[todayKey]).toBe(3);
+  });
+
+  it('evaluates and unlocks achievements upon reaching milestones', () => {
+    const attempt = storageService.recordPracticeAttempt('doomsday', true);
+    expect(attempt.newlyUnlocked.some((a) => a.id === 'first_step')).toBe(true);
+
+    for (let i = 0; i < 4; i++) {
+      storageService.recordPracticeAttempt('doomsday', true);
+    }
+    const unlocked = storageService.getUnlockedAchievements();
+    expect(unlocked).toContain('first_step');
+    expect(unlocked).toContain('streak_5');
+  });
+
+  it('exports and imports backup JSON with fidelity', () => {
+    storageService.recordPracticeAttempt('hexadecimal', true);
+    storageService.setAppStyle('cyber');
+    storageService.setLanguage('it');
+
+    const json = storageService.exportBackupJson();
+    expect(json).toContain('hexadecimal');
+    expect(json).toContain('cyber');
+
+    localStorage.clear();
+    expect(storageService.getModuleTelemetry('hexadecimal').attempts).toBe(0);
+
+    const success = storageService.importBackupJson(json);
+    expect(success).toBe(true);
+    expect(storageService.getModuleTelemetry('hexadecimal').attempts).toBe(1);
+    expect(storageService.getAppStyle()).toBe('cyber');
+    expect(storageService.getLanguage()).toBe('it');
   });
 
   it('resets all module scores in bulk', () => {

@@ -1,9 +1,47 @@
 export const DATE_FORMAT_CHANGED_EVENT = 'polymath:dateformat_changed';
+export const ACHIEVEMENT_UNLOCKED_EVENT = 'polymath:achievement_unlocked';
 
 export type DateFormat = 'DMY' | 'MDY' | 'YMD';
 
 export interface DateFormatEventDetail {
   format: DateFormat;
+}
+
+export interface ModuleTelemetry {
+  attempts: number;
+  correct: number;
+  currentStreak: number;
+  highScore: number;
+  lastPracticed?: string;
+}
+
+export interface AchievementDefinition {
+  id: string;
+  titleKey: string;
+  descriptionKey: string;
+  icon: string;
+  category?: string;
+}
+
+export interface AchievementUnlockedDetail {
+  id: string;
+  titleKey: string;
+  descriptionKey: string;
+  icon: string;
+}
+
+export interface ExportedBackupData {
+  version: number;
+  exportedAt: string;
+  telemetry: Record<string, ModuleTelemetry>;
+  dailyActivity: Record<string, number>;
+  unlockedAchievements: string[];
+  settings: {
+    appStyle: string;
+    language: string;
+    dateFormat: DateFormat;
+    sidebarCollapsed: boolean;
+  };
 }
 
 export const STORAGE_KEYS = {
@@ -15,9 +53,120 @@ export const STORAGE_KEYS = {
   LANGUAGE: 'polymath_language',
   LANGUAGE_LEGACY: 'language',
   DATE_FORMAT: 'polymath_date_format',
+  DAILY_ACTIVITY: 'polymath_daily_activity',
+  UNLOCKED_ACHIEVEMENTS: 'polymath_unlocked_achievements',
+  moduleTelemetry: (id: string) => `polymath_telemetry_${id}`,
   streak: (id: string) => `polymath_streak_${id}`,
   highScore: (id: string) => `polymath_high_${id}`,
 } as const;
+
+export const ALL_MODULE_IDS = [
+  'doomsday',
+  'time_zones',
+  'moon',
+  'ordinal',
+  'binary',
+  'hexadecimal',
+  'roman_numerals',
+  'bitwise',
+  'rule_72',
+  'subnetting',
+  'color_theory',
+  'ascii',
+  'storage_units',
+  'morse_code',
+  'nato_alphabet',
+  'caesar_cipher',
+  'braille',
+  'semaphore',
+  'periodic_table',
+  'thermodynamics',
+  'resistor_codes',
+  'luhn_algorithm',
+  'ean_13',
+  'card_counting',
+] as const;
+
+export const MODULE_CATEGORIES: Record<string, string> = {
+  doomsday: 'chronometry',
+  time_zones: 'chronometry',
+  moon: 'chronometry',
+  ordinal: 'chronometry',
+  binary: 'logic',
+  hexadecimal: 'logic',
+  roman_numerals: 'logic',
+  bitwise: 'logic',
+  rule_72: 'logic',
+  subnetting: 'networks',
+  color_theory: 'networks',
+  ascii: 'networks',
+  storage_units: 'networks',
+  morse_code: 'cryptography',
+  nato_alphabet: 'cryptography',
+  caesar_cipher: 'cryptography',
+  braille: 'cryptography',
+  semaphore: 'cryptography',
+  periodic_table: 'science',
+  thermodynamics: 'science',
+  resistor_codes: 'science',
+  luhn_algorithm: 'science',
+  ean_13: 'science',
+  card_counting: 'science',
+};
+
+export const ACHIEVEMENTS: readonly AchievementDefinition[] = [
+  {
+    id: 'first_step',
+    titleKey: 'achievement_first_step_title',
+    descriptionKey: 'achievement_first_step_desc',
+    icon: '🚀',
+  },
+  {
+    id: 'streak_5',
+    titleKey: 'achievement_streak_5_title',
+    descriptionKey: 'achievement_streak_5_desc',
+    icon: '🔥',
+  },
+  {
+    id: 'streak_15',
+    titleKey: 'achievement_streak_15_title',
+    descriptionKey: 'achievement_streak_15_desc',
+    icon: '⚡',
+  },
+  {
+    id: 'centurion',
+    titleKey: 'achievement_centurion_title',
+    descriptionKey: 'achievement_centurion_desc',
+    icon: '💯',
+  },
+  {
+    id: 'grand_polymath',
+    titleKey: 'achievement_grand_polymath_title',
+    descriptionKey: 'achievement_grand_polymath_desc',
+    icon: '👑',
+  },
+  {
+    id: 'chronomancer',
+    titleKey: 'achievement_chronomancer_title',
+    descriptionKey: 'achievement_chronomancer_desc',
+    icon: '⏳',
+    category: 'chronometry',
+  },
+  {
+    id: 'codebreaker',
+    titleKey: 'achievement_codebreaker_title',
+    descriptionKey: 'achievement_codebreaker_desc',
+    icon: '🔐',
+    category: 'cryptography',
+  },
+  {
+    id: 'logic_master',
+    titleKey: 'achievement_logic_master_title',
+    descriptionKey: 'achievement_logic_master_desc',
+    icon: '🧩',
+    category: 'logic',
+  },
+] as const;
 
 class StorageService {
   private isAvailable(): boolean {
@@ -143,9 +292,215 @@ class StorageService {
     this.removeItem(STORAGE_KEYS.highScore(moduleId));
   }
 
+  getModuleTelemetry(moduleId: string): ModuleTelemetry {
+    const currentStreak = this.getStreak(moduleId);
+    const highScore = this.getHighScore(moduleId);
+    const defaultTelemetry: ModuleTelemetry = {
+      attempts: currentStreak > 0 ? currentStreak : 0,
+      correct: currentStreak > 0 ? currentStreak : 0,
+      currentStreak,
+      highScore,
+    };
+    return this.getItem<ModuleTelemetry>(STORAGE_KEYS.moduleTelemetry(moduleId), defaultTelemetry);
+  }
+
+  setModuleTelemetry(moduleId: string, telemetry: ModuleTelemetry): void {
+    this.setItem(STORAGE_KEYS.moduleTelemetry(moduleId), telemetry);
+  }
+
+  getAllModuleTelemetry(): Record<string, ModuleTelemetry> {
+    const result: Record<string, ModuleTelemetry> = {};
+    for (const moduleId of ALL_MODULE_IDS) {
+      result[moduleId] = this.getModuleTelemetry(moduleId);
+    }
+    return result;
+  }
+
+  getDailyActivity(): Record<string, number> {
+    return this.getItem<Record<string, number>>(STORAGE_KEYS.DAILY_ACTIVITY, {});
+  }
+
+  setDailyActivity(activity: Record<string, number>): void {
+    this.setItem(STORAGE_KEYS.DAILY_ACTIVITY, activity);
+  }
+
+  getUnlockedAchievements(): string[] {
+    return this.getItem<string[]>(STORAGE_KEYS.UNLOCKED_ACHIEVEMENTS, []);
+  }
+
+  setUnlockedAchievements(achievements: string[]): void {
+    this.setItem(STORAGE_KEYS.UNLOCKED_ACHIEVEMENTS, achievements);
+  }
+
+  recordPracticeAttempt(
+    moduleId: string,
+    isCorrect: boolean,
+  ): { newlyUnlocked: AchievementUnlockedDetail[]; telemetry: ModuleTelemetry } {
+    const existingTelemetry = this.getModuleTelemetry(moduleId);
+    const newAttempts = existingTelemetry.attempts + 1;
+    const newCorrect = existingTelemetry.correct + (isCorrect ? 1 : 0);
+    const newCurrentStreak = isCorrect ? existingTelemetry.currentStreak + 1 : 0;
+    const newHighScore = Math.max(existingTelemetry.highScore, newCurrentStreak);
+    const nowIso = new Date().toISOString();
+
+    const updatedTelemetry: ModuleTelemetry = {
+      attempts: newAttempts,
+      correct: newCorrect,
+      currentStreak: newCurrentStreak,
+      highScore: newHighScore,
+      lastPracticed: nowIso,
+    };
+
+    this.setModuleTelemetry(moduleId, updatedTelemetry);
+    this.setStreak(moduleId, newCurrentStreak);
+    this.setHighScore(moduleId, newHighScore);
+
+    const todayDateKey = nowIso.slice(0, 10);
+    const activity = this.getDailyActivity();
+    activity[todayDateKey] = (activity[todayDateKey] || 0) + 1;
+    this.setDailyActivity(activity);
+
+    const newlyUnlocked = this.evaluateAndUnlockAchievements();
+
+    return { newlyUnlocked, telemetry: updatedTelemetry };
+  }
+
+  evaluateAndUnlockAchievements(): AchievementUnlockedDetail[] {
+    const unlocked = new Set(this.getUnlockedAchievements());
+    const allTelemetry = this.getAllModuleTelemetry();
+
+    let totalAttempts = 0;
+    let maxOverallStreak = 0;
+    const categoriesWithStreaks = new Set<string>();
+
+    for (const [modId, tel] of Object.entries(allTelemetry)) {
+      totalAttempts += tel.attempts;
+      if (tel.highScore > maxOverallStreak) {
+        maxOverallStreak = tel.highScore;
+      }
+      const category = MODULE_CATEGORIES[modId];
+      if (category && tel.highScore >= 5) {
+        categoriesWithStreaks.add(category);
+      }
+    }
+
+    const newlyUnlocked: AchievementUnlockedDetail[] = [];
+
+    for (const achievement of ACHIEVEMENTS) {
+      if (unlocked.has(achievement.id)) continue;
+
+      let isQualified = false;
+      if (achievement.id === 'first_step' && totalAttempts >= 1) {
+        isQualified = true;
+      } else if (achievement.id === 'streak_5' && maxOverallStreak >= 5) {
+        isQualified = true;
+      } else if (achievement.id === 'streak_15' && maxOverallStreak >= 15) {
+        isQualified = true;
+      } else if (achievement.id === 'centurion' && totalAttempts >= 100) {
+        isQualified = true;
+      } else if (achievement.id === 'grand_polymath' && categoriesWithStreaks.size >= 5) {
+        isQualified = true;
+      } else if (achievement.category) {
+        const categoryModules = Object.keys(MODULE_CATEGORIES).filter(
+          (m) => MODULE_CATEGORIES[m] === achievement.category,
+        );
+        const hasPracticedCategory = categoryModules.every(
+          (m) => (allTelemetry[m]?.highScore ?? 0) >= 3,
+        );
+        if (hasPracticedCategory) {
+          isQualified = true;
+        }
+      }
+
+      if (isQualified) {
+        unlocked.add(achievement.id);
+        newlyUnlocked.push({
+          id: achievement.id,
+          titleKey: achievement.titleKey,
+          descriptionKey: achievement.descriptionKey,
+          icon: achievement.icon,
+        });
+      }
+    }
+
+    if (newlyUnlocked.length > 0) {
+      this.setUnlockedAchievements(Array.from(unlocked));
+      if (typeof window !== 'undefined') {
+        for (const item of newlyUnlocked) {
+          window.dispatchEvent(
+            new CustomEvent<AchievementUnlockedDetail>(ACHIEVEMENT_UNLOCKED_EVENT, { detail: item }),
+          );
+        }
+      }
+    }
+
+    return newlyUnlocked;
+  }
+
+  exportBackupJson(): string {
+    const backup: ExportedBackupData = {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      telemetry: this.getAllModuleTelemetry(),
+      dailyActivity: this.getDailyActivity(),
+      unlockedAchievements: this.getUnlockedAchievements(),
+      settings: {
+        appStyle: this.getAppStyle(),
+        language: this.getLanguage(),
+        dateFormat: this.getDateFormat(),
+        sidebarCollapsed: this.getSidebarCollapsed(),
+      },
+    };
+    return JSON.stringify(backup, null, 2);
+  }
+
+  importBackupJson(jsonString: string): boolean {
+    try {
+      const parsed = JSON.parse(jsonString) as Partial<ExportedBackupData>;
+      if (!parsed || typeof parsed !== 'object') return false;
+
+      if (parsed.telemetry && typeof parsed.telemetry === 'object') {
+        for (const [moduleId, telemetry] of Object.entries(parsed.telemetry)) {
+          if (telemetry && typeof telemetry === 'object') {
+            this.setModuleTelemetry(moduleId, telemetry as ModuleTelemetry);
+            if (typeof telemetry.currentStreak === 'number') {
+              this.setStreak(moduleId, telemetry.currentStreak);
+            }
+            if (typeof telemetry.highScore === 'number') {
+              this.setHighScore(moduleId, telemetry.highScore);
+            }
+          }
+        }
+      }
+
+      if (parsed.dailyActivity && typeof parsed.dailyActivity === 'object') {
+        this.setDailyActivity(parsed.dailyActivity);
+      }
+
+      if (Array.isArray(parsed.unlockedAchievements)) {
+        this.setUnlockedAchievements(parsed.unlockedAchievements);
+      }
+
+      if (parsed.settings && typeof parsed.settings === 'object') {
+        if (parsed.settings.appStyle) this.setAppStyle(parsed.settings.appStyle);
+        if (parsed.settings.language) this.setLanguage(parsed.settings.language);
+        if (parsed.settings.dateFormat) this.setDateFormat(parsed.settings.dateFormat);
+        if (typeof parsed.settings.sidebarCollapsed === 'boolean') {
+          this.setSidebarCollapsed(parsed.settings.sidebarCollapsed);
+        }
+      }
+
+      return true;
+    } catch (e) {
+      console.warn('[StorageService] Failed to import backup JSON:', e);
+      return false;
+    }
+  }
+
   resetModuleScores(moduleId: string): void {
     this.removeStreak(moduleId);
     this.removeHighScore(moduleId);
+    this.removeItem(STORAGE_KEYS.moduleTelemetry(moduleId));
   }
 
   resetAllScores(moduleIds: readonly { id: string }[] | readonly string[]): void {
@@ -153,6 +508,14 @@ class StorageService {
       const id = typeof item === 'string' ? item : item.id;
       this.resetModuleScores(id);
     }
+  }
+
+  resetAllAnalytics(): void {
+    for (const moduleId of ALL_MODULE_IDS) {
+      this.resetModuleScores(moduleId);
+    }
+    this.removeItem(STORAGE_KEYS.DAILY_ACTIVITY);
+    this.removeItem(STORAGE_KEYS.UNLOCKED_ACHIEVEMENTS);
   }
 }
 
