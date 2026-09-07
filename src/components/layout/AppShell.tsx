@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { storageService } from '@/services/storage';
 import { formatDefaultTitle, toTitleCase } from '@/utils/text';
 import { FUIButton } from '../core/FUIButton';
+import { StatsModal } from '../stats/StatsModal';
 import styles from './AppShell.module.scss';
 import { SettingsModal } from './SettingsModal';
 
@@ -61,6 +62,7 @@ export const AppShell: React.FC<AppShellProps> = ({
 }) => {
   const { t, i18n } = useTranslation(['common', 'navigation']);
   const [showSettings, setShowSettings] = useState(false);
+  const [showStats, setShowStats] = useState(false);
   const [scoresVersion, setScoresVersion] = useState(0);
 
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() => {
@@ -228,9 +230,9 @@ export const AppShell: React.FC<AppShellProps> = ({
 
         <FUIButton
           id="stats-open-btn"
-          variant={activeModule === 'stats' ? 'solid' : 'outline'}
-          onClick={() => onModuleChange(activeModule === 'stats' ? 'doomsday' : 'stats')}
-          aria-label={t('stats', { ns: 'common', defaultValue: 'Stats' })}
+          aria-haspopup="dialog"
+          aria-expanded={showStats}
+          onClick={() => setShowStats(true)}
         >
           {t('stats', { ns: 'common', defaultValue: 'Stats' })}
         </FUIButton>
@@ -258,22 +260,6 @@ export const AppShell: React.FC<AppShellProps> = ({
           )}
         >
           <div className={styles.scrollArea}>
-            <ul className={styles.menuList} style={{ marginBottom: '1rem' }}>
-              <li>
-                <button
-                  type="button"
-                  aria-current={activeModule === 'stats' ? 'page' : undefined}
-                  className={clsx(styles.menuItem, activeModule === 'stats' && styles.active)}
-                  onClick={() => {
-                    onModuleChange('stats');
-                    setIsMobileMenuOpen(false);
-                  }}
-                >
-                  📊 {t('stats', { ns: 'common', defaultValue: 'Stats' })}
-                </button>
-              </li>
-            </ul>
-
             {categories
               .filter((catKey) => {
                 if (hiddenCategories.includes(catKey)) return false;
@@ -326,47 +312,43 @@ export const AppShell: React.FC<AppShellProps> = ({
 
         <main className={styles.contentArea}>
           <div className={styles.statusBar} role="status">
-            {activeModule === 'stats'
-              ? `${t('home')} > ${t('stats', { ns: 'common', defaultValue: 'Stats' })}`
-              : `${t('home')} > ${categoryName} > ${moduleName}`}
+            {`${t('home')} > ${categoryName} > ${moduleName}`}
           </div>
 
-          {activeModule !== 'stats' && (
-            <div className={styles.tabs} role="tablist" aria-label="Module Views">
-              <div className={styles.tabGroup}>
-                <button
-                  type="button"
-                  role="tab"
-                  aria-selected={mode === 'tool'}
-                  aria-controls="tab-content-panel"
-                  className={clsx(styles.tabBtn, mode === 'tool' && styles.active)}
-                  onClick={() => onModeChange('tool')}
-                >
-                  {t('visualizer')}
-                </button>
-                <button
-                  type="button"
-                  role="tab"
-                  aria-selected={mode === 'practice'}
-                  aria-controls="tab-content-panel"
-                  className={clsx(styles.tabBtn, mode === 'practice' && styles.active)}
-                  onClick={() => onModeChange('practice')}
-                >
-                  {t('practice')}
-                </button>
-              </div>
+          <div className={styles.tabs} role="tablist" aria-label="Module Views">
+            <div className={styles.tabGroup}>
               <button
                 type="button"
                 role="tab"
-                aria-selected={mode === 'guide'}
+                aria-selected={mode === 'tool'}
                 aria-controls="tab-content-panel"
-                className={clsx(styles.tabBtn, mode === 'guide' && styles.active, styles.helpTab)}
-                onClick={() => onModeChange('guide')}
+                className={clsx(styles.tabBtn, mode === 'tool' && styles.active)}
+                onClick={() => onModeChange('tool')}
               >
-                {t('guide')}
+                {t('visualizer')}
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={mode === 'practice'}
+                aria-controls="tab-content-panel"
+                className={clsx(styles.tabBtn, mode === 'practice' && styles.active)}
+                onClick={() => onModeChange('practice')}
+              >
+                {t('practice')}
               </button>
             </div>
-          )}
+            <button
+              type="button"
+              role="tab"
+              aria-selected={mode === 'guide'}
+              aria-controls="tab-content-panel"
+              className={clsx(styles.tabBtn, mode === 'guide' && styles.active, styles.helpTab)}
+              onClick={() => onModeChange('guide')}
+            >
+              {t('guide')}
+            </button>
+          </div>
 
           <div id="tab-content-panel" role="tabpanel" className={styles.workspace}>
             {children}
@@ -389,6 +371,8 @@ export const AppShell: React.FC<AppShellProps> = ({
         onResetAll={handleMasterReset}
         scoresVersion={scoresVersion}
       />
+
+      <StatsModal isOpen={showStats} onClose={() => setShowStats(false)} />
     </div>
   );
 };

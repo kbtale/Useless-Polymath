@@ -47,12 +47,9 @@ export const AchievementToast: React.FC = () => {
     >
       {toasts.map((toast) => (
         <div key={toast.instanceId} className={styles.toast} role="alert">
-          <div className={styles.toastIcon} aria-hidden="true">
-            {toast.icon}
-          </div>
           <div className={styles.toastContent}>
             <span className={styles.toastTag}>
-              {t('achievement_unlocked_banner', { defaultValue: 'Achievement Unlocked!' })}
+              {t('achievement_unlocked_banner', { defaultValue: 'Achievement Unlocked' })}
             </span>
             <h4 className={styles.toastTitle}>{t(toast.titleKey, { defaultValue: toast.id })}</h4>
             <p className={styles.toastDesc}>{t(toast.descriptionKey, { defaultValue: '' })}</p>
