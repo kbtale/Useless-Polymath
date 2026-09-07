@@ -428,7 +428,9 @@ class StorageService {
       if (typeof window !== 'undefined') {
         for (const item of newlyUnlocked) {
           window.dispatchEvent(
-            new CustomEvent<AchievementUnlockedDetail>(ACHIEVEMENT_UNLOCKED_EVENT, { detail: item }),
+            new CustomEvent<AchievementUnlockedDetail>(ACHIEVEMENT_UNLOCKED_EVENT, {
+              detail: item,
+            }),
           );
         }
       }

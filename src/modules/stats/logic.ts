@@ -89,17 +89,14 @@ export const calculateCategoryMasteries = (
       }
     }
 
-    const accuracyRate =
-      totalAttempts > 0 ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
+    const accuracyRate = totalAttempts > 0 ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
 
     // Mastery calculation blends accuracy, practice breadth, and streak
     const coverageFraction = moduleIds.length > 0 ? practicedModulesCount / moduleIds.length : 0;
     const streakBonus = Math.min(30, highestStreak * 3);
     const volumeScore = Math.min(30, totalCorrect);
     const accuracyScore = (accuracyRate / 100) * 40;
-    const rawMastery = Math.round(
-      coverageFraction * (accuracyScore + streakBonus + volumeScore),
-    );
+    const rawMastery = Math.round(coverageFraction * (accuracyScore + streakBonus + volumeScore));
     const masteryPercentage = Math.max(0, Math.min(100, rawMastery));
 
     return {
@@ -137,8 +134,7 @@ export const calculateGlobalAggregates = (
     }
   }
 
-  const overallAccuracy =
-    totalAttempts > 0 ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
+  const overallAccuracy = totalAttempts > 0 ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
 
   const todayIso = new Date().toISOString().slice(0, 10);
   const activeStreakToday = dailyActivity[todayIso] || 0;
