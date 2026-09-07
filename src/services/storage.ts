@@ -19,7 +19,6 @@ export interface AchievementDefinition {
   id: string;
   titleKey: string;
   descriptionKey: string;
-  icon: string;
   category?: string;
 }
 
@@ -27,7 +26,6 @@ export interface AchievementUnlockedDetail {
   id: string;
   titleKey: string;
   descriptionKey: string;
-  icon: string;
 }
 
 export interface ExportedBackupData {
@@ -119,51 +117,43 @@ export const ACHIEVEMENTS: readonly AchievementDefinition[] = [
     id: 'first_step',
     titleKey: 'achievement_first_step_title',
     descriptionKey: 'achievement_first_step_desc',
-    icon: '🚀',
   },
   {
     id: 'streak_5',
     titleKey: 'achievement_streak_5_title',
     descriptionKey: 'achievement_streak_5_desc',
-    icon: '🔥',
   },
   {
     id: 'streak_15',
     titleKey: 'achievement_streak_15_title',
     descriptionKey: 'achievement_streak_15_desc',
-    icon: '⚡',
   },
   {
     id: 'centurion',
     titleKey: 'achievement_centurion_title',
     descriptionKey: 'achievement_centurion_desc',
-    icon: '💯',
   },
   {
     id: 'grand_polymath',
     titleKey: 'achievement_grand_polymath_title',
     descriptionKey: 'achievement_grand_polymath_desc',
-    icon: '👑',
   },
   {
     id: 'chronomancer',
     titleKey: 'achievement_chronomancer_title',
     descriptionKey: 'achievement_chronomancer_desc',
-    icon: '⏳',
     category: 'chronometry',
   },
   {
     id: 'codebreaker',
     titleKey: 'achievement_codebreaker_title',
     descriptionKey: 'achievement_codebreaker_desc',
-    icon: '🔐',
     category: 'cryptography',
   },
   {
     id: 'logic_master',
     titleKey: 'achievement_logic_master_title',
     descriptionKey: 'achievement_logic_master_desc',
-    icon: '🧩',
     category: 'logic',
   },
 ] as const;
@@ -418,7 +408,6 @@ class StorageService {
           id: achievement.id,
           titleKey: achievement.titleKey,
           descriptionKey: achievement.descriptionKey,
-          icon: achievement.icon,
         });
       }
     }
