@@ -227,6 +227,15 @@ export const AppShell: React.FC<AppShellProps> = ({
         </div>
 
         <FUIButton
+          id="stats-open-btn"
+          variant={activeModule === 'stats' ? 'solid' : 'outline'}
+          onClick={() => onModuleChange(activeModule === 'stats' ? 'doomsday' : 'stats')}
+          aria-label={t('stats', { ns: 'common', defaultValue: 'Stats' })}
+        >
+          {t('stats', { ns: 'common', defaultValue: 'Stats' })}
+        </FUIButton>
+
+        <FUIButton
           id="settings-open-btn"
           aria-haspopup="dialog"
           aria-expanded={showSettings}
@@ -240,6 +249,7 @@ export const AppShell: React.FC<AppShellProps> = ({
       <div className={styles.mainLayout}>
         <aside
           id="main-sidebar"
+          data-testid="main-sidebar"
           aria-label="Module Navigation"
           className={clsx(
             styles.sidebar,
@@ -248,6 +258,22 @@ export const AppShell: React.FC<AppShellProps> = ({
           )}
         >
           <div className={styles.scrollArea}>
+            <ul className={styles.menuList} style={{ marginBottom: '1rem' }}>
+              <li>
+                <button
+                  type="button"
+                  aria-current={activeModule === 'stats' ? 'page' : undefined}
+                  className={clsx(styles.menuItem, activeModule === 'stats' && styles.active)}
+                  onClick={() => {
+                    onModuleChange('stats');
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  📊 {t('stats', { ns: 'common', defaultValue: 'Stats' })}
+                </button>
+              </li>
+            </ul>
+
             {categories
               .filter((catKey) => {
                 if (hiddenCategories.includes(catKey)) return false;
@@ -300,43 +326,47 @@ export const AppShell: React.FC<AppShellProps> = ({
 
         <main className={styles.contentArea}>
           <div className={styles.statusBar} role="status">
-            {t('home')} &gt; {categoryName} &gt; {moduleName}
+            {activeModule === 'stats'
+              ? `${t('home')} > ${t('stats', { ns: 'common', defaultValue: 'Stats' })}`
+              : `${t('home')} > ${categoryName} > ${moduleName}`}
           </div>
 
-          <div className={styles.tabs} role="tablist" aria-label="Module Views">
-            <div className={styles.tabGroup}>
+          {activeModule !== 'stats' && (
+            <div className={styles.tabs} role="tablist" aria-label="Module Views">
+              <div className={styles.tabGroup}>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={mode === 'tool'}
+                  aria-controls="tab-content-panel"
+                  className={clsx(styles.tabBtn, mode === 'tool' && styles.active)}
+                  onClick={() => onModeChange('tool')}
+                >
+                  {t('visualizer')}
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={mode === 'practice'}
+                  aria-controls="tab-content-panel"
+                  className={clsx(styles.tabBtn, mode === 'practice' && styles.active)}
+                  onClick={() => onModeChange('practice')}
+                >
+                  {t('practice')}
+                </button>
+              </div>
               <button
                 type="button"
                 role="tab"
-                aria-selected={mode === 'tool'}
+                aria-selected={mode === 'guide'}
                 aria-controls="tab-content-panel"
-                className={clsx(styles.tabBtn, mode === 'tool' && styles.active)}
-                onClick={() => onModeChange('tool')}
+                className={clsx(styles.tabBtn, mode === 'guide' && styles.active, styles.helpTab)}
+                onClick={() => onModeChange('guide')}
               >
-                {t('visualizer')}
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={mode === 'practice'}
-                aria-controls="tab-content-panel"
-                className={clsx(styles.tabBtn, mode === 'practice' && styles.active)}
-                onClick={() => onModeChange('practice')}
-              >
-                {t('practice')}
+                {t('guide')}
               </button>
             </div>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={mode === 'guide'}
-              aria-controls="tab-content-panel"
-              className={clsx(styles.tabBtn, mode === 'guide' && styles.active, styles.helpTab)}
-              onClick={() => onModeChange('guide')}
-            >
-              {t('guide')}
-            </button>
-          </div>
+          )}
 
           <div id="tab-content-panel" role="tabpanel" className={styles.workspace}>
             {children}
