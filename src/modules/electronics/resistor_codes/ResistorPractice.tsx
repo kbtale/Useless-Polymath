@@ -6,8 +6,8 @@ import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { FUIButton } from '@/components/core/FUIButton';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { usePracticeStreak } from '@/hooks/usePracticeStreak';
-import styles from './ResistorCodes.module.scss';
 import { BAND_COLORS, calculateResistance, formatOhms, getRandomResistor } from './logic';
+import styles from './ResistorCodes.module.scss';
 
 export const ResistorPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('resistor_codes');
@@ -65,7 +65,7 @@ export const ResistorPractice: React.FC = () => {
 
       <div className={clsx(styles.resistorDisplay, styles.resistorDisplayFixed)}>
         <svg viewBox="0 0 400 150">
-        <title>Resistor color band diagram</title>
+          <title>Resistor color band diagram</title>
           <path d="M0,75 L50,75 M350,75 L400,75" stroke="#999" strokeWidth="10" />
           <path
             d="M50,40 Q50,25 75,25 L325,25 Q350,25 350,40 L350,110 Q350,125 325,125 L75,125 Q50,125 50,110 Z"

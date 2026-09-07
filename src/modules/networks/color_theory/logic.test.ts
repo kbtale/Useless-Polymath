@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
-  rgbToHex,
   calculateColorDistance,
   calculateColorScore,
   MAX_RGB_COLOR_DISTANCE,
+  rgbToHex,
 } from './logic';
 
 describe('Color Theory Logic', () => {

@@ -51,7 +51,12 @@ export const convertStorageBySymbol = (
 };
 
 export const convertStorage = (amount: number, fromUnitIdx: number): ConversionResult[] => {
-  if (Number.isNaN(amount) || amount < 0 || fromUnitIdx < 0 || fromUnitIdx >= STORAGE_UNITS.length) {
+  if (
+    Number.isNaN(amount) ||
+    amount < 0 ||
+    fromUnitIdx < 0 ||
+    fromUnitIdx >= STORAGE_UNITS.length
+  ) {
     return [];
   }
   return convertStorageBySymbol(amount, STORAGE_UNITS[fromUnitIdx].symbol);

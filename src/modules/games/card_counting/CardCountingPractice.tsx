@@ -109,9 +109,7 @@ export const CardCountingPractice: React.FC = () => {
 
         {isFinished && (
           <div className={styles.answerColumn}>
-            <p className={clsx(styles.label, styles.labelCenter)}>
-              {t('practice_question')}
-            </p>
+            <p className={clsx(styles.label, styles.labelCenter)}>{t('practice_question')}</p>
 
             <CoreBaseInput
               id="card-counting-answer-input"
@@ -134,10 +132,7 @@ export const CardCountingPractice: React.FC = () => {
               <div
                 className={styles.feedbackBox}
                 style={{
-                  color:
-                    feedback === 'correct'
-                      ? 'var(--text-highlight)'
-                      : 'var(--color-error)',
+                  color: feedback === 'correct' ? 'var(--text-highlight)' : 'var(--color-error)',
                   border: `1px solid ${
                     feedback === 'correct' ? 'var(--text-highlight)' : 'var(--color-error)'
                   }`,
@@ -150,7 +145,11 @@ export const CardCountingPractice: React.FC = () => {
             )}
 
             {feedback && (
-              <FUIButton onClick={startDrill} variant="outline" className={clsx(styles.wideButton, styles.retryButton)}>
+              <FUIButton
+                onClick={startDrill}
+                variant="outline"
+                className={clsx(styles.wideButton, styles.retryButton)}
+              >
                 {t('retry', { ns: 'common' })}
               </FUIButton>
             )}

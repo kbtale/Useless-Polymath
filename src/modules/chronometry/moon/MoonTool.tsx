@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CoreDateInput } from '@/components/core/CoreDateInput';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
-import styles from './Moon.module.scss';
 import { getMoonPhase } from './logic';
+import styles from './Moon.module.scss';
 
 export const MoonTool: React.FC = () => {
   const { t } = useTranslation('moon');

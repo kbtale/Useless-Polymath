@@ -5,8 +5,8 @@ import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { CoreSemaphoreFigure } from '@/components/core/CoreSemaphoreFigure';
 import { FUIButton } from '@/components/core/FUIButton';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
-import styles from './SemaphoreTool.module.scss';
 import { getSemaphorePattern } from './logic';
+import styles from './SemaphoreTool.module.scss';
 
 export const SemaphoreTool: React.FC = () => {
   const { t } = useTranslation('semaphore');
@@ -57,11 +57,11 @@ export const SemaphoreTool: React.FC = () => {
           </div>
 
           <div className={styles.inputArea}>
-<label htmlFor="semaphore-char-input" className={styles.label}>
-            {t('label_type_char')}
-          </label>
-          <CoreBaseInput
-            id="semaphore-char-input"
+            <label htmlFor="semaphore-char-input" className={styles.label}>
+              {t('label_type_char')}
+            </label>
+            <CoreBaseInput
+              id="semaphore-char-input"
               value={inputText}
               onChangeValue={handleInputChange}
               placeholder={t('placeholder_type')}

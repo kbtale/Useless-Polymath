@@ -34,9 +34,9 @@ export const AsciiTool: React.FC = () => {
 
           <div className={styles.converter}>
             <div className={styles.inputGroup}>
-<label htmlFor="ascii-char-input">{t('label_char')}</label>
-            <CoreBaseInput
-              id="ascii-char-input"
+              <label htmlFor="ascii-char-input">{t('label_char')}</label>
+              <CoreBaseInput
+                id="ascii-char-input"
                 value={char}
                 onChangeValue={handleCharChange}
                 maxLength={1}
@@ -47,9 +47,9 @@ export const AsciiTool: React.FC = () => {
             <div className={styles.arrow}>⇄</div>
 
             <div className={styles.inputGroup}>
-<label htmlFor="ascii-code-input">{t('label_code')}</label>
-            <CoreBaseInput
-              id="ascii-code-input"
+              <label htmlFor="ascii-code-input">{t('label_code')}</label>
+              <CoreBaseInput
+                id="ascii-code-input"
                 value={code}
                 onChangeValue={handleCodeChange}
                 allowedChars={/^[0-9]*$/}
@@ -60,9 +60,7 @@ export const AsciiTool: React.FC = () => {
           </div>
 
           <div className={styles.tableSection}>
-            <h3 className={clsx(styles.label, styles.tableTitle)}>
-              {t('label_table')}
-            </h3>
+            <h3 className={clsx(styles.label, styles.tableTitle)}>{t('label_table')}</h3>
             <div className={styles.grid}>
               {tableData.map((item) => (
                 <button

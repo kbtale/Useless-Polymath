@@ -1,8 +1,8 @@
 import type React from 'react';
 import { useState } from 'react';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
-import { decimalToHex, hexToDecimal } from './logic';
 import styles from './Hex.module.scss';
+import { decimalToHex, hexToDecimal } from './logic';
 
 export const HexTool: React.FC = () => {
   const [dec, setDec] = useState('255');
@@ -44,7 +44,9 @@ export const HexTool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.inputGroup}>
-          <label htmlFor="hex-dec-input" className={styles.label}>DECIMAL (Base 10)</label>
+          <label htmlFor="hex-dec-input" className={styles.label}>
+            DECIMAL (Base 10)
+          </label>
           <input
             id="hex-dec-input"
             type="number"
@@ -55,7 +57,9 @@ export const HexTool: React.FC = () => {
         </div>
 
         <div className={styles.inputGroup}>
-          <label htmlFor="hex-value-input" className={styles.label}>HEXADECIMAL (Base 16)</label>
+          <label htmlFor="hex-value-input" className={styles.label}>
+            HEXADECIMAL (Base 16)
+          </label>
           <input
             id="hex-value-input"
             type="text"
@@ -67,9 +71,7 @@ export const HexTool: React.FC = () => {
 
         <div className={styles.inputGroup}>
           <div className={styles.label}>BINARY (Base 2)</div>
-          <div className={styles.binGroup}>
-            {bin.match(/.{1,4}/g)?.join(' ') || bin}
-          </div>
+          <div className={styles.binGroup}>{bin.match(/.{1,4}/g)?.join(' ') || bin}</div>
         </div>
       </div>
     </FUIGlassPanel>

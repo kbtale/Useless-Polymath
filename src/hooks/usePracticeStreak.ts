@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { storageService } from '@/services/storage';
 
 export function usePracticeStreak(moduleId: string) {
@@ -10,29 +10,57 @@ export function usePracticeStreak(moduleId: string) {
     return storageService.getHighScore(moduleId);
   });
 
-  useEffect(() => {
-    storageService.setStreak(moduleId, streak);
-  }, [moduleId, streak]);
+  const recordCorrect = useCallback(() => {
+    const result = storageService.recordPracticeAttempt(moduleId, true);
+    setStreakState(result.telemetry.currentStreak);
+    setHighScoreState(result.telemetry.highScore);
+    return result;
+  }, [moduleId]);
 
-  useEffect(() => {
-    if (streak > highScore) {
-      setHighScoreState(streak);
-      storageService.setHighScore(moduleId, streak);
-    }
-  }, [moduleId, streak, highScore]);
+  const recordIncorrect = useCallback(() => {
+    const result = storageService.recordPracticeAttempt(moduleId, false);
+    setStreakState(result.telemetry.currentStreak);
+    setHighScoreState(result.telemetry.highScore);
+    return result;
+  }, [moduleId]);
 
-  const setStreak = useCallback((newStreak: number | ((prev: number) => number)) => {
-    setStreakState(newStreak);
-  }, []);
+  const setStreak = useCallback(
+    (newStreakOrUpdater: number | ((prev: number) => number)) => {
+      setStreakState((prevStreak) => {
+        const nextVal =
+          typeof newStreakOrUpdater === 'function'
+            ? newStreakOrUpdater(prevStreak)
+            : newStreakOrUpdater;
+
+        if (nextVal > prevStreak) {
+          storageService.recordPracticeAttempt(moduleId, true);
+          storageService.setStreak(moduleId, nextVal);
+        } else if (nextVal === 0 && prevStreak > 0) {
+          storageService.recordPracticeAttempt(moduleId, false);
+          storageService.setStreak(moduleId, 0);
+        } else {
+          storageService.setStreak(moduleId, nextVal);
+        }
+
+        const newHigh = Math.max(storageService.getHighScore(moduleId), nextVal);
+        setHighScoreState(newHigh);
+        storageService.setHighScore(moduleId, newHigh);
+        return nextVal;
+      });
+    },
+    [moduleId],
+  );
 
   const resetStreak = useCallback(() => {
-    setStreakState(0);
-  }, []);
+    setStreak(0);
+  }, [setStreak]);
 
   return {
     streak,
     highScore,
     setStreak,
     resetStreak,
+    recordCorrect,
+    recordIncorrect,
   };
 }

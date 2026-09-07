@@ -1,13 +1,13 @@
+import clsx from 'clsx';
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { usePracticeStreak } from '@/hooks/usePracticeStreak';
-import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { FUIButton } from '@/components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 import { calculateSubnet } from './logic';
 import styles from './Subnetting.module.scss';
-import clsx from 'clsx';
 
 export const SubnettingPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('subnetting');
@@ -101,9 +101,7 @@ export const SubnettingPractice: React.FC = () => {
           <FUIButton onClick={handleSubmit}>{t('submit', { ns: 'common' })}</FUIButton>
 
           {feedback === 'incorrect' && (
-            <p className={styles.errorText}>
-              {t('incorrect_try_again', { ns: 'common' })}
-            </p>
+            <p className={styles.errorText}>{t('incorrect_try_again', { ns: 'common' })}</p>
           )}
         </div>
       </FUIGlassPanel>

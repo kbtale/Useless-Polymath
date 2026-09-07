@@ -1,11 +1,11 @@
+import clsx from 'clsx';
 import type React from 'react';
 import { useState } from 'react';
-import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { useTranslation } from 'react-i18next';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { toNato } from './logic';
 import styles from './Nato.module.scss';
-import { useTranslation } from 'react-i18next';
-import clsx from 'clsx';
 
 export const NatoTool: React.FC = () => {
   const { t } = useTranslation(['nato_alphabet', 'common']);
@@ -19,7 +19,9 @@ export const NatoTool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.inputArea}>
-          <label htmlFor="nato-text-input" className={styles.label}>{t('text_input')}</label>
+          <label htmlFor="nato-text-input" className={styles.label}>
+            {t('text_input')}
+          </label>
           <CoreBaseInput
             id="nato-text-input"
             value={input}
@@ -30,11 +32,12 @@ export const NatoTool: React.FC = () => {
         </div>
 
         <div className={styles.outputArea}>
-          {result.length === 0 && (
-            <div className={styles.emptyHint} />
-          )}
+          {result.length === 0 && <div className={styles.emptyHint} />}
           {result.map((item, idx) => (
-            <div key={`${item.char}-${idx}`} className={clsx(styles.card, !item.word && styles.unknown)}>
+            <div
+              key={`${item.char}-${idx}`}
+              className={clsx(styles.card, !item.word && styles.unknown)}
+            >
               <span className={styles.char}>{item.char}</span>
               {item.word && <span className={styles.word}>{item.word}</span>}
             </div>

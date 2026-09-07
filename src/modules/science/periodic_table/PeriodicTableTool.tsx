@@ -3,8 +3,8 @@ import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
-import styles from './PeriodicTable.module.scss';
 import { ELEMENTS, type Element } from './logic';
+import styles from './PeriodicTable.module.scss';
 
 const MAIN_ELEMENTS = ELEMENTS.filter((e) => e.period <= 7);
 const F_BLOCK_ELEMENTS = ELEMENTS.filter((e) => e.period > 7);

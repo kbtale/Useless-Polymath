@@ -1,6 +1,6 @@
+import clsx from 'clsx';
 import type React from 'react';
 import styles from './CoreBaseInput.module.scss';
-import clsx from 'clsx';
 
 interface CoreBaseInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value: string;

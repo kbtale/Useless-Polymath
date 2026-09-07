@@ -9,12 +9,10 @@ export interface SubnetCalculation {
 const toUint32 = (value: number): number => value >>> 0;
 
 export const ipToUint32 = (ip: string): number => {
-  return ip
-    .split('.')
-    .reduce((accumulatedIp, octetString) => {
-      const parsedOctet = parseInt(octetString, 10);
-      return toUint32((accumulatedIp << 8) + parsedOctet);
-    }, 0);
+  return ip.split('.').reduce((accumulatedIp, octetString) => {
+    const parsedOctet = parseInt(octetString, 10);
+    return toUint32((accumulatedIp << 8) + parsedOctet);
+  }, 0);
 };
 
 export const uint32ToIp = (uint32Value: number): string => {
@@ -40,7 +38,9 @@ export const calculateSubnet = (ip: string, cidr: number): SubnetCalculation | n
   const octets = ip.split('.');
   const hasInvalidOctet = octets.some((octetStr) => {
     const octetNumber = parseInt(octetStr, 10);
-    return octetNumber < 0 || octetNumber > 255 || (octetStr.length > 1 && octetStr.startsWith('0'));
+    return (
+      octetNumber < 0 || octetNumber > 255 || (octetStr.length > 1 && octetStr.startsWith('0'))
+    );
   });
 
   if (hasInvalidOctet) {

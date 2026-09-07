@@ -45,7 +45,9 @@ export const EanTool: React.FC = () => {
         <div className={styles.container}>
           <h2 className={styles.title}>{t('title')}</h2>
 
-          <label htmlFor="ean-input" className={styles.label}>{t('label_input')}</label>
+          <label htmlFor="ean-input" className={styles.label}>
+            {t('label_input')}
+          </label>
           <CoreBaseInput
             id="ean-input"
             value={input}

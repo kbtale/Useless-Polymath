@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { AppShell } from './AppShell';
@@ -16,6 +16,7 @@ vi.mock('react-i18next', () => ({
 
 describe('AppShell Accessibility', () => {
   beforeEach(() => {
+    cleanup();
     localStorage.clear();
   });
 
@@ -55,7 +56,7 @@ describe('AppShell Accessibility', () => {
   it('allows keyboard navigation and selection on sidebar menu items', async () => {
     const onModuleChange = vi.fn();
 
-    const { container } = render(
+    render(
       <AppShell
         activeModule="doomsday"
         onModuleChange={onModuleChange}
@@ -66,14 +67,17 @@ describe('AppShell Accessibility', () => {
       </AppShell>,
     );
 
-    const items = container.querySelectorAll('ul button');
-    expect(items.length).toBeGreaterThan(1);
+    const sidebar = screen.getByTestId('main-sidebar');
+    expect(sidebar).toBeDefined();
 
-    fireEvent.click(items[0]);
+    const doomsdayBtn = within(sidebar).getByRole('button', { name: 'Doomsday' });
+    expect(doomsdayBtn).toBeDefined();
+    fireEvent.click(doomsdayBtn);
     expect(onModuleChange).toHaveBeenCalledWith('doomsday');
 
     const user = userEvent.setup();
-    (items[1] as HTMLElement).focus();
+    const timeZonesBtn = within(sidebar).getByRole('button', { name: 'Time Zones' });
+    timeZonesBtn.focus();
     await user.keyboard('{Enter}');
     expect(onModuleChange).toHaveBeenCalledWith('time_zones');
   });

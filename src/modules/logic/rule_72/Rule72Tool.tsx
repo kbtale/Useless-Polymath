@@ -1,11 +1,11 @@
+import clsx from 'clsx';
 import type React from 'react';
 import { useState } from 'react';
-import clsx from 'clsx';
-import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { useTranslation } from 'react-i18next';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { calculateDoublingTime, preciseDoublingTime } from './logic';
 import styles from './Rule72.module.scss';
-import { useTranslation } from 'react-i18next';
 
 export const Rule72Tool: React.FC = () => {
   const { t } = useTranslation(['rule_72', 'common']);
@@ -26,7 +26,9 @@ export const Rule72Tool: React.FC = () => {
 
       <div className={styles.container}>
         <div className={styles.inputGroup}>
-          <label htmlFor="rule72-rate-input" className={styles.label}>{t('interest_rate')}</label>
+          <label htmlFor="rule72-rate-input" className={styles.label}>
+            {t('interest_rate')}
+          </label>
           <CoreBaseInput
             id="rule72-rate-input"
             value={rate}

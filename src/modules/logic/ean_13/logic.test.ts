@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { calculateEanChecksum, isValidEan13, generateEan13 } from './logic';
+import { describe, expect, it } from 'vitest';
+import { calculateEanChecksum, generateEan13, isValidEan13 } from './logic';
 
 describe('EAN-13 Logic', () => {
   it('should calculate the checksum digit', () => {

@@ -1,12 +1,12 @@
 import type React from 'react';
-import { useState, useEffect } from 'react';
-import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CoreBitRow } from '@/components/core/CoreBitRow';
 import { CoreSelect } from '@/components/core/CoreSelect';
-import { calculateBitwise, OPERATIONS } from './logic';
-import type { BitwiseOperation } from './logic';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import styles from './Bitwise.module.scss';
-import { useTranslation } from 'react-i18next';
+import type { BitwiseOperation } from './logic';
+import { calculateBitwise, OPERATIONS } from './logic';
 
 export const BitwiseTool: React.FC = () => {
   const { t } = useTranslation(['bitwise', 'common']);

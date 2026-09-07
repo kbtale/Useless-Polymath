@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { FUIButton } from '@/components/core/FUIButton';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { usePracticeStreak } from '@/hooks/usePracticeStreak';
-import styles from './Moon.module.scss';
 import { getMoonPhase } from './logic';
+import styles from './Moon.module.scss';
 
 export const MoonPractice: React.FC = () => {
   const { streak, setStreak } = usePracticeStreak('moon');

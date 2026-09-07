@@ -1,11 +1,11 @@
-import { usePracticeStreak } from '@/hooks/usePracticeStreak';
+import clsx from 'clsx';
 import type React from 'react';
 import { useState } from 'react';
-import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { FUIButton } from '@/components/core/FUIButton';
-import { getOrdinalDate, getDaysInMonth } from './logic';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
+import { getDaysInMonth, getOrdinalDate } from './logic';
 import styles from './Ordinal.module.scss';
 
 export const CalendarOrdinalPractice: React.FC = () => {

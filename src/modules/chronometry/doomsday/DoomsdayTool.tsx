@@ -5,7 +5,7 @@ import { CoreDateInput } from '@/components/core/CoreDateInput';
 import { FUIButton } from '@/components/core/FUIButton';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import styles from './Doomsday.module.scss';
-import { type DoomsdayLog, DAY_KEYS, calculateDoomsdayWithLog } from './logic';
+import { calculateDoomsdayWithLog, DAY_KEYS, type DoomsdayLog } from './logic';
 
 export const DoomsdayTool: React.FC = () => {
   const { t } = useTranslation(['doomsday', 'common']);
@@ -89,8 +89,12 @@ export const DoomsdayTool: React.FC = () => {
                   </span>
                 </div>
                 <div className={styles.stepContent}>
-                  <div>{t('input_label', { ns: 'common' })}: {step.input}</div>
-                  <div>{t('result_label', { ns: 'common' })}: {step.result}</div>
+                  <div>
+                    {t('input_label', { ns: 'common' })}: {step.input}
+                  </div>
+                  <div>
+                    {t('result_label', { ns: 'common' })}: {step.result}
+                  </div>
                   {step.details && <div className={styles.stepDetails}>{step.details}</div>}
                 </div>
               </div>

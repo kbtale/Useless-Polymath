@@ -6,8 +6,8 @@ import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { FUIButton } from '@/components/core/FUIButton';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { usePracticeStreak } from '@/hooks/usePracticeStreak';
-import styles from './Thermodynamics.module.scss';
 import { celsiusToFahrenheitMental } from './logic';
+import styles from './Thermodynamics.module.scss';
 
 const getRandomC = () => Math.floor(Math.random() * 40);
 
@@ -53,9 +53,7 @@ export const ThermodynamicsPractice: React.FC = () => {
         <div className={styles.targetTemp}>{targetC}°C</div>
 
         <div className={styles.section}>
-          <div className={clsx(styles.label, styles.sectionLabel)}>
-            {t('practice_convert')}
-          </div>
+          <div className={clsx(styles.label, styles.sectionLabel)}>{t('practice_convert')}</div>
           <CoreBaseInput
             value={input}
             onChangeValue={setInput}

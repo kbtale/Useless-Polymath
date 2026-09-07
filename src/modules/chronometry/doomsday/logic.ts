@@ -44,7 +44,8 @@ export const getDoomsday = (year: number): WeekdayIndex => {
   const remainderYears = twoDigitYear % 12;
   const leapYearsInRemainder = Math.floor(remainderYears / 4);
 
-  const yearDoomsdayOffset = (centuryAnchorDay + dozensOfYears + remainderYears + leapYearsInRemainder) % 7;
+  const yearDoomsdayOffset =
+    (centuryAnchorDay + dozensOfYears + remainderYears + leapYearsInRemainder) % 7;
   return (((yearDoomsdayOffset % 7) + 7) % 7) as WeekdayIndex;
 };
 
@@ -57,11 +58,7 @@ export const getDayOfWeek = (year: number, month: number, day: number): WeekdayI
   return finalDayIndex;
 };
 
-export const calculateDoomsdayWithLog = (
-  year: number,
-  month: number,
-  day: number,
-): DoomsdayLog => {
+export const calculateDoomsdayWithLog = (year: number, month: number, day: number): DoomsdayLog => {
   const safeYear = Number.isFinite(year) ? Math.floor(year) : 2025;
   const safeMonth = Number.isFinite(month) ? Math.min(Math.max(1, Math.floor(month)), 12) : 1;
   const safeDay = Number.isFinite(day) ? Math.min(Math.max(1, Math.floor(day)), 31) : 1;

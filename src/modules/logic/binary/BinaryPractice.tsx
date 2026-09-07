@@ -1,13 +1,13 @@
-import { usePracticeStreak } from '@/hooks/usePracticeStreak';
+import clsx from 'clsx';
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
 import { FUIButton } from '@/components/core/FUIButton';
+import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
+import styles from './Binary.module.scss';
 import { BitBulb } from './components/BitBulb';
 import { getActivePowers } from './logic';
-import styles from './Binary.module.scss';
-import clsx from 'clsx';
 
 export const BinaryPractice: React.FC = () => {
   const { t } = useTranslation(['common']);

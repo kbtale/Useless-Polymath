@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { MORSE_CODE, REVERSE_MORSE, encodeMode, decodeMorse } from './logic';
+import { describe, expect, it } from 'vitest';
+import { decodeMorse, encodeMode, MORSE_CODE, REVERSE_MORSE } from './logic';
 
 describe('Morse Code Logic', () => {
   it('should map characters to Morse code', () => {

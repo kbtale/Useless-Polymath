@@ -1,19 +1,28 @@
 import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
+import { AchievementToast } from '@/components/core/AchievementToast';
 import { CoreMarkdownRenderer } from '@/components/core/CoreMarkdownRenderer';
 import { ErrorBoundary } from '@/components/core/ErrorBoundary';
 import { ModuleLoadingFallback } from '@/components/core/ModuleLoadingFallback';
 import { AppShell } from '@/components/layout/AppShell';
+import { StatsDashboard } from '@/components/stats/StatsDashboard';
 import { useModuleNavigation } from '@/hooks/useModuleNavigation';
 import { getModuleDefinition } from '@/registry/moduleRegistry';
 import styles from './App.module.scss';
 
 function AppContent() {
-  const { activeModuleId, mode, setActiveModuleId, setMode } =
-    useModuleNavigation('doomsday');
+  const { activeModuleId, mode, setActiveModuleId, setMode } = useModuleNavigation('doomsday');
   const { t } = useTranslation([activeModuleId, 'common']);
 
   const renderModule = () => {
+    if (activeModuleId === 'stats') {
+      return (
+        <ErrorBoundary key="stats">
+          <StatsDashboard />
+        </ErrorBoundary>
+      );
+    }
+
     if (mode === 'guide') {
       return (
         <div className={styles.guideWrapper}>
@@ -55,14 +64,17 @@ function AppContent() {
   };
 
   return (
-    <AppShell
-      activeModule={activeModuleId}
-      mode={mode}
-      onModuleChange={setActiveModuleId}
-      onModeChange={setMode}
-    >
-      {renderModule()}
-    </AppShell>
+    <>
+      <AchievementToast />
+      <AppShell
+        activeModule={activeModuleId}
+        mode={mode}
+        onModuleChange={setActiveModuleId}
+        onModeChange={setMode}
+      >
+        {renderModule()}
+      </AppShell>
+    </>
   );
 }
 

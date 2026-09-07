@@ -1,12 +1,12 @@
+import clsx from 'clsx';
 import type React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import clsx from 'clsx';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { CoreSlider } from '@/components/core/CoreSlider';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
-import styles from './Subnetting.module.scss';
 import { calculateSubnet } from './logic';
+import styles from './Subnetting.module.scss';
 
 export const SubnettingTool: React.FC = () => {
   const { t } = useTranslation('subnetting');

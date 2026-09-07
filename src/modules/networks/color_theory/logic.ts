@@ -6,7 +6,7 @@ export interface RGBColor {
   b: number;
 }
 
-export const MAX_RGB_COLOR_DISTANCE = Math.sqrt(3 * (255 ** 2));
+export const MAX_RGB_COLOR_DISTANCE = Math.sqrt(3 * 255 ** 2);
 
 export const rgbToHex = (r: number, g: number, b: number): string => {
   const toHex = (channel: number) => {
@@ -17,14 +17,9 @@ export const rgbToHex = (r: number, g: number, b: number): string => {
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 };
 
-export const calculateColorDistance = (
-  colorA: RGBTuple,
-  colorB: RGBTuple,
-): number => {
+export const calculateColorDistance = (colorA: RGBTuple, colorB: RGBTuple): number => {
   return Math.sqrt(
-    (colorB[0] - colorA[0]) ** 2 +
-      (colorB[1] - colorA[1]) ** 2 +
-      (colorB[2] - colorA[2]) ** 2,
+    (colorB[0] - colorA[0]) ** 2 + (colorB[1] - colorA[1]) ** 2 + (colorB[2] - colorA[2]) ** 2,
   );
 };
 

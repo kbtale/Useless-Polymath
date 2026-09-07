@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { decimalToHex, hexToDecimal, hexToBinary } from './logic';
+import { describe, expect, it } from 'vitest';
+import { decimalToHex, hexToBinary, hexToDecimal } from './logic';
 
 describe('Hexadecimal Logic', () => {
   it('should convert decimal to hex correctly', () => {
