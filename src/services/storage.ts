@@ -44,6 +44,7 @@ export interface ExportedBackupData {
 
 export const STORAGE_KEYS = {
   SIDEBAR_COLLAPSED: 'polymath_sidebar_collapsed',
+  COLLAPSED_CATEGORIES: 'polymath_collapsed_categories',
   HIDDEN_MODULES: 'polymath_hidden_modules',
   HIDDEN_CATEGORIES: 'polymath_hidden_categories',
   APP_STYLE: 'polymath_app_style',
@@ -221,6 +222,14 @@ class StorageService {
 
   setHiddenCategories(categories: string[]): void {
     this.setItem(STORAGE_KEYS.HIDDEN_CATEGORIES, categories);
+  }
+
+  getCollapsedCategories(): string[] {
+    return this.getItem<string[]>(STORAGE_KEYS.COLLAPSED_CATEGORIES, []);
+  }
+
+  setCollapsedCategories(categories: string[]): void {
+    this.setItem(STORAGE_KEYS.COLLAPSED_CATEGORIES, categories);
   }
 
   getAppStyle(defaultStyle: string = 'mono'): string {

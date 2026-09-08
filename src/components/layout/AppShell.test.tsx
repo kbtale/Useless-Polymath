@@ -81,4 +81,41 @@ describe('AppShell Accessibility', () => {
     await user.keyboard('{Enter}');
     expect(onModuleChange).toHaveBeenCalledWith('time_zones');
   });
+
+  it('allows collapsing and expanding category sections in the sidebar', () => {
+    render(
+      <AppShell activeModule="doomsday" onModuleChange={vi.fn()} mode="tool" onModeChange={vi.fn()}>
+        <div>Content Workspace</div>
+      </AppShell>,
+    );
+
+    const sidebar = screen.getByTestId('main-sidebar');
+    const chronometryHeader = within(sidebar).getByRole('button', {
+      name: /modules\.chronometry/i,
+    });
+    expect(chronometryHeader.getAttribute('aria-expanded')).toBe('true');
+
+    // Collapse section
+    fireEvent.click(chronometryHeader);
+    expect(chronometryHeader.getAttribute('aria-expanded')).toBe('false');
+    expect(within(sidebar).queryByRole('button', { name: 'Doomsday' })).toBeNull();
+
+    // Expand section again
+    fireEvent.click(chronometryHeader);
+    expect(chronometryHeader.getAttribute('aria-expanded')).toBe('true');
+    expect(within(sidebar).getByRole('button', { name: 'Doomsday' })).toBeDefined();
+  });
+
+  it('handles language selection via header dropdown', () => {
+    render(
+      <AppShell activeModule="doomsday" onModuleChange={vi.fn()} mode="tool" onModeChange={vi.fn()}>
+        <div>Content Workspace</div>
+      </AppShell>,
+    );
+
+    const langSelect = screen.getByRole('combobox', { name: /language/i });
+    expect(langSelect).toBeDefined();
+    fireEvent.change(langSelect, { target: { value: 'es' } });
+    expect(langSelect).toBeDefined();
+  });
 });

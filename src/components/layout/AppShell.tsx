@@ -87,6 +87,18 @@ export const AppShell: React.FC<AppShellProps> = ({
     return storageService.getHiddenCategories();
   });
 
+  const [collapsedCategories, setCollapsedCategories] = useState<string[]>(() => {
+    return storageService.getCollapsedCategories();
+  });
+
+  const toggleCategoryCollapse = (catKey: string) => {
+    setCollapsedCategories((prev) => {
+      const next = prev.includes(catKey) ? prev.filter((k) => k !== catKey) : [...prev, catKey];
+      storageService.setCollapsedCategories(next);
+      return next;
+    });
+  };
+
   const toggleModuleVisibility = (moduleId: string) => {
     setHiddenModules((prev) => {
       const next = prev.includes(moduleId)
@@ -180,7 +192,7 @@ export const AppShell: React.FC<AppShellProps> = ({
           </div>
         </div>
 
-        <div className={styles.quickControls}>
+        <div className={styles.headerRight}>
           <div className={styles.styleControl}>
             <label htmlFor="theme-style-select" className={styles.styleLabel}>
               {t('style_label')}:
@@ -200,51 +212,63 @@ export const AppShell: React.FC<AppShellProps> = ({
             </select>
           </div>
 
-          <fieldset className={styles.langButtonGroup} aria-label="Language options">
-            <FUIButton
-              onClick={() => changeLanguage('en')}
-              variant={i18n.language === 'en' ? 'solid' : 'outline'}
-              aria-label="Switch to English"
-              className={styles.langButton}
+          <div className={styles.langControl}>
+            <label
+              htmlFor="header-language-select"
+              className={styles.langLabel}
+              title={t('language', { ns: 'common', defaultValue: 'Language' })}
             >
-              EN
-            </FUIButton>
-            <FUIButton
-              onClick={() => changeLanguage('es')}
-              variant={i18n.language === 'es' ? 'solid' : 'outline'}
-              aria-label="Cambiar a Español"
-              className={styles.langButton}
+              <svg
+                className={styles.langIcon}
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                stroke="currentColor"
+                strokeWidth="2"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="m5 8 6 6" />
+                <path d="m4 14 6-6 2-3" />
+                <path d="M2 5h12" />
+                <path d="M7 2h1" />
+                <path d="m22 22-5-10-5 10" />
+                <path d="M14 18h6" />
+              </svg>
+            </label>
+            <select
+              id="header-language-select"
+              aria-label={t('language', 'Language')}
+              value={i18n.language}
+              onChange={(e) => changeLanguage(e.target.value)}
+              className={styles.langSelect}
             >
-              ES
-            </FUIButton>
-            <FUIButton
-              onClick={() => changeLanguage('it')}
-              variant={i18n.language === 'it' ? 'solid' : 'outline'}
-              aria-label="Passa all'Italiano"
-              className={styles.langButton}
-            >
-              IT
-            </FUIButton>
-          </fieldset>
+              <option value="en">EN</option>
+              <option value="es">ES</option>
+              <option value="it">IT</option>
+            </select>
+          </div>
+
+          <FUIButton
+            id="stats-open-btn"
+            aria-haspopup="dialog"
+            aria-expanded={showStats}
+            onClick={() => setShowStats(true)}
+          >
+            {t('stats', { ns: 'common', defaultValue: 'Stats' })}
+          </FUIButton>
+
+          <FUIButton
+            id="settings-open-btn"
+            aria-haspopup="dialog"
+            aria-expanded={showSettings}
+            onClick={() => setShowSettings(true)}
+          >
+            {t('settings')}
+          </FUIButton>
         </div>
-
-        <FUIButton
-          id="stats-open-btn"
-          aria-haspopup="dialog"
-          aria-expanded={showStats}
-          onClick={() => setShowStats(true)}
-        >
-          {t('stats', { ns: 'common', defaultValue: 'Stats' })}
-        </FUIButton>
-
-        <FUIButton
-          id="settings-open-btn"
-          aria-haspopup="dialog"
-          aria-expanded={showSettings}
-          onClick={() => setShowSettings(true)}
-        >
-          {t('settings')}
-        </FUIButton>
         <div className={styles.cornerDeco} />
       </header>
 
@@ -267,34 +291,59 @@ export const AppShell: React.FC<AppShellProps> = ({
                 const visibleCatModules = catModules.filter((m) => !hiddenModules.includes(m.id));
                 return visibleCatModules.length > 0;
               })
-              .map((catKey) => (
-                <div key={catKey}>
-                  <h2 className={styles.sectionTitle}>
-                    {t(catKey, { ns: 'common', defaultValue: catKey })}
-                  </h2>
-                  <ul className={styles.menuList}>
-                    {MODULES.filter(
-                      (m) => m.categoryKey === catKey && !hiddenModules.includes(m.id),
-                    ).map((m) => (
-                      <li key={m.id}>
-                        <button
-                          type="button"
-                          aria-current={activeModule === m.id ? 'page' : undefined}
-                          className={clsx(styles.menuItem, activeModule === m.id && styles.active)}
-                          onClick={() => {
-                            onModuleChange(m.id);
-                            setIsMobileMenuOpen(false);
-                          }}
-                        >
-                          {toTitleCase(
-                            t(m.id, { ns: 'navigation', defaultValue: formatDefaultTitle(m.id) }),
-                          )}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+              .map((catKey) => {
+                const isCollapsed = collapsedCategories.includes(catKey);
+                const visibleCatModules = MODULES.filter(
+                  (m) => m.categoryKey === catKey && !hiddenModules.includes(m.id),
+                );
+
+                return (
+                  <div key={catKey} className={styles.categorySection}>
+                    <button
+                      type="button"
+                      className={styles.sectionHeaderBtn}
+                      onClick={() => toggleCategoryCollapse(catKey)}
+                      aria-expanded={!isCollapsed}
+                      aria-controls={`category-modules-${catKey}`}
+                    >
+                      <span className={styles.sectionTitle}>
+                        {t(catKey, { ns: 'common', defaultValue: catKey })}
+                      </span>
+                      <span className={styles.collapseIcon} aria-hidden="true">
+                        {isCollapsed ? '+' : '−'}
+                      </span>
+                    </button>
+
+                    {!isCollapsed && (
+                      <ul id={`category-modules-${catKey}`} className={styles.menuList}>
+                        {visibleCatModules.map((m) => (
+                          <li key={m.id}>
+                            <button
+                              type="button"
+                              aria-current={activeModule === m.id ? 'page' : undefined}
+                              className={clsx(
+                                styles.menuItem,
+                                activeModule === m.id && styles.active,
+                              )}
+                              onClick={() => {
+                                onModuleChange(m.id);
+                                setIsMobileMenuOpen(false);
+                              }}
+                            >
+                              {toTitleCase(
+                                t(m.id, {
+                                  ns: 'navigation',
+                                  defaultValue: formatDefaultTitle(m.id),
+                                }),
+                              )}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                );
+              })}
           </div>
 
           <div className={`${styles.crosshair} ${styles['ch-tl']}`} />
