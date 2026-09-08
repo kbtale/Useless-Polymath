@@ -58,11 +58,11 @@
     }
   }
 
-  .quickControls {
+  .headerRight {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    margin-right: 1rem;
+    gap: $spacing-md;
+    margin-left: auto;
 
     .styleControl {
       display: flex;
@@ -76,7 +76,8 @@
       opacity: 0.7;
     }
 
-    .styleSelect {
+    .styleSelect,
+    .langSelect {
       background: var(--bg-canvas);
       color: var(--text-main);
       border: 1px solid var(--line-color);
@@ -86,17 +87,37 @@
       cursor: pointer;
       outline: none;
       border-radius: var(--radius-button);
+      transition: border-color 0.2s;
+
+      &:focus {
+        border-color: var(--text-highlight);
+      }
     }
 
-    .langButtonGroup {
+    .langControl {
       display: flex;
-      gap: 0.5rem;
-    }
+      align-items: center;
+      gap: 0.35rem;
 
-    .langButton {
-      padding: 0.25rem 0.75rem;
-      min-height: 32px;
-      font-size: 0.7rem;
+      .langLabel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--text-main);
+        opacity: 0.8;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      .langIcon {
+        display: block;
+        width: 1rem;
+        height: 1rem;
+      }
     }
   }
 
@@ -143,10 +164,57 @@
   .scrollArea {
     flex: 1;
     overflow-y: auto;
-    padding: $spacing-lg $spacing-md;
+    padding: $spacing-md $spacing-md;
     display: flex;
     flex-direction: column;
-    gap: $spacing-lg;
+    gap: $spacing-md;
+  }
+
+  .categorySection {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sectionHeaderBtn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: $spacing-xs 0;
+    margin-bottom: $spacing-xs;
+    cursor: pointer;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
+    text-align: left;
+    outline: none;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    .sectionTitle {
+      margin: 0;
+      border: none;
+      padding: 0;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .collapseIcon {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      line-height: 1;
+    }
   }
 
   .sectionTitle {
@@ -163,22 +231,23 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: $spacing-sm;
+    gap: 0;
   }
 
   .menuItem {
     position: relative;
-    padding-left: $spacing-md;
+    padding: 0.18rem 0 0.18rem $spacing-md;
     opacity: 0.7;
-    transition: opacity 0.2s;
+    transition: opacity 0.15s;
     cursor: pointer;
-    font-size: 0.875rem;
+    font-size: 0.82rem;
     font-family: inherit;
     color: inherit;
     background: none;
     border: none;
     width: 100%;
     text-align: left;
+    line-height: 1.35;
 
     &:hover {
       opacity: 1;
@@ -190,7 +259,7 @@
       position: absolute;
       left: 0;
       opacity: 0;
-      transition: opacity 0.2s;
+      transition: opacity 0.15s;
     }
 
     &:hover::before {
@@ -319,8 +388,13 @@
       gap: $spacing-sm;
     }
 
-    .quickControls {
-      display: none;
+    .headerRight {
+      gap: $spacing-xs;
+
+      .styleControl,
+      .langControl {
+        display: none;
+      }
     }
 
     .title h1 {
