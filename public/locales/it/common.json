@@ -40,5 +40,7 @@
   "input_label": "Input",
   "result_label": "Risultato",
   "style_label": "Stile",
+  "score": "Punteggio",
+  "check": "Controlla",
   "confirm_reset_all": "Sei sicuro di voler reimpostare tutte le serie e i punteggi più alti? Questa azione non può essere annullata."
 }

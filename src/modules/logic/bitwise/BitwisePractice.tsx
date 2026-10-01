@@ -88,11 +88,15 @@ export const BitwisePractice: React.FC = () => {
         )}
 
         {feedback === 'correct' ? (
-          <div className={`${styles.feedback} ${styles.correct}`}>CORRECT</div>
+          <div className={`${styles.feedback} ${styles.correct}`}>
+            {t('correct', { ns: 'common' })}
+          </div>
         ) : feedback === 'incorrect' ? (
-          <div className={`${styles.feedback} ${styles.incorrect}`}>INCORRECT</div>
+          <div className={`${styles.feedback} ${styles.incorrect}`}>
+            {t('incorrect', { ns: 'common' })}
+          </div>
         ) : (
-          <FUIButton onClick={checkAnswer}>CHECK</FUIButton>
+          <FUIButton onClick={checkAnswer}>{t('check', { ns: 'common' })}</FUIButton>
         )}
       </div>
     </FUIGlassPanel>

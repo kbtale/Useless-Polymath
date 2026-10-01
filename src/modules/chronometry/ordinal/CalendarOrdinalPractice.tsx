@@ -9,7 +9,7 @@ import { getDaysInMonth, getOrdinalDate } from './logic';
 import styles from './Ordinal.module.scss';
 
 export const CalendarOrdinalPractice: React.FC = () => {
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(['ordinal', 'common']);
   const { streak, setStreak } = usePracticeStreak('ordinal');
   const getRandomDate = () => {
     const y = 2020 + Math.floor(Math.random() * 10);
@@ -50,14 +50,18 @@ export const CalendarOrdinalPractice: React.FC = () => {
     <div className={styles.toolLayout}>
       <FUIGlassPanel className={styles.panel}>
         <div className={styles.headerRow}>
-          <span className={styles.key}>PRACTICE MODE</span>
-          <span className={styles.key}>STREAK: {streak}</span>
+          <span className={styles.key}>{t('practice_mode', { ns: 'common' })}</span>
+          <span className={styles.key}>
+            {t('streak', { ns: 'common' })}: {streak}
+          </span>
         </div>
 
-        <h2 className={styles.title}>CALCULATE ORDINAL DAY</h2>
+        <h2 className={styles.title}>
+          {t('tool_title', { ns: 'ordinal', defaultValue: 'CALENDAR ORDINAL' })}
+        </h2>
 
         <div className={styles.questionBlock}>
-          <div className={styles.targetLabel}>TARGET DATE</div>
+          <div className={styles.targetLabel}>{t('target_date', { ns: 'common' })}</div>
           <div className={styles.targetValue}>
             {targetDate.y}-{targetDate.m.toString().padStart(2, '0')}-
             {targetDate.d.toString().padStart(2, '0')}
@@ -76,7 +80,7 @@ export const CalendarOrdinalPractice: React.FC = () => {
 
         <div className={styles.buttonGroup}>
           <FUIButton onClick={handleSubmit} variant="solid">
-            &lt; CHECK &gt;
+            &lt; {t('check', { ns: 'common' })} &gt;
           </FUIButton>
         </div>
 

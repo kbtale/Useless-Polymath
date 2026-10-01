@@ -68,7 +68,7 @@ export const MorsePractice: React.FC = () => {
 
         {feedback === 'correct' && (
           <div className={`${styles.feedback} ${styles.correct}`}>
-            {t('correct', { ns: 'common' })}!
+            {t('correct', { ns: 'common' })}
           </div>
         )}
 

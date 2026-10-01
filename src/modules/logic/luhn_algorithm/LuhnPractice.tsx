@@ -68,7 +68,7 @@ export const LuhnPractice: React.FC = () => {
 
         {!feedback && (
           <FUIButton onClick={handleCheck} disabled={!input} variant="solid">
-            Submit
+            {t('submit', { ns: 'common' })}
           </FUIButton>
         )}
 
@@ -80,7 +80,7 @@ export const LuhnPractice: React.FC = () => {
               })}
             </div>
             <FUIButton onClick={handleNext} variant="outline">
-              Next
+              {t('next', { ns: 'common' })}
             </FUIButton>
           </>
         )}

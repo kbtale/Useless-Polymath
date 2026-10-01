@@ -40,5 +40,7 @@
   "input_label": "Entrada",
   "result_label": "Resultado",
   "style_label": "Estilo",
+  "score": "Puntuación",
+  "check": "Comprobar",
   "confirm_reset_all": "¿Estás seguro de que quieres restablecer todas las rachas y puntuaciones máximas? Esta acción no se puede deshacer."
 }

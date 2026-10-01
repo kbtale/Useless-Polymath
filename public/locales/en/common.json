@@ -40,5 +40,7 @@
   "input_label": "Input",
   "result_label": "Result",
   "style_label": "Style",
+  "score": "Score",
+  "check": "Check",
   "confirm_reset_all": "Are you sure you want to reset all practice streaks and high scores? This action cannot be undone."
 }

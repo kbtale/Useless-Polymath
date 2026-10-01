@@ -84,11 +84,13 @@ export const BinaryPractice: React.FC = () => {
             READ (BIN to DEC)
           </FUIButton>
         </div>
-        <div className={styles.streak}>STREAK: {streak}</div>
+        <div className={styles.streak}>
+          {t('streak', { ns: 'common' })}: {streak}
+        </div>
       </div>
 
       <div className={styles.targetDisplay}>
-        <div className={styles.label}>TARGET</div>
+        <div className={styles.label}>{t('target', { ns: 'common' })}</div>
         {mode === 'write' ? (
           <div className={styles.targetValue}>{target}</div>
         ) : (
@@ -131,7 +133,7 @@ export const BinaryPractice: React.FC = () => {
             placeholder="Enter Decimal Value"
             className={styles.input}
           />
-          <FUIButton onClick={checkReadAnswer}>CHECK</FUIButton>
+          <FUIButton onClick={checkReadAnswer}>{t('check', { ns: 'common' })}</FUIButton>
         </div>
       )}
 
