@@ -77,6 +77,7 @@ export const AsciiPractice: React.FC = () => {
             <CoreBaseInput
               value={userAnswer}
               onChangeValue={setUserAnswer}
+              onEnter={handleSubmit}
               maxLength={3}
               placeholder="?"
               className={clsx(

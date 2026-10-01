@@ -76,6 +76,7 @@ export const RomanPractice: React.FC = () => {
           <CoreBaseInput
             value={userInput}
             onChangeValue={setUserInput}
+            onEnter={checkAnswer}
             allowedChars={direction === 'to_roman' ? /[IVXLCDM]/i : /[0-9]/}
             transformToUpper={direction === 'to_roman'}
             maxLength={direction === 'to_roman' ? 15 : 4}

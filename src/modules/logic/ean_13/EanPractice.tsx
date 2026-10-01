@@ -10,8 +10,8 @@ import styles from './Ean13.module.scss';
 import { generateEan13 } from './logic';
 
 export const EanPractice: React.FC = () => {
-  const { setStreak } = usePracticeStreak('ean_13');
-  const { t } = useTranslation('ean_13');
+  const { streak, setStreak } = usePracticeStreak('ean_13');
+  const { t } = useTranslation(['ean_13', 'common']);
 
   const [targetNumber, setTargetNumber] = useState(() => generateEan13());
   const [input, setInput] = useState('');
@@ -41,7 +41,12 @@ export const EanPractice: React.FC = () => {
 
   return (
     <FUIGlassPanel className={styles.panel}>
-      <h2 className={styles.title}>{t('practice_title')}</h2>
+      <div className={styles.headerRow}>
+        <h2 className={styles.title}>{t('practice_title')}</h2>
+        <span className={styles.streakValue}>
+          {t('streak', { ns: 'common' })}: {streak}
+        </span>
+      </div>
 
       <div className={styles.practiceContainer}>
         <p className={styles.label}>{t('practice_prompt')}</p>

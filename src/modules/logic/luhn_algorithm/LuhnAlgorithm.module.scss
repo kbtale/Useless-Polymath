@@ -35,6 +35,30 @@
   text-align: center;
 }
 
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 2px solid $line-color;
+  padding-bottom: $spacing-sm;
+  margin-bottom: $spacing-md;
+
+  .title {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    width: auto;
+    text-align: left;
+  }
+}
+
+.streakValue {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: var(--text-highlight, #fbbf24);
+}
+
 .label {
   font-family: $font-mono;
   color: $text-dim;

@@ -67,6 +67,7 @@ export const Rule72Practice: React.FC = () => {
           <CoreBaseInput
             value={userInput}
             onChangeValue={setUserInput}
+            onEnter={checkAnswer}
             allowedChars={/[0-9.]/}
             maxLength={5}
             placeholder="?"

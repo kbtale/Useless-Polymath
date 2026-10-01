@@ -34,7 +34,7 @@ const CardDisplay: React.FC<{ card: Card }> = memo(({ card }) => {
 });
 
 export const CardCountingPractice: React.FC = () => {
-  const { setStreak } = usePracticeStreak('card_counting');
+  const { streak, setStreak } = usePracticeStreak('card_counting');
   const { t } = useTranslation(['card_counting', 'common']);
 
   const [, setDeck] = useState<Card[]>(() => shuffleDeck(createStandardDeck()));
@@ -92,7 +92,12 @@ export const CardCountingPractice: React.FC = () => {
 
   return (
     <FUIGlassPanel className={styles.panel}>
-      <h2 className={styles.title}>{t('practice_title')}</h2>
+      <div className={styles.headerRow}>
+        <h2 className={styles.title}>{t('practice_title')}</h2>
+        <span className={styles.streakValue}>
+          {t('streak', { ns: 'common' })}: {streak}
+        </span>
+      </div>
 
       <div className={styles.practiceContainer}>
         <div className={styles.dealerTable}>

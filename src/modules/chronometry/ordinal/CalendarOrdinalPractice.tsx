@@ -70,6 +70,7 @@ export const CalendarOrdinalPractice: React.FC = () => {
             placeholder="???"
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
           />
         </div>
 

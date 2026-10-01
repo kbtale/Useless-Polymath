@@ -89,6 +89,7 @@ export const SubnettingPractice: React.FC = () => {
             <CoreBaseInput
               value={userAnswer}
               onChangeValue={setUserAnswer}
+              onEnter={handleSubmit}
               placeholder={targetType === 'hosts' ? '123' : 'x.x.x.x'}
               className={clsx(
                 styles.practiceInput,

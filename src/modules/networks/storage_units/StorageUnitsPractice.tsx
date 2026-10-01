@@ -67,6 +67,7 @@ export const StorageUnitsPractice: React.FC = () => {
             <CoreBaseInput
               value={userAnswer}
               onChangeValue={setUserAnswer}
+              onEnter={handleSubmit}
               placeholder="?"
               allowedChars={/^[0-9.eE+-]*$/}
               className={clsx(

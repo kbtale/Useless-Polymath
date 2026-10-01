@@ -10,8 +10,8 @@ import styles from './LuhnAlgorithm.module.scss';
 import { generateLuhnNumber } from './logic';
 
 export const LuhnPractice: React.FC = () => {
-  const { setStreak } = usePracticeStreak('luhn_algorithm');
-  const { t } = useTranslation('luhn_algorithm');
+  const { streak, setStreak } = usePracticeStreak('luhn_algorithm');
+  const { t } = useTranslation(['luhn_algorithm', 'common']);
 
   const [targetNumber, setTargetNumber] = useState(() => generateLuhnNumber(16));
   const [input, setInput] = useState('');
@@ -38,7 +38,12 @@ export const LuhnPractice: React.FC = () => {
 
   return (
     <FUIGlassPanel className={styles.panel}>
-      <h2 className={styles.title}>{t('practice_title')}</h2>
+      <div className={styles.headerRow}>
+        <h2 className={styles.title}>{t('practice_title')}</h2>
+        <span className={styles.streakValue}>
+          {t('streak', { ns: 'common' })}: {streak}
+        </span>
+      </div>
 
       <div className={styles.practiceContainer}>
         <p className={styles.label}>{t('practice_prompt')}</p>
