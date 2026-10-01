@@ -9,7 +9,7 @@ import styles from './Hex.module.scss';
 import { decimalToHex, hexToDecimal } from './logic';
 
 export const HexPractice: React.FC = () => {
-  const { streak, setStreak } = usePracticeStreak('hex');
+  const { streak, setStreak } = usePracticeStreak('hexadecimal');
   const { t } = useTranslation(['common']);
   const getRandomRound = () => {
     const newTarget = Math.floor(Math.random() * 255);

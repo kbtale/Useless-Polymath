@@ -116,4 +116,22 @@ describe('StorageService', () => {
     expect(storageService.getStreak('doomsday')).toBe(0);
     expect(storageService.getStreak('moon')).toBe(0);
   });
+
+  it('records practice attempts and tracks telemetry across all 24 modules', () => {
+    const modules = [
+      'doomsday', 'time_zones', 'moon', 'ordinal',
+      'binary', 'hexadecimal', 'roman_numerals', 'bitwise', 'rule_72',
+      'subnetting', 'color_theory', 'ascii', 'storage_units',
+      'morse_code', 'nato_alphabet', 'caesar_cipher', 'braille', 'semaphore',
+      'periodic_table', 'thermodynamics', 'resistor_codes', 'luhn_algorithm', 'ean_13', 'card_counting',
+    ];
+
+    for (const modId of modules) {
+      const { telemetry } = storageService.recordPracticeAttempt(modId, true);
+      expect(telemetry.attempts).toBe(1);
+      expect(telemetry.correct).toBe(1);
+      expect(telemetry.currentStreak).toBe(1);
+      expect(storageService.getStreak(modId)).toBe(1);
+    }
+  });
 });

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { FUIButton } from '@/components/core/FUIButton';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 import styles from './CardCounting.module.scss';
 import { type Card, createStandardDeck, dealCard, getHiLoValue, shuffleDeck } from './logic';
 
@@ -33,6 +34,7 @@ const CardDisplay: React.FC<{ card: Card }> = memo(({ card }) => {
 });
 
 export const CardCountingPractice: React.FC = () => {
+  const { setStreak } = usePracticeStreak('card_counting');
   const { t } = useTranslation(['card_counting', 'common']);
 
   const [, setDeck] = useState<Card[]>(() => shuffleDeck(createStandardDeck()));
@@ -81,10 +83,12 @@ export const CardCountingPractice: React.FC = () => {
 
     if (val === trueRunningCount) {
       setFeedback('correct');
+      setStreak((s) => s + 1);
     } else {
       setFeedback('incorrect');
+      setStreak(0);
     }
-  }, [input, trueRunningCount]);
+  }, [input, setStreak, trueRunningCount]);
 
   return (
     <FUIGlassPanel className={styles.panel}>

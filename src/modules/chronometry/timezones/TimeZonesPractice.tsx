@@ -9,7 +9,7 @@ import { COMMON_ZONES, calculateDestinationTime } from './logic';
 import styles from './TimeZones.module.scss';
 
 export const TimeZonesPractice: React.FC = () => {
-  const { streak, setStreak } = usePracticeStreak('timezones');
+  const { streak, setStreak } = usePracticeStreak('time_zones');
   const { t } = useTranslation(['common']);
   const getRandomRound = () => {
     const originIdx = Math.floor(Math.random() * COMMON_ZONES.length);

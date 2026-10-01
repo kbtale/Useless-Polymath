@@ -5,10 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { FUIButton } from '@/components/core/FUIButton';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 import styles from './LuhnAlgorithm.module.scss';
 import { generateLuhnNumber } from './logic';
 
 export const LuhnPractice: React.FC = () => {
+  const { setStreak } = usePracticeStreak('luhn_algorithm');
   const { t } = useTranslation('luhn_algorithm');
 
   const [targetNumber, setTargetNumber] = useState(() => generateLuhnNumber(16));
@@ -21,8 +23,10 @@ export const LuhnPractice: React.FC = () => {
   const handleCheck = () => {
     if (input === correctDigit) {
       setFeedback('correct');
+      setStreak((s) => s + 1);
     } else {
       setFeedback('incorrect');
+      setStreak(0);
     }
   };
 

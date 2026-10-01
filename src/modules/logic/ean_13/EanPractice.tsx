@@ -5,10 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { CoreBaseInput } from '@/components/core/CoreBaseInput';
 import { FUIButton } from '@/components/core/FUIButton';
 import { FUIGlassPanel } from '@/components/core/FUIGlassPanel';
+import { usePracticeStreak } from '@/hooks/usePracticeStreak';
 import styles from './Ean13.module.scss';
 import { generateEan13 } from './logic';
 
 export const EanPractice: React.FC = () => {
+  const { setStreak } = usePracticeStreak('ean_13');
   const { t } = useTranslation('ean_13');
 
   const [targetNumber, setTargetNumber] = useState(() => generateEan13());
@@ -24,8 +26,10 @@ export const EanPractice: React.FC = () => {
   const handleCheck = () => {
     if (input === correctDigit) {
       setFeedback('correct');
+      setStreak((s) => s + 1);
     } else {
       setFeedback('incorrect');
+      setStreak(0);
     }
   };
 
