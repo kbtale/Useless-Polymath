@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "framer-motion": "^13.5.0",
+    "framer-motion": "^14.0.0",
     "i18next": "^26.4.2",
     "i18next-http-backend": "^4.0.2",
     "react": "^19.3.0",
